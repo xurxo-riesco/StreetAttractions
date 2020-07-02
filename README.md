@@ -1,7 +1,5 @@
-Original App Design Project - README Template
+Street Attractions
 ===
-
-# Street Attractions
 
 ## Table of Contents
 1. [Overview](#Overview)

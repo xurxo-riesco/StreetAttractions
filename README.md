@@ -75,3 +75,36 @@ Lets you report if you've seen street performers you like for anyone in the area
    * Create
 ## Wireframes
 https://www.figma.com/file/IdUodeaRXs9ybgWMVtnlmQ/Untitled?node-id=0%3A1
+
+## Schema 
+### Models
+#### Post
+
+   | Property      | Type     | Description |
+   | ------------- | -------- | ------------|
+   | objectId      | String   | unique id for the user post (default field) |
+   | author        | Pointer to User| image author |
+   | Media         | File     | Media that user posts |
+   | caption       | String   | image caption by author |
+   | comments      | Relation   | Relation to the comments |
+   | likes         | Relation   | Relation to the likes |
+   | likesCount    | Number   | number of likes for the post |
+   | createdAt     | DateTime | date when post is created (default field) |
+   | updatedAt     | DateTime | date when post is last updated (default field) |
+   |Location| TBD | Location of the performance
+   #### Category
+
+   | Property      | Type     | Description |
+   | ------------- | -------- | ------------|
+   | Posts      | Relation   | Relation to the posts|
+   #### Category
+
+   | Property      | Type     | Description |
+   | ------------- | -------- | ------------|
+   | objectId      | String   | unique id for the user user (default field) |
+   | Username      | String   | User's screename|
+   | Password      | String   | User's password|
+   | isPerformer   | Bool   | Define if user is simple user or has a performers account|
+   | FollowingUsers | Relation   | Relation to the Users they are following|
+   | FollowingCategories| Relation   | Relation to the Categories they are following|
+      

@@ -48,6 +48,10 @@ Lets you report if you've seen street performers you like for anyone in the area
     * User can log in
 * Stream
     * User can view other posts
+* Explore
+   * User can see categories
+* Favorites
+   * User can see stream limited to their favorites users, performers, and categories
 * Map
     * User can use the map view
 * Create
@@ -61,9 +65,11 @@ Lets you report if you've seen street performers you like for anyone in the area
 
 **Tab Navigation** (Tab to Screen)
 
-* Stream
-* Map
 * SlideOut Profile
+* Stream
+* Explore
+* Favorites
+* Map
 
 **Flow Navigation** (Screen to Screen)
 
@@ -73,6 +79,11 @@ Lets you report if you've seen street performers you like for anyone in the area
 * Map 
    * Details
    * Create
+* Explore
+   * Stream of only that category
+* Favorites
+   * Details
+ 
 ## Wireframes
 https://www.figma.com/file/IdUodeaRXs9ybgWMVtnlmQ/Untitled?node-id=0%3A1
 
@@ -96,6 +107,7 @@ https://www.figma.com/file/IdUodeaRXs9ybgWMVtnlmQ/Untitled?node-id=0%3A1
 
    | Property      | Type     | Description |
    | ------------- | -------- | ------------|
+   | Name      | String   | Name of the category|
    | Posts      | Relation   | Relation to the posts|
    #### Category
 
@@ -105,6 +117,33 @@ https://www.figma.com/file/IdUodeaRXs9ybgWMVtnlmQ/Untitled?node-id=0%3A1
    | Username      | String   | User's screename|
    | Password      | String   | User's password|
    | isPerformer   | Bool   | Define if user is simple user or has a performers account|
+   | Payment name| String | Only available for performers to receive payments 
    | FollowingUsers | Relation   | Relation to the Users they are following|
    | FollowingCategories| Relation   | Relation to the Categories they are following|
-      
+   
+### Networking
+#### List of network requests by screen
+   - Stream
+      - (Read/GET) Query all posts based on user location
+   - Explore
+      - (Read/GET) Query all categories
+   - Favorites
+      - (Read/GET) Query all posts where author is favorited by user
+      - (Read/GET) Query all posts where category is favorited by user
+  - Details
+      - (Create/POST) Create a new like on a post
+      - (Delete) Delete existing like
+      - (Create/POST) Create a new comment on a post
+      - (Delete) Delete existing comment
+   - Profile
+      - (Create/POST) Create a new follow on a user
+      - (Delete) Delete existing follow
+   - Create Post Screen
+      - (Create/POST) Create a new post object
+   - Profile Screen
+      - (Read/GET) Query logged in user object
+      - (Update/PUT) Update user profile image
+      - (Update/PUT) Update user location
+#### Existing API 
+   - Foursquare API (Search for locations to add performance to the map)
+   - Payouts API (User can donate to performer in their profile )

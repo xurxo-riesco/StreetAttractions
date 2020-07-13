@@ -1,0 +1,6 @@
+framework module Pods_StreetAttractions {
+  umbrella header "Pods-StreetAttractions-umbrella.h"
+
+  export *
+  module * { export * }
+}

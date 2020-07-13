@@ -30,6 +30,8 @@ Lets you report if you've seen street performers you like for anyone in the area
 * User can log in
 * User can post 
 * User can view other posts
+* User can see a feed of their favorites
+* User can see categories and recommended posts for them
 * User can use the map view
 * User can edit his profile
 * User can access details of a post including videos and pictures

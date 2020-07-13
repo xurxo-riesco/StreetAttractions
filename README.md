@@ -89,6 +89,8 @@ Lets you report if you've seen street performers you like for anyone in the area
 ## Wireframes
 https://www.figma.com/file/IdUodeaRXs9ybgWMVtnlmQ/Untitled?node-id=0%3A1
 
+Screen drawings: https://drive.google.com/drive/folders/1hWSNX-2TlW5txHfIeGXf7gXeA-bHSS4u?usp=sharing
+
 ## Schema 
 ### Models
 #### Post

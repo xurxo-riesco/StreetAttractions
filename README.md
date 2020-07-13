@@ -41,6 +41,8 @@ Lets you report if you've seen street performers you like for anyone in the area
 * AI auto posts
 * User has a favorite list
 * User can follow others and not just access posts given on location
+* Support for videos
+* Supports Payout API
 
 ### 2. Screen Archetypes
 

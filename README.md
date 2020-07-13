@@ -9,7 +9,7 @@ Street Attractions
 
 ## Overview
 ### Description
-Lets you report if you've seen street performers you like for anyone in the area to stop by, integrates machine learning to learn the performers favorite spots. 
+Lets you report if you've seen street performers you like for anyone in the area to stop by, integrates machine learning to learn the performers favorite spots. User can follow its favorites performers and categories, so they never miss out on their favorite perfomances. User can also donate money through the app if they are not carrying cash.
 
 ### App Evaluation
 [Evaluation of your app across the following attributes]
@@ -96,7 +96,8 @@ https://www.figma.com/file/IdUodeaRXs9ybgWMVtnlmQ/Untitled?node-id=0%3A1
    | Property      | Type     | Description |
    | ------------- | -------- | ------------|
    | objectId      | String   | unique id for the user post (default field) |
-   | author        | Pointer to User| image author |
+   | author        | Pointer to User| author |
+   | profilePic    | File| author's profile picture |
    | Media         | File     | Media that user posts |
    | caption       | String   | image caption by author |
    | comments      | Relation   | Relation to the comments |

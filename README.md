@@ -114,6 +114,12 @@ Screen drawings: https://drive.google.com/drive/folders/1hWSNX-2TlW5txHfIeGXf7gX
    | ------------- | -------- | ------------|
    | Name      | String   | Name of the category|
    | Posts      | Relation   | Relation to the posts|
+   #### Comment
+
+   | Property      | Type     | Description |
+   | ------------- | -------- | ------------|
+   | Text      | String   | Text of the comment|
+   | author      | Pointer to User   |author|
    #### Category
 
    | Property      | Type     | Description |

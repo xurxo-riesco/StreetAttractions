@@ -6,10 +6,17 @@ target 'StreetAttractions' do
   use_frameworks!
 
   # Pods for StreetAttractions
+   pod 'GoogleMaps'
+   pod 'GooglePlaces'
    pod 'Parse'
    pod 'Parse/UI'
    pod 'AFNetworking'
    pod 'JGProgressHUD'
+   pod 'MMDrawerController', '~> 0.5.7'
+   pod 'Braintree'
+   pod 'Braintree/Venmo'
+   pod 'BraintreeDropIn'
+
 
   target 'StreetAttractionsTests' do
     inherit! :search_paths

@@ -11,12 +11,15 @@
 #import "FavoriteCell.h"
 //Models
 #import "Post.h"
+#import "User.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface FavoritesViewController : UIViewController
 
 @property (strong, nonatomic) NSMutableArray *posts;
+@property (strong, nonatomic) NSArray *userCategories;
+@property (strong, nonatomic) NSArray *userFavorites;
 
 @end
 

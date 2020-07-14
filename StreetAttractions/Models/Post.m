@@ -25,7 +25,7 @@
 + (nonnull NSString *)parseClassName {
     return @"Post";
 }
-+ (void) postUserImage: ( UIImage * _Nullable )image withCaption: ( NSString * _Nullable )caption forLatitude:(NSNumber*)latitude forLongitude:(NSNumber *)longitude toCategory:(NSString*) category withCompletion: (PFBooleanResultBlock  _Nullable)completion {
++ (void) postUserImage: ( UIImage * _Nullable )image withCaption: ( NSString * _Nullable )caption forLatitude:(NSNumber*)latitude forLongitude:(NSNumber *)longitude toCategory:(NSString*) category withCompletion: (PFBooleanResultBlock  _Nullable)completion{
     Post *newPost = [Post new];
     newPost.media = [self getPFFileFromImage:image];
     User *author = [PFUser currentUser];

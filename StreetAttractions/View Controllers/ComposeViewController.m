@@ -11,7 +11,7 @@
 
 
 
-@interface ComposeViewController () <UIPickerViewDelegate, UIPickerViewDataSource, LocationsViewControllerDelegate, UITextViewDelegate>
+@interface ComposeViewController () <UIPickerViewDelegate, UIPickerViewDataSource, LocationsViewControllerDelegate, UITextViewDelegate, UIImagePickerControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIPickerView *pickerView;
 @property (weak, nonatomic) IBOutlet UITextView *descriptionText;
 
@@ -22,7 +22,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self fetchCategories];
-    
     self.pickerView.delegate = self;
     self.pickerView.dataSource = self;
     self.descriptionText.delegate = self;
@@ -62,9 +61,42 @@
 
     return YES;
 }
-
 - (IBAction)onAddMedia:(id)sender {
+    UIImagePickerController *imagePickerVC = [UIImagePickerController new];
+    imagePickerVC.delegate = self;
+    imagePickerVC.allowsEditing = YES;
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+        imagePickerVC.sourceType = UIImagePickerControllerSourceTypeCamera;
+    }
+    else {
+        NSLog(@"Camera 🚫 available so we will use photo library instead");
+        imagePickerVC.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    }
+    [self presentViewController:imagePickerVC animated:YES completion:nil];
 }
+#pragma mark - ImagePicker Delegate
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
+    UIImage *originalImage = info[UIImagePickerControllerOriginalImage];
+    UIImage *editedImage = info[UIImagePickerControllerEditedImage];
+    UIImage *resizedImage = [self resizeImage:editedImage withSize:CGSizeMake(960, 1440)];
+    self.image = resizedImage;
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+#pragma mark - Image Manipulation
+- (UIImage *)resizeImage:(UIImage *)image withSize:(CGSize)size {
+    UIImageView *resizeImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height)];
+    
+    resizeImageView.contentMode = UIViewContentModeScaleAspectFill;
+    resizeImageView.image = image;
+    
+    UIGraphicsBeginImageContext(size);
+    [resizeImageView.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return newImage;
+}
+
 - (IBAction)onAddLocation:(id)sender {
     [self performSegueWithIdentifier:@"tagSegue" sender:nil];
 }
@@ -79,6 +111,7 @@
         if (succeeded) {
             NSLog(@"POSTED");
             [HUD dismiss];
+            [self.delegate didPost];
             [self.navigationController popViewControllerAnimated:YES];
         }
     }];

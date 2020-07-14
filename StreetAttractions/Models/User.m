@@ -30,16 +30,42 @@
         }
     }];
 }
-+ (void)getCategoriesWithCompletion: (void(^)(NSArray*))completion{
-    User *user = [PFUser currentUser];
-    PFRelation *relation = [user relationForKey:@"FavCategories"];
++ (void)isFavoriteUser: (User*) user WithCompletion: (void(^)(BOOL))completion{
+    User *currentUser = [PFUser currentUser];
+    PFRelation *relation = [currentUser relationForKey:@"FavUsers"];
     PFQuery *query = [relation query];
-    [query findObjectsInBackgroundWithBlock:^(NSArray<Category*>* _Nullable categories, NSError * _Nullable error) {
-        if(!error){
-            completion(categories);
+    [query findObjectsInBackgroundWithBlock:^(NSArray<User*>* _Nullable categories, NSError * _Nullable error) {
+        for(User *userFavorite in categories)
+        {
+            if([userFavorite.username isEqual:user.username]){
+                completion(YES);
+            }
         }
     }];
 }
-    
++ (void)getCategoriesWithCompletion: (void(^)(NSArray *categories, NSArray *categoryStrings))completion{
+    User *user = [PFUser currentUser];
+    NSMutableArray *categoryStrings = [[NSMutableArray alloc] init];
+    PFRelation *relation = [user relationForKey:@"FavCategories"];
+    PFQuery *query = [relation query];
+    [query findObjectsInBackgroundWithBlock:^(NSArray<Category*>* _Nullable categories, NSError * _Nullable error) {
+        if(categories){
+            for(Category* category in categories)
+            {
+                [categoryStrings addObject:category.name];
+            }
+            completion(categories, categoryStrings);
+        }
+    }];
+}
++ (void)getFavoritesWithCompletion: (void(^)(NSArray<User*> *favorites))completion{
+    User *user = [PFUser currentUser];
+    NSMutableArray *categoryStrings = [[NSMutableArray alloc] init];
+    PFRelation *relation = [user relationForKey:@"FavUsers"];
+    PFQuery *query = [relation query];
+    [query findObjectsInBackgroundWithBlock:^(NSArray<User*>* _Nullable favUsers, NSError * _Nullable error) {
+        completion(favUsers);
+    }];
+}
 
 @end

@@ -14,11 +14,10 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     [self startUserLocationSearch];
-    /*
     UITapGestureRecognizer *postTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(didTapPost:)];
-    [self.mediaView addGestureRecognizer:postTap];
-    [self.mediaView setUserInteractionEnabled:YES];
-    */
+    postTap.numberOfTapsRequired = 2;
+    [self addGestureRecognizer:postTap];
+    [self setUserInteractionEnabled:YES];
     self.mediaView.layer.masksToBounds = YES;
     self.mediaView.layer.cornerRadius = 16;
 }
@@ -41,7 +40,7 @@
 - (void)loadPost:(Post *) post{
     self.post = post;
     self.descriptionView.alpha = 0;
-    self.mediaView.file = post[@"media"];
+    self.mediaView.file = post.media;
     [self.mediaView loadInBackground];
     self.distanceLabel.text = @"";
     self.descriptionLabel.text = @"";
@@ -56,6 +55,10 @@
     //NSLog(@"%f miles", distance*0.000621371);
     self.distanceLabel.text = [NSString stringWithFormat:@"%.2f mi away",distance*0.000621371];
     self.descriptionLabel.text = post.caption;
+}
+- (void) didTapPost:(UITapGestureRecognizer *)sender{
+    NSLog(@"Tapping");
+    [self.delegate homeCell:self didTap:self.post];
 }
 
 @end

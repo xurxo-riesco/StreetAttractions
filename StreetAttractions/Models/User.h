@@ -18,10 +18,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *location;
 @property (nonatomic, strong) NSString *password;
 @property (nonatomic, strong) NSString *venmo;
-@property (nonatomic) BOOL *isPerfomer;
+@property (nonatomic) BOOL isPerfomer;
 @property (nonatomic, strong) PFFileObject *profilePic;
 
 + (void)isFavorite: (Category*) category WithCompletion: (void(^)(BOOL))completion;
-+ (void)getCategoriesWithCompletion: (void(^)(NSArray*))completion;
++ (void)isFavoriteUser: (User*) user WithCompletion: (void(^)(BOOL))completion;
++ (void)getCategoriesWithCompletion: (void(^)(NSArray *categories, NSArray *categoryStrings))completion;
++ (void)getFavoritesWithCompletion: (void(^)(NSArray<User*> *favorites))completion;
 @end
 NS_ASSUME_NONNULL_END

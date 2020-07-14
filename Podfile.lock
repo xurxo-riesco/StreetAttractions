@@ -1,22 +1,124 @@
 PODS:
+  - AFNetworking (4.0.1):
+    - AFNetworking/NSURLSession (= 4.0.1)
+    - AFNetworking/Reachability (= 4.0.1)
+    - AFNetworking/Security (= 4.0.1)
+    - AFNetworking/Serialization (= 4.0.1)
+    - AFNetworking/UIKit (= 4.0.1)
+  - AFNetworking/NSURLSession (4.0.1):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (4.0.1)
+  - AFNetworking/Security (4.0.1)
+  - AFNetworking/Serialization (4.0.1)
+  - AFNetworking/UIKit (4.0.1):
+    - AFNetworking/NSURLSession
   - Bolts/Tasks (1.9.1)
+  - Braintree (4.34.0):
+    - Braintree/Card (= 4.34.0)
+    - Braintree/Core (= 4.34.0)
+    - Braintree/PayPal (= 4.34.0)
+    - Braintree/UI (= 4.34.0)
+  - Braintree/Card (4.34.0):
+    - Braintree/Core
+  - Braintree/Core (4.34.0)
+  - Braintree/PaymentFlow (4.34.0):
+    - Braintree/Card
+    - Braintree/Core
+    - Braintree/PayPalOneTouch
+  - Braintree/PayPal (4.34.0):
+    - Braintree/Core
+    - Braintree/PayPalOneTouch
+  - Braintree/PayPalDataCollector (4.34.0):
+    - Braintree/Core
+    - Braintree/PayPalUtils
+  - Braintree/PayPalOneTouch (4.34.0):
+    - Braintree/Core
+    - Braintree/PayPalDataCollector
+    - Braintree/PayPalUtils
+  - Braintree/PayPalUtils (4.34.0)
+  - Braintree/UI (4.34.0):
+    - Braintree/Card
+    - Braintree/Core
+  - Braintree/UnionPay (4.34.0):
+    - Braintree/Card
+    - Braintree/Core
+  - Braintree/Venmo (4.34.0):
+    - Braintree/Core
+    - Braintree/PayPalDataCollector
+  - BraintreeDropIn (8.1.1):
+    - BraintreeDropIn/DropIn (= 8.1.1)
+  - BraintreeDropIn/DropIn (8.1.1):
+    - Braintree/Card (~> 4.32)
+    - Braintree/Core (~> 4.32)
+    - Braintree/PaymentFlow (~> 4.32)
+    - Braintree/PayPal (~> 4.32)
+    - Braintree/UnionPay (~> 4.32)
+    - BraintreeDropIn/UIKit
+  - BraintreeDropIn/UIKit (8.1.1)
+  - GoogleMaps (3.9.0):
+    - GoogleMaps/Maps (= 3.9.0)
+  - GoogleMaps/Base (3.9.0)
+  - GoogleMaps/Maps (3.9.0):
+    - GoogleMaps/Base
+  - GooglePlaces (3.9.0):
+    - GoogleMaps/Base (= 3.9.0)
+  - JGProgressHUD (2.1)
+  - MMDrawerController (0.5.7):
+    - MMDrawerController/Core (= 0.5.7)
+    - MMDrawerController/MMDrawerBarButtonItem (= 0.5.7)
+    - MMDrawerController/MMDrawerVisualStates (= 0.5.7)
+    - MMDrawerController/Subclass (= 0.5.7)
+  - MMDrawerController/Core (0.5.7)
+  - MMDrawerController/MMDrawerBarButtonItem (0.5.7):
+    - MMDrawerController/Core
+  - MMDrawerController/MMDrawerVisualStates (0.5.7):
+    - MMDrawerController/Core
+  - MMDrawerController/Subclass (0.5.7):
+    - MMDrawerController/Core
   - Parse (1.18.0):
     - Parse/Core (= 1.18.0)
   - Parse/Core (1.18.0):
     - Bolts/Tasks (= 1.9.1)
+  - Parse/UI (1.18.0):
+    - Parse/Core
 
 DEPENDENCIES:
+  - AFNetworking
+  - Braintree
+  - Braintree/Venmo
+  - BraintreeDropIn
+  - GoogleMaps
+  - GooglePlaces
+  - JGProgressHUD
+  - MMDrawerController (~> 0.5.7)
   - Parse
+  - Parse/UI
 
 SPEC REPOS:
   trunk:
+    - AFNetworking
     - Bolts
+    - Braintree
+    - BraintreeDropIn
+    - GoogleMaps
+    - GooglePlaces
+    - JGProgressHUD
+    - MMDrawerController
     - Parse
 
 SPEC CHECKSUMS:
+  AFNetworking: 7864c38297c79aaca1500c33288e429c3451fdce
   Bolts: 8c1e8aab2f603387b8b9924f57d1d64f43d3ffdc
+  Braintree: 48154e70306eb3e6c81eaa87bbc5c5988c0d2784
+  BraintreeDropIn: 2cf07a9041df45ff671586042dbaf7b5d2767347
+  GoogleMaps: 4b5346bddfe6911bb89155d43c903020170523ac
+  GooglePlaces: 1634d019549b969d40fe0ccb0b9513055adebe01
+  JGProgressHUD: aa403e9a5b45cae98903c4600cccdd98c0c3ec90
+  MMDrawerController: 7a4cf8e25596bf2434e03ce50d22a8608ddee6a1
   Parse: 79bdda34fdb7eb2a707a43a951c8aae236cb3e34
 
-PODFILE CHECKSUM: 4911c3a6938c9e1d2c94ea87784670f12ae4338f
+PODFILE CHECKSUM: 6e3ba3a762e7f81153e73196780f02327d58b579
 
 COCOAPODS: 1.9.3

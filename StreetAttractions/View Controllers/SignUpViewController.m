@@ -32,6 +32,7 @@
     User *newUser = user;
     newUser.username = self.usernameField.text;
     newUser.password = self.passwordField.text;
+    newUser.location = self.locationField.text;
     if(self.screennameField.text != 0)
     {
         newUser.screenname = self.screennameField.text;

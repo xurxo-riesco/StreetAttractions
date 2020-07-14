@@ -20,5 +20,11 @@
 
     // Configure the view for the selected state
 }
+- (void)loadPost:(Post *) post{
+    self.post = post;
+    self.mediaView.file = post.media;
+    [self.mediaView loadInBackground];
+    self.descriptionLabel.text = post.caption;
+}
 
 @end

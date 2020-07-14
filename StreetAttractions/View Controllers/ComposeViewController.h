@@ -12,8 +12,13 @@
 #import "LocationsViewController.h"
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ComposeViewController : UIViewController
 
+@protocol ComposeViewControllerDelegate
+- (void) didPost;
+@end
+
+@interface ComposeViewController : UIViewController
+@property (nonatomic, weak) id<ComposeViewControllerDelegate> delegate;
 @property (weak, nonatomic) IBOutlet UIButton *mediaButton;
 @property (weak, nonatomic) IBOutlet UIButton *locationButton;
 @property (nonatomic, strong) NSArray *categories;

@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "AppDelegate.h"
-#import "LoginViewController.h"
+#import "DetailsViewController.h"
+#import "ComposeViewController.h"
 #import "User.h"
 #import "HomeCell.h"
 #import "Post.h"
@@ -19,6 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface HomeViewController : UIViewController
 
 @property (nonatomic, strong) NSMutableArray *posts;
+@property (nonatomic, strong) Post *post;
 
 @end
 

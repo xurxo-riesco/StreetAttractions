@@ -34,6 +34,7 @@
 		982408E224BCE0E900F35FDA /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 982408E124BCE0E900F35FDA /* MapKit.framework */; };
 		98C1F68024BCE31100DB3713 /* PhotoMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 98C1F67E24BCE31100DB3713 /* PhotoMapViewController.m */; };
 		98C1F68324BD02D800DB3713 /* CategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 98C1F68224BD02D800DB3713 /* CategoryCell.m */; };
+		98C57B5624BE207000F8FD0C /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 98C57B5524BE207000F8FD0C /* SettingsViewController.m */; };
 		A3126CFCB9B67851487AAF53 /* Pods_StreetAttractions_StreetAttractionsUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29CCE5AD7581B48EA37FBABC /* Pods_StreetAttractions_StreetAttractionsUITests.framework */; };
 		A8E64502793940A4F6FFFDA0 /* Pods_StreetAttractions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B9E0A8D7C5374A8CAEB4695 /* Pods_StreetAttractions.framework */; };
 		C7AA97660AD3B75220C842F0 /* Pods_StreetAttractionsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 528DF35D0F33A6E60A67D75F /* Pods_StreetAttractionsTests.framework */; };
@@ -118,6 +119,8 @@
 		98C1F67F24BCE31100DB3713 /* PhotoMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PhotoMapViewController.h; path = "../../../../Downloads/fbu_ios_photomap_objc-starter-project/PhotoMap/View Controllers/PhotoMapViewController.h"; sourceTree = "<group>"; };
 		98C1F68124BD02D800DB3713 /* CategoryCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CategoryCell.h; sourceTree = "<group>"; };
 		98C1F68224BD02D800DB3713 /* CategoryCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CategoryCell.m; sourceTree = "<group>"; };
+		98C57B5424BE207000F8FD0C /* SettingsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		98C57B5524BE207000F8FD0C /* SettingsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		EB42A4B6BF8AF3D5F3FDC0D3 /* Pods-StreetAttractions.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StreetAttractions.debug.xcconfig"; path = "Target Support Files/Pods-StreetAttractions/Pods-StreetAttractions.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -260,6 +263,8 @@
 				982408CD24BCCD9000F35FDA /* ProfileViewController.m */,
 				982408CF24BCCD9B00F35FDA /* ComposeViewController.h */,
 				982408D024BCCD9B00F35FDA /* ComposeViewController.m */,
+				98C57B5424BE207000F8FD0C /* SettingsViewController.h */,
+				98C57B5524BE207000F8FD0C /* SettingsViewController.m */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -302,6 +307,7 @@
 				9824086C24BCBD6900F35FDA /* Frameworks */,
 				9824086D24BCBD6900F35FDA /* Resources */,
 				F59D1BEEA26F2C2290D876D7 /* [CP] Embed Pods Frameworks */,
+				4E483335CE6CFCFE18A86D59 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -340,6 +346,7 @@
 				9824089224BCBD6B00F35FDA /* Frameworks */,
 				9824089324BCBD6B00F35FDA /* Resources */,
 				4EE3DD65686AA855AD3C57B4 /* [CP] Embed Pods Frameworks */,
+				B75A6A0A06C1A6CC5D74E39A /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -421,6 +428,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		4E483335CE6CFCFE18A86D59 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-StreetAttractions/Pods-StreetAttractions-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-StreetAttractions/Pods-StreetAttractions-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-StreetAttractions/Pods-StreetAttractions-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		4EE3DD65686AA855AD3C57B4 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -504,6 +528,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		B75A6A0A06C1A6CC5D74E39A /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-StreetAttractions-StreetAttractionsUITests/Pods-StreetAttractions-StreetAttractionsUITests-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-StreetAttractions-StreetAttractionsUITests/Pods-StreetAttractions-StreetAttractionsUITests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-StreetAttractions-StreetAttractionsUITests/Pods-StreetAttractions-StreetAttractionsUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		F59D1BEEA26F2C2290D876D7 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -547,6 +588,7 @@
 				9805EC0824BD197D0051CF5D /* FavoriteCell.m in Sources */,
 				982408B824BCCBB500F35FDA /* SignUpViewController.m in Sources */,
 				982408D424BCD8DA00F35FDA /* HomeCell.m in Sources */,
+				98C57B5624BE207000F8FD0C /* SettingsViewController.m in Sources */,
 				982408CB24BCCD8500F35FDA /* DetailsViewController.m in Sources */,
 				982408C124BCCBD700F35FDA /* CategoriesViewController.m in Sources */,
 			);

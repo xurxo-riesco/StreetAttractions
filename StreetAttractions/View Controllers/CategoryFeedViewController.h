@@ -20,6 +20,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (strong, nonatomic) Category *category;
 @property (strong, nonatomic) NSMutableArray *posts;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *barButton;
+- (void) favorite;
+- (void) unfavorite;
 @end
 
 NS_ASSUME_NONNULL_END

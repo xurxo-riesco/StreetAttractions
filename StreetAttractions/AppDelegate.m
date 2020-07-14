@@ -8,9 +8,10 @@
 
 #import "AppDelegate.h"
 #import "Parse/Parse.h"
+@import GoogleMaps;
+@import Braintree;
 
 @interface AppDelegate ()
-
 @end
 
 @implementation AppDelegate
@@ -26,13 +27,24 @@
     [Parse initializeWithConfiguration:config];
     if (PFUser.currentUser) {
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-        UINavigationController *navigationController = [storyboard instantiateViewControllerWithIdentifier:@"tabBarViewController"];
-        [storyboard instantiateViewControllerWithIdentifier:@"tabBarViewController"];
-        self.window.rootViewController = navigationController;
+           UINavigationController *centerNav = [storyboard instantiateViewControllerWithIdentifier:@"tabBarViewController"];
+           UINavigationController *leftNav = [storyboard instantiateViewControllerWithIdentifier:@"leftDrawer"];
+           
+           self.drawerController = [[MMDrawerController alloc] initWithCenterViewController:centerNav leftDrawerViewController:leftNav];
+           self.drawerController.openDrawerGestureModeMask = MMOpenDrawerGestureModePanningCenterView;
+           self.drawerController.closeDrawerGestureModeMask = MMCloseDrawerGestureModePanningCenterView;
+           self.drawerController.title = @"Timeline";
+           
+           
+           _window.rootViewController = self.drawerController;
+           [_window makeKeyAndVisible];
     }
+    [GMSServices provideAPIKey:@"AIzaSyDG3oPYU_0G2P4WDBnwcwaPQBtuy5J2qNE"];
+    [BTAppSwitch setReturnURLScheme:@"com.xurxor.StreetAttractions.payments"];
+    //[GMSPlacesClient provideAPIKey:@"AIzaSyDG3oPYU_0G2P4WDBnwcwaPQBtuy5J2qNE"];
+    
     return YES;
 }
-
 
 #pragma mark - UISceneSession lifecycle
 
@@ -53,10 +65,15 @@
     // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
 }
 
-
-- (void)applicationDidBecomeActive:(UIApplication *)application {
-    // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+            options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {
+    if ([url.scheme localizedCaseInsensitiveCompare:@"com.xurxor.StreetAttractions.payments"] == NSOrderedSame) {
+        return [BTAppSwitch handleOpenURL:url options:options];
+    }
+    return NO;
 }
+
 
 
 - (void)applicationWillTerminate:(UIApplication *)application {

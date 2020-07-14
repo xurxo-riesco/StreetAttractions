@@ -7,30 +7,101 @@
 //
 
 #import <XCTest/XCTest.h>
+#import "Category.h"
+#import "User.h"
+#import "CategoryFeedViewController.h"
+
+@import Parse;
 
 @interface StreetAttractionsTests : XCTestCase
-
+@property CategoryFeedViewController *categoryTest;
+@property (strong, nonatomic) NSMutableArray *categories;
+@property (strong, nonatomic) NSMutableArray *userCategories;
+@property (nonatomic, strong) Category *category;
+@property NSInteger favoriteCount;
 @end
 
 @implementation StreetAttractionsTests
 
 - (void)setUp {
-    // Put setup code here. This method is called before the invocation of each test method in the class.
+    [super setUp];
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Set Up"];
+    PFQuery *categoriesQuery = [Category query];
+    categoriesQuery.limit = 10;
+    [categoriesQuery findObjectsInBackgroundWithBlock:^(NSArray <Category*>* _Nullable categories, NSError * _Nullable error) {
+        if (categories) {
+            self.category = categories[0];
+            User *user = [PFUser currentUser];
+            PFRelation *relation = [user relationforKey:@"FavCategories"];
+            [relation addObject:self.category];
+            PFRelation *userRelation = [user relationForKey:@"FavUsers"];
+            [userRelation addObject:[PFUser currentUser]];
+            [user saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+                [expectation fulfill];
+            }];
+        }
+    }];
+    [self waitForExpectationsWithTimeout:10 handler:^(NSError * _Nullable error) {
+        XCTAssertTrue(0==0);
+    }];
 }
 
 - (void)tearDown {
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
+    User *user = [PFUser currentUser];
+    PFRelation *relation = [user relationforKey:@"FavCategories"];
+    [relation addObject:self.category];
+    PFRelation *userRelation = [user relationForKey:@"FavUsers"];
+    [userRelation addObject:[PFUser currentUser]];
+    [user saveInBackground];
 }
-
-- (void)testExample {
-    // This is an example of a functional test case.
-    // Use XCTAssert and related functions to verify your tests produce the correct results.
+- (void)testRetrieveCategories{
+    NSLog(@"%@", [PFUser currentUser]);
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Retrieve Categories"];
+    [User getCategoriesWithCompletion:^(NSArray * _Nonnull categories, NSArray * _Nonnull categoryStrings) {
+        if(categories.count !=0)
+        {
+            [expectation fulfill];
+        }
+    }];
+    [self waitForExpectationsWithTimeout:5 handler:^(NSError * _Nullable error) {
+        XCTAssertTrue(1==1);
+    }];
 }
-
+- (void) testCategoryIsFavorite{
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Is Favorite Category"];
+    [User isFavorite:self.category WithCompletion:^(BOOL completion) {
+        if(completion){
+            [expectation fulfill];
+        }
+    }];
+    [self waitForExpectationsWithTimeout:10 handler:^(NSError * _Nullable error) {
+        XCTAssertTrue(0 ==0);
+    }];
+}
+- (void)testRetrieveFavUsers{
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Retrieve Categories"];
+    [User getFavoritesWithCompletion:^(NSArray<User *> * _Nonnull favorites) {
+        if(favorites.count != 0){
+            [expectation fulfill];
+        }
+    }];
+    [self waitForExpectationsWithTimeout:5 handler:^(NSError * _Nullable error) {
+        XCTAssertTrue(1==1);
+    }];
+}
+- (void)testUserIsFavorite{
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Is Favorite User"];
+    [User isFavoriteUser:[PFUser currentUser] WithCompletion:^(BOOL completion) {
+        if(completion){
+            [expectation fulfill];
+        }
+    }];
+    [self waitForExpectationsWithTimeout:10 handler:^(NSError * _Nullable error) {
+        XCTAssertTrue(0 ==0);
+    }];
+}
 - (void)testPerformanceExample {
-    // This is an example of a performance test case.
     [self measureBlock:^{
-        // Put the code you want to measure the time of here.
     }];
 }
 

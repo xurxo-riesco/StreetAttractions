@@ -8,7 +8,7 @@
 
 #import "HomeViewController.h"
 
-@interface HomeViewController () <UICollectionViewDelegate, UICollectionViewDataSource>
+@interface HomeViewController () <UICollectionViewDelegate, UICollectionViewDataSource, ComposeViewControllerDelegate, HomeCellDelegate>
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 
 @end
@@ -16,6 +16,9 @@
 @implementation HomeViewController
 - (void)viewDidLoad {
     [super viewDidLoad];
+    User *user = [PFUser currentUser];
+    user.isPerfomer = YES;
+    [user saveInBackground];
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
     UICollectionViewFlowLayout *layout = (UICollectionViewFlowLayout*)self.collectionView.collectionViewLayout;
@@ -28,14 +31,6 @@
     [self.collectionView insertSubview:refreshControl atIndex:0];
     [self fetchPost];
 }
-- (IBAction)onLogOut:(id)sender {
-    AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    LoginViewController *loginViewController = [storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
-    appDelegate.window.rootViewController = loginViewController;
-    [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
-    }];
-}
 #pragma mark - RefreshControl
 - (void)beginRefresh:(UIRefreshControl *)refreshControl {
     [self fetchPost];
@@ -45,6 +40,8 @@
 - (void)fetchPost {
     PFQuery *postQuery = [Post query];
     User *user = [PFUser currentUser];
+    [postQuery includeKey:@"author"];
+    [postQuery orderByDescending:@"createdAt"];
     [postQuery whereKey:@"city" equalTo:user.location];
     postQuery.limit = 20;
     [postQuery findObjectsInBackgroundWithBlock:^(NSArray<Post *> * _Nullable posts, NSError * _Nullable error) {
@@ -58,6 +55,7 @@
 - (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
     HomeCell *homeCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"HomeCell" forIndexPath: indexPath];
     Post *post = self.posts[indexPath.item];
+    homeCell.delegate = self;
     [homeCell loadPost:post];
     return homeCell;
 }
@@ -76,14 +74,31 @@
 - (NSInteger)collectionView:(nonnull UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return self.posts.count;
 }
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
+#pragma mark - ComposeViewController Delegate
+- (void)didPost{
+    [self fetchPost];
+}
+#pragma mark - HomeCell Delegate
+- (void)homeCell:(HomeCell *)homeCell didTap:(Post *)post{
+    self.post = post;
+    [self performSegueWithIdentifier:@"homeToDetails" sender:nil];
+}
+
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if([segue.identifier isEqual:@"homeToDetails"])
+    {
+        DetailsViewController *detailsViewController = [segue destinationViewController];
+        detailsViewController.post = self.post;
+    }else{
+        ComposeViewController *composeViewController = [segue destinationViewController];
+        composeViewController.delegate = self;
+    }
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+
 
 @end

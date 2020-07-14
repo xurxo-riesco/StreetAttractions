@@ -12,8 +12,10 @@
 @import Parse;
 
 NS_ASSUME_NONNULL_BEGIN
+@protocol HomeCellDelegate;
 
 @interface HomeCell : UICollectionViewCell <CLLocationManagerDelegate>
+@property (nonatomic, weak) id<HomeCellDelegate> delegate;
 @property (nonatomic) CGFloat latitude;
 @property (nonatomic) CGFloat longitude;
 @property (weak, nonatomic) IBOutlet UILabel *distanceLabel;
@@ -24,6 +26,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) Post *post;
 - (void)loadPost:(Post *) post;
 - (void)showDescription:(Post*) post;
+@end
+@protocol HomeCellDelegate
+- (void)homeCell:(HomeCell*) homeCell didTap: (Post *)post;
 @end
 
 NS_ASSUME_NONNULL_END

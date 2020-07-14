@@ -31,6 +31,7 @@
 - (void)fetchPost {
     PFQuery *postQuery = [Post query];
     postQuery.limit = 20;
+    [postQuery orderByDescending:@"createdAt"];
     [postQuery findObjectsInBackgroundWithBlock:^(NSArray<Post *> * _Nullable posts, NSError * _Nullable error) {
         if (posts) {
             self.posts = [posts mutableCopy];

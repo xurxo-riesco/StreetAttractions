@@ -10,7 +10,6 @@
 
 @interface CategoryFeedViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *barButton;
 
 @end
 
@@ -19,7 +18,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [User isFavorite:self.category WithCompletion:^(BOOL completion) {
-      if(completion){
+        if(completion){
             self.barButton.image = [UIImage systemImageNamed:@"star.fill"];
         }else{
             self.barButton.image = [UIImage systemImageNamed:@"star"];
@@ -48,6 +47,7 @@
 - (void)fetchPost {
     PFQuery *postQuery = [Post query];
     User *user = [PFUser currentUser];
+    [postQuery orderByDescending:@"createdAt"];
     [postQuery whereKey:@"city" equalTo:user.location];
     [postQuery whereKey:@"category" equalTo:self.category.name];
     postQuery.limit = 20;
@@ -70,21 +70,28 @@
     return self.posts.count;
 }
 - (IBAction)onFavorite:(id)sender {
-    
     if([self.barButton.image isEqual:[UIImage systemImageNamed:@"star"]]){
-        User *user = [PFUser currentUser];
-        PFRelation *relation = [user relationForKey:@"FavCategories"];
-        [relation addObject:self.category];
-        [user saveInBackground];
-        self.barButton.image = [UIImage systemImageNamed:@"star.fill"];
+        [self favorite];
     }else{
-        User *user = [PFUser currentUser];
-        PFRelation *relation = [user relationForKey:@"FavCategories"];
-        [relation removeObject:self.category];
-        [user saveInBackground];
-        self.barButton.image = [UIImage systemImageNamed:@"star"];
+        [self unfavorite];
     }
+    
 }
+- (void) favorite{
+    User *user = [PFUser currentUser];
+    PFRelation *relation = [user relationForKey:@"FavCategories"];
+    [relation addObject:self.category];
+    [user saveInBackground];
+    self.barButton.image = [UIImage systemImageNamed:@"star.fill"];
+}
+- (void) unfavorite{
+    User *user = [PFUser currentUser];
+    PFRelation *relation = [user relationForKey:@"FavCategories"];
+    [relation removeObject:self.category];
+    [user saveInBackground];
+    self.barButton.image = [UIImage systemImageNamed:@"star"];
+}
+
 
 /*
  #pragma mark - Navigation

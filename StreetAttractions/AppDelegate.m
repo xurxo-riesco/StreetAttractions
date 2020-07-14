@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "Parse/Parse.h"
 
 @interface AppDelegate ()
 
@@ -16,16 +17,17 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
     ParseClientConfiguration *config = [ParseClientConfiguration   configurationWithBlock:^(id<ParseMutableClientConfiguration> configuration) {
         
-        configuration.applicationId = @"instatagram";
-        configuration.server = @"https://instatagram.herokuapp.com/parse";
+        configuration.applicationId = @"StreetAttractions";
+        configuration.server = @"https://streetattractions.herokuapp.com/parse";
     }];
     [Parse initializeWithConfiguration:config];
     if (PFUser.currentUser) {
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-        UINavigationController *navigationController = [storyboard instantiateViewControllerWithIdentifier:@"AuthenticatedViewController"];
-        [storyboard instantiateViewControllerWithIdentifier:@"AuthenticatedViewController"];
+        UINavigationController *navigationController = [storyboard instantiateViewControllerWithIdentifier:@"tabBarViewController"];
+        [storyboard instantiateViewControllerWithIdentifier:@"tabBarViewController"];
         self.window.rootViewController = navigationController;
     }
     return YES;

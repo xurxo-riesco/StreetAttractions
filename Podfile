@@ -7,6 +7,9 @@ target 'StreetAttractions' do
 
   # Pods for StreetAttractions
    pod 'Parse'
+   pod 'Parse/UI'
+   pod 'AFNetworking'
+   pod 'JGProgressHUD'
 
   target 'StreetAttractionsTests' do
     inherit! :search_paths

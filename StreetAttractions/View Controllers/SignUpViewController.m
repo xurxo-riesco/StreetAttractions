@@ -10,8 +10,7 @@
 #import "Parse/PFUser.h"
 #import "User.h"
 
-@interface SignUpViewController ()
-
+@interface SignUpViewController () <UIImagePickerControllerDelegate>
 @end
 
 @implementation SignUpViewController
@@ -21,7 +20,33 @@
     // Do any additional setup after loading the view.
 }
 - (IBAction)onProfilePic:(id)sender {
+    UIImagePickerController *imagePickerVC = [UIImagePickerController new];
+    imagePickerVC.delegate = self;
+    imagePickerVC.allowsEditing = YES;
+    imagePickerVC.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    [self presentViewController:imagePickerVC animated:YES completion:nil];
+}
+#pragma mark - ImagePicker Delegate
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
+    UIImage *originalImage = info[UIImagePickerControllerOriginalImage];
+    UIImage *editedImage = info[UIImagePickerControllerEditedImage];
+    UIImage *resizedImage = [self resizeImage:editedImage withSize:CGSizeMake(960, 1440)];
+    self.image = resizedImage;
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+#pragma mark - Image Manipulation
+- (UIImage *)resizeImage:(UIImage *)image withSize:(CGSize)size {
+    UIImageView *resizeImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height)];
     
+    resizeImageView.contentMode = UIViewContentModeScaleAspectFill;
+    resizeImageView.image = image;
+    
+    UIGraphicsBeginImageContext(size);
+    [resizeImageView.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return newImage;
 }
 - (IBAction)onSignUp:(id)sender {
     [self registerUser];
@@ -33,6 +58,7 @@
     newUser.username = self.usernameField.text;
     newUser.password = self.passwordField.text;
     newUser.location = self.locationField.text;
+    newUser.profilePic = self.image;
     if(self.screennameField.text != 0)
     {
         newUser.screenname = self.screennameField.text;

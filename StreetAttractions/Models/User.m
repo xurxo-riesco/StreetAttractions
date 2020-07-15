@@ -43,6 +43,33 @@
         }
     }];
 }
++ (void)hasLiked: (Post*) post WithCompletion: (void(^)(BOOL))completion{
+    User *currentUser = [PFUser currentUser];
+    PFRelation *relation = [currentUser relationForKey:@"RatedPosts"];
+    PFQuery *query = [relation query];
+    [query findObjectsInBackgroundWithBlock:^(NSArray<Post*>* _Nullable posts, NSError * _Nullable error) {
+        for(Post *postLiked in posts)
+        {
+            NSLog(@"%@, %@",postLiked, post);
+            if([[post objectId] isEqual:[postLiked objectId]]){
+                completion(YES);
+            }
+        }
+    }];
+}
++ (void)hasRated: (Post*) post WithCompletion: (void(^)(BOOL))completion{
+    User *currentUser = [PFUser currentUser];
+    PFRelation *relation = [currentUser relationForKey:@"LikedPost"];
+    PFQuery *query = [relation query];
+    [query findObjectsInBackgroundWithBlock:^(NSArray<Post*>* _Nullable posts, NSError * _Nullable error) {
+        for(Post *postLiked in posts)
+        {
+              if([[post objectId] isEqual:[postLiked objectId]]){
+                completion(YES);
+            }
+        }
+    }];
+}
 + (void)getCategoriesWithCompletion: (void(^)(NSArray *categories, NSArray *categoryStrings))completion{
     User *user = [PFUser currentUser];
     NSMutableArray *categoryStrings = [[NSMutableArray alloc] init];

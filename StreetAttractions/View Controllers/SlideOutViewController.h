@@ -14,6 +14,7 @@
 //ViewControllers
 #import "LoginViewController.h"
 #import "SettingsViewController.h"
+#import "ProfileViewController.h"
 
 
 NS_ASSUME_NONNULL_BEGIN

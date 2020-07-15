@@ -8,7 +8,7 @@
 
 #import "CategoryFeedViewController.h"
 
-@interface CategoryFeedViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
+@interface CategoryFeedViewController () <UICollectionViewDataSource, UICollectionViewDelegate, HomeCellDelegate>
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 
 @end
@@ -36,17 +36,36 @@
     UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
     [refreshControl addTarget:self action:@selector(beginRefresh:) forControlEvents:UIControlEventValueChanged];
     [self.collectionView insertSubview:refreshControl atIndex:0];
+    [self colorCode];
     [self fetchPost];
+}
+- (void)viewWillDisappear:(BOOL)animated{
+     UINavigationBar *navigationBar = self.navigationController.navigationBar;
+    [navigationBar setBackgroundColor:[UIColor whiteColor]];
 }
 #pragma mark - RefreshControl
 - (void)beginRefresh:(UIRefreshControl *)refreshControl {
     [self fetchPost];
     [refreshControl endRefreshing];
 }
+
+#pragma mark - RefreshControl
+- (void)colorCode{
+    UINavigationBar *navigationBar = self.navigationController.navigationBar;
+    if([self.category.name isEqual:@"Dancers"]){
+        [navigationBar setBackgroundColor:[UIColor systemPinkColor]];
+    }else if([self.category.name isEqual:@"Singers"]){
+        [navigationBar setBackgroundColor:[UIColor systemYellowColor]];
+    }else if([self.category.name isEqual:@"Magicians"]){
+        [navigationBar setBackgroundColor:[UIColor systemGreenColor]];
+    }
+}
+
 #pragma mark - Network
 - (void)fetchPost {
     PFQuery *postQuery = [Post query];
     User *user = [PFUser currentUser];
+    [postQuery includeKey:@"author"];
     [postQuery orderByDescending:@"createdAt"];
     [postQuery whereKey:@"city" equalTo:user.location];
     [postQuery whereKey:@"category" equalTo:self.category.name];
@@ -62,6 +81,7 @@
 - (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
     HomeCell *homeCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"HomeCell" forIndexPath: indexPath];
     Post *post = self.posts[indexPath.item];
+    homeCell.delegate = self;
     [homeCell loadPost:post];
     return homeCell;
 }
@@ -69,6 +89,14 @@
 - (NSInteger)collectionView:(nonnull UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return self.posts.count;
 }
+
+#pragma mark - HomeCell Delegate
+- (void)homeCell:(HomeCell *)homeCell didTap:(Post *)post{
+    self.post = post;
+    [self performSegueWithIdentifier:@"categoriesToDetails" sender:nil];
+}
+
+#pragma mark - Favoriting
 - (IBAction)onFavorite:(id)sender {
     if([self.barButton.image isEqual:[UIImage systemImageNamed:@"star"]]){
         [self favorite];
@@ -92,15 +120,11 @@
     self.barButton.image = [UIImage systemImageNamed:@"star"];
 }
 
-
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
+#pragma mark - Navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    DetailsViewController *detailsViewController = [segue destinationViewController];
+    detailsViewController.post = self.post;
+    
+}
 
 @end

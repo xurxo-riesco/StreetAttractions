@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
+#import "DateTools.h"
+#import "HCSStarRatingView.h"
 //View Controllers
 #import "ProfileViewController.h"
 //Models
@@ -19,12 +21,16 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface DetailsViewController : UIViewController
 
+@property (weak, nonatomic) IBOutlet HCSStarRatingView *starView;
 @property (nonatomic, strong) Post *post;
+@property (weak, nonatomic) IBOutlet UILabel *dateLabel;
+@property (nonatomic, strong) User *user;
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property (weak, nonatomic) IBOutlet PFImageView *mediaView;
 @property (weak, nonatomic) IBOutlet PFImageView *profilePic;
 @property (weak, nonatomic) IBOutlet UILabel *userLabel;
 @property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *barButton;
 
 @end
 

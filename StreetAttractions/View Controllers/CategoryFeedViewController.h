@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+//View Controllers
+#import  "DetailsViewController.h"
 //Views
 #import "HomeCell.h"
 //Models
@@ -19,6 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface CategoryFeedViewController : UIViewController
 
 @property (strong, nonatomic) Category *category;
+@property (strong, nonatomic) Post *post;
 @property (strong, nonatomic) NSMutableArray *posts;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *barButton;
 - (void) favorite;

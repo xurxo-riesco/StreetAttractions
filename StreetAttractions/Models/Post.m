@@ -22,6 +22,8 @@
 @dynamic latitude;
 @dynamic longitude;
 @dynamic category;
+@dynamic rating;
+@dynamic timesRated;
 + (nonnull NSString *)parseClassName {
     return @"Post";
 }
@@ -33,6 +35,7 @@
     newPost.city = author.location;
     newPost.caption = caption;
     newPost.likeCount = @(0);
+    newPost.timesRated = @(0);
     newPost.latitude = latitude;
     newPost.longitude = longitude;
     newPost.category = category;

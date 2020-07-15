@@ -7,7 +7,9 @@
 //
 
 #import <Parse/Parse.h>
+//Models
 #import "Category.h"
+#import "Post.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -23,6 +25,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (void)isFavorite: (Category*) category WithCompletion: (void(^)(BOOL))completion;
 + (void)isFavoriteUser: (User*) user WithCompletion: (void(^)(BOOL))completion;
++ (void)hasLiked: (Post*) post WithCompletion: (void(^)(BOOL))completion;
++ (void)hasRated: (Post*) post WithCompletion: (void(^)(BOOL))completion;
 + (void)getCategoriesWithCompletion: (void(^)(NSArray *categories, NSArray *categoryStrings))completion;
 + (void)getFavoritesWithCompletion: (void(^)(NSArray<User*> *favorites))completion;
 @end

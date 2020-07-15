@@ -10,9 +10,15 @@
 #import "BraintreeVenmo.h"
 #import "BraintreeCore.h"
 #import "BraintreeDropIn.h"
+#import <CoreML/CoreML.h>
+//#import "LocationPrediction1.h"
+//#import "LocationPrediction2.h"
+//#import "LocationPrediction3.h"
+//#import "LocationPrediction1copy.h"
 @import Parse;
 //Models
 #import "User.h"
+#import "Post.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ProfileViewController : UIViewController
@@ -23,6 +29,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *cityLabel;
 @property (strong, nonatomic) User *user;
+@property (strong, nonatomic) NSMutableArray *latitudes;
+@property (strong, nonatomic) NSMutableArray *longitudes;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -16,6 +16,8 @@ target 'StreetAttractions' do
    pod 'Braintree'
    pod 'Braintree/Venmo'
    pod 'BraintreeDropIn'
+   pod 'DateTools'
+   pod 'HCSStarRatingView', '~> 1.5'
 
 
   target 'StreetAttractionsTests' do

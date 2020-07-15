@@ -29,7 +29,6 @@
     }];
     [User getFavoritesWithCompletion:^(NSArray<User *> * _Nonnull favorites) {
         self.userFavorites = favorites;
-        [self fetchFavUserPosts];
     }];
 }
 #pragma mark - Network
@@ -43,6 +42,7 @@
     [postQuery findObjectsInBackgroundWithBlock:^(NSArray<Post *> * _Nullable posts, NSError * _Nullable error) {
         if (posts) {
             self.posts = [posts mutableCopy];
+            [self fetchFavUserPosts];
             NSLog(@"%@ posts", self.posts);
         }
     }];

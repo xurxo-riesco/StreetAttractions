@@ -16,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UITextField *usernameField;
 @property (weak, nonatomic) IBOutlet UITextField *screennameField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;
+@property (strong, nonatomic) UIImage *image;
 @end
 
 NS_ASSUME_NONNULL_END

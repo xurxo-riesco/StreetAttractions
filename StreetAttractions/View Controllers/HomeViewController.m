@@ -7,7 +7,6 @@
 //
 
 #import "HomeViewController.h"
-
 @interface HomeViewController () <UICollectionViewDelegate, UICollectionViewDataSource, ComposeViewControllerDelegate, HomeCellDelegate>
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 
@@ -31,6 +30,8 @@
     [self.collectionView insertSubview:refreshControl atIndex:0];
     [self fetchPost];
 }
+
+
 #pragma mark - RefreshControl
 - (void)beginRefresh:(UIRefreshControl *)refreshControl {
     [self fetchPost];

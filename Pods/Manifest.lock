@@ -57,6 +57,7 @@ PODS:
     - Braintree/UnionPay (~> 4.32)
     - BraintreeDropIn/UIKit
   - BraintreeDropIn/UIKit (8.1.1)
+  - DateTools (2.0.0)
   - GoogleMaps (3.9.0):
     - GoogleMaps/Maps (= 3.9.0)
   - GoogleMaps/Base (3.9.0)
@@ -64,6 +65,7 @@ PODS:
     - GoogleMaps/Base
   - GooglePlaces (3.9.0):
     - GoogleMaps/Base (= 3.9.0)
+  - HCSStarRatingView (1.5)
   - JGProgressHUD (2.1)
   - MMDrawerController (0.5.7):
     - MMDrawerController/Core (= 0.5.7)
@@ -89,8 +91,10 @@ DEPENDENCIES:
   - Braintree
   - Braintree/Venmo
   - BraintreeDropIn
+  - DateTools
   - GoogleMaps
   - GooglePlaces
+  - HCSStarRatingView (~> 1.5)
   - JGProgressHUD
   - MMDrawerController (~> 0.5.7)
   - Parse
@@ -102,8 +106,10 @@ SPEC REPOS:
     - Bolts
     - Braintree
     - BraintreeDropIn
+    - DateTools
     - GoogleMaps
     - GooglePlaces
+    - HCSStarRatingView
     - JGProgressHUD
     - MMDrawerController
     - Parse
@@ -113,12 +119,14 @@ SPEC CHECKSUMS:
   Bolts: 8c1e8aab2f603387b8b9924f57d1d64f43d3ffdc
   Braintree: 48154e70306eb3e6c81eaa87bbc5c5988c0d2784
   BraintreeDropIn: 2cf07a9041df45ff671586042dbaf7b5d2767347
+  DateTools: 933ac9c490f21f92127cf690ccd8c397e0126caf
   GoogleMaps: 4b5346bddfe6911bb89155d43c903020170523ac
   GooglePlaces: 1634d019549b969d40fe0ccb0b9513055adebe01
+  HCSStarRatingView: 1d18f79654735514cd6f00e6d90e38cb6320dc31
   JGProgressHUD: aa403e9a5b45cae98903c4600cccdd98c0c3ec90
   MMDrawerController: 7a4cf8e25596bf2434e03ce50d22a8608ddee6a1
   Parse: 79bdda34fdb7eb2a707a43a951c8aae236cb3e34
 
-PODFILE CHECKSUM: 6e3ba3a762e7f81153e73196780f02327d58b579
+PODFILE CHECKSUM: a5cd4cf3ef1118f86dba86f23a2ba46de7526938
 
 COCOAPODS: 1.9.3

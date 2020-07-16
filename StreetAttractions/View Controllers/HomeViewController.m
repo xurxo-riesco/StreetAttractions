@@ -15,9 +15,6 @@
 @implementation HomeViewController
 - (void)viewDidLoad {
     [super viewDidLoad];
-    User *user = [PFUser currentUser];
-    user.isPerfomer = YES;
-    [user saveInBackground];
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
     UICollectionViewFlowLayout *layout = (UICollectionViewFlowLayout*)self.collectionView.collectionViewLayout;
@@ -49,8 +46,47 @@
         if (posts) {
             self.posts = [posts mutableCopy];
             [self.collectionView reloadData];
+            self.dataSkip = posts.count;
         }
     }];
+}
+- (void)fetchMorePost {
+    PFQuery *postQuery = [Post query];
+    User *user = [PFUser currentUser];
+    [postQuery includeKey:@"author"];
+    [postQuery orderByDescending:@"createdAt"];
+    [postQuery whereKey:@"city" equalTo:user.location];
+    postQuery.limit = 20;
+    [postQuery setSkip:self.dataSkip];
+    [postQuery findObjectsInBackgroundWithBlock:^(NSArray<Post *> * _Nullable posts, NSError * _Nullable error) {
+        if (posts) {
+            if (posts.count > 0)
+            {
+                int prevNumPosts = self.posts.count;
+                self.posts = [self.posts arrayByAddingObjectsFromArray:posts];
+                NSMutableArray *newIndexPaths = [NSMutableArray array];
+                for (int i = prevNumPosts; i < self.posts.count; i++) {
+                    [newIndexPaths addObject:[NSIndexPath indexPathForRow:i inSection:0]];
+                }
+                self.dataSkip += posts.count;
+            }
+            self.isMoreDataLoading = false;
+            [self.collectionView reloadData];
+        }
+    }];
+}
+#pragma mark - InfiniteScrolling
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    if(!self.isMoreDataLoading){
+        int scrollViewContentHeight = self.collectionView.contentSize.height;
+        int scrollOffsetThreshold = scrollViewContentHeight - self.collectionView.bounds.size.height;
+        if(scrollView.contentOffset.y > scrollOffsetThreshold && self.collectionView.isDragging) {
+            self.isMoreDataLoading = true;
+            NSLog(@"More data");
+            NSLog(@"%d",self.dataSkip);
+            [self fetchMorePost];
+        }
+    }
 }
 #pragma mark - CollectionView Delegate
 - (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
@@ -86,8 +122,6 @@
 }
 
 #pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if([segue.identifier isEqual:@"homeToDetails"])
     {
@@ -97,8 +131,6 @@
         ComposeViewController *composeViewController = [segue destinationViewController];
         composeViewController.delegate = self;
     }
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
 }
 
 

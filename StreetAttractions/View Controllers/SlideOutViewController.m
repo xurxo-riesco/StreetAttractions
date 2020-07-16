@@ -21,7 +21,7 @@
 }
 - (void) loadProfile{
     User *user = [PFUser currentUser];
-       self.usernameLabel.text = user.username;
+           self.usernameLabel.text = [NSString stringWithFormat:@"@%@",user.username];
        self.screennameLabel.text = user.screenname;
        self.cityLabel.text = user.location;
        self.profilePic.layer.cornerRadius = 71;

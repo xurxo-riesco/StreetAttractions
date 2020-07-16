@@ -17,9 +17,25 @@
 - (void)loadCategory:(Category *) category{
     self.category = category;
     self.nameLabel.text = category.name;
+    self.mediaView.file = category.media;
+    [self.mediaView loadInBackground];
+    self.mediaView.layer.cornerRadius = 16;
+    self.mediaView.layer.masksToBounds = YES;
+    [self colorCode];
     //self.imageView.file = ;
     //[self.imageView loadInBackground];
 }
+- (void) colorCode{
+    self.mediaView.alpha = 0.6;
+    if([self.category.name isEqual:@"Dancers"]){
+        self.mediaView.backgroundColor = [UIColor systemPinkColor];
+    }else if([self.category.name isEqual:@"Singers"]){
+        self.mediaView.backgroundColor =  [UIColor systemYellowColor];
+    }else if([self.category.name isEqual:@"Magicians"]){
+        self.mediaView.backgroundColor = [UIColor systemGreenColor];
+    }
+}
+
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 

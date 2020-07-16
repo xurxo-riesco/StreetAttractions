@@ -104,22 +104,46 @@
     JGProgressHUD *HUD = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
     HUD.textLabel.text = @"Posting";
     [HUD showInView:self.view];
-    if ([self.descriptionText.text isEqualToString:@"Write a description..."]) {
-        self.descriptionText.text = @"";
+    BOOL readyToPost = [self verify];
+    if(readyToPost)
+    {
+        [Post postUserImage:self.image withCaption:self.descriptionText.text forLatitude:self.latitude forLongitude:self.longitude toCategory:self.category withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+            if (succeeded) {
+                NSLog(@"POSTED");
+                [HUD dismiss];
+                [self.delegate didPost];
+                [self.navigationController popViewControllerAnimated:YES];
+            }
+        }];
+    }else{
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error"
+                                                                       message:@"Please make sure you complete all fields!"
+                                                                preferredStyle:(UIAlertControllerStyleAlert)];
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Ok"
+                                                               style:UIAlertActionStyleCancel
+                                                             handler:^(UIAlertAction * _Nonnull action) {
+        }];
+        [alert addAction:cancelAction];
+        [self presentViewController:alert animated:YES completion:^{
+        }];
     }
-    [Post postUserImage:self.image withCaption:self.descriptionText.text forLatitude:self.latitude forLongitude:self.longitude toCategory:self.category withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
-        if (succeeded) {
-            NSLog(@"POSTED");
-            [HUD dismiss];
-            [self.delegate didPost];
-            [self.navigationController popViewControllerAnimated:YES];
-        }
-    }];
+
+}
+- (BOOL)verify {
+    if ([self.descriptionText.text isEqualToString:@"Write a description..."]) {
+        return NO;
+    }
+    if (self.latitude = nil){
+        return NO;
+    }
+    if (self.category = nil){
+        return NO;
+    }
+    return YES;
 }
 
-
 #pragma mark - Network
-- (void) fetchCategories{
+- (void)fetchCategories{
     PFQuery *categoriesQuery = [Category query];
     categoriesQuery.limit = 10;
     [categoriesQuery findObjectsInBackgroundWithBlock:^(NSArray <Category*>* _Nullable categories, NSError * _Nullable error) {

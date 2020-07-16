@@ -16,6 +16,7 @@
 @dynamic location;
 @dynamic venmo;
 @dynamic isPerfomer;
+@dynamic instagramName;
 
 + (void)isFavorite: (Category*) category WithCompletion: (void(^)(BOOL))completion{
     User *user = [PFUser currentUser];

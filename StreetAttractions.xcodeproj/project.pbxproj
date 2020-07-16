@@ -32,6 +32,7 @@
 		982408D724BCDE1B00F35FDA /* LocationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 982408D524BCDE1B00F35FDA /* LocationsViewController.m */; };
 		982408E024BCDE8E00F35FDA /* LocationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 982408DE24BCDE8E00F35FDA /* LocationCell.m */; };
 		982408E224BCE0E900F35FDA /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 982408E124BCE0E900F35FDA /* MapKit.framework */; };
+		9865ADA524C0E9F30090C386 /* ThunderTitan.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9865ADA424C0E9F30090C386 /* ThunderTitan.otf */; };
 		98C1F68024BCE31100DB3713 /* PhotoMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 98C1F67E24BCE31100DB3713 /* PhotoMapViewController.m */; };
 		98C1F68324BD02D800DB3713 /* CategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 98C1F68224BD02D800DB3713 /* CategoryCell.m */; };
 		98C57B5624BE207000F8FD0C /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 98C57B5524BE207000F8FD0C /* SettingsViewController.m */; };
@@ -124,6 +125,7 @@
 		982408DE24BCDE8E00F35FDA /* LocationCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LocationCell.m; sourceTree = "<group>"; };
 		982408DF24BCDE8E00F35FDA /* LocationCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LocationCell.h; sourceTree = "<group>"; };
 		982408E124BCE0E900F35FDA /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		9865ADA424C0E9F30090C386 /* ThunderTitan.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = ThunderTitan.otf; path = "../../../../Downloads/thunder-titan-font/ThunderTitan.otf"; sourceTree = "<group>"; };
 		98C1F67E24BCE31100DB3713 /* PhotoMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PhotoMapViewController.m; path = "../../../../Downloads/fbu_ios_photomap_objc-starter-project/PhotoMap/View Controllers/PhotoMapViewController.m"; sourceTree = "<group>"; };
 		98C1F67F24BCE31100DB3713 /* PhotoMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PhotoMapViewController.h; path = "../../../../Downloads/fbu_ios_photomap_objc-starter-project/PhotoMap/View Controllers/PhotoMapViewController.h"; sourceTree = "<group>"; };
 		98C1F68124BD02D800DB3713 /* CategoryCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CategoryCell.h; sourceTree = "<group>"; };
@@ -214,7 +216,7 @@
 		9824087124BCBD6900F35FDA /* StreetAttractions */ = {
 			isa = PBXGroup;
 			children = (
-				98C57B6024BF75C900F8FD0C /* Predictor */,
+				98C57B6024BF75C900F8FD0C /* Supporting Files */,
 				982408D924BCDE4C00F35FDA /* Views */,
 				982408B224BCCB8700F35FDA /* View Controllers */,
 				982408A724BCC35800F35FDA /* Models */,
@@ -316,15 +318,16 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		98C57B6024BF75C900F8FD0C /* Predictor */ = {
+		98C57B6024BF75C900F8FD0C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
 				98C57B6724BF7D2700F8FD0C /* LocationPrediction1.mlmodel */,
 				98C57B6B24BF84FF00F8FD0C /* LocationPrediction2.mlmodel */,
 				98C57B6D24BF863700F8FD0C /* LocationPrediction3.mlmodel */,
+				9865ADA424C0E9F30090C386 /* ThunderTitan.otf */,
 				98C57B6824BF7D2700F8FD0C /* LocationPrediction1copy.mlmodel */,
 			);
-			path = Predictor;
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		C88B161770348EF8269234E7 /* Frameworks */ = {
@@ -450,6 +453,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9824088224BCBD6B00F35FDA /* LaunchScreen.storyboard in Resources */,
+				9865ADA524C0E9F30090C386 /* ThunderTitan.otf in Resources */,
 				9824087F24BCBD6B00F35FDA /* Assets.xcassets in Resources */,
 				9824087D24BCBD6900F35FDA /* Main.storyboard in Resources */,
 			);

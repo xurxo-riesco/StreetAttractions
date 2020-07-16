@@ -25,40 +25,73 @@
     self.tableView.delegate = self;
     self.collectionView.dataSource = self;
     self.tableView.dataSource = self;
-    [self fetchCategories];
-    [self fetchPost];
+    self.posts = [[NSMutableArray alloc] init];
+    [self fetchRecommended];
+    //[self fetchCategories];
+    //[self fetchPost];
 }
 
 #pragma mark - Network
 - (void)fetchPost {
     PFQuery *postQuery = [Post query];
-    postQuery.limit = 20;
+    User *user = [PFUser currentUser];
     [postQuery includeKey:@"author"];
     [postQuery orderByDescending:@"createdAt"];
+    [postQuery whereKey:@"city" equalTo:user.location];
+    postQuery.limit = 20;
     [postQuery findObjectsInBackgroundWithBlock:^(NSArray<Post *> * _Nullable posts, NSError * _Nullable error) {
         if (posts) {
             self.posts = [posts mutableCopy];
+            [self fetchCategories];
             [self.collectionView reloadData];
         }
     }];
 }
 - (void) fetchRecommended{
-    PFQuery *postQuery = [Post query];
-       postQuery.limit = 20;
-       [postQuery includeKey:@"author"];
-       [postQuery orderByDescending:@"likeCount"];
-       [postQuery findObjectsInBackgroundWithBlock:^(NSArray<Post *> * _Nullable posts, NSError * _Nullable error) {
-           if (posts) {
-               self.posts = [posts mutableCopy];
-               [self.collectionView reloadData];
-           }
-       }];
+    PFRelation *relation = [[User currentUser] relationForKey:@"FavUsers"];
+    PFQuery *favUsersQ = [relation query];
+    favUsersQ.limit = 10;
+    [favUsersQ findObjectsInBackgroundWithBlock:^(NSArray<User*>* users, NSError * _Nullable error) {
+        for(User* user in users){
+            PFRelation *relation = [user relationForKey:@"LikedPost"];
+            PFQuery *recommendedQ = [relation query];
+            [recommendedQ includeKey:@"author"];
+            [recommendedQ whereKey:@"city" equalTo:[User currentUser].location];
+            [recommendedQ orderByDescending:@"createdAt"];
+            recommendedQ.limit = 10;
+            [recommendedQ findObjectsInBackgroundWithBlock:^(NSArray <Post*>* posts, NSError * _Nullable error) {
+                if(posts){
+                    if (posts.count > 0){
+                        int prevNumPost = self.posts.count;
+                        for(Post *post in posts){
+                            if ([self.posts containsObject:post]){
+                                continue;
+                            }else{
+                                [self.posts addObject:post];
+                            }
+                        }
+                        NSMutableArray *newIndexPaths = [[NSMutableArray alloc]init];
+                        for(int i = prevNumPost; i < self.posts.count; i++)
+                        {
+                            [newIndexPaths addObject:[NSIndexPath indexPathForRow:i inSection:0]];
+                        }
+                    }
+                    [self fetchCategories];
+                    NSLog(@"%@", self.posts);
+                    [self.collectionView reloadData];
+                }
+                    
+                
+            }];
+        }
+    }];
 }
 - (void) fetchCategories{
     PFQuery *categoriesQuery = [Category query];
     categoriesQuery.limit = 10;
     [categoriesQuery findObjectsInBackgroundWithBlock:^(NSArray <Category*>* _Nullable categories, NSError * _Nullable error) {
         if (categories) {
+            NSLog(@"%@", categories);
             self.categories = [categories mutableCopy];
             [self.tableView reloadData];
         }
@@ -75,6 +108,7 @@
 }
 
 - (NSInteger)collectionView:(nonnull UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    NSLog(@"%d", self.posts.count);
     return self.posts.count;
 }
 #pragma mark - TableView Delegate

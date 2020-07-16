@@ -8,10 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "AppDelegate.h"
+//View Controllers
 #import "DetailsViewController.h"
 #import "ComposeViewController.h"
-#import "User.h"
+//Views
 #import "HomeCell.h"
+//Models
+#import "User.h"
 #import "Post.h"
 #import "Category.h"
 
@@ -21,6 +24,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) NSMutableArray *posts;
 @property (nonatomic, strong) Post *post;
+@property (assign, nonatomic) int dataSkip;
+@property (assign, nonatomic) BOOL isMoreDataLoading;
 
 @end
 

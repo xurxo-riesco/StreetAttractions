@@ -24,6 +24,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) Post *post;
 @property (strong, nonatomic) NSMutableArray *posts;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *barButton;
+@property (assign, nonatomic) int dataSkip;
+@property (assign, nonatomic) BOOL isMoreDataLoading;
 - (void) favorite;
 - (void) unfavorite;
 @end

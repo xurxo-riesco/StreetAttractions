@@ -74,8 +74,48 @@
         if (posts) {
             self.posts = [posts mutableCopy];
             [self.collectionView reloadData];
+            self.dataSkip = posts.count;
         }
     }];
+}
+- (void)fetchMorePost {
+    PFQuery *postQuery = [Post query];
+    User *user = [PFUser currentUser];
+    [postQuery includeKey:@"author"];
+    [postQuery orderByDescending:@"createdAt"];
+    [postQuery whereKey:@"category" equalTo:self.category.name];
+    [postQuery whereKey:@"city" equalTo:user.location];
+    postQuery.limit = 20;
+    [postQuery setSkip:self.dataSkip];
+    [postQuery findObjectsInBackgroundWithBlock:^(NSArray<Post *> * _Nullable posts, NSError * _Nullable error) {
+        if (posts) {
+            if (posts.count > 0)
+            {
+                int prevNumPosts = self.posts.count;
+                self.posts = [self.posts arrayByAddingObjectsFromArray:posts];
+                NSMutableArray *newIndexPaths = [NSMutableArray array];
+                for (int i = prevNumPosts; i < self.posts.count; i++) {
+                    [newIndexPaths addObject:[NSIndexPath indexPathForRow:i inSection:0]];
+                }
+                self.dataSkip += posts.count;
+            }
+            self.isMoreDataLoading = false;
+            [self.collectionView reloadData];
+        }
+    }];
+}
+#pragma mark - InfiniteScrolling
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    if(!self.isMoreDataLoading){
+        int scrollViewContentHeight = self.collectionView.contentSize.height;
+        int scrollOffsetThreshold = scrollViewContentHeight - self.collectionView.bounds.size.height;
+        if(scrollView.contentOffset.y > scrollOffsetThreshold && self.collectionView.isDragging) {
+            self.isMoreDataLoading = true;
+            NSLog(@"More data");
+            NSLog(@"%d",self.dataSkip);
+            [self fetchMorePost];
+        }
+    }
 }
 #pragma mark - CollectionView Delegate
 - (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {

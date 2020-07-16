@@ -131,7 +131,8 @@
  #pragma mark - Share
 - (IBAction)onShare:(id)sender {
     NSString *shareString = [NSString stringWithFormat:@"Download StreetAttractions and check out this awesome street %@ in %@", self.post.category, self.post.city];
-    NSArray* sharedObjects=[NSArray arrayWithObjects:shareString,  nil];
+    UIImage *image = self.mediaView.image;
+    NSArray* sharedObjects=[NSArray arrayWithObjects:shareString, image,  nil];
            UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:sharedObjects applicationActivities:nil];
            activityViewController.popoverPresentationController.sourceView = self.view;
            [self presentViewController:activityViewController animated:YES completion:nil];

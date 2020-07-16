@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface Category : PFObject<PFSubclassing>
 @property (nonatomic, strong) NSString *name;
+@property (nonatomic, strong) PFFileObject *media;
 
 @end
 

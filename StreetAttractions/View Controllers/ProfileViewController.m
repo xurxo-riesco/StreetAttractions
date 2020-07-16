@@ -8,7 +8,7 @@
 
 #import "ProfileViewController.h"
 
-@interface ProfileViewController ()
+@interface ProfileViewController () <UICollectionViewDelegate, UICollectionViewDataSource, HomeCellDelegate>
 @property double latitude;
 @property double longitude;
 @end
@@ -30,7 +30,7 @@
     }];
     self.barButton.image = [UIImage systemImageNamed:@"star"];
     self.screenameLabel.text = self.user.screenname;
-    self.usernameLabel.text = self.user.username;
+    self.usernameLabel.text = [NSString stringWithFormat:@"@%@",self.user.username];
     self.cityLabel.text = self.user.location;
     self.profilePic.layer.cornerRadius = 20;
     self.profilePic.layer.masksToBounds = YES;
@@ -39,12 +39,86 @@
     if(self.user.isPerfomer)
     {
         self.isPerformer.alpha = 1;
+        self.instaButton.alpha = 1;
     }
     else{
         self.isPerformer.alpha = 0;
+        self.instaButton.alpha = 0;
     }
+    self.collectionView.delegate = self;
+    self.collectionView.dataSource = self;
+    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+    [refreshControl addTarget:self action:@selector(beginRefresh:) forControlEvents:UIControlEventValueChanged];
+    [self.collectionView insertSubview:refreshControl atIndex:0];
+    self.navigationItem.title = self.user.screenname;
+    UICollectionViewFlowLayout *layout = (UICollectionViewFlowLayout*)self.collectionView.collectionViewLayout;
+    CGFloat postersPerLine = 3;
+    CGFloat itemWidth = self.collectionView.frame.size.width / postersPerLine;
+    CGFloat itemHeight = itemWidth;
+    layout.itemSize = CGSizeMake(itemWidth, itemHeight);
+    [self fetchPost];
     //[self fetchPostsAndPredict];
     // Do any additional setup after loading the view.
+}
+#pragma mark - Refresh Control
+- (void)beginRefresh:(UIRefreshControl *)refreshControl {
+    [self fetchPost];
+    [refreshControl endRefreshing];
+}
+
+#pragma mark - Network
+- (void)fetchPost {
+    PFQuery *postQuery = [Post query];
+    User *user = [PFUser currentUser];
+    [postQuery includeKey:@"author"];
+    [postQuery orderByDescending:@"createdAt"];
+    [postQuery whereKey:@"author" equalTo:self.user];
+    postQuery.limit = 20;
+    [postQuery findObjectsInBackgroundWithBlock:^(NSArray<Post *> * _Nullable posts, NSError * _Nullable error) {
+        if (posts) {
+            self.posts = [posts mutableCopy];
+            [self.collectionView reloadData];
+            self.dataSkip = posts.count;
+        }
+    }];
+}
+- (void)fetchMorePost {
+    PFQuery *postQuery = [Post query];
+    User *user = [PFUser currentUser];
+    [postQuery includeKey:@"author"];
+    [postQuery orderByDescending:@"createdAt"];
+    [postQuery whereKey:@"author" equalTo:self.user];
+    postQuery.limit = 20;
+    [postQuery setSkip:self.dataSkip];
+    [postQuery findObjectsInBackgroundWithBlock:^(NSArray<Post *> * _Nullable posts, NSError * _Nullable error) {
+        if (posts) {
+            if (posts.count > 0)
+            {
+                int prevNumPosts = self.posts.count;
+                self.posts = [self.posts arrayByAddingObjectsFromArray:posts];
+                NSMutableArray *newIndexPaths = [NSMutableArray array];
+                for (int i = prevNumPosts; i < self.posts.count; i++) {
+                    [newIndexPaths addObject:[NSIndexPath indexPathForRow:i inSection:0]];
+                }
+                self.dataSkip += posts.count;
+            }
+            self.isMoreDataLoading = false;
+            [self.collectionView reloadData];
+        }
+    }];
+}
+#pragma mark - InfiniteScrolling
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    if(!self.isMoreDataLoading){
+        int scrollViewContentHeight = self.collectionView.contentSize.height;
+        int scrollOffsetThreshold = scrollViewContentHeight - self.collectionView.bounds.size.height;
+        if(scrollView.contentOffset.y > scrollOffsetThreshold && self.collectionView.isDragging) {
+            self.isMoreDataLoading = true;
+            NSLog(@"More data");
+            NSLog(@"%d",self.dataSkip);
+            [self fetchMorePost];
+        }
+    }
 }
 - (IBAction)onFavorite:(id)sender {
     if([self.barButton.image isEqual:[UIImage systemImageNamed:@"star"]]){
@@ -139,14 +213,41 @@
 //    LocationPrediction1copyOutput *resultLongitude = [longitude predictionFromLongitude:self.longitude error:&error];
 //    NSLog(@"%f,%f, %f, %f", result3.Model_Latitude,result2.Model_Latitude, resultLatitude.Model_Latitude, resultLongitude.Model_Longitude);
 //}
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
+
+
+#pragma mark - CollectionView Delegate
+- (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
+    HomeCell *homeCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"HomeCell" forIndexPath: indexPath];
+    Post *post = self.posts[indexPath.item];
+    homeCell.delegate = self;
+    [homeCell loadPost:post];
+    return homeCell;
+}
+- (NSInteger)collectionView:(nonnull UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    return self.posts.count;
+}
+
+#pragma mark - HomeCell Delegate
+- (void)homeCell:(HomeCell *)homeCell didTap:(Post *)post{
+    self.post = post;
+    [self performSegueWithIdentifier:@"profileToDetails" sender:nil];
+}
+
+- (IBAction)openInsta:(id)sender {
+    NSString *urlString = [NSString stringWithFormat:@"instagram://user?username=%@", self.user.instagramName];
+    NSURL *routeURL = [NSURL URLWithString:urlString];
+    if([[UIApplication sharedApplication]canOpenURL:routeURL]){
+        [[UIApplication sharedApplication] openURL:routeURL];
+    }else{
+        NSString *urlString = [NSString stringWithFormat:@"https://instagram.com/%@",self.user.instagramName];
+        NSURL *newRouteURL = [NSURL URLWithString:urlString ];
+        [[UIApplication sharedApplication] openURL:newRouteURL];
+    }
+}
+#pragma mark - Navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    DetailsViewController *detailsViewController = [segue destinationViewController];
+    detailsViewController.post = self.post;
+}
 
 @end

@@ -75,5 +75,12 @@
         }
     }];
 }
+- (BOOL)isEqual:(id)other {
+    if (other == self)
+      return YES;
+    if([[self objectId] isEqual:[other objectId]])
+        return YES;
+    return NO;
+}
 @end
 

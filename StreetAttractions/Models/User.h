@@ -20,6 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *location;
 @property (nonatomic, strong) NSString *password;
 @property (nonatomic, strong) NSString *venmo;
+@property (nonatomic, strong) NSString *instagramName;
 @property (nonatomic) BOOL isPerfomer;
 @property (nonatomic, strong) PFFileObject *profilePic;
 

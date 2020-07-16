@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+//View Controllers
+#import "DetailsViewController.h"
 //Views
 #import "FavoriteCell.h"
 //Models
@@ -20,6 +22,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) NSMutableArray *posts;
 @property (strong, nonatomic) NSArray *userCategories;
 @property (strong, nonatomic) NSArray *userFavorites;
+@property (assign, nonatomic) BOOL isMoreDataLoading;
+@property (assign, nonatomic) int dataSkip;
+@property (strong, nonatomic) User *user;
 
 @end
 

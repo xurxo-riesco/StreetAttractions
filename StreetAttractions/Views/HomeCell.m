@@ -65,11 +65,8 @@
                 [self.descriptionView setBackgroundColor:[UIColor systemGreenColor]];
     }
     CLLocation *startLocation = [[CLLocation alloc] initWithLatitude:self.latitude longitude:self.longitude];
-    //NSLog(@"%f latitude, %f longitude", self.latitude, self.longitude);
     CLLocation *endLocation = [[CLLocation alloc] initWithLatitude:post.latitude.floatValue longitude:post.longitude.floatValue];
-    //NSLog(@"%f latitude, %f longitude", post.latitude.floatValue, post.longitude.floatValue);
     CLLocationDistance distance = [startLocation distanceFromLocation:endLocation];
-    //NSLog(@"%f miles", distance*0.000621371);
     self.distanceLabel.text = [NSString stringWithFormat:@"%.2f mi away",distance*0.000621371];
     self.descriptionLabel.text = post.caption;
     self.dateLabel.text = post.createdAt.shortTimeAgoSinceNow;

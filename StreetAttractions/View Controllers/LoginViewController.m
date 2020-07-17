@@ -8,18 +8,28 @@
 
 #import "LoginViewController.h"
 #import "HomeViewController.h"
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import <FBSDKLoginKit/FBSDKLoginKit.h>
 #import "Parse/PFUser.h"
 #import "HyTransitions.h"
 #import "HyLoginButton.h"
 
-@interface LoginViewController ()<UIViewControllerTransitioningDelegate>
-@property (weak, nonatomic) IBOutlet UISwitch *switchButton;
+@interface LoginViewController ()<UIViewControllerTransitioningDelegate, FBSDKLoginButtonDelegate>
 @end
 
 @implementation LoginViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    FBSDKLoginButton *loginButton = [[FBSDKLoginButton alloc] init];
+    loginButton.delegate = self;
+    // Optional: Place the button in the center of your view.
+    //[CGPoint po]
+    CGPoint point = CGPointMake(self.view.center.x, self.view.center.y + 360);
+    loginButton.center = point;
+    
+    loginButton.permissions = @[@"user_location",@"email"];
+    [self.view addSubview:loginButton];
     self.passwordField.secureTextEntry = true;
     [self createPresentControllerButton];
 }
@@ -69,6 +79,35 @@
             completion(YES, nil);
         }
     }];
+}
+- (void)  loginButton:(FBSDKLoginButton *)loginButton
+didCompleteWithResult:(FBSDKLoginManagerLoginResult *)result
+                error:(NSError *)error{
+    [PFFacebookUtils logInInBackgroundWithReadPermissions:@[@"user_location",@"email"] block:^(PFUser * _Nullable user, NSError * _Nullable error) {
+        if(user.isNew){
+               FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc]
+                   initWithGraphPath:@"/me"
+                          parameters:@{ @"fields": @"id,name,location",}
+                          HTTPMethod:@"GET"];
+               [request startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
+                   User *newUser = (User*)user;
+                   NSArray *location = [result[@"location"][@"name"] componentsSeparatedByString:@","];
+                   newUser.location = location[0];
+                   newUser.screenname = result[@"short_name"];
+                   newUser.username = result[@"email"];
+                   [newUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+                       [self performSegueWithIdentifier:@"loginSegue" sender:nil];
+                   }];
+               }];
+        }else{
+            [self performSegueWithIdentifier:@"loginSegue" sender:nil];
+        }
+    }];
+}
+- (void) loginButtonDidLogOut:(FBSDKLoginButton *)loginButton{
+    NSLog(@"Bye");
+  //use your custom code here
+  //redirect after successful logout
 }
 /*
  #pragma mark - Navigation

@@ -8,7 +8,7 @@
 
 #import "SettingsViewController.h"
 
-@interface SettingsViewController () <UIImagePickerControllerDelegate>
+@interface SettingsViewController () <UITextFieldDelegate, UIImagePickerControllerDelegate>
 
 @end
 
@@ -18,6 +18,10 @@
     [super viewDidLoad];
     self.cameraButton.alpha = 0;
     self.libraryButton.alpha = 0;
+    self.cityField.delegate = self;
+    self.screenNameField.delegate = self;
+    self.oldPassField.delegate = self;
+    self.passField.delegate = self;
     User *user = [PFUser currentUser];
     self.profilePic.layer.cornerRadius = 71;
     self.profilePic.layer.masksToBounds = YES;
@@ -119,6 +123,10 @@
         }
     }];
     
+}
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return YES;
 }
 
 /*

@@ -27,6 +27,7 @@
     self.tableView.dataSource = self;
     self.posts = [[NSMutableArray alloc] init];
     [self fetchRecommended];
+    [self fetchCategories];
 }
 
 #pragma mark - Network
@@ -59,7 +60,6 @@
                             [newIndexPaths addObject:[NSIndexPath indexPathForRow:i inSection:0]];
                         }
                     }
-                    [self fetchCategories];
                     NSLog(@"%@", self.posts);
                     [self.collectionView reloadData];
                 }

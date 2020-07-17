@@ -7,10 +7,10 @@
 //
 
 #import "AppDelegate.h"
-#import "Parse/Parse.h"
+#import "FBSDKCoreKit.h"
 @import GoogleMaps;
 @import Braintree;
-
+@import Parse;
 @interface AppDelegate ()
 @end
 
@@ -41,11 +41,11 @@
     }
     [GMSServices provideAPIKey:@"AIzaSyDG3oPYU_0G2P4WDBnwcwaPQBtuy5J2qNE"];
     [BTAppSwitch setReturnURLScheme:@"com.xurxor.StreetAttractions.payments"];
+    [PFFacebookUtils initializeFacebookWithApplicationLaunchOptions:launchOptions];
     //[GMSPlacesClient provideAPIKey:@"AIzaSyDG3oPYU_0G2P4WDBnwcwaPQBtuy5J2qNE"];
     
     return YES;
 }
-
 #pragma mark - UISceneSession lifecycle
 
 

@@ -7,8 +7,7 @@
 //
 
 #import "DetailsViewController.h"
-
-@interface DetailsViewController ()
+@interface DetailsViewController ()<UIViewControllerTransitioningDelegate>
 
 @end
 
@@ -30,6 +29,8 @@
             [self setRating];
         }
     }];
+    self.commentsButton.layer.cornerRadius = 8;
+    self.commentsButton.layer.masksToBounds = YES;
     self.barButton.image = [UIImage systemImageNamed:@"heart"];
     self.mapView.delegate = self;
     self.user = self.post.author;
@@ -159,13 +160,20 @@
     [self.post saveInBackground];
     self.barButton.image = [UIImage systemImageNamed:@"heart"];
 }
+
 #pragma mark - Navigation
 - (void) didTapPost:(UITapGestureRecognizer *)sender{
     [self performSegueWithIdentifier:@"detailsToProfile" sender:nil];
 }
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    ProfileViewController *profileViewController = [segue destinationViewController];
-    profileViewController.user = self.post.author;
+    if([segue.identifier isEqual:@"toCommentsVC"]){
+        DetailsViewController *detailsViewController = [segue destinationViewController];
+        detailsViewController.post = self.post;
+        
+    }else{
+        ProfileViewController *profileViewController = [segue destinationViewController];
+        profileViewController.user = self.post.author;
+    }
 }
 
 

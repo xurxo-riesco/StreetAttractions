@@ -29,6 +29,9 @@
     [self.profilePic loadInBackground];
 }
 - (IBAction)onLogOut:(id)sender {
+    if ([FBSDKAccessToken currentAccessToken]){
+        [FBSDKAccessToken setCurrentAccessToken:nil];
+    }
     AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     LoginViewController *loginViewController = [storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];

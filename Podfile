@@ -10,6 +10,7 @@ target 'StreetAttractions' do
    pod 'GooglePlaces'
    pod 'Parse'
    pod 'Parse/UI'
+   pod 'Parse/FacebookUtils'
    pod 'AFNetworking'
    pod 'JGProgressHUD'
    pod 'MMDrawerController', '~> 0.5.7'
@@ -17,7 +18,8 @@ target 'StreetAttractions' do
    pod 'Braintree/Venmo'
    pod 'BraintreeDropIn'
    pod 'DateTools'
-   pod 'HCSStarRatingView', '~> 1.5'
+   pod 'FacebookCore'
+   pod 'HCSStarRatingView', '~> 1.5' 
 
 
   target 'StreetAttractionsTests' do

@@ -58,6 +58,18 @@ PODS:
     - BraintreeDropIn/UIKit
   - BraintreeDropIn/UIKit (8.1.1)
   - DateTools (2.0.0)
+  - FacebookCore (0.9.0):
+    - FBSDKCoreKit (~> 5.0)
+  - FBSDKCoreKit (5.15.1):
+    - FBSDKCoreKit/Basics (= 5.15.1)
+    - FBSDKCoreKit/Core (= 5.15.1)
+  - FBSDKCoreKit/Basics (5.15.1)
+  - FBSDKCoreKit/Core (5.15.1):
+    - FBSDKCoreKit/Basics
+  - FBSDKLoginKit (5.15.1):
+    - FBSDKLoginKit/Login (= 5.15.1)
+  - FBSDKLoginKit/Login (5.15.1):
+    - FBSDKCoreKit (~> 5.0)
   - GoogleMaps (3.9.0):
     - GoogleMaps/Maps (= 3.9.0)
   - GoogleMaps/Base (3.9.0)
@@ -83,6 +95,10 @@ PODS:
     - Parse/Core (= 1.18.0)
   - Parse/Core (1.18.0):
     - Bolts/Tasks (= 1.9.1)
+  - Parse/FacebookUtils (1.18.0):
+    - Bolts/Tasks (= 1.9.1)
+    - FBSDKLoginKit (~> 5.x)
+    - Parse/Core
   - Parse/UI (1.18.0):
     - Parse/Core
 
@@ -92,12 +108,14 @@ DEPENDENCIES:
   - Braintree/Venmo
   - BraintreeDropIn
   - DateTools
+  - FacebookCore
   - GoogleMaps
   - GooglePlaces
   - HCSStarRatingView (~> 1.5)
   - JGProgressHUD
   - MMDrawerController (~> 0.5.7)
   - Parse
+  - Parse/FacebookUtils
   - Parse/UI
 
 SPEC REPOS:
@@ -107,6 +125,9 @@ SPEC REPOS:
     - Braintree
     - BraintreeDropIn
     - DateTools
+    - FacebookCore
+    - FBSDKCoreKit
+    - FBSDKLoginKit
     - GoogleMaps
     - GooglePlaces
     - HCSStarRatingView
@@ -120,6 +141,9 @@ SPEC CHECKSUMS:
   Braintree: 48154e70306eb3e6c81eaa87bbc5c5988c0d2784
   BraintreeDropIn: 2cf07a9041df45ff671586042dbaf7b5d2767347
   DateTools: 933ac9c490f21f92127cf690ccd8c397e0126caf
+  FacebookCore: ba86524b66cfa86d0f8e65d08faa8504a9f732dd
+  FBSDKCoreKit: 1d5acf7c9d7a2f92bb1a242dc60cae5b7adb91df
+  FBSDKLoginKit: f1ea8026a58b52d30c9f2e6a58ca7d813619fb83
   GoogleMaps: 4b5346bddfe6911bb89155d43c903020170523ac
   GooglePlaces: 1634d019549b969d40fe0ccb0b9513055adebe01
   HCSStarRatingView: 1d18f79654735514cd6f00e6d90e38cb6320dc31
@@ -127,6 +151,6 @@ SPEC CHECKSUMS:
   MMDrawerController: 7a4cf8e25596bf2434e03ce50d22a8608ddee6a1
   Parse: 79bdda34fdb7eb2a707a43a951c8aae236cb3e34
 
-PODFILE CHECKSUM: a5cd4cf3ef1118f86dba86f23a2ba46de7526938
+PODFILE CHECKSUM: 0f0c95ec366478b4a405693ff3cb514ff48754bc
 
 COCOAPODS: 1.9.3

@@ -8,6 +8,7 @@ Street Attractions
 2. [Schema](#Schema)
 
 ## Overview
+Find all the details on the progress of the app in the following document: https://docs.google.com/document/d/1-6k9EMiyZi9EFuiGj-W7SIGp9ClZ1rVFiTnw4UKUU1g/edit?usp=sharing
 ### Description
 Lets you report if you've seen street performers you like for anyone in the area to stop by, integrates machine learning to learn the performers favorite spots. User can follow its favorites performers and categories, so they never miss out on their favorite perfomances. User can also donate money through the app if they are not carrying cash.
 

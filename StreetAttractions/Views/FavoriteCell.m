@@ -18,14 +18,12 @@
     userTap.numberOfTapsRequired = 1;
     [self.profilePic addGestureRecognizer:userTap];
     [self.profilePic setUserInteractionEnabled:YES];
-    // Initialization code
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
 }
+//Helper functions to get users location
 -(void)startUserLocationSearch{
     self.locationManager = [[CLLocationManager alloc]init];
     self.locationManager.delegate = self;
@@ -42,7 +40,7 @@
     self.latitude = self.locationManager.location.coordinate.latitude;
     self.longitude = self.locationManager.location.coordinate.longitude;
 }
-
+//Loads all views in the cell
 - (void)loadPost:(Post *) post{
     self.post = post;
     self.mediaView.layer.cornerRadius = 16;
@@ -65,7 +63,7 @@
     [self.profilePic loadInBackground];
     self.usernameLabel.text = user.screenname;
 }
-
+//Colors the cell based on category
 - (void) colorCode{
     self.borderView.alpha = 0.4;
     if([self.post.category isEqual:@"Dancers"]){
@@ -76,9 +74,9 @@
         self.borderView.backgroundColor = [UIColor systemGreenColor];
     }
 }
-
+#pragma mark - Delegate
+// Delegate to segue to Profile View
 - (void) didTapUser:(UITapGestureRecognizer *)sender{
-    NSLog(@"Tapping");
     [self.delegate favoriteCell:self didTap:self.post];
 }
 

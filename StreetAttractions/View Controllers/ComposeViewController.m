@@ -31,9 +31,7 @@
     self.mediaButton.layer.masksToBounds = YES;
     self.locationButton.layer.cornerRadius = 16;
     self.locationButton.layer.masksToBounds = YES;
-    
     self.image = [UIImage imageNamed:@"placeholder.png"];
-    // Do any additional setup after loading the view.
 }
 #pragma mark - TextField Delegate
 - (void)textViewDidBeginEditing:(UITextView *)textView
@@ -61,6 +59,7 @@
 
     return YES;
 }
+#pragma mark - ImagePicker Deployment
 - (IBAction)onAddMedia:(id)sender {
     UIImagePickerController *imagePickerVC = [UIImagePickerController new];
     imagePickerVC.delegate = self;
@@ -85,21 +84,15 @@
 #pragma mark - Image Manipulation
 - (UIImage *)resizeImage:(UIImage *)image withSize:(CGSize)size {
     UIImageView *resizeImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height)];
-    
     resizeImageView.contentMode = UIViewContentModeScaleAspectFill;
     resizeImageView.image = image;
-    
     UIGraphicsBeginImageContext(size);
     [resizeImageView.layer renderInContext:UIGraphicsGetCurrentContext()];
     UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
-    
     return newImage;
 }
-
-- (IBAction)onAddLocation:(id)sender {
-    [self performSegueWithIdentifier:@"tagSegue" sender:nil];
-}
+#pragma mark - Posting
 - (IBAction)onPost:(id)sender {
     JGProgressHUD *HUD = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
     HUD.textLabel.text = @"Posting";
@@ -127,7 +120,6 @@
         [self presentViewController:alert animated:YES completion:^{
         }];
     }
-
 }
 - (BOOL)verify {
     if ([self.descriptionText.text isEqualToString:@"Write a description..."]) {
@@ -180,6 +172,9 @@
 }
 
 #pragma mark - Navigation
+- (IBAction)onAddLocation:(id)sender {
+    [self performSegueWithIdentifier:@"tagSegue" sender:nil];
+}
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     LocationsViewController *locationsViewController = [segue destinationViewController];
     locationsViewController.delegate = self;

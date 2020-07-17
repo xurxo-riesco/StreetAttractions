@@ -12,8 +12,8 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
 }
+//Loads all views in the cell
 - (void)loadCategory:(Category *) category{
     self.category = category;
     self.nameLabel.text = category.name;
@@ -22,9 +22,8 @@
     self.mediaView.layer.cornerRadius = 16;
     self.mediaView.layer.masksToBounds = YES;
     [self colorCode];
-    //self.imageView.file = ;
-    //[self.imageView loadInBackground];
 }
+//Colors the cell based on category
 - (void) colorCode{
     self.mediaView.alpha = 0.6;
     if([self.category.name isEqual:@"Dancers"]){
@@ -35,11 +34,8 @@
         self.mediaView.backgroundColor = [UIColor systemGreenColor];
     }
 }
-
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
 }
 
 @end

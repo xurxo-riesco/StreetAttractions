@@ -48,7 +48,6 @@
     [self fetchPost];
     [refreshControl endRefreshing];
 }
-
 #pragma mark - RefreshControl
 - (void)colorCode{
     UINavigationBar *navigationBar = self.navigationController.navigationBar;
@@ -60,7 +59,6 @@
         [navigationBar setBackgroundColor:[UIColor systemGreenColor]];
     }
 }
-
 #pragma mark - Network
 - (void)fetchPost {
     PFQuery *postQuery = [Post query];

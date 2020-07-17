@@ -51,47 +51,6 @@
     MKCoordinateRegion postRegion = MKCoordinateRegionMake(CLLocationCoordinate2DMake(self.post.latitude.floatValue, self.post.longitude.floatValue), MKCoordinateSpanMake(0.1, 0.1));
     [self.mapView setRegion:postRegion animated:false];
     [self loadMap];
-    // Do any additional setup after loading the view.
-}
-- (IBAction)onRate:(id)sender {
-    self.post.timesRated = [NSNumber numberWithInt:([self.post.timesRated intValue] + 1)];
-    if(self.post.rating != nil){
-    NSNumber *newRating = [NSNumber numberWithFloat:(self.starView.value  + (self.post.rating.floatValue * (self.post.timesRated.intValue-1)))/ self.post.timesRated.intValue];
-    self.post.rating = newRating;
-    }
-    else{
-        self.post.rating = [NSNumber numberWithFloat:self.starView.value];
-    }
-    [self.post saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-        if(succeeded)
-        {
-            [self setRating];
-        }
-    }];
-}
-
-- (void)setRating{
-    self.starView.userInteractionEnabled = NO;
-    self.starView.value = 0;
-    PFRelation *relation = [[User currentUser] relationForKey:@"RatedPosts"];
-    [relation addObject:self.post];
-    [[User currentUser] saveInBackground];
-    [UIView animateWithDuration:5 animations:^{
-        self.starView.value = self.post.rating.floatValue;
-        if([self.post.category isEqual:@"Dancers"]){
-        self.starView.tintColor = [UIColor systemPinkColor];
-            NSLog(@"Pink");
-        }else if([self.post.category isEqual:@"Singers"]){
-            self.starView.tintColor = [UIColor systemYellowColor];
-            NSLog(@"Yellow");
-        }else if([self.post.category isEqual:@"Magicians"]){
-            self.starView.tintColor = [UIColor systemGreenColor];
-            NSLog(@"Green");
-        }
-    }];
-}
-- (void) didTapPost:(UITapGestureRecognizer *)sender{
-    [self performSegueWithIdentifier:@"detailsToProfile" sender:nil];
 }
 - (void) loadMap{
     NSNumber *latitude = self.post.latitude;
@@ -128,15 +87,53 @@
     [actionSheet addAction:googleMaps];
     [self presentViewController:actionSheet animated:YES completion:nil];
 }
- #pragma mark - Share
+#pragma mark  - Rate
+- (IBAction)onRate:(id)sender {
+    self.post.timesRated = [NSNumber numberWithInt:([self.post.timesRated intValue] + 1)];
+    if(self.post.rating != nil){
+        NSNumber *newRating = [NSNumber numberWithFloat:(self.starView.value  + (self.post.rating.floatValue * (self.post.timesRated.intValue-1)))/ self.post.timesRated.intValue];
+        self.post.rating = newRating;
+    }
+    else{
+        self.post.rating = [NSNumber numberWithFloat:self.starView.value];
+    }
+    [self.post saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+        if(succeeded)
+        {
+            [self setRating];
+        }
+    }];
+}
+- (void)setRating{
+    self.starView.userInteractionEnabled = NO;
+    self.starView.value = 0;
+    PFRelation *relation = [[User currentUser] relationForKey:@"RatedPosts"];
+    [relation addObject:self.post];
+    [[User currentUser] saveInBackground];
+    [UIView animateWithDuration:5 animations:^{
+        self.starView.value = self.post.rating.floatValue;
+        if([self.post.category isEqual:@"Dancers"]){
+            self.starView.tintColor = [UIColor systemPinkColor];
+            NSLog(@"Pink");
+        }else if([self.post.category isEqual:@"Singers"]){
+            self.starView.tintColor = [UIColor systemYellowColor];
+            NSLog(@"Yellow");
+        }else if([self.post.category isEqual:@"Magicians"]){
+            self.starView.tintColor = [UIColor systemGreenColor];
+            NSLog(@"Green");
+        }
+    }];
+}
+#pragma mark - Share
 - (IBAction)onShare:(id)sender {
     NSString *shareString = [NSString stringWithFormat:@"Download StreetAttractions and check out this awesome street %@ in %@", self.post.category, self.post.city];
     UIImage *image = self.mediaView.image;
     NSArray* sharedObjects=[NSArray arrayWithObjects:shareString, image,  nil];
-           UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:sharedObjects applicationActivities:nil];
-           activityViewController.popoverPresentationController.sourceView = self.view;
-           [self presentViewController:activityViewController animated:YES completion:nil];
+    UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:sharedObjects applicationActivities:nil];
+    activityViewController.popoverPresentationController.sourceView = self.view;
+    [self presentViewController:activityViewController animated:YES completion:nil];
 }
+#pragma mark - Liking
 - (IBAction)onLike:(id)sender {
     if([self.barButton.image isEqual:[UIImage systemImageNamed:@"heart"]]){
         [self like];
@@ -163,10 +160,13 @@
     self.barButton.image = [UIImage systemImageNamed:@"heart"];
 }
 #pragma mark - Navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-     ProfileViewController *profileViewController = [segue destinationViewController];
-     profileViewController.user = self.post.author;
- }
- 
+- (void) didTapPost:(UITapGestureRecognizer *)sender{
+    [self performSegueWithIdentifier:@"detailsToProfile" sender:nil];
+}
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    ProfileViewController *profileViewController = [segue destinationViewController];
+    profileViewController.user = self.post.author;
+}
+
 
 @end

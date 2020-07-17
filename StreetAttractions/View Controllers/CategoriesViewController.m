@@ -27,26 +27,9 @@
     self.tableView.dataSource = self;
     self.posts = [[NSMutableArray alloc] init];
     [self fetchRecommended];
-    //[self fetchCategories];
-    //[self fetchPost];
 }
 
 #pragma mark - Network
-- (void)fetchPost {
-    PFQuery *postQuery = [Post query];
-    User *user = [PFUser currentUser];
-    [postQuery includeKey:@"author"];
-    [postQuery orderByDescending:@"createdAt"];
-    [postQuery whereKey:@"city" equalTo:user.location];
-    postQuery.limit = 20;
-    [postQuery findObjectsInBackgroundWithBlock:^(NSArray<Post *> * _Nullable posts, NSError * _Nullable error) {
-        if (posts) {
-            self.posts = [posts mutableCopy];
-            [self fetchCategories];
-            [self.collectionView reloadData];
-        }
-    }];
-}
 - (void) fetchRecommended{
     PFRelation *relation = [[User currentUser] relationForKey:@"FavUsers"];
     PFQuery *favUsersQ = [relation query];
@@ -80,7 +63,7 @@
                     NSLog(@"%@", self.posts);
                     [self.collectionView reloadData];
                 }
-                    
+                
                 
             }];
         }
@@ -106,7 +89,6 @@
     [homeCell loadPost:post];
     return homeCell;
 }
-
 - (NSInteger)collectionView:(nonnull UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     NSLog(@"%d", self.posts.count);
     return self.posts.count;
@@ -122,7 +104,7 @@
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.categories.count;
 }
- #pragma mark - HomeCell Delegate
+#pragma mark - HomeCell Delegate
 - (void)homeCell:(HomeCell *)homeCell didTap:(Post *)post
 {
     self.post = post;
@@ -140,25 +122,24 @@
 }
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
-    NSLog(@"SEGUEEE");
     [self performSegueWithIdentifier:@"searchSegue" sender:nil];
 }
- #pragma mark - Navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-     if([segue.identifier isEqual:@"recommendedToDetails"])
-     {
-         DetailsViewController *detailsViewController = [segue destinationViewController];
-         detailsViewController.post = self.post;
-     }else if([segue.identifier isEqual:@"searchSegue"]){
-         SearchViewController *searchViewController = [segue destinationViewController];
-         searchViewController.text = self.text;
-     }else{
-     UITableViewCell *tappedCell = sender;
-     NSIndexPath *indexPath = [self.tableView indexPathForCell:tappedCell];
-     Category *category = self.categories[indexPath.row];
-     CategoryFeedViewController *categoryFeedViewController = [segue destinationViewController];
-     categoryFeedViewController.category = category;
-     }
- }
+#pragma mark - Navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if([segue.identifier isEqual:@"recommendedToDetails"])
+    {
+        DetailsViewController *detailsViewController = [segue destinationViewController];
+        detailsViewController.post = self.post;
+    }else if([segue.identifier isEqual:@"searchSegue"]){
+        SearchViewController *searchViewController = [segue destinationViewController];
+        searchViewController.text = self.text;
+    }else{
+        UITableViewCell *tappedCell = sender;
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:tappedCell];
+        Category *category = self.categories[indexPath.row];
+        CategoryFeedViewController *categoryFeedViewController = [segue destinationViewController];
+        categoryFeedViewController.category = category;
+    }
+}
 
 @end

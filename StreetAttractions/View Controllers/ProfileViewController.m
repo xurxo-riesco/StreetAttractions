@@ -57,8 +57,6 @@
     CGFloat itemHeight = itemWidth;
     layout.itemSize = CGSizeMake(itemWidth, itemHeight);
     [self fetchPost];
-    //[self fetchPostsAndPredict];
-    // Do any additional setup after loading the view.
 }
 #pragma mark - Refresh Control
 - (void)beginRefresh:(UIRefreshControl *)refreshControl {
@@ -120,6 +118,7 @@
         }
     }
 }
+#pragma mark - Favoriting
 - (IBAction)onFavorite:(id)sender {
     if([self.barButton.image isEqual:[UIImage systemImageNamed:@"star"]]){
         [self favorite];
@@ -127,6 +126,21 @@
         [self unfavorite];
     }
 }
+- (void) favorite{
+    User *user = [PFUser currentUser];
+    PFRelation *relation = [user relationForKey:@"FavUsers"];
+    [relation addObject:self.user];
+    [user saveInBackground];
+    self.barButton.image = [UIImage systemImageNamed:@"star.fill"];
+}
+- (void) unfavorite{
+    User *user = [PFUser currentUser];
+    PFRelation *relation = [user relationForKey:@"FavUsers"];
+    [relation removeObject:self.user];
+    [user saveInBackground];
+    self.barButton.image = [UIImage systemImageNamed:@"star"];
+}
+#pragma mark - Donations
 - (IBAction)onDonate:(id)sender {
     [self showDropIn:@"sandbox_jy2p4xff_yxpkv9ztxt34tdkx"];
 }
@@ -150,21 +164,41 @@
     }];
     [self presentViewController:dropIn animated:YES completion:nil];
 }
+#pragma mark - CollectionView Delegate
+- (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
+    HomeCell *homeCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"HomeCell" forIndexPath: indexPath];
+    Post *post = self.posts[indexPath.item];
+    homeCell.delegate = self;
+    [homeCell loadPost:post];
+    return homeCell;
+}
+- (NSInteger)collectionView:(nonnull UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    return self.posts.count;
+}
 
-- (void) favorite{
-    User *user = [PFUser currentUser];
-    PFRelation *relation = [user relationForKey:@"FavUsers"];
-    [relation addObject:self.user];
-    [user saveInBackground];
-    self.barButton.image = [UIImage systemImageNamed:@"star.fill"];
+#pragma mark - HomeCell Delegate
+- (void)homeCell:(HomeCell *)homeCell didTap:(Post *)post{
+    self.post = post;
+    [self performSegueWithIdentifier:@"profileToDetails" sender:nil];
 }
-- (void) unfavorite{
-    User *user = [PFUser currentUser];
-    PFRelation *relation = [user relationForKey:@"FavUsers"];
-    [relation removeObject:self.user];
-    [user saveInBackground];
-    self.barButton.image = [UIImage systemImageNamed:@"star"];
+
+- (IBAction)openInsta:(id)sender {
+    NSString *urlString = [NSString stringWithFormat:@"instagram://user?username=%@", self.user.instagramName];
+    NSURL *routeURL = [NSURL URLWithString:urlString];
+    if([[UIApplication sharedApplication]canOpenURL:routeURL]){
+        [[UIApplication sharedApplication] openURL:routeURL];
+    }else{
+        NSString *urlString = [NSString stringWithFormat:@"https://instagram.com/%@",self.user.instagramName];
+        NSURL *newRouteURL = [NSURL URLWithString:urlString ];
+        [[UIApplication sharedApplication] openURL:newRouteURL];
+    }
 }
+#pragma mark - Navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    DetailsViewController *detailsViewController = [segue destinationViewController];
+    detailsViewController.post = self.post;
+}
+
 //- (void) fetchPostsAndPredict{
 //    PFQuery *postQuery = [Post query];
 //    User *user = [PFUser currentUser];
@@ -214,40 +248,5 @@
 //    NSLog(@"%f,%f, %f, %f", result3.Model_Latitude,result2.Model_Latitude, resultLatitude.Model_Latitude, resultLongitude.Model_Longitude);
 //}
 
-
-#pragma mark - CollectionView Delegate
-- (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
-    HomeCell *homeCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"HomeCell" forIndexPath: indexPath];
-    Post *post = self.posts[indexPath.item];
-    homeCell.delegate = self;
-    [homeCell loadPost:post];
-    return homeCell;
-}
-- (NSInteger)collectionView:(nonnull UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return self.posts.count;
-}
-
-#pragma mark - HomeCell Delegate
-- (void)homeCell:(HomeCell *)homeCell didTap:(Post *)post{
-    self.post = post;
-    [self performSegueWithIdentifier:@"profileToDetails" sender:nil];
-}
-
-- (IBAction)openInsta:(id)sender {
-    NSString *urlString = [NSString stringWithFormat:@"instagram://user?username=%@", self.user.instagramName];
-    NSURL *routeURL = [NSURL URLWithString:urlString];
-    if([[UIApplication sharedApplication]canOpenURL:routeURL]){
-        [[UIApplication sharedApplication] openURL:routeURL];
-    }else{
-        NSString *urlString = [NSString stringWithFormat:@"https://instagram.com/%@",self.user.instagramName];
-        NSURL *newRouteURL = [NSURL URLWithString:urlString ];
-        [[UIApplication sharedApplication] openURL:newRouteURL];
-    }
-}
-#pragma mark - Navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    DetailsViewController *detailsViewController = [segue destinationViewController];
-    detailsViewController.post = self.post;
-}
 
 @end

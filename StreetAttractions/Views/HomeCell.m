@@ -23,6 +23,7 @@
     self.descriptionView.layer.masksToBounds = YES;
     self.descriptionView.layer.cornerRadius = 16;
 }
+//Helper functions to get users location
 -(void)startUserLocationSearch{
     self.locationManager = [[CLLocationManager alloc]init];
     self.locationManager.delegate = self;
@@ -39,7 +40,7 @@
     self.latitude = self.locationManager.location.coordinate.latitude;
     self.longitude = self.locationManager.location.coordinate.longitude;
 }
-
+//Loads all views in the cell
 - (void)loadPost:(Post *) post{
     self.post = post;
     self.descriptionView.alpha = 0;
@@ -55,6 +56,7 @@
         self.popularView.alpha = 0;
     }
 }
+// Shows the preview details view
 - (void)showDescription:(Post*) post{
     self.descriptionView.alpha = 0.75;
     if([post.category isEqual:@"Dancers"]){
@@ -71,6 +73,8 @@
     self.descriptionLabel.text = post.caption;
     self.dateLabel.text = post.createdAt.shortTimeAgoSinceNow;
 }
+#pragma mark - Delegate
+// Delegate to segue to Details View
 - (void) didTapPost:(UITapGestureRecognizer *)sender{
     NSLog(@"Tapping");
     [self.delegate homeCell:self didTap:self.post];

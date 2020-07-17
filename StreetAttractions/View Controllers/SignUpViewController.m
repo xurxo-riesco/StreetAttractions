@@ -17,7 +17,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
 }
 - (IBAction)onProfilePic:(id)sender {
     UIImagePickerController *imagePickerVC = [UIImagePickerController new];

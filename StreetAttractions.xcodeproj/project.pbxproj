@@ -33,6 +33,12 @@
 		982408E024BCDE8E00F35FDA /* LocationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 982408DE24BCDE8E00F35FDA /* LocationCell.m */; };
 		982408E224BCE0E900F35FDA /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 982408E124BCE0E900F35FDA /* MapKit.framework */; };
 		9865ADA524C0E9F30090C386 /* ThunderTitan.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9865ADA424C0E9F30090C386 /* ThunderTitan.otf */; };
+		9865ADC024C10C9B0090C386 /* SpinerLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9865ADB624C10C9B0090C386 /* SpinerLayer.m */; };
+		9865ADC124C10C9B0090C386 /* HySpinerLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9865ADBB24C10C9B0090C386 /* HySpinerLayer.m */; };
+		9865ADC224C10C9B0090C386 /* HyLoglnButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 9865ADBC24C10C9B0090C386 /* HyLoglnButton.m */; };
+		9865ADC324C10C9B0090C386 /* HyLoginButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 9865ADBD24C10C9B0090C386 /* HyLoginButton.m */; };
+		9865ADC424C10C9B0090C386 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 9865ADBE24C10C9B0090C386 /* README.md */; };
+		9865ADC524C10C9B0090C386 /* HyTransitions.m in Sources */ = {isa = PBXBuildFile; fileRef = 9865ADBF24C10C9B0090C386 /* HyTransitions.m */; };
 		98C1F68024BCE31100DB3713 /* PhotoMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 98C1F67E24BCE31100DB3713 /* PhotoMapViewController.m */; };
 		98C1F68324BD02D800DB3713 /* CategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 98C1F68224BD02D800DB3713 /* CategoryCell.m */; };
 		98C57B5624BE207000F8FD0C /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 98C57B5524BE207000F8FD0C /* SettingsViewController.m */; };
@@ -126,6 +132,17 @@
 		982408DF24BCDE8E00F35FDA /* LocationCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LocationCell.h; sourceTree = "<group>"; };
 		982408E124BCE0E900F35FDA /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		9865ADA424C0E9F30090C386 /* ThunderTitan.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = ThunderTitan.otf; path = "../../../../Downloads/thunder-titan-font/ThunderTitan.otf"; sourceTree = "<group>"; };
+		9865ADB524C10C9B0090C386 /* HyTransitions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HyTransitions.h; path = "../../../../../Downloads/HySubmitTransitionObjective-C-master/HyTransitions.h"; sourceTree = "<group>"; };
+		9865ADB624C10C9B0090C386 /* SpinerLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SpinerLayer.m; path = "../../../../../Downloads/HySubmitTransitionObjective-C-master/SpinerLayer.m"; sourceTree = "<group>"; };
+		9865ADB724C10C9B0090C386 /* SpinerLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SpinerLayer.h; path = "../../../../../Downloads/HySubmitTransitionObjective-C-master/SpinerLayer.h"; sourceTree = "<group>"; };
+		9865ADB824C10C9B0090C386 /* HyLoglnButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HyLoglnButton.h; path = "../../../../../Downloads/HySubmitTransitionObjective-C-master/HyLoglnButton.h"; sourceTree = "<group>"; };
+		9865ADB924C10C9B0090C386 /* HyLoginButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HyLoginButton.h; path = "../../../../../Downloads/HySubmitTransitionObjective-C-master/HyLoginButton.h"; sourceTree = "<group>"; };
+		9865ADBA24C10C9B0090C386 /* HySpinerLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HySpinerLayer.h; path = "../../../../../Downloads/HySubmitTransitionObjective-C-master/HySpinerLayer.h"; sourceTree = "<group>"; };
+		9865ADBB24C10C9B0090C386 /* HySpinerLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HySpinerLayer.m; path = "../../../../../Downloads/HySubmitTransitionObjective-C-master/HySpinerLayer.m"; sourceTree = "<group>"; };
+		9865ADBC24C10C9B0090C386 /* HyLoglnButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HyLoglnButton.m; path = "../../../../../Downloads/HySubmitTransitionObjective-C-master/HyLoglnButton.m"; sourceTree = "<group>"; };
+		9865ADBD24C10C9B0090C386 /* HyLoginButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HyLoginButton.m; path = "../../../../../Downloads/HySubmitTransitionObjective-C-master/HyLoginButton.m"; sourceTree = "<group>"; };
+		9865ADBE24C10C9B0090C386 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = "../../../../../Downloads/HySubmitTransitionObjective-C-master/README.md"; sourceTree = "<group>"; };
+		9865ADBF24C10C9B0090C386 /* HyTransitions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HyTransitions.m; path = "../../../../../Downloads/HySubmitTransitionObjective-C-master/HyTransitions.m"; sourceTree = "<group>"; };
 		98C1F67E24BCE31100DB3713 /* PhotoMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PhotoMapViewController.m; path = "../../../../Downloads/fbu_ios_photomap_objc-starter-project/PhotoMap/View Controllers/PhotoMapViewController.m"; sourceTree = "<group>"; };
 		98C1F67F24BCE31100DB3713 /* PhotoMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PhotoMapViewController.h; path = "../../../../Downloads/fbu_ios_photomap_objc-starter-project/PhotoMap/View Controllers/PhotoMapViewController.h"; sourceTree = "<group>"; };
 		98C1F68124BD02D800DB3713 /* CategoryCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CategoryCell.h; sourceTree = "<group>"; };
@@ -318,9 +335,28 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		9865ADB424C10C8D0090C386 /* HyTransitions */ = {
+			isa = PBXGroup;
+			children = (
+				9865ADB924C10C9B0090C386 /* HyLoginButton.h */,
+				9865ADBD24C10C9B0090C386 /* HyLoginButton.m */,
+				9865ADB824C10C9B0090C386 /* HyLoglnButton.h */,
+				9865ADBC24C10C9B0090C386 /* HyLoglnButton.m */,
+				9865ADBA24C10C9B0090C386 /* HySpinerLayer.h */,
+				9865ADBB24C10C9B0090C386 /* HySpinerLayer.m */,
+				9865ADB524C10C9B0090C386 /* HyTransitions.h */,
+				9865ADBF24C10C9B0090C386 /* HyTransitions.m */,
+				9865ADBE24C10C9B0090C386 /* README.md */,
+				9865ADB724C10C9B0090C386 /* SpinerLayer.h */,
+				9865ADB624C10C9B0090C386 /* SpinerLayer.m */,
+			);
+			path = HyTransitions;
+			sourceTree = "<group>";
+		};
 		98C57B6024BF75C900F8FD0C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				9865ADB424C10C8D0090C386 /* HyTransitions */,
 				98C57B6724BF7D2700F8FD0C /* LocationPrediction1.mlmodel */,
 				98C57B6B24BF84FF00F8FD0C /* LocationPrediction2.mlmodel */,
 				98C57B6D24BF863700F8FD0C /* LocationPrediction3.mlmodel */,
@@ -454,6 +490,7 @@
 			files = (
 				9824088224BCBD6B00F35FDA /* LaunchScreen.storyboard in Resources */,
 				9865ADA524C0E9F30090C386 /* ThunderTitan.otf in Resources */,
+				9865ADC424C10C9B0090C386 /* README.md in Resources */,
 				9824087F24BCBD6B00F35FDA /* Assets.xcassets in Resources */,
 				9824087D24BCBD6900F35FDA /* Main.storyboard in Resources */,
 			);
@@ -622,6 +659,7 @@
 				982408E024BCDE8E00F35FDA /* LocationCell.m in Sources */,
 				982408B124BCC68400F35FDA /* Category.m in Sources */,
 				982408BE24BCCBCB00F35FDA /* SlideOutViewController.m in Sources */,
+				9865ADC024C10C9B0090C386 /* SpinerLayer.m in Sources */,
 				982408C524BCCBEB00F35FDA /* FavoritesViewController.m in Sources */,
 				98C57B6E24BF863700F8FD0C /* LocationPrediction3.mlmodel in Sources */,
 				98C57B5C24BF631900F8FD0C /* UserCell.m in Sources */,
@@ -632,15 +670,19 @@
 				98C57B6924BF7D2700F8FD0C /* LocationPrediction1.mlmodel in Sources */,
 				9824087424BCBD6900F35FDA /* AppDelegate.m in Sources */,
 				982408D124BCCD9B00F35FDA /* ComposeViewController.m in Sources */,
+				9865ADC324C10C9B0090C386 /* HyLoginButton.m in Sources */,
 				982408C824BCCD5300F35FDA /* CategoryFeedViewController.m in Sources */,
 				98C1F68324BD02D800DB3713 /* CategoryCell.m in Sources */,
 				982408B524BCCBA400F35FDA /* LoginViewController.m in Sources */,
 				982408BB24BCCBBF00F35FDA /* HomeViewController.m in Sources */,
+				9865ADC224C10C9B0090C386 /* HyLoglnButton.m in Sources */,
 				982408D724BCDE1B00F35FDA /* LocationsViewController.m in Sources */,
 				9824088524BCBD6B00F35FDA /* main.m in Sources */,
+				9865ADC524C10C9B0090C386 /* HyTransitions.m in Sources */,
 				9805EC0824BD197D0051CF5D /* FavoriteCell.m in Sources */,
 				98C57B6C24BF84FF00F8FD0C /* LocationPrediction2.mlmodel in Sources */,
 				98C57B6A24BF7D2700F8FD0C /* LocationPrediction1copy.mlmodel in Sources */,
+				9865ADC124C10C9B0090C386 /* HySpinerLayer.m in Sources */,
 				982408B824BCCBB500F35FDA /* SignUpViewController.m in Sources */,
 				982408D424BCD8DA00F35FDA /* HomeCell.m in Sources */,
 				98C57B5624BE207000F8FD0C /* SettingsViewController.m in Sources */,

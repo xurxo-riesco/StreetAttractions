@@ -28,7 +28,6 @@
     [self fetchPost];
 }
 
-
 #pragma mark - RefreshControl
 - (void)beginRefresh:(UIRefreshControl *)refreshControl {
     [self fetchPost];

@@ -22,15 +22,12 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
 }
-
+// Loads venues near user's location
 - (void)updateWithLocation:(NSDictionary *)location {
     self.nameLabel.text = location[@"name"];
     self.addressLabel.text = [location valueForKeyPath:@"location.address"];

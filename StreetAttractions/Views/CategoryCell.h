@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Category.h"
 @import Parse;
+//Models
+#import "Category.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -17,7 +18,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet PFImageView *mediaView;
 @property (strong, nonatomic) Category *category;
 - (void)loadCategory:(Category *) category;
-
 @end
 
 NS_ASSUME_NONNULL_END

@@ -7,7 +7,7 @@
 //
 
 #import "Post.h"
-
+#import "User.h"
 @implementation Post
 @dynamic postID;
 @dynamic userID;

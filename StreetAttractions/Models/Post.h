@@ -9,8 +9,8 @@
 #import <Parse/Parse.h>
 
 //Models
-#import "User.h"
 #import "Category.h"
+//#import "User.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

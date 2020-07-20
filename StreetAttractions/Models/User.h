@@ -7,6 +7,7 @@
 //
 
 #import <Parse/Parse.h>
+
 //Models
 #import "Category.h"
 #import "Post.h"
@@ -22,7 +23,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *venmo;
 @property (nonatomic, strong) NSString *instagramName;
 @property (nonatomic) BOOL isPerfomer;
+@property (nonatomic) BOOL isLive;
+@property (nonatomic, strong) NSString *liveURL;
 @property (nonatomic, strong) PFFileObject *profilePic;
+@property (nonatomic, strong) NSNumber *followersCount;
 
 + (void)isFavorite: (Category*) category WithCompletion: (void(^)(BOOL))completion;
 + (void)isFavoriteUser: (User*) user WithCompletion: (void(^)(BOOL))completion;

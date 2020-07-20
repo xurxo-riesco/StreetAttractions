@@ -7,8 +7,7 @@
 //
 
 #import "SignUpViewController.h"
-#import "Parse/PFUser.h"
-#import "User.h"
+
 
 @interface SignUpViewController () <UIImagePickerControllerDelegate>
 @end
@@ -34,6 +33,7 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 #pragma mark - Image Manipulation
+// Method is used to ensure that images sent to the backend don't exceed the maximun server size
 - (UIImage *)resizeImage:(UIImage *)image withSize:(CGSize)size {
     UIImageView *resizeImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height)];
     
@@ -52,18 +52,19 @@
     
 }
 - (void)registerUser {
-    PFUser *user = [PFUser user];
-    User *newUser = user;
+    User *newUser = [User user];
     newUser.username = self.usernameField.text;
     newUser.password = self.passwordField.text;
     newUser.location = self.locationField.text;
     newUser.profilePic = self.image;
+    // If the user tries to register without a screen name, the unique username will also be used as the screen name
     if(self.screennameField.text != 0)
     {
         newUser.screenname = self.screennameField.text;
     }else{
         newUser.screenname = self.usernameField.text;
     }
+    // Saves the new user to the server
     [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
         if (error != nil) {
             NSLog(@"Error: %@", error.localizedDescription);

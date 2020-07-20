@@ -7,12 +7,6 @@
 //
 
 #import "LoginViewController.h"
-#import "HomeViewController.h"
-#import <FBSDKCoreKit/FBSDKCoreKit.h>
-#import <FBSDKLoginKit/FBSDKLoginKit.h>
-#import "Parse/PFUser.h"
-#import "HyTransitions.h"
-#import "HyLoginButton.h"
 
 @interface LoginViewController ()<UIViewControllerTransitioningDelegate, FBSDKLoginButtonDelegate>
 @end
@@ -21,17 +15,16 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.passwordField.secureTextEntry = true;
+    // Loging button is added programatically to allow for complex animations
+    [self createPresentControllerButton];
+    // Adding Facebook LogIn Button Programatically
     FBSDKLoginButton *loginButton = [[FBSDKLoginButton alloc] init];
     loginButton.delegate = self;
-    // Optional: Place the button in the center of your view.
-    //[CGPoint po]
     CGPoint point = CGPointMake(self.view.center.x, self.view.center.y + 360);
     loginButton.center = point;
-    
     loginButton.permissions = @[@"user_location",@"email"];
     [self.view addSubview:loginButton];
-    self.passwordField.secureTextEntry = true;
-    [self createPresentControllerButton];
 }
 - (void)createPresentControllerButton{
     HyLoginButton *loginButton = [[HyLoginButton alloc] initWithFrame:CGRectMake(20, 450, [UIScreen mainScreen].bounds.size.width - 40, 40)];
@@ -71,6 +64,7 @@
 - (void)loginUserWithCompletion:(void(^)(BOOL success, NSError *error))completion {
     NSString *username = self.usernameField.text;
     NSString *password = self.passwordField.text;
+    // Logging in the user to the server
     [PFUser logInWithUsernameInBackground:username password:password block:^(PFUser * user, NSError *  error) {
         if (error != nil) {
             completion(NO, error);
@@ -83,6 +77,7 @@
 - (void)  loginButton:(FBSDKLoginButton *)loginButton
 didCompleteWithResult:(FBSDKLoginManagerLoginResult *)result
                 error:(NSError *)error{
+    // Graph Request of necessary fields to create Parse User if it's first Facebook Log In
     [PFFacebookUtils logInInBackgroundWithReadPermissions:@[@"user_location",@"email"] block:^(PFUser * _Nullable user, NSError * _Nullable error) {
         if(user.isNew){
                FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc]
@@ -104,11 +99,7 @@ didCompleteWithResult:(FBSDKLoginManagerLoginResult *)result
         }
     }];
 }
-- (void) loginButtonDidLogOut:(FBSDKLoginButton *)loginButton{
-    NSLog(@"Bye");
-  //use your custom code here
-  //redirect after successful logout
-}
+
 /*
  #pragma mark - Navigation
  

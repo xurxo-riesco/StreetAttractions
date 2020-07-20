@@ -7,6 +7,7 @@
 //
 
 #import "DetailsViewController.h"
+
 @interface DetailsViewController ()<UIViewControllerTransitioningDelegate>
 
 @end
@@ -53,6 +54,7 @@
     [self.mapView setRegion:postRegion animated:false];
     [self loadMap];
 }
+
 - (void) loadMap{
     NSNumber *latitude = self.post.latitude;
     NSNumber *longitude = self.post.longitude;
@@ -76,6 +78,7 @@
     annotationView.rightCalloutAccessoryView = detailButton;
     return annotationView;
 }
+
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control {
     NSString *routeString = [NSString stringWithFormat:@"https://www.google.com/maps/search/?api=1&query=%f,%f", self.post.latitude.floatValue, self.post.longitude.floatValue];
     NSURL *routeURL = [NSURL URLWithString:routeString];
@@ -88,6 +91,7 @@
     [actionSheet addAction:googleMaps];
     [self presentViewController:actionSheet animated:YES completion:nil];
 }
+
 #pragma mark  - Rate
 - (IBAction)onRate:(id)sender {
     self.post.timesRated = [NSNumber numberWithInt:([self.post.timesRated intValue] + 1)];
@@ -105,6 +109,7 @@
         }
     }];
 }
+
 - (void)setRating{
     self.starView.userInteractionEnabled = NO;
     self.starView.value = 0;
@@ -125,6 +130,7 @@
         }
     }];
 }
+
 #pragma mark - Share
 - (IBAction)onShare:(id)sender {
     NSString *shareString = [NSString stringWithFormat:@"Download StreetAttractions and check out this awesome street %@ in %@", self.post.category, self.post.city];
@@ -134,6 +140,7 @@
     activityViewController.popoverPresentationController.sourceView = self.view;
     [self presentViewController:activityViewController animated:YES completion:nil];
 }
+
 #pragma mark - Liking
 - (IBAction)onLike:(id)sender {
     if([self.barButton.image isEqual:[UIImage systemImageNamed:@"heart"]]){
@@ -142,8 +149,9 @@
         [self unlike];
     }
 }
+
 - (void) like{
-    User *user = [PFUser currentUser];
+    User *user = [User currentUser];
     PFRelation *relation = [user relationForKey:@"LikedPost"];
     [relation addObject:self.post];
     [user saveInBackground];
@@ -151,8 +159,9 @@
     [self.post saveInBackground];
     self.barButton.image = [UIImage systemImageNamed:@"heart.fill"];
 }
+
 - (void) unlike{
-    User *user = [PFUser currentUser];
+    User *user = [User currentUser];
     PFRelation *relation = [user relationForKey:@"LikedPost"];
     [relation removeObject:self.post];
     [user saveInBackground];
@@ -165,14 +174,14 @@
 - (void) didTapPost:(UITapGestureRecognizer *)sender{
     [self performSegueWithIdentifier:@"detailsToProfile" sender:nil];
 }
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if([segue.identifier isEqual:@"toCommentsVC"]){
         DetailsViewController *detailsViewController = [segue destinationViewController];
         detailsViewController.post = self.post;
-        
     }else{
         ProfileViewController *profileViewController = [segue destinationViewController];
-        profileViewController.user = self.post.author;
+        profileViewController.user = (User *)self.post.author;
     }
 }
 

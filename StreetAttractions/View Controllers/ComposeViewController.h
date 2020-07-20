@@ -7,11 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "JGProgressHUD.h"
+
+//View Controllers
+#import "LocationsViewController.h"
+
+//Models
+#import "User.h"
 #import "Category.h"
 #import "Post.h"
-#import "LocationsViewController.h"
-NS_ASSUME_NONNULL_BEGIN
 
+NS_ASSUME_NONNULL_BEGIN
 
 @protocol ComposeViewControllerDelegate
 - (void) didPost;
@@ -26,6 +32,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSNumber *longitude;
 @property (nonatomic, strong) NSString *category;
 @property (nonatomic, strong) UIImage *image;
+@property (weak, nonatomic) IBOutlet UILabel *upcomingLabel;
+@property (weak, nonatomic) IBOutlet UISwitch *upcomingSwitch;
 
 @end
 

@@ -7,8 +7,6 @@
 //
 
 #import "Post.h"
-#import "User.h"
-#import "Category.h"
 
 @implementation Post
 @dynamic postID;
@@ -24,10 +22,13 @@
 @dynamic category;
 @dynamic rating;
 @dynamic timesRated;
+@dynamic isUpcoming;
+
 + (nonnull NSString *)parseClassName {
     return @"Post";
 }
-+ (void) postUserImage: ( UIImage * _Nullable )image withCaption: ( NSString * _Nullable )caption forLatitude:(NSNumber*)latitude forLongitude:(NSNumber *)longitude toCategory:(NSString*) category withCompletion: (PFBooleanResultBlock  _Nullable)completion{
+
++ (void) postUserImage: ( UIImage * _Nullable )image withCaption: ( NSString * _Nullable )caption forLatitude:(NSNumber*)latitude forLongitude:(NSNumber *)longitude toCategory:(NSString*) category isUpcoming:(BOOL) upcoming withCompletion: (PFBooleanResultBlock  _Nullable)completion{
     Post *newPost = [Post new];
     newPost.media = [self getPFFileFromImage:image];
     User *author = [PFUser currentUser];
@@ -39,6 +40,13 @@
     newPost.latitude = latitude;
     newPost.longitude = longitude;
     newPost.category = category;
+    if(upcoming)
+    {
+        newPost.isUpcoming = YES;
+    }
+    else{
+        newPost.isUpcoming = NO;
+    }
     [newPost saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
         if(succeeded)
         {
@@ -46,6 +54,7 @@
         }
     }];
 }
+
 + (PFFileObject *)getPFFileFromImage: (UIImage * _Nullable)image {
     if (!image) {
         return nil;
@@ -56,6 +65,7 @@
     }
     return [PFFileObject fileObjectWithName:@"image.png" data:imageData];
 }
+
 -(void) addPost: (Post *)post toCategory: (NSString*) name withCompletion:(PFBooleanResultBlock  _Nullable)completion {
     PFQuery *categoryQuery = [Category query];
     [categoryQuery whereKey:@"name" equalTo:name];
@@ -75,6 +85,8 @@
         }
     }];
 }
+
+// Overwrites native function which does not work with custom PFObjects
 - (BOOL)isEqual:(id)other {
     if (other == self)
       return YES;

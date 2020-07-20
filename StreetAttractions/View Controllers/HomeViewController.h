@@ -22,9 +22,24 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface HomeViewController : UIViewController
 
+/**
+    Stores all fetched posts
+*/
 @property (nonatomic, strong) NSMutableArray *posts;
+
+/**
+    Temporarely stores the post needed for seguing to details
+*/
 @property (nonatomic, strong) Post *post;
+
+/**
+    Holds the total amount of fetched post so that it can serve as a query skip when fetching more
+*/
 @property (assign, nonatomic) int dataSkip;
+
+/**
+    Helper variable that allows for inifinity scrolling
+*/
 @property (assign, nonatomic) BOOL isMoreDataLoading;
 
 @end

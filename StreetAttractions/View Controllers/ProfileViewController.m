@@ -7,20 +7,16 @@
 //
 
 #import "ProfileViewController.h"
-
 @interface ProfileViewController () <UICollectionViewDelegate, UICollectionViewDataSource, HomeCellDelegate>
-@property double latitude;
-@property double longitude;
 @end
 
 @implementation ProfileViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.latitude = 0.0;
-    self.longitude = 0.0;
     self.latitudes = [[NSMutableArray alloc]init];
     self.longitudes = [[NSMutableArray alloc]init];
+    self.dates = [[NSMutableArray alloc]init];
     [User isFavoriteUser:self.user WithCompletion:^(BOOL completion) {
         if(completion){
             self.barButton.image = [UIImage systemImageNamed:@"star.fill"];
@@ -40,10 +36,19 @@
     {
         self.isPerformer.alpha = 1;
         self.instaButton.alpha = 1;
+        self.mapButton.alpha = 1;
+        if(self.user.isLive){
+            self.liveButton.alpha = 1;
+        }
+        else{
+            self.liveButton.alpha = 0;
+        }
     }
     else{
         self.isPerformer.alpha = 0;
         self.instaButton.alpha = 0;
+        self.liveButton.alpha = 0;
+        self.mapButton.alpha = 0;
     }
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
@@ -57,6 +62,7 @@
     CGFloat itemHeight = itemWidth;
     layout.itemSize = CGSizeMake(itemWidth, itemHeight);
     [self fetchPost];
+    
 }
 #pragma mark - Refresh Control
 - (void)beginRefresh:(UIRefreshControl *)refreshControl {
@@ -131,6 +137,8 @@
     PFRelation *relation = [user relationForKey:@"FavUsers"];
     [relation addObject:self.user];
     [user saveInBackground];
+    self.user.followersCount = [NSNumber numberWithInt:([self.user.followersCount intValue] + 1)];
+    [self.user saveInBackground];
     self.barButton.image = [UIImage systemImageNamed:@"star.fill"];
 }
 - (void) unfavorite{
@@ -138,6 +146,8 @@
     PFRelation *relation = [user relationForKey:@"FavUsers"];
     [relation removeObject:self.user];
     [user saveInBackground];
+    self.user.followersCount = [NSNumber numberWithInt:([self.user.followersCount intValue] - 1)];
+    [self.user saveInBackground];
     self.barButton.image = [UIImage systemImageNamed:@"star"];
 }
 #pragma mark - Donations
@@ -193,60 +203,91 @@
         [[UIApplication sharedApplication] openURL:newRouteURL];
     }
 }
+- (IBAction)openLive:(id)sender {
+    NSURL *newRouteURL = [NSURL URLWithString:self.user.liveURL ];
+    NSLog(@"%@", self.user.liveURL);
+    [[UIApplication sharedApplication] openURL:newRouteURL];
+    NSLog(@"OPen live");
+}
+
 #pragma mark - Navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     DetailsViewController *detailsViewController = [segue destinationViewController];
     detailsViewController.post = self.post;
 }
+- (IBAction)onPredict:(id)sender {
+    [self fetchPostsAndPredict];
+}
 
-//- (void) fetchPostsAndPredict{
-//    PFQuery *postQuery = [Post query];
-//    User *user = [PFUser currentUser];
-//    [postQuery whereKey:@"author" equalTo:self.user];
-//    [postQuery orderByDescending:@"createdAt"];
-//    postQuery.limit = 20;
-//    [postQuery findObjectsInBackgroundWithBlock:^(NSArray<Post *> * _Nullable posts, NSError * _Nullable error) {
-//        if (posts) {
-//            if([posts[0].category isEqual:@"Dancers"]){
-//                self.isPerformer.tintColor = [UIColor systemPinkColor];
-//            }else if(([posts[0].category isEqual:@"Singers"])){
-//                self.isPerformer.tintColor = [UIColor yellowColor];
-//            }
-//            else if([posts[0].category isEqual:@"Magicians"]){
-//                self.isPerformer.tintColor = [UIColor greenColor];
-//            }
-//            for(Post* post in posts)
-//            {
-//                [self.latitudes addObject:post.latitude];
-//                [self.longitudes addObject:post.longitude];
-//            }
-//            //[self predictLocation];
-//        }
-//    }];
-//}
-//- (void)predictLocation {
-//    for(NSNumber* num in self.latitudes)
-//    {
-//        self.latitude += [num doubleValue];
-//    }
-//    for(NSNumber* num in self.longitudes)
-//    {
-//        self.longitude += [num doubleValue];
-//    }
-//    self.latitude /= self.latitudes.count;
-//    self.longitude /= self.longitudes.count;
-//    NSLog(@"%f, %f", self.latitude, self.longitude);
-//    NSError *error;
-//    LocationPrediction2 *latitude2 = [[LocationPrediction2 alloc] init];
-//    LocationPrediction2Output *result2 = [latitude2 predictionFromLatitude:120.289347 Longitude:90.504123 error:&error];
-//    LocationPrediction3 *latitude3 = [[LocationPrediction3 alloc] init];
-//    LocationPrediction3Output *result3 = [latitude3 predictionFromLatitude:120.2 Longitude:90. error:&error];
-//    LocationPrediction1 *latitude = [[LocationPrediction1 alloc] init];
-//    LocationPrediction1Output *resultLatitude = [latitude predictionFromLatitude:9000 error:&error];
-//    LocationPrediction1copy *longitude = [[LocationPrediction1copy alloc] init];
-//    LocationPrediction1copyOutput *resultLongitude = [longitude predictionFromLongitude:self.longitude error:&error];
-//    NSLog(@"%f,%f, %f, %f", result3.Model_Latitude,result2.Model_Latitude, resultLatitude.Model_Latitude, resultLongitude.Model_Longitude);
-//}
+- (void) fetchPostsAndPredict{
+    PFQuery *postQuery = [Post query];
+    User *user = [PFUser currentUser];
+    [postQuery whereKey:@"author" equalTo:self.user];
+    [postQuery orderByDescending:@"createdAt"];
+    postQuery.limit = 20;
+    [postQuery findObjectsInBackgroundWithBlock:^(NSArray<Post *> * _Nullable posts, NSError * _Nullable error) {
+        if (posts) {
+            for(Post* post in posts)
+            {
+                [self.latitudes addObject:post.latitude];
+                [self.longitudes addObject:post.longitude];
+                NSDateComponents *comps = [[NSDateComponents alloc] init];
+                [comps setDay:23];
+                [comps setMonth:12];
+                [comps setYear:1899];
+                NSDate *date = [[NSCalendar currentCalendar] dateFromComponents:comps];
+                NSInteger days = [date daysFrom:post.createdAt];
+                [self.dates addObject:[NSNumber numberWithInt:days]];
+            }
+            [self predictLocation];
+        }
+    }];
+}
+- (void)predictLocation {
+    NSError *error;
+    double latitude1 = [self.latitudes[0] doubleValue];
+    double latitude2 = [self.latitudes[1] doubleValue];
+    double latitude3 = [self.latitudes[2] doubleValue];
+    double longitude1 = [self.longitudes[0] doubleValue];
+    double longitude2 = [self.longitudes[1] doubleValue];
+    double longitude3 = [self.longitudes[2] doubleValue];
+    double date1 = [self.dates[0] doubleValue];
+    double date2 = [self.dates[1] doubleValue];
+    double date3 = [self.dates[2] doubleValue];
+    double date4 = [self.dates[3] doubleValue];
+    double date5 = [self.dates[4] doubleValue];
+        
+    LatitudePredictor *latitudeModel = [[LatitudePredictor alloc] init];
+    LongitudePredictor *longitudeModel = [[LongitudePredictor alloc] init];
+    DatePredictor *dateModel = [[DatePredictor alloc] init];
+    LatitudePredictorOutput *resultLatitude = [latitudeModel predictionFromUser:self.user.objectId Latitude1:latitude1 Latitude2:latitude2 Latitude3:latitude3 error:&error];
+    LongitudePredictorOutput *resultLongitude = [longitudeModel predictionFromUser:self.user.objectId Longitude1:longitude1 Longitude2:longitude2 Longitude3:longitude3 error:&error];
+    DatePredictorOutput *resultDate = [dateModel predictionFromUser:self.user.objectId Date1:date1 Date2:date2 Date3:date3 Date4:date4 Date_5:date5 error:&error];
+    NSDateComponents *comps = [[NSDateComponents alloc] init];
+    [comps setDay:23];
+    [comps setMonth:12];
+    [comps setYear:1899];
+    NSDate *date = [[NSCalendar currentCalendar] dateFromComponents:comps];
+    NSDateComponents *dayComponent = [[NSDateComponents alloc] init];
+    dayComponent.day = resultDate.Next_Date;
+    NSCalendar *theCalendar = [NSCalendar currentCalendar];
+    NSDate *nextDate = [theCalendar dateByAddingComponents:dayComponent toDate:date options:0];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy-MM-dd"];
+    NSString *stringFromDate = [formatter stringFromDate:nextDate];
+    NSString *performanceDate = [NSString stringWithFormat:@"Next performance should be on: %@", stringFromDate];
+    NSString *routeString = [NSString stringWithFormat:@"https://www.google.com/maps/search/?api=1&query=%f,%f", resultLatitude.Model_Latitude, resultLongitude.Model_Longitude];
+    NSURL *routeURL = [NSURL URLWithString:routeString];
+    UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:@"Prediction" message:performanceDate preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertAction *googleMaps = [UIAlertAction actionWithTitle:@"See location!" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        if([[UIApplication sharedApplication]canOpenURL:routeURL]){
+            [[UIApplication sharedApplication] openURL:routeURL];
+        }
+    }];
+    [actionSheet addAction:googleMaps];
+    [self presentViewController:actionSheet animated:YES completion:nil];
+    
+}
 
 
 @end

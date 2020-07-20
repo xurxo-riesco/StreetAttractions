@@ -6,20 +6,24 @@
 //  Copyright © 2020 Xurxo Riesco. All rights reserved.
 //
 
+@import Parse;
 #import <UIKit/UIKit.h>
 #import "AppDelegate.h"
-@import Parse;
+
 //Models
 #import "User.h"
+
 //ViewControllers
 #import "LoginViewController.h"
 #import "SettingsViewController.h"
 #import "ProfileViewController.h"
+#import "PerformerSettingsViewController.h"
 
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SlideOutViewController : UIViewController
+@property (strong, nonatomic) IBOutlet UIView *performerButton;
 @property (weak, nonatomic) IBOutlet PFImageView *profilePic;
 @property (weak, nonatomic) IBOutlet UILabel *screennameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;

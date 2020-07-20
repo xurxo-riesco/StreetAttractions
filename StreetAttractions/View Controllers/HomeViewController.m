@@ -15,6 +15,8 @@
 @implementation HomeViewController
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    // CollectionView Set Up
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
     UICollectionViewFlowLayout *layout = (UICollectionViewFlowLayout*)self.collectionView.collectionViewLayout;
@@ -22,10 +24,39 @@
     CGFloat itemWidth = self.collectionView.frame.size.width / postersPerLine;
     CGFloat itemHeight = itemWidth;
     layout.itemSize = CGSizeMake(itemWidth, itemHeight);
+    
+    // Refresh Control Set Up
     UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
     [refreshControl addTarget:self action:@selector(beginRefresh:) forControlEvents:UIControlEventValueChanged];
     [self.collectionView insertSubview:refreshControl atIndex:0];
+    
+    // Network Call
     [self fetchPost];
+}
+
+#pragma mark - CollectionView Delegate
+- (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
+    HomeCell *homeCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"HomeCell" forIndexPath: indexPath];
+    Post *post = self.posts[indexPath.item];
+    homeCell.delegate = self;
+    [homeCell loadPost:post];
+    return homeCell;
+}
+
+-(void) collectionView:(UICollectionView *)collectionView didHighlightItemAtIndexPath:(NSIndexPath *)indexPath{
+    HomeCell *homeCell = [collectionView cellForItemAtIndexPath:indexPath];
+    Post *post = self.posts[indexPath.item];
+    [homeCell showDescription:post];
+}
+
+-(void)collectionView:(UICollectionView *)collectionView didUnhighlightItemAtIndexPath:(NSIndexPath *)indexPath{
+    HomeCell *homeCell = [collectionView cellForItemAtIndexPath:indexPath];
+    Post *post = self.posts[indexPath.item];
+    [homeCell loadPost:post];
+}
+
+- (NSInteger)collectionView:(nonnull UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    return self.posts.count;
 }
 
 #pragma mark - RefreshControl
@@ -33,7 +64,9 @@
     [self fetchPost];
     [refreshControl endRefreshing];
 }
+
 #pragma mark - Network
+// Initial request to fetch post
 - (void)fetchPost {
     PFQuery *postQuery = [Post query];
     User *user = [PFUser currentUser];
@@ -49,6 +82,8 @@
         }
     }];
 }
+
+// Request to fetch older post when infinite scrolling
 - (void)fetchMorePost {
     PFQuery *postQuery = [Post query];
     User *user = [PFUser currentUser];
@@ -74,6 +109,7 @@
         }
     }];
 }
+
 #pragma mark - InfiniteScrolling
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     if(!self.isMoreDataLoading){
@@ -87,33 +123,12 @@
         }
     }
 }
-#pragma mark - CollectionView Delegate
-- (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
-    HomeCell *homeCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"HomeCell" forIndexPath: indexPath];
-    Post *post = self.posts[indexPath.item];
-    homeCell.delegate = self;
-    [homeCell loadPost:post];
-    return homeCell;
-}
 
--(void) collectionView:(UICollectionView *)collectionView didHighlightItemAtIndexPath:(NSIndexPath *)indexPath{
-    HomeCell *homeCell = [collectionView cellForItemAtIndexPath:indexPath];
-    Post *post = self.posts[indexPath.item];
-    [homeCell showDescription:post];
-}
-
--(void)collectionView:(UICollectionView *)collectionView didUnhighlightItemAtIndexPath:(NSIndexPath *)indexPath{
-    HomeCell *homeCell = [collectionView cellForItemAtIndexPath:indexPath];
-    Post *post = self.posts[indexPath.item];
-    [homeCell loadPost:post];
-}
-- (NSInteger)collectionView:(nonnull UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return self.posts.count;
-}
 #pragma mark - ComposeViewController Delegate
 - (void)didPost{
     [self fetchPost];
 }
+
 #pragma mark - HomeCell Delegate
 - (void)homeCell:(HomeCell *)homeCell didTap:(Post *)post{
     self.post = post;
@@ -131,6 +146,4 @@
         composeViewController.delegate = self;
     }
 }
-
-
 @end

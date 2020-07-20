@@ -7,13 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+
 //View Controllers
 #import "SearchViewController.h"
 #import "CategoryFeedViewController.h"
 #import "DetailsViewController.h"
+
 //Views
 #import "HomeCell.h"
 #import "CategoryCell.h"
+
 //Models
 #import "Category.h"
 #import "Post.h"

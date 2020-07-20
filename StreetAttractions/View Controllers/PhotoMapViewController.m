@@ -10,6 +10,7 @@
 #import <CoreLocation/CoreLocation.h>
 #import "NSString+ColorCode.h"
 #import <MapKit/MapKit.h>
+#import "OWMWeatherAPI.h"
 
 
 @interface PhotoMapViewController () <UIImagePickerControllerDelegate, CLLocationManagerDelegate>
@@ -24,6 +25,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.weatherBorder.layer.cornerRadius = 8;
+    self.weatherBorder.layer.masksToBounds = YES;
     NSLog(@"Commit");
     [self startUserLocationSearch];
     self.mapView.delegate = self;
@@ -42,12 +45,28 @@
     [self.locationManager startUpdatingLocation];
 }
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations{
-    
+    OWMWeatherAPI *weatherAPI = [[OWMWeatherAPI alloc] initWithAPIKey:@"e4720f67727286ea84123b9b759b4a54"];
     [self.locationManager stopUpdatingLocation];
     CGFloat usersLatitude = self.locationManager.location.coordinate.latitude;
     CGFloat usersLongidute = self.locationManager.location.coordinate.longitude;
     MKCoordinateRegion userRegion = MKCoordinateRegionMake(CLLocationCoordinate2DMake(usersLatitude, usersLongidute), MKCoordinateSpanMake(0.1, 0.1));
     [self.mapView setRegion:userRegion animated:false];
+    CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(usersLatitude, usersLongidute);
+//    [weatherAPI currentWeatherByCityName:@"New York" withCallback:^(NSError *error, NSDictionary *result) {
+//        NSLog(@"%@", result);
+//    }];
+    [weatherAPI currentWeatherByCoordinate:coordinate withCallback:^(NSError *error, NSDictionary *result) {
+        NSLog(@"%@", result);
+        NSNumber *currentTemp = result[@"main"][@"temp"];
+        self.tempLabel.text = [NSString stringWithFormat:@"%2.0f C°",currentTemp.floatValue];
+        //[cell.posterView setImageWithURL:posterURL];
+        NSString *description = result[@"weather"][0][@"description"];
+        NSString *iconcode = result[@"weather"][0][@"icon"];
+        NSString *url = [NSString stringWithFormat:@"http://openweathermap.org/img/w/%@.png", iconcode ];
+        NSURL *imageURL = [NSURL URLWithString:url];
+        [self.weatherImage setImageWithURL:imageURL];
+        //NSLog(@"%@, %@", currentTemp, description);
+    }];
     self.mapView.delegate = self;
 }
 

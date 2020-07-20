@@ -61,19 +61,17 @@
 
 - (void)showDescription:(Post*) post{
     self.descriptionView.alpha = 0.75;
-    if([post.category isEqual:@"Dancers"]){
-        [self.descriptionView setBackgroundColor:[UIColor systemPinkColor]];
-    }else if([post.category isEqual:@"Singers"]){
-        [self.descriptionView setBackgroundColor:[UIColor systemYellowColor]];
-    }else if([post.category isEqual:@"Magicians"]){
-                [self.descriptionView setBackgroundColor:[UIColor systemGreenColor]];
-    }
+    [self.descriptionView setBackgroundColor:[post.category colorCode]];
     CLLocation *startLocation = [[CLLocation alloc] initWithLatitude:self.latitude longitude:self.longitude];
     CLLocation *endLocation = [[CLLocation alloc] initWithLatitude:post.latitude.floatValue longitude:post.longitude.floatValue];
     CLLocationDistance distance = [startLocation distanceFromLocation:endLocation];
     self.distanceLabel.text = [NSString stringWithFormat:@"%.2f mi away",distance*0.000621371];
     self.descriptionLabel.text = post.caption;
-    self.dateLabel.text = post.createdAt.shortTimeAgoSinceNow;
+    if(self.post.isUpcoming){
+        self.dateLabel.text = @"Upc";
+    }else{
+        self.dateLabel.text = post.createdAt.shortTimeAgoSinceNow;
+    }
 }
 
 #pragma mark - Delegate

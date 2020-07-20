@@ -209,7 +209,10 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/HCSStarRatingView/HCSStarRatingView.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/JGProgressHUD/JGProgressHUD.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/MMDrawerController/MMDrawerController.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/OpenWeatherMapAPI/OpenWeatherMapAPI.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/PNChart/PNChart.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Parse/Parse.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/UICountingLabel/UICountingLabel.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework"
@@ -224,7 +227,10 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/HCSStarRatingView/HCSStarRatingView.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/JGProgressHUD/JGProgressHUD.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/MMDrawerController/MMDrawerController.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/OpenWeatherMapAPI/OpenWeatherMapAPI.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/PNChart/PNChart.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Parse/Parse.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/UICountingLabel/UICountingLabel.framework"
 fi
 if [ "${COCOAPODS_PARALLEL_CODE_SIGN}" == "true" ]; then
   wait

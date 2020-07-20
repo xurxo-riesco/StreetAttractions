@@ -6,10 +6,12 @@
 //  Copyright © 2020 Xurxo Riesco. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
 @import Parse;
+#import <UIKit/UIKit.h>
+
 //Models
 #import "User.h"
+
 NS_ASSUME_NONNULL_BEGIN
 @protocol SettingsViewControllerDelegate
 - (void) didUpdate;

@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+// View Controllers
+#import "ProfileViewController.h"
+
+// Views
+#import "UserCell.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SearchViewController : UIViewController

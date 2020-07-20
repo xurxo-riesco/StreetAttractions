@@ -8,6 +8,10 @@
 
 #import <Parse/Parse.h>
 
+//Models
+#import "User.h"
+#import "Category.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface Post : PFObject<PFSubclassing>
@@ -25,9 +29,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *city;
 @property (nonatomic, strong) NSString *category;
 @property (nonatomic, strong) NSDate *createdAt;
+@property (nonatomic) BOOL isUpcoming;
 
 
-+ (void) postUserImage: ( UIImage * _Nullable )image withCaption: ( NSString * _Nullable )caption forLatitude:(NSNumber*)latitude forLongitude:(NSNumber *)longitude toCategory:(NSString*) category withCompletion: (PFBooleanResultBlock  _Nullable)completion;
-
++ (void) postUserImage: ( UIImage * _Nullable )image withCaption: ( NSString * _Nullable )caption forLatitude:(NSNumber*)latitude forLongitude:(NSNumber *)longitude toCategory:(NSString*) category isUpcoming:(BOOL) upcoming withCompletion: (PFBooleanResultBlock  _Nullable)completion;
 @end
 NS_ASSUME_NONNULL_END

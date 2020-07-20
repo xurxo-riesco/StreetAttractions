@@ -7,7 +7,6 @@
 //
 
 #import "CategoryFeedViewController.h"
-#import "NSString+ColorCode.h"
 @interface CategoryFeedViewController () <UICollectionViewDataSource, UICollectionViewDelegate, HomeCellDelegate>
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 

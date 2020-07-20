@@ -7,9 +7,11 @@
 //
 
 #import "Comment.h"
+
 @implementation Comment
 @dynamic text;
 @dynamic author;
+
 + (nonnull NSString *)parseClassName {
     return @"Comment";
 }

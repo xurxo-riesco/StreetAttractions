@@ -7,9 +7,6 @@
 //
 
 #import "ComposeViewController.h"
-#import "JGProgressHUD.h"
-
-
 
 @interface ComposeViewController () <UIPickerViewDelegate, UIPickerViewDataSource, LocationsViewControllerDelegate, UITextViewDelegate, UIImagePickerControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIPickerView *pickerView;
@@ -32,6 +29,14 @@
     self.locationButton.layer.cornerRadius = 16;
     self.locationButton.layer.masksToBounds = YES;
     self.image = [UIImage imageNamed:@"placeholder.png"];
+    if([User currentUser].isPerfomer)
+    {
+        self.upcomingLabel.alpha = 1;
+        self.upcomingSwitch.alpha = 1;
+    }else{
+        self.upcomingLabel.alpha = 0;
+        self.upcomingSwitch.alpha = 0;
+    }
 }
 #pragma mark - TextField Delegate
 - (void)textViewDidBeginEditing:(UITextView *)textView
@@ -100,7 +105,11 @@
     BOOL readyToPost = [self verify];
     if(readyToPost)
     {
-        [Post postUserImage:self.image withCaption:self.descriptionText.text forLatitude:self.latitude forLongitude:self.longitude toCategory:self.category withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+        BOOL upcoming = NO;
+        if(self.upcomingSwitch.on){
+            upcoming = YES;
+        }
+        [Post postUserImage:self.image withCaption:self.descriptionText.text forLatitude:self.latitude forLongitude:self.longitude toCategory:self.category isUpcoming:upcoming withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
             if (succeeded) {
                 NSLog(@"POSTED");
                 [HUD dismiss];
@@ -125,13 +134,20 @@
     if ([self.descriptionText.text isEqualToString:@"Write a description..."]) {
         return NO;
     }
-    if (self.latitude = nil){
+    if (self.latitude == nil){
         return NO;
     }
-    if (self.category = nil){
+    if (self.category == nil){
         return NO;
     }
     return YES;
+}
+- (IBAction)onUpcoming:(id)sender {
+    if(self.upcomingSwitch.on){
+        self.descriptionText.text = @"Upcoming performance! Time: Day:";
+    }else{
+        self.descriptionText.text = @"";
+    }
 }
 
 #pragma mark - Network

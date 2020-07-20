@@ -16,6 +16,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    if([User currentUser].isPerfomer)
+    {
+        self.performerButton.alpha = 1;
+    }else{
+        self.performerButton.alpha = 0;
+    }
     [self loadProfile];
 }
 - (void) loadProfile{
@@ -49,6 +55,8 @@
     if([segue.identifier isEqual:@"soToProfile"]){
         ProfileViewController *profileViewController = [segue destinationViewController];
         profileViewController.user = [PFUser currentUser];
+    }else if([segue.identifier isEqual:@"toPerformerSettings"]){
+        PerformerSettingsViewController *perfomerSettingsViewController = [segue destinationViewController];
     }else{
         SettingsViewController *settingsViewController = [segue destinationViewController];
         settingsViewController.delegate = self;

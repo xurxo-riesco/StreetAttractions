@@ -20,6 +20,8 @@ target 'StreetAttractions' do
    pod 'DateTools'
    pod 'FacebookCore'
    pod 'HCSStarRatingView', '~> 1.5' 
+   pod 'PNChart'
+   pod 'OpenWeatherMapAPI', '~> 0.0.5'
 
 
   target 'StreetAttractionsTests' do

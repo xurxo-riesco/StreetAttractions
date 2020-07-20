@@ -7,10 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+
 //View Controllers
 #import "DetailsViewController.h"
+
 //Views
 #import "FavoriteCell.h"
+
 //Models
 #import "Post.h"
 #import "User.h"

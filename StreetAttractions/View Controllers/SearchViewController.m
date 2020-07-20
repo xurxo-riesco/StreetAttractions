@@ -7,8 +7,7 @@
 //
 
 #import "SearchViewController.h"
-#import "ProfileViewController.h"
-#import "UserCell.h"
+
 
 @interface SearchViewController () <UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;

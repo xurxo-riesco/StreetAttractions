@@ -17,6 +17,9 @@
 @dynamic venmo;
 @dynamic isPerfomer;
 @dynamic instagramName;
+@dynamic isLive;
+@dynamic liveURL;
+@dynamic followersCount;
 
 + (void)isFavorite: (Category*) category WithCompletion: (void(^)(BOOL))completion{
     User *user = [PFUser currentUser];
@@ -31,8 +34,9 @@
         }
     }];
 }
+
 + (void)isFavoriteUser: (User*) user WithCompletion: (void(^)(BOOL))completion{
-    User *currentUser = [PFUser currentUser];
+    User *currentUser = [User currentUser];
     PFRelation *relation = [currentUser relationForKey:@"FavUsers"];
     PFQuery *query = [relation query];
     [query findObjectsInBackgroundWithBlock:^(NSArray<User*>* _Nullable categories, NSError * _Nullable error) {
@@ -44,8 +48,9 @@
         }
     }];
 }
+
 + (void)hasLiked: (Post*) post WithCompletion: (void(^)(BOOL))completion{
-    User *currentUser = [PFUser currentUser];
+    User *currentUser = [User currentUser];
     PFRelation *relation = [currentUser relationForKey:@"RatedPosts"];
     PFQuery *query = [relation query];
     [query findObjectsInBackgroundWithBlock:^(NSArray<Post*>* _Nullable posts, NSError * _Nullable error) {
@@ -58,8 +63,9 @@
         }
     }];
 }
+
 + (void)hasRated: (Post*) post WithCompletion: (void(^)(BOOL))completion{
-    User *currentUser = [PFUser currentUser];
+    User *currentUser = [User currentUser];
     PFRelation *relation = [currentUser relationForKey:@"LikedPost"];
     PFQuery *query = [relation query];
     [query findObjectsInBackgroundWithBlock:^(NSArray<Post*>* _Nullable posts, NSError * _Nullable error) {
@@ -71,8 +77,9 @@
         }
     }];
 }
+
 + (void)getCategoriesWithCompletion: (void(^)(NSArray *categories, NSArray *categoryStrings))completion{
-    User *user = [PFUser currentUser];
+    User *user = [User currentUser];
     NSMutableArray *categoryStrings = [[NSMutableArray alloc] init];
     PFRelation *relation = [user relationForKey:@"FavCategories"];
     PFQuery *query = [relation query];
@@ -86,8 +93,9 @@
         }
     }];
 }
+
 + (void)getFavoritesWithCompletion: (void(^)(NSArray<User*> *favorites))completion{
-    User *user = [PFUser currentUser];
+    User *user = [User currentUser];
     NSMutableArray *categoryStrings = [[NSMutableArray alloc] init];
     PFRelation *relation = [user relationForKey:@"FavUsers"];
     PFQuery *query = [relation query];

@@ -7,10 +7,13 @@
 //
 
 #import "Category.h"
+
 @implementation Category
 @dynamic name;
 @dynamic media;
+
 + (nonnull NSString *)parseClassName {
     return @"Category";
 }
+
 @end

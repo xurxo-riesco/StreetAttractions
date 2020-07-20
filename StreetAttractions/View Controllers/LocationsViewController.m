@@ -7,10 +7,6 @@
 //
 
 #import "LocationsViewController.h"
-#import "LocationCell.h"
-#import "User.h"
-#import <MapKit/MapKit.h>
-@import Parse;
 
 static NSString * const clientID = @"QA1L0Z0ZNA2QVEEDHFPQWK0I5F1DE3GPLSNW4BZEBGJXUCFL";
 static NSString * const clientSecret = @"W2AOE1TYC4MHK5SZYOUGX0J3LVRALMPB4CXT3ZH21ZCPUMCU";
@@ -31,7 +27,7 @@ static NSString * const clientSecret = @"W2AOE1TYC4MHK5SZYOUGX0J3LVRALMPB4CXT3ZH
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     self.searchBar.delegate = self;
-    User *user = [PFUser currentUser];
+    User *user = [User currentUser];
     self.location = user.location;
 }
 - (void)didReceiveMemoryWarning {
@@ -52,7 +48,6 @@ static NSString * const clientSecret = @"W2AOE1TYC4MHK5SZYOUGX0J3LVRALMPB4CXT3ZH
     NSNumber *lat = [venue valueForKeyPath:@"location.lat"];
     NSNumber *lng = [venue valueForKeyPath:@"location.lng"];
     [self.delegate locationsViewController:self didPickLocationWithLatitude:lat longitude:lng ];
-    NSLog(@"%@, %@", lat, lng);
 }
 #pragma mark - SearchBar Delegate
 - (BOOL)searchBar:(UISearchBar *)searchBar shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {

@@ -32,31 +32,6 @@
         }];
     }];
 }
-- (void)fetchMorePost {
-    PFQuery *postQuery = [Post query];
-    User *user = [PFUser currentUser];
-    [postQuery includeKey:@"author"];
-    [postQuery orderByDescending:@"createdAt"];
-    [postQuery whereKey:@"city" equalTo:user.location];
-    postQuery.limit = 20;
-    [postQuery setSkip:self.dataSkip];
-    [postQuery findObjectsInBackgroundWithBlock:^(NSArray<Post *> * _Nullable posts, NSError * _Nullable error) {
-        if (posts) {
-            if (posts.count > 0)
-            {
-                int prevNumPosts = self.posts.count;
-                self.posts = [self.posts arrayByAddingObjectsFromArray:posts];
-                NSMutableArray *newIndexPaths = [NSMutableArray array];
-                for (int i = prevNumPosts; i < self.posts.count; i++) {
-                    [newIndexPaths addObject:[NSIndexPath indexPathForRow:i inSection:0]];
-                }
-                self.dataSkip += posts.count;
-            }
-            self.isMoreDataLoading = false;
-            [self.tableView reloadData];
-        }
-    }];
-}
 #pragma mark - InfiniteScrolling
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     if(!self.isMoreDataLoading){
@@ -66,7 +41,7 @@
             self.isMoreDataLoading = true;
             //NSLog(@"More data");
             //NSLog(@"%d",self.dataSkip);
-            //[self fetchMorePost];
+            [self fetchFavCategoryPosts];
         }
     }
 }
@@ -79,9 +54,21 @@
     [postQuery whereKey:@"city" equalTo:user.location];
     [postQuery whereKey:@"category" containedIn:self.userCategories];
     postQuery.limit = 20;
+    postQuery.skip = self.dataSkip;
     [postQuery findObjectsInBackgroundWithBlock:^(NSArray<Post *> * _Nullable posts, NSError * _Nullable error) {
         if (posts) {
-            self.posts = [posts mutableCopy];
+            if(self.isMoreDataLoading){
+                int prevNumPosts = self.posts.count;
+                self.posts = [self.posts arrayByAddingObjectsFromArray:posts];
+                NSMutableArray *newIndexPaths = [NSMutableArray array];
+                for (int i = prevNumPosts; i < self.posts.count; i++) {
+                    [newIndexPaths addObject:[NSIndexPath indexPathForRow:i inSection:0]];
+                }
+                self.dataSkip += posts.count;
+            }else{
+                self.posts = [posts mutableCopy];
+                self.dataSkip = self.posts.count;
+            }
             [self fetchFavUserPosts];
             //NSLog(@"%@ posts", self.posts);
         }
@@ -95,6 +82,7 @@
     [postQuery whereKey:@"city" equalTo:user.location];
     [postQuery whereKey:@"author" containedIn:self.userFavorites];
     postQuery.limit = 20;
+    postQuery.skip = self.dataSkip;
     [postQuery findObjectsInBackgroundWithBlock:^(NSArray<Post*>* _Nullable posts, NSError * _Nullable error) {
         if (posts) {
             int prevNumPost = self.posts.count;
@@ -111,9 +99,10 @@
             {
                 [newIndexPaths addObject:[NSIndexPath indexPathForRow:i inSection:0]];
             }
-            self.dataSkip = self.posts.count;
+            self.dataSkip += self.posts.count;
             [self sortPosts];
         }
+        self.isMoreDataLoading = false;
     }];
 }
 - (void)sortPosts{

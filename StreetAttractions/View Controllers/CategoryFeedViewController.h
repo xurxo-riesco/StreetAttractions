@@ -7,10 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "NSString+ColorCode.h"
+
 //View Controllers
 #import  "DetailsViewController.h"
+
 //Views
 #import "HomeCell.h"
+
 //Models
 #import "Category.h"
 #import "Post.h"

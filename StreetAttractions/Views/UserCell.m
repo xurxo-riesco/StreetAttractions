@@ -16,10 +16,11 @@
     [self.profileView addGestureRecognizer:profileTapGestureRecognizer];
     [self.profileView setUserInteractionEnabled:YES];
 }
+
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 }
-//Loads all views in the cell
+
 - (void)loadUser:(PFUser *)user{
     self.user = user;
     self.usernameLabel.text = user.username;
@@ -28,8 +29,8 @@
     self.profileView.layer.masksToBounds = YES;
     [self.profileView loadInBackground];
 }
+
 #pragma mark - Delegate
-// Delegate to segue to Profile View
 - (void) didTapUser:(UITapGestureRecognizer *)sender{
     [self.delegate userCell:self didTap:self.user];
 }

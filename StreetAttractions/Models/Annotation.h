@@ -13,6 +13,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface Annotation : NSObject<MKAnnotation>
+
 @property (strong, nonatomic) PFImageView *image;
 @property (nonatomic) CLLocationCoordinate2D coordinate;
 @property (nonatomic, strong) Post *post;

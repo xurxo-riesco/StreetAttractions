@@ -7,13 +7,14 @@
 //
 
 #import "CategoryCell.h"
+#import "NSString+ColorCode.h"
 
 @implementation CategoryCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];
 }
-//Loads all views in the cell
+
 - (void)loadCategory:(Category *) category{
     self.category = category;
     self.nameLabel.text = category.name;
@@ -21,19 +22,10 @@
     [self.mediaView loadInBackground];
     self.mediaView.layer.cornerRadius = 16;
     self.mediaView.layer.masksToBounds = YES;
-    [self colorCode];
-}
-//Colors the cell based on category
-- (void) colorCode{
     self.mediaView.alpha = 0.6;
-    if([self.category.name isEqual:@"Dancers"]){
-        self.mediaView.backgroundColor = [UIColor systemPinkColor];
-    }else if([self.category.name isEqual:@"Singers"]){
-        self.mediaView.backgroundColor =  [UIColor systemYellowColor];
-    }else if([self.category.name isEqual:@"Magicians"]){
-        self.mediaView.backgroundColor = [UIColor systemGreenColor];
-    }
+    self.mediaView.backgroundColor = [self.category.name colorCode];
 }
+
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 }

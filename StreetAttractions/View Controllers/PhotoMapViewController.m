@@ -8,6 +8,7 @@
 
 #import "PhotoMapViewController.h"
 #import <CoreLocation/CoreLocation.h>
+#import "NSString+ColorCode.h"
 #import <MapKit/MapKit.h>
 
 
@@ -73,13 +74,7 @@
     UIButton *detailButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
     [detailButton setImage:[UIImage systemImageNamed:@"info.circle"] forState:UIControlStateNormal];
     annotationView.rightCalloutAccessoryView = detailButton;
-    if([post.category isEqual:@"Dancers"]){
-        annotationView.pinTintColor = [UIColor systemPinkColor];
-    }else if ([post.category isEqual:@"Singers"]){
-        annotationView.pinTintColor = [UIColor systemYellowColor];
-    }else if ([post.category isEqual:@"Magicians"]){
-           annotationView.pinTintColor = [UIColor systemGreenColor];
-    }
+    annotationView.pinTintColor = [post.category colorCode];
     return annotationView;
 }
 - (void)mapView:(MKMapView *)mapView annotationView:(AnnotationPin *)view calloutAccessoryControlTapped:(UIControl *)control {

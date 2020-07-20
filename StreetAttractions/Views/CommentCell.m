@@ -18,15 +18,15 @@
     userTap.numberOfTapsRequired = 1;
     [self.profilePic addGestureRecognizer:userTap];
     [self.profilePic setUserInteractionEnabled:YES];
-    // Initialization code
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 }
+
 - (void)loadComment:(Comment *)comment{
     self.comment = comment;
-    User *user = comment.author;
+    User *user = (User*)comment.author;
     self.user = user;
     self.commentLabel.text = [NSString stringWithFormat:@"%@: %@" , user.screenname,comment.text];
     self.profilePic.file = user.profilePic;
@@ -34,6 +34,7 @@
     self.profilePic.layer.cornerRadius = 16;
     self.profilePic.layer.masksToBounds = YES;
 }
+
 - (void) didTapUser:(UITapGestureRecognizer *)sender{
     [self.delegate commentCell:self didTap:self.user];
 }

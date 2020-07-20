@@ -11,11 +11,6 @@
 
 @interface LocationCell()
 
-@property (weak, nonatomic) IBOutlet UIImageView *categoryImageView;
-@property (weak, nonatomic) IBOutlet UILabel *addressLabel;
-@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
-@property (strong, nonatomic) NSDictionary *location;
-
 @end
 
 @implementation LocationCell
@@ -27,7 +22,7 @@
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 }
-// Loads venues near user's location
+
 - (void)updateWithLocation:(NSDictionary *)location {
     self.nameLabel.text = location[@"name"];
     self.addressLabel.text = [location valueForKeyPath:@"location.address"];

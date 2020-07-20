@@ -7,7 +7,7 @@
 //
 
 #import "CategoryFeedViewController.h"
-
+#import "NSString+ColorCode.h"
 @interface CategoryFeedViewController () <UICollectionViewDataSource, UICollectionViewDelegate, HomeCellDelegate>
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 
@@ -36,7 +36,8 @@
     UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
     [refreshControl addTarget:self action:@selector(beginRefresh:) forControlEvents:UIControlEventValueChanged];
     [self.collectionView insertSubview:refreshControl atIndex:0];
-    [self colorCode];
+    UINavigationBar *navigationBar = self.navigationController.navigationBar;
+    [navigationBar setBackgroundColor: [self.category.name colorCode]];
     [self fetchPost];
 }
 - (void)viewWillDisappear:(BOOL)animated{
@@ -47,17 +48,6 @@
 - (void)beginRefresh:(UIRefreshControl *)refreshControl {
     [self fetchPost];
     [refreshControl endRefreshing];
-}
-#pragma mark - RefreshControl
-- (void)colorCode{
-    UINavigationBar *navigationBar = self.navigationController.navigationBar;
-    if([self.category.name isEqual:@"Dancers"]){
-        [navigationBar setBackgroundColor:[UIColor systemPinkColor]];
-    }else if([self.category.name isEqual:@"Singers"]){
-        [navigationBar setBackgroundColor:[UIColor systemYellowColor]];
-    }else if([self.category.name isEqual:@"Magicians"]){
-        [navigationBar setBackgroundColor:[UIColor systemGreenColor]];
-    }
 }
 #pragma mark - Network
 - (void)fetchPost {

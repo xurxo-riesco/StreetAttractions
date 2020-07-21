@@ -51,7 +51,7 @@
 
 + (void)hasLiked: (Post*) post WithCompletion: (void(^)(BOOL))completion{
     User *currentUser = [User currentUser];
-    PFRelation *relation = [currentUser relationForKey:@"RatedPosts"];
+    PFRelation *relation = [currentUser relationForKey:@"LikedPost"];
     PFQuery *query = [relation query];
     [query findObjectsInBackgroundWithBlock:^(NSArray<Post*>* _Nullable posts, NSError * _Nullable error) {
         for(Post *postLiked in posts)
@@ -66,7 +66,7 @@
 
 + (void)hasRated: (Post*) post WithCompletion: (void(^)(BOOL))completion{
     User *currentUser = [User currentUser];
-    PFRelation *relation = [currentUser relationForKey:@"LikedPost"];
+    PFRelation *relation = [currentUser relationForKey:@"RatedPosts"];
     PFQuery *query = [relation query];
     [query findObjectsInBackgroundWithBlock:^(NSArray<Post*>* _Nullable posts, NSError * _Nullable error) {
         for(Post *postLiked in posts)

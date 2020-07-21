@@ -6,29 +6,37 @@
 //  Copyright © 2020 Xurxo Riesco. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-#import "NSString+ColorCode.h"
 #import <MapKit/MapKit.h>
-#import "DateTools.h"
-@import Parse;
-//Models
-#import "Post.h"
+#import <UIKit/UIKit.h>
 
+#import "DateTools.h"
+#import "NSString+ColorCode.h"
+@import Parse;
+// Models
+#import "Post.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 /*!
     @protocol HomeCellDelegate
- 
+
     @brief Delegate to allow seguing to details
- 
+
     Used to allow double tapping on a cell's image to trigger a segue to the detailed view of the post
  */
 @protocol HomeCellDelegate;
 
-@interface HomeCell : UICollectionViewCell <CLLocationManagerDelegate>
+@interface HomeCell : UICollectionViewCell<CLLocationManagerDelegate>
 
+/**
+   Delegate property
+*/
 @property (nonatomic, weak) id<HomeCellDelegate> delegate;
+
+/**
+   Used to fetch user's current location
+*/
+@property (strong, nonatomic) CLLocationManager *locationManager;
 
 /**
     User's current latitude
@@ -39,8 +47,6 @@ NS_ASSUME_NONNULL_BEGIN
     User's current longitude
 */
 @property (nonatomic) CGFloat longitude;
-
-@property (strong, nonatomic)  CLLocationManager *locationManager;
 
 /**
     Displays time since posted
@@ -83,7 +89,7 @@ NS_ASSUME_NONNULL_BEGIN
    @param  post The post object to be displayed
 
 */
-- (void)loadPost:(Post *) post;
+- (void)loadPost:(Post *)post;
 
 /*!
    @brief Shows description view over the cell
@@ -94,13 +100,12 @@ NS_ASSUME_NONNULL_BEGIN
                 - Time since posting
    @param  post The post for which to display the previewed detail information
 */
-- (void)showDescription:(Post*) post;
+- (void)showDescription:(Post *)post;
 
 @end
 
-
 @protocol HomeCellDelegate
-- (void)homeCell:(HomeCell*) homeCell didTap: (Post *)post;
+- (void)homeCell:(HomeCell *)homeCell didTap:(Post *)post;
 @end
 
 NS_ASSUME_NONNULL_END

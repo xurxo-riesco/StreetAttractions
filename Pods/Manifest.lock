@@ -91,6 +91,9 @@ PODS:
     - Parse/Core
   - PNChart (0.8.9):
     - UICountingLabel (~> 1.2.0)
+  - TNTutorialManager (1.3.2):
+    - TNTutorialManager/TNTutorialManager (= 1.3.2)
+  - TNTutorialManager/TNTutorialManager (1.3.2)
   - UICountingLabel (1.2.0)
 
 DEPENDENCIES:
@@ -110,6 +113,7 @@ DEPENDENCIES:
   - Parse/FacebookUtils
   - Parse/UI
   - PNChart
+  - TNTutorialManager
 
 SPEC REPOS:
   trunk:
@@ -129,6 +133,7 @@ SPEC REPOS:
     - OpenWeatherMapAPI
     - Parse
     - PNChart
+    - TNTutorialManager
     - UICountingLabel
 
 SPEC CHECKSUMS:
@@ -148,8 +153,9 @@ SPEC CHECKSUMS:
   OpenWeatherMapAPI: 53613bba3dffc948f852a66a25f512f7a16643e7
   Parse: 79bdda34fdb7eb2a707a43a951c8aae236cb3e34
   PNChart: 84774d225c2126ded6c93d4dbe6ae98c3a73c2d2
+  TNTutorialManager: 7d49f4c1b3b5057aa32203949c99a72d96e9d46b
   UICountingLabel: 1db4e7d023e1762171eb226d6dff47a7a84f27aa
 
-PODFILE CHECKSUM: a9462c2566317722d194dd6fe25263c81450f19f
+PODFILE CHECKSUM: e769d9e177acd930b3adcabd55bfd742090a7588
 
 COCOAPODS: 1.9.3

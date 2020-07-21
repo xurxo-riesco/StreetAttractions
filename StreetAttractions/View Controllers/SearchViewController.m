@@ -22,12 +22,17 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    // TableView Set Up
     self.searchBar.delegate = self;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    
+    // SearchBar Set Up
     [self.searchBar becomeFirstResponder];
     self.searchBar.text = self.text;
 }
+
 #pragma mark - SearchBar Delegate
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
@@ -36,6 +41,7 @@
     [self.tableView reloadData];
     [searchBar resignFirstResponder];
 }
+
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
     if(searchText !=0){
         self.userString = searchBar.text;
@@ -43,10 +49,12 @@
     }
     [self.tableView reloadData];
 }
+
 -(void)searchBar:(UISearchBar *)searchBar
 {
     [searchBar resignFirstResponder];
 }
+
 #pragma mark - Network
 - (void)fetchUsers{
     PFQuery *queryUsers = [PFUser query];
@@ -66,13 +74,14 @@
     [userCell loadUser:user];
     return userCell;
 }
+
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.users.count;
 }
 
 #pragma mark - UserCell Delegate
 - (void) userCell:(UserCell *)userCell didTap:(PFUser *)user{
-    self.user = user;
+    self.user = (User *)user;
     [self performSegueWithIdentifier:@"toProfile" sender:nil];
 }
 

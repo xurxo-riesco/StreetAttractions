@@ -21,6 +21,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UserCell : UITableViewCell
 
+/**
+   Delegate property
+*/
 @property (nonatomic, weak) id<UserCellDelegate> delegate;
 
 /**
@@ -48,8 +51,7 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 @protocol UserCellDelegate
-- (void)userCell:(UserCell *) userCell didTap: (PFUser *)user;
+- (void)userCell:(UserCell *)userCell didTap:(PFUser *)user;
 @end
-
 
 NS_ASSUME_NONNULL_END

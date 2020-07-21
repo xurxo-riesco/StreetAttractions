@@ -20,21 +20,33 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    // Search Bar Set Up
     self.searchBar.delegate = self;
+    
+    // CollectionView Set Up
     self.collectionView.delegate = self;
-    self.tableView.delegate = self;
     self.collectionView.dataSource = self;
+    
+    // TableView Set Up
     self.tableView.dataSource = self;
+    self.tableView.delegate = self;
+    
+    // MutableArray Set Up
     self.posts = [[NSMutableArray alloc] init];
+    
+    // Network Calls
     [self fetchRecommended];
     [self fetchCategories];
 }
 
 #pragma mark - Network
+// Algorithm fetches all the user's followed by the current user and then fetches the liked posts of those user's
 - (void) fetchRecommended{
     PFRelation *relation = [[User currentUser] relationForKey:@"FavUsers"];
     PFQuery *favUsersQ = [relation query];
     favUsersQ.limit = 10;
+    // Fetches user's liked users
     [favUsersQ findObjectsInBackgroundWithBlock:^(NSArray<User*>* users, NSError * _Nullable error) {
         for(User* user in users){
             PFRelation *relation = [user relationForKey:@"LikedPost"];
@@ -43,10 +55,12 @@
             [recommendedQ whereKey:@"city" equalTo:[User currentUser].location];
             [recommendedQ orderByDescending:@"createdAt"];
             recommendedQ.limit = 10;
+            // Fecthes liked post of user liked by current user
             [recommendedQ findObjectsInBackgroundWithBlock:^(NSArray <Post*>* posts, NSError * _Nullable error) {
                 if(posts){
                     if (posts.count > 0){
                         int prevNumPost = self.posts.count;
+                        // Avoids loading repeated posts to the array
                         for(Post *post in posts){
                             if ([self.posts containsObject:post]){
                                 continue;
@@ -63,12 +77,11 @@
                     NSLog(@"%@", self.posts);
                     [self.collectionView reloadData];
                 }
-                
-                
             }];
         }
     }];
 }
+
 - (void) fetchCategories{
     PFQuery *categoriesQuery = [Category query];
     categoriesQuery.limit = 10;
@@ -90,9 +103,9 @@
     return homeCell;
 }
 - (NSInteger)collectionView:(nonnull UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    NSLog(@"%d", self.posts.count);
     return self.posts.count;
 }
+
 #pragma mark - TableView Delegate
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     Category *category = self.categories[indexPath.row];
@@ -104,6 +117,7 @@
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.categories.count;
 }
+
 #pragma mark - HomeCell Delegate
 - (void)homeCell:(HomeCell *)homeCell didTap:(Post *)post
 {
@@ -111,6 +125,7 @@
     [self performSegueWithIdentifier:@"recommendedToDetails" sender:nil];
     
 }
+
 #pragma mark - SearchBar Delegate
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
     if(searchText !=0){
@@ -118,16 +133,15 @@
         NSLog(@"%@", searchText);
         [self performSegueWithIdentifier:@"searchSegue" sender:nil];
     }
-    
 }
--(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
-{
+
+-(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
     [self performSegueWithIdentifier:@"searchSegue" sender:nil];
 }
+
 #pragma mark - Navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if([segue.identifier isEqual:@"recommendedToDetails"])
-    {
+    if([segue.identifier isEqual:@"recommendedToDetails"]){
         DetailsViewController *detailsViewController = [segue destinationViewController];
         detailsViewController.post = self.post;
     }else if([segue.identifier isEqual:@"searchSegue"]){

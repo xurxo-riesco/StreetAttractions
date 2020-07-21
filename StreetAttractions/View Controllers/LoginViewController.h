@@ -6,12 +6,13 @@
 //  Copyright © 2020 Xurxo Riesco. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
-#import "Parse/PFUser.h"
-#import "HyTransitions.h"
+#import <UIKit/UIKit.h>
+
 #import "HyLoginButton.h"
+#import "HyTransitions.h"
+#import "Parse/PFUser.h"
 
 // View Controllers
 #import "HomeViewController.h"
@@ -29,6 +30,11 @@ NS_ASSUME_NONNULL_BEGIN
     Field to enter user's password, secure text entry is enabled
 */
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;
+
+/**
+    Controller enables slideout menu
+*/
+@property (strong, nonatomic) MMDrawerController *drawerController;
 
 @end
 

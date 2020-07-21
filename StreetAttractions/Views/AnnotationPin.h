@@ -8,7 +8,7 @@
 
 #import <MapKit/MapKit.h>
 @import Parse;
-//Models
+// Models
 #import "Post.h"
 NS_ASSUME_NONNULL_BEGIN
 

@@ -22,6 +22,7 @@ target 'StreetAttractions' do
    pod 'HCSStarRatingView', '~> 1.5' 
    pod 'PNChart'
    pod 'OpenWeatherMapAPI', '~> 0.0.5'
+   pod 'TNTutorialManager'
 
 
   target 'StreetAttractionsTests' do

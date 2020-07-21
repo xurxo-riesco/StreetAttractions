@@ -7,16 +7,21 @@
 //
 
 #import <UIKit/UIKit.h>
+
 #import "AppDelegate.h"
-//View Controllers
-#import "DetailsViewController.h"
+#import "TNTutorialManager.h"
+
+// View Controllers
 #import "ComposeViewController.h"
-//Views
+#import "DetailsViewController.h"
+
+// Views
 #import "HomeCell.h"
-//Models
-#import "User.h"
-#import "Post.h"
+
+// Models
 #import "Category.h"
+#import "Post.h"
+#import "User.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -41,6 +46,21 @@ NS_ASSUME_NONNULL_BEGIN
     Helper variable that allows for inifinity scrolling
 */
 @property (assign, nonatomic) BOOL isMoreDataLoading;
+
+/**
+    View over the tab bar used for highlighting during the tutorial
+*/
+@property (weak, nonatomic) IBOutlet UIView *tabBarView;
+
+/**
+    Collection View displaying nearby posts
+*/
+@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+
+/**
+    Required tutorial property to allow for visual tutorial on first app use
+*/
+@property (strong, nonatomic) TNTutorialManager *tutorialManager;
 
 @end
 

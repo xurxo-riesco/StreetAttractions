@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 @import Parse;
-//Models
+// Models
 #import "Comment.h"
 #import "User.h"
 NS_ASSUME_NONNULL_BEGIN
@@ -24,6 +24,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface CommentCell : UITableViewCell
 
+/**
+   Delegate property
+*/
 @property (nonatomic, weak) id<CommentCellDelegate> delegate;
 
 /**
@@ -65,7 +68,7 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 @protocol CommentCellDelegate
-- (void)commentCell:(CommentCell *) commentCell didTap: (User *)user;
+- (void)commentCell:(CommentCell *)commentCell didTap:(User *)user;
 @end
 
 NS_ASSUME_NONNULL_END

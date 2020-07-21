@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+
 #import "DateTools.h"
 
-//Models
+// Models
 #import "Post.h"
 #import "User.h"
 
@@ -25,9 +26,16 @@ NS_ASSUME_NONNULL_BEGIN
 */
 @protocol FavoriteCellDelegate;
 
-@interface FavoriteCell : UITableViewCell <CLLocationManagerDelegate>
+@interface FavoriteCell : UITableViewCell<CLLocationManagerDelegate>
 
-@property (strong, nonatomic)  CLLocationManager *locationManager;
+/**
+   Used to fetch user's current location
+*/
+@property (strong, nonatomic) CLLocationManager *locationManager;
+
+/**
+   Delegate property
+*/
 @property (nonatomic, weak) id<FavoriteCellDelegate> delegate;
 
 /**
@@ -88,15 +96,15 @@ NS_ASSUME_NONNULL_BEGIN
                 - Distance from the user
                 - Border color coded based on post's category
                 - Time since posting
- 
+
    @param  post The post object to be displayed
 */
-- (void)loadPost:(Post *) post;
+- (void)loadPost:(Post *)post;
 
 @end
 
 @protocol FavoriteCellDelegate
-- (void)favoriteCell:(FavoriteCell*) favoriteCell didTap: (Post *)post;
+- (void)favoriteCell:(FavoriteCell *)favoriteCell didTap:(Post *)post;
 @end
 
 NS_ASSUME_NONNULL_END

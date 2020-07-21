@@ -433,6 +433,11 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <view contentMode="scaleToFill" id="Hj8-KO-KMC">
+                                <rect key="frame" x="0.0" y="813" width="414" height="83"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <viewLayoutGuide key="safeArea" id="JAf-EF-M30"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="tgX-HR-Omq"/>
@@ -447,6 +452,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="wlk-4g-5c7" id="HTu-R1-U43"/>
+                        <outlet property="tabBarView" destination="Hj8-KO-KMC" id="HnS-cY-XAQ"/>
                         <segue destination="Heh-aZ-ZVG" kind="show" identifier="homeToDetails" id="GSS-vk-T5d"/>
                     </connections>
                 </viewController>
@@ -733,7 +739,7 @@
             <objects>
                 <viewController modalPresentationStyle="fullScreen" id="XsX-kG-neR" customClass="ProfileViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Fuh-84-4Gf">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Yq-Km-ngI">
@@ -962,6 +968,7 @@
                         <outlet property="mapView" destination="6Og-MD-fR4" id="u2A-L2-LsI"/>
                         <outlet property="mediaView" destination="G2f-yL-oge" id="joe-jj-bX0"/>
                         <outlet property="profilePic" destination="jBp-Hu-UhK" id="0et-IJ-MlD"/>
+                        <outlet property="rateButton" destination="Xz8-Tv-Li6" id="hWG-lm-ieL"/>
                         <outlet property="starView" destination="HKy-a1-U4q" id="5oe-zp-nl8"/>
                         <outlet property="userLabel" destination="STR-lN-B1h" id="yhc-Nu-ST9"/>
                         <segue destination="XsX-kG-neR" kind="show" identifier="detailsToProfile" id="Rju-t2-JMe"/>
@@ -1514,8 +1521,8 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="wPq-ez-fVi"/>
-        <segue reference="AK1-f4-TfS"/>
-        <segue reference="jxD-80-jDd"/>
+        <segue reference="GSS-vk-T5d"/>
+        <segue reference="Rju-t2-JMe"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="bubble.left" catalog="system" width="128" height="110"/>

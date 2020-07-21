@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 @import Parse;
-//Models
+// Models
 #import "Category.h"
 
 NS_ASSUME_NONNULL_BEGIN
@@ -36,7 +36,7 @@ NS_ASSUME_NONNULL_BEGIN
    @param  category The category object to be displayed
 
 */
-- (void)loadCategory:(Category *) category;
+- (void)loadCategory:(Category *)category;
 
 @end
 

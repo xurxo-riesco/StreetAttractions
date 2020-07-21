@@ -8,27 +8,42 @@
 
 #import <UIKit/UIKit.h>
 
-//View Controllers
-#import "SearchViewController.h"
+// View Controllers
 #import "CategoryFeedViewController.h"
 #import "DetailsViewController.h"
+#import "SearchViewController.h"
 
-//Views
-#import "HomeCell.h"
+// Views
 #import "CategoryCell.h"
+#import "HomeCell.h"
 
-//Models
+// Models
 #import "Category.h"
 #import "Post.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface CategoriesViewController : UIViewController
-@property (nonatomic, strong) NSMutableArray *posts;
-@property (nonatomic, strong) NSMutableArray *categories;
-@property (nonatomic, strong) Post *post;
-@property (nonatomic, strong) NSString *text;
 
+/**
+    Array of posts recommended for user
+*/
+@property (nonatomic, strong) NSMutableArray *posts;
+
+/**
+    Array of categories
+*/
+@property (nonatomic, strong) NSMutableArray *categories;
+
+/**
+    Temporarely holds post of selected cell (Used for seguing)
+*/
+@property (nonatomic, strong) Post *post;
+
+/**
+    Temporarely holds search bar text (Used for seguing)
+*/
+@property (nonatomic, strong) NSString *text;
 
 @end
 

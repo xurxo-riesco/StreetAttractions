@@ -44,6 +44,8 @@
     [PFFacebookUtils initializeFacebookWithApplicationLaunchOptions:launchOptions];
     //[GMSPlacesClient provideAPIKey:@"AIzaSyDG3oPYU_0G2P4WDBnwcwaPQBtuy5J2qNE"];
     
+    [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:[[NSBundle mainBundle] bundleIdentifier]];
+    
     return YES;
 }
 #pragma mark - UISceneSession lifecycle

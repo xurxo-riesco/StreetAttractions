@@ -11,23 +11,26 @@
 
 @implementation CategoryCell
 
-- (void)awakeFromNib {
-    [super awakeFromNib];
+- (void)awakeFromNib
+{
+  [super awakeFromNib];
 }
 
-- (void)loadCategory:(Category *) category{
-    self.category = category;
-    self.nameLabel.text = category.name;
-    self.mediaView.file = category.media;
-    [self.mediaView loadInBackground];
-    self.mediaView.layer.cornerRadius = 16;
-    self.mediaView.layer.masksToBounds = YES;
-    self.mediaView.alpha = 0.6;
-    self.mediaView.backgroundColor = [self.category.name colorCode];
+- (void)loadCategory:(Category *)category
+{
+  self.category = category;
+  self.nameLabel.text = category.name;
+  self.mediaView.file = category.media;
+  [self.mediaView loadInBackground];
+  self.mediaView.layer.cornerRadius = 16;
+  self.mediaView.layer.masksToBounds = YES;
+  self.mediaView.alpha = 0.6;
+  self.mediaView.backgroundColor = [self.category.name colorCode];
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated
+{
+  [super setSelected:selected animated:animated];
 }
 
 @end

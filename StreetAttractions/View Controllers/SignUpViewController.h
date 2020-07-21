@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Parse/PFUser.h"
 
-//Models
+#import "AppDelegate.h"
+#import "Parse/PFUser.h"
+// Models
 #import "User.h"
 
 NS_ASSUME_NONNULL_BEGIN
@@ -40,6 +41,12 @@ NS_ASSUME_NONNULL_BEGIN
     Default profile image, can be tapped to choose a profile image
 */
 @property (strong, nonatomic) UIImage *image;
+
+/**
+    Controller enables slideout menu
+*/
+@property (strong, nonatomic) MMDrawerController *drawerController;
+
 @end
 
 NS_ASSUME_NONNULL_END

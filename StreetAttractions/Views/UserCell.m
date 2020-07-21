@@ -10,29 +10,35 @@
 
 @implementation UserCell
 
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    UITapGestureRecognizer *profileTapGestureRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(didTapUser:)];
-    [self.profileView addGestureRecognizer:profileTapGestureRecognizer];
-    [self.profileView setUserInteractionEnabled:YES];
+- (void)awakeFromNib
+{
+  [super awakeFromNib];
+  UITapGestureRecognizer *profileTapGestureRecognizer = [[UITapGestureRecognizer alloc]
+  initWithTarget:self
+          action:@selector(didTapUser:)];
+  [self.profileView addGestureRecognizer:profileTapGestureRecognizer];
+  [self.profileView setUserInteractionEnabled:YES];
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated
+{
+  [super setSelected:selected animated:animated];
 }
 
-- (void)loadUser:(PFUser *)user{
-    self.user = user;
-    self.usernameLabel.text = user.username;
-    self.profileView.file = user[@"profilePic"];
-    self.profileView.layer.cornerRadius = 31;
-    self.profileView.layer.masksToBounds = YES;
-    [self.profileView loadInBackground];
+- (void)loadUser:(PFUser *)user
+{
+  self.user = user;
+  self.usernameLabel.text = user.username;
+  self.profileView.file = user[@"profilePic"];
+  self.profileView.layer.cornerRadius = 31;
+  self.profileView.layer.masksToBounds = YES;
+  [self.profileView loadInBackground];
 }
 
 #pragma mark - Delegate
-- (void) didTapUser:(UITapGestureRecognizer *)sender{
-    [self.delegate userCell:self didTap:self.user];
+- (void)didTapUser:(UITapGestureRecognizer *)sender
+{
+  [self.delegate userCell:self didTap:self.user];
 }
 
 @end

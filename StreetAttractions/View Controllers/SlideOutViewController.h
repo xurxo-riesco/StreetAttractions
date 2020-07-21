@@ -49,6 +49,11 @@ NS_ASSUME_NONNULL_BEGIN
 */
 @property (weak, nonatomic) IBOutlet UILabel *cityLabel;
 
+/**
+    DIsplays generated user QR Code
+*/
+@property (weak, nonatomic) IBOutlet UIImageView *qrView;
+
 @end
 
 NS_ASSUME_NONNULL_END

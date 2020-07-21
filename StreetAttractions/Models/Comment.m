@@ -12,7 +12,8 @@
 @dynamic text;
 @dynamic author;
 
-+ (nonnull NSString *)parseClassName {
-    return @"Comment";
++ (nonnull NSString *)parseClassName
+{
+  return @"Comment";
 }
 @end

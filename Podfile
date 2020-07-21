@@ -23,6 +23,8 @@ target 'StreetAttractions' do
    pod 'PNChart'
    pod 'OpenWeatherMapAPI', '~> 0.0.5'
    pod 'TNTutorialManager'
+   pod 'UIImage+DYQRCodeEncoder'
+   pod 'DYQRCodeDecoder'
 
 
   target 'StreetAttractionsTests' do

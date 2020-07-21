@@ -12,8 +12,9 @@
 @dynamic name;
 @dynamic media;
 
-+ (nonnull NSString *)parseClassName {
-    return @"Category";
++ (nonnull NSString *)parseClassName
+{
+  return @"Category";
 }
 
 @end

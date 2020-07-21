@@ -44,6 +44,7 @@ PODS:
     - BraintreeDropIn/UIKit
   - BraintreeDropIn/UIKit (8.1.1)
   - DateTools (2.0.0)
+  - DYQRCodeDecoder (1.1.2)
   - FacebookCore (0.9.0):
     - FBSDKCoreKit (~> 5.0)
   - FBSDKCoreKit (5.15.1):
@@ -95,6 +96,7 @@ PODS:
     - TNTutorialManager/TNTutorialManager (= 1.3.2)
   - TNTutorialManager/TNTutorialManager (1.3.2)
   - UICountingLabel (1.2.0)
+  - "UIImage+DYQRCodeEncoder (0.0.1)"
 
 DEPENDENCIES:
   - AFNetworking
@@ -102,6 +104,7 @@ DEPENDENCIES:
   - Braintree/Venmo
   - BraintreeDropIn
   - DateTools
+  - DYQRCodeDecoder
   - FacebookCore
   - GoogleMaps
   - GooglePlaces
@@ -114,6 +117,7 @@ DEPENDENCIES:
   - Parse/UI
   - PNChart
   - TNTutorialManager
+  - "UIImage+DYQRCodeEncoder"
 
 SPEC REPOS:
   trunk:
@@ -122,6 +126,7 @@ SPEC REPOS:
     - Braintree
     - BraintreeDropIn
     - DateTools
+    - DYQRCodeDecoder
     - FacebookCore
     - FBSDKCoreKit
     - FBSDKLoginKit
@@ -135,6 +140,7 @@ SPEC REPOS:
     - PNChart
     - TNTutorialManager
     - UICountingLabel
+    - "UIImage+DYQRCodeEncoder"
 
 SPEC CHECKSUMS:
   AFNetworking: cf8e418e16f0c9c7e5c3150d019a3c679d015018
@@ -142,6 +148,7 @@ SPEC CHECKSUMS:
   Braintree: 48154e70306eb3e6c81eaa87bbc5c5988c0d2784
   BraintreeDropIn: 2cf07a9041df45ff671586042dbaf7b5d2767347
   DateTools: 933ac9c490f21f92127cf690ccd8c397e0126caf
+  DYQRCodeDecoder: 8468610fa383361fba4e9c84711a56e6d8ed3169
   FacebookCore: ba86524b66cfa86d0f8e65d08faa8504a9f732dd
   FBSDKCoreKit: 1d5acf7c9d7a2f92bb1a242dc60cae5b7adb91df
   FBSDKLoginKit: f1ea8026a58b52d30c9f2e6a58ca7d813619fb83
@@ -155,7 +162,8 @@ SPEC CHECKSUMS:
   PNChart: 84774d225c2126ded6c93d4dbe6ae98c3a73c2d2
   TNTutorialManager: 7d49f4c1b3b5057aa32203949c99a72d96e9d46b
   UICountingLabel: 1db4e7d023e1762171eb226d6dff47a7a84f27aa
+  "UIImage+DYQRCodeEncoder": a470dca9417754eb1030a0fa8d81c5c2044efe08
 
-PODFILE CHECKSUM: e769d9e177acd930b3adcabd55bfd742090a7588
+PODFILE CHECKSUM: ef704173be51b896357b2db06416ccaba097bbfc
 
 COCOAPODS: 1.9.3

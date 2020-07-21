@@ -202,6 +202,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/Braintree/Braintree.framework"
   install_framework "${PODS_ROOT}/Braintree/Frameworks/CardinalMobile.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/BraintreeDropIn/BraintreeDropIn.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/DYQRCodeDecoder/DYQRCodeDecoder.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/DateTools/DateTools.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework"
@@ -214,6 +215,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/Parse/Parse.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/TNTutorialManager/TNTutorialManager.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/UICountingLabel/UICountingLabel.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/UIImage+DYQRCodeEncoder/UIImage_DYQRCodeEncoder.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework"
@@ -221,6 +223,7 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/Braintree/Braintree.framework"
   install_framework "${PODS_ROOT}/Braintree/Frameworks/CardinalMobile.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/BraintreeDropIn/BraintreeDropIn.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/DYQRCodeDecoder/DYQRCodeDecoder.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/DateTools/DateTools.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework"
@@ -233,6 +236,7 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/Parse/Parse.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/TNTutorialManager/TNTutorialManager.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/UICountingLabel/UICountingLabel.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/UIImage+DYQRCodeEncoder/UIImage_DYQRCodeEncoder.framework"
 fi
 if [ "${COCOAPODS_PARALLEL_CODE_SIGN}" == "true" ]; then
   wait

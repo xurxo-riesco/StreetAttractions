@@ -7,6 +7,7 @@
 //
 
 #import "SlideOutViewController.h"
+#import "UIImage+DYQRCodeEncoder.h"
 
 @interface SlideOutViewController ()<SettingsViewControllerDelegate>
 
@@ -39,6 +40,7 @@
   self.profilePic.layer.masksToBounds = YES;
   self.profilePic.file = user.profilePic;
   [self.profilePic loadInBackground];
+  self.qrView.image = [UIImage DY_QRCodeImageWithString:[User currentUser].username size:300.f];
 }
 
 - (IBAction)onLogOut:(id)sender

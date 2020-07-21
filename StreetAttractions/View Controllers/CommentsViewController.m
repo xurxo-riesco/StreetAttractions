@@ -44,6 +44,7 @@
 
 - (IBAction)onPost:(id)sender
 {
+  self.commentField.text = @"";
   Comment *newComment = [Comment new];
   newComment.author = [PFUser currentUser];
   newComment.text = self.commentField.text;

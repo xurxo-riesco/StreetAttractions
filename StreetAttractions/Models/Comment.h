@@ -12,8 +12,16 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface Comment : PFObject<PFSubclassing>
 
+/**
+  Text of the comment
+*/
 @property (nonatomic, strong) NSString *text;
+
+/**
+  Pointer to the author of the comment
+*/
 @property (nonatomic, strong) PFUser *author;
+
 @end
 
 NS_ASSUME_NONNULL_END

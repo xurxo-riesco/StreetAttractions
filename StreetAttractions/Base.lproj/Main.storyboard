@@ -93,7 +93,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S9o-zM-l6H">
-                                <rect key="frame" x="20" y="304" width="171" height="30"/>
+                                <rect key="frame" x="20" y="324" width="171" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemGray3Color" red="0.78039215689999997" green="0.78039215689999997" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Settings">
@@ -104,7 +104,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NZ2-7P-BCC">
-                                <rect key="frame" x="20" y="253" width="171" height="30"/>
+                                <rect key="frame" x="20" y="256" width="171" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemGray3Color" red="0.78039215689999997" green="0.78039215689999997" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Profile">
@@ -115,7 +115,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="akF-M2-Xxe">
-                                <rect key="frame" x="20" y="354" width="171" height="30"/>
+                                <rect key="frame" x="20" y="395" width="171" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemGray3Color" red="0.78039215689999997" green="0.78039215689999997" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Log Out">
@@ -140,6 +140,10 @@
                                     <segue destination="ftv-TK-EDh" kind="show" identifier="toPerformerSettings" id="D2O-QD-GoS"/>
                                 </connections>
                             </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Fdb-73-n6M">
+                                <rect key="frame" x="35" y="459" width="140" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="sU8-KI-JjQ"/>
@@ -149,6 +153,7 @@
                         <outlet property="cityLabel" destination="VGL-jo-Pa5" id="bF2-pn-rZz"/>
                         <outlet property="performerButton" destination="twG-2M-X6N" id="QG1-Yt-cFq"/>
                         <outlet property="profilePic" destination="6jp-AF-5N3" id="kJP-6f-aFL"/>
+                        <outlet property="qrView" destination="Fdb-73-n6M" id="iyq-Fj-ria"/>
                         <outlet property="screennameLabel" destination="Zc8-6t-ca1" id="grs-3W-LP0"/>
                         <outlet property="usernameLabel" destination="ech-AB-U2y" id="UsN-gw-wRu"/>
                     </connections>
@@ -556,13 +561,23 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="kGg-PY-gL1"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Explore" id="u9H-jK-rMh"/>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Explore" id="u9H-jK-rMh">
+                        <barButtonItem key="rightBarButtonItem" image="plus" catalog="system" id="XSi-Sw-Fq5">
+                            <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <connections>
+                                <action selector="onQR:" destination="8f2-bt-gTP" id="ERm-tg-4we"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="collectionView" destination="LeQ-Rt-w3b" id="9Q5-uq-nyU"/>
                         <outlet property="searchBar" destination="f9Y-Nr-haK" id="dx6-3x-EgV"/>
                         <outlet property="tableView" destination="J2C-kj-PGC" id="H4M-Ln-rjj"/>
                         <segue destination="Heh-aZ-ZVG" kind="show" identifier="recommendedToDetails" id="Ect-JR-xMz"/>
                         <segue destination="Wmw-1D-qtB" kind="show" identifier="searchSegue" id="S67-iD-nyR"/>
+                        <segue destination="XsX-kG-neR" kind="show" identifier="toProfile" id="wcD-Dk-EPF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EHH-ht-JP4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -641,6 +656,12 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RSR-9C-QuE">
+                                <rect key="frame" x="104" y="821" width="210" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="c6E-3d-XE6"/>
@@ -654,6 +675,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="dateTextField" destination="RSR-9C-QuE" id="umb-80-OVA"/>
                         <outlet property="descriptionText" destination="gFW-rh-K7M" id="Rlt-vs-2wc"/>
                         <outlet property="locationButton" destination="SE2-dD-aJT" id="vVJ-Tm-L1e"/>
                         <outlet property="mediaButton" destination="TIC-Ch-xb5" id="RAd-q2-qYS"/>
@@ -707,11 +729,6 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bdy-u7-Msh">
-                                <rect key="frame" x="184" y="519" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="JwC-eG-8EB"/>
@@ -1457,7 +1474,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="JDh-ey-s4k">
-                                <rect key="frame" x="0.0" y="144" width="414" height="669"/>
+                                <rect key="frame" x="0.0" y="144" width="414" height="620"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserCell" rowHeight="109" id="Icp-II-XG7" customClass="UserCell">
                                         <rect key="frame" x="0.0" y="28" width="414" height="109"/>
@@ -1521,7 +1538,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="wPq-ez-fVi"/>
-        <segue reference="GSS-vk-T5d"/>
+        <segue reference="nTF-nX-ggt"/>
         <segue reference="Rju-t2-JMe"/>
     </inferredMetricsTieBreakers>
     <resources>

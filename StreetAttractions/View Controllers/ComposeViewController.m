@@ -120,9 +120,11 @@
         BOOL upcoming = NO;
         if(self.upcomingSwitch.on){
             upcoming = YES;
+        }else{
+            self.upcomingDate = [NSDate date];
         }
         // Sends post to the server after it is verified as valid locally
-        [Post postUserImage:self.image withCaption:self.descriptionText.text forLatitude:self.latitude forLongitude:self.longitude toCategory:self.category isUpcoming:upcoming withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+        [Post postUserImage:self.image withCaption:self.descriptionText.text forLatitude:self.latitude forLongitude:self.longitude toCategory:self.category isUpcoming:upcoming forDate:self.upcomingDate withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
             if (succeeded) {
                 NSLog(@"POSTED");
                 [HUD dismiss];
@@ -163,11 +165,48 @@
 - (IBAction)onUpcoming:(id)sender {
     if(self.upcomingSwitch.on){
         self.descriptionText.text = @"Upcoming performance! Time: Day:";
+        self.datePicker=[[UIDatePicker alloc]init];
+
+        self.datePicker.datePickerMode=UIDatePickerModeDate;
+
+        [self.dateTextField setInputView:self.datePicker];
+
+            UIToolbar *toolBar=[[UIToolbar alloc]initWithFrame:CGRectMake(0, 0, 320, 44)];
+
+            [toolBar setTintColor:[UIColor grayColor]];
+
+        /* Here we are adding a done button so that we can close our picker after date selection */
+
+            UIBarButtonItem *doneBtn=[[UIBarButtonItem alloc]initWithTitle:@"Done" style:UIBarButtonItemStylePlain target:self action:@selector(ShowSelectedDate)];
+
+            UIBarButtonItem *space=[[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+
+            [toolBar setItems:[NSArray arrayWithObjects:space,doneBtn, nil]];
+
+            [self.dateTextField setInputAccessoryView:toolBar];
+                        [self.dateTextField becomeFirstResponder];
+
     }else{
         self.descriptionText.text = @"";
     }
 }
 
+-(void)ShowSelectedDate
+
+{
+
+    /* here we are adding the format which will be shown to the selected date */
+
+    NSDateFormatter *formatter=[[NSDateFormatter alloc]init];
+
+    [formatter setDateFormat:@"dd/MMM/YYYY"];
+
+    self.upcomingDate = self.datePicker.date;
+
+
+      [self.dateTextField resignFirstResponder];
+
+}
 #pragma mark - LocationsViewController Delegate
 - (void)locationsViewController:(LocationsViewController *)controller didPickLocationWithLatitude:(NSNumber *)latitude longitude:(NSNumber *)longitude {
     self.latitude = latitude;

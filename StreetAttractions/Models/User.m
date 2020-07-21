@@ -22,7 +22,7 @@
 @dynamic followersCount;
 
 + (void)isFavorite: (Category*) category WithCompletion: (void(^)(BOOL))completion{
-    User *user = [PFUser currentUser];
+    User *user = [User currentUser];
     PFRelation *relation = [user relationForKey:@"FavCategories"];
     PFQuery *query = [relation query];
     [query findObjectsInBackgroundWithBlock:^(NSArray<Category*>* _Nullable categories, NSError * _Nullable error) {
@@ -96,7 +96,6 @@
 
 + (void)getFavoritesWithCompletion: (void(^)(NSArray<User*> *favorites))completion{
     User *user = [User currentUser];
-    NSMutableArray *categoryStrings = [[NSMutableArray alloc] init];
     PFRelation *relation = [user relationForKey:@"FavUsers"];
     PFQuery *query = [relation query];
     [query findObjectsInBackgroundWithBlock:^(NSArray<User*>* _Nullable favUsers, NSError * _Nullable error) {

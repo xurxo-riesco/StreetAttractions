@@ -7,11 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DYQRCodeDecoderViewController.h"
 
 // View Controllers
 #import "CategoryFeedViewController.h"
 #import "DetailsViewController.h"
 #import "SearchViewController.h"
+#import "ProfileViewController.h"
+
 
 // Views
 #import "CategoryCell.h"
@@ -20,6 +23,7 @@
 // Models
 #import "Category.h"
 #import "Post.h"
+#import "User.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -39,6 +43,11 @@ NS_ASSUME_NONNULL_BEGIN
     Temporarely holds post of selected cell (Used for seguing)
 */
 @property (nonatomic, strong) Post *post;
+
+/**
+    Temporarely holds user from QR Code (Used for seguing)
+*/
+@property (nonatomic, strong) User *user;
 
 /**
     Temporarely holds search bar text (Used for seguing)

@@ -4,6 +4,7 @@ ${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework
 ${BUILT_PRODUCTS_DIR}/Braintree/Braintree.framework
 ${PODS_ROOT}/Braintree/Frameworks/CardinalMobile.framework
 ${BUILT_PRODUCTS_DIR}/BraintreeDropIn/BraintreeDropIn.framework
+${BUILT_PRODUCTS_DIR}/DYQRCodeDecoder/DYQRCodeDecoder.framework
 ${BUILT_PRODUCTS_DIR}/DateTools/DateTools.framework
 ${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework
 ${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework
@@ -16,3 +17,4 @@ ${BUILT_PRODUCTS_DIR}/PNChart/PNChart.framework
 ${BUILT_PRODUCTS_DIR}/Parse/Parse.framework
 ${BUILT_PRODUCTS_DIR}/TNTutorialManager/TNTutorialManager.framework
 ${BUILT_PRODUCTS_DIR}/UICountingLabel/UICountingLabel.framework
+${BUILT_PRODUCTS_DIR}/UIImage+DYQRCodeEncoder/UIImage_DYQRCodeEncoder.framework

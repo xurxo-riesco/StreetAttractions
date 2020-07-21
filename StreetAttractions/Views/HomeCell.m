@@ -77,10 +77,12 @@
   CLLocationDistance distance = [startLocation distanceFromLocation:endLocation];
   self.distanceLabel.text = [NSString stringWithFormat:@"%.2f mi away", distance * 0.000621371];
   self.descriptionLabel.text = post.caption;
-  if (self.post.isUpcoming) {
-    self.dateLabel.text = @"Upc";
-  } else {
+  if (self.post.upcomingDate.timeIntervalSinceNow <= 0 && self.post.isUpcoming) {
     self.dateLabel.text = post.createdAt.shortTimeAgoSinceNow;
+    self.post.isUpcoming = NO;
+    [self.post saveInBackground];
+  } else {
+    self.dateLabel.text = @"Upc";
   }
 }
 

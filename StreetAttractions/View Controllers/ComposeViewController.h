@@ -83,6 +83,21 @@ NS_ASSUME_NONNULL_BEGIN
 */
 @property (weak, nonatomic) IBOutlet UISwitch *upcomingSwitch;
 
+/**
+  Stores date of upcoming performance
+*/
+@property (strong, nonatomic) NSDate *upcomingDate;
+
+/**
+  Allows performance to pick the date of the upcoming performance
+*/
+@property (strong, nonatomic)UIDatePicker *datePicker;
+
+/**
+  Helper field to host the Date Picker
+*/
+@property (weak, nonatomic) IBOutlet UITextField *dateTextField;
+
 @end
 
 NS_ASSUME_NONNULL_END

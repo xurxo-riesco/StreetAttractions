@@ -19,6 +19,7 @@
 #import "PerformerSettingsViewController.h"
 #import "ProfileViewController.h"
 #import "SettingsViewController.h"
+#import "CollabViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -28,6 +29,11 @@ NS_ASSUME_NONNULL_BEGIN
     Button to access performance settings (Only displayed if the user has the isPerformer property)
 */
 @property (strong, nonatomic) IBOutlet UIView *performerButton;
+
+/**
+    Button to access suggest performers collab (Only displayed if the user has the isPerformer property)
+*/
+@property (weak, nonatomic) IBOutlet UIButton *collabButton;
 
 /**
     Shows the user's current profile pic

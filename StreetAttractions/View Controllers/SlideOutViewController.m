@@ -22,7 +22,9 @@
   // Displays the button to performer settings based on the isPerformer user's property
   if ([User currentUser].isPerfomer) {
     self.performerButton.alpha = 1;
+    self.collabButton.alpha = 1;
   } else {
+    self.performerButton.alpha = 0;
     self.performerButton.alpha = 0;
   }
 
@@ -77,6 +79,8 @@
     profileViewController.user = [User currentUser];
   } else if ([segue.identifier isEqual:@"toPerformerSettings"]) {
     PerformerSettingsViewController *perfomerSettingsViewController = [segue destinationViewController];
+  } else if ([segue.identifier isEqual:@"toCollab"]) {
+    CollabViewController *collabViewController = [segue destinationViewController];
   } else {
     SettingsViewController *settingsViewController = [segue destinationViewController];
     settingsViewController.delegate = self;

@@ -44,10 +44,10 @@
 
 - (IBAction)onPost:(id)sender
 {
-  self.commentField.text = @"";
-  Comment *newComment = [Comment new];
+    Comment *newComment = [Comment new];
   newComment.author = [PFUser currentUser];
   newComment.text = self.commentField.text;
+    self.commentField.text = @"";
   // Saves new comment to the server
   [newComment saveInBackgroundWithBlock:^(BOOL succeeded, NSError *_Nullable error) {
     if (succeeded) {

@@ -52,6 +52,10 @@
 		9865ADCB24C1FE7C0090C386 /* CommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9865ADCA24C1FE7C0090C386 /* CommentCell.m */; };
 		9865ADCE24C200010090C386 /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = 9865ADCD24C200010090C386 /* Comment.m */; };
 		9878734624C6571A00409325 /* DatePredictor.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 9878734524C6571A00409325 /* DatePredictor.mlmodel */; };
+		9897D77224C892D5006C3FC5 /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = 9897D77024C892D4006C3FC5 /* Message.m */; };
+		9897D77524C892E9006C3FC5 /* MessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9897D77324C892E9006C3FC5 /* MessageCell.m */; };
+		9897D77824C89305006C3FC5 /* MessageThreadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9897D77724C89305006C3FC5 /* MessageThreadViewController.m */; };
+		9897D77B24C8A3DD006C3FC5 /* CollabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9897D77A24C8A3DD006C3FC5 /* CollabViewController.m */; };
 		98B96F1124C65AF4005CBEA1 /* LongitudePredictor.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 98B96F0F24C65AF4005CBEA1 /* LongitudePredictor.mlmodel */; };
 		98B96F1224C65AF4005CBEA1 /* LatitudePredictor.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 98B96F1024C65AF4005CBEA1 /* LatitudePredictor.mlmodel */; };
 		98C1F68324BD02D800DB3713 /* CategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 98C1F68224BD02D800DB3713 /* CategoryCell.m */; };
@@ -174,6 +178,14 @@
 		9865ADCC24C200010090C386 /* Comment.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Comment.h; sourceTree = "<group>"; };
 		9865ADCD24C200010090C386 /* Comment.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Comment.m; sourceTree = "<group>"; };
 		9878734524C6571A00409325 /* DatePredictor.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = DatePredictor.mlmodel; sourceTree = "<group>"; };
+		9897D77024C892D4006C3FC5 /* Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Message.m; sourceTree = "<group>"; };
+		9897D77124C892D4006C3FC5 /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Message.h; sourceTree = "<group>"; };
+		9897D77324C892E9006C3FC5 /* MessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageCell.m; sourceTree = "<group>"; };
+		9897D77424C892E9006C3FC5 /* MessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageCell.h; sourceTree = "<group>"; };
+		9897D77624C89305006C3FC5 /* MessageThreadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageThreadViewController.h; sourceTree = "<group>"; };
+		9897D77724C89305006C3FC5 /* MessageThreadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageThreadViewController.m; sourceTree = "<group>"; };
+		9897D77924C8A3DD006C3FC5 /* CollabViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CollabViewController.h; sourceTree = "<group>"; };
+		9897D77A24C8A3DD006C3FC5 /* CollabViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CollabViewController.m; sourceTree = "<group>"; };
 		98B96F0F24C65AF4005CBEA1 /* LongitudePredictor.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = LongitudePredictor.mlmodel; sourceTree = "<group>"; };
 		98B96F1024C65AF4005CBEA1 /* LatitudePredictor.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = LatitudePredictor.mlmodel; sourceTree = "<group>"; };
 		98C1F68124BD02D800DB3713 /* CategoryCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CategoryCell.h; sourceTree = "<group>"; };
@@ -296,6 +308,8 @@
 		982408A724BCC35800F35FDA /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				9897D77124C892D4006C3FC5 /* Message.h */,
+				9897D77024C892D4006C3FC5 /* Message.m */,
 				98C57B6F24BF88F300F8FD0C /* Annotation.h */,
 				98C57B7024BF88F300F8FD0C /* Annotation.m */,
 				982408A924BCC49700F35FDA /* Post.h */,
@@ -313,6 +327,8 @@
 		982408B224BCCB8700F35FDA /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				9897D77624C89305006C3FC5 /* MessageThreadViewController.h */,
+				9897D77724C89305006C3FC5 /* MessageThreadViewController.m */,
 				9863F18024C258D300B01B74 /* LocationsViewController.h */,
 				9863F18424C2590C00B01B74 /* LocationsViewController.m */,
 				9863F18324C258FF00B01B74 /* PhotoMapViewController.h */,
@@ -345,6 +361,8 @@
 				9865ADC724C1FBC20090C386 /* CommentsViewController.m */,
 				9863F18F24C5F92900B01B74 /* PerformerSettingsViewController.h */,
 				9863F19024C5F92900B01B74 /* PerformerSettingsViewController.m */,
+				9897D77924C8A3DD006C3FC5 /* CollabViewController.h */,
+				9897D77A24C8A3DD006C3FC5 /* CollabViewController.m */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -352,6 +370,8 @@
 		982408D924BCDE4C00F35FDA /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				9897D77424C892E9006C3FC5 /* MessageCell.h */,
+				9897D77324C892E9006C3FC5 /* MessageCell.m */,
 				982408D224BCD8DA00F35FDA /* HomeCell.h */,
 				982408D324BCD8DA00F35FDA /* HomeCell.m */,
 				982408DF24BCDE8E00F35FDA /* LocationCell.h */,
@@ -704,9 +724,11 @@
 				98C57B7124BF88F300F8FD0C /* Annotation.m in Sources */,
 				9863F19124C5F92900B01B74 /* PerformerSettingsViewController.m in Sources */,
 				982408E024BCDE8E00F35FDA /* LocationCell.m in Sources */,
+				9897D77824C89305006C3FC5 /* MessageThreadViewController.m in Sources */,
 				982408B124BCC68400F35FDA /* Category.m in Sources */,
 				982408BE24BCCBCB00F35FDA /* SlideOutViewController.m in Sources */,
 				98B96F1224C65AF4005CBEA1 /* LatitudePredictor.mlmodel in Sources */,
+				9897D77B24C8A3DD006C3FC5 /* CollabViewController.m in Sources */,
 				9878734624C6571A00409325 /* DatePredictor.mlmodel in Sources */,
 				9865ADC024C10C9B0090C386 /* SpinerLayer.m in Sources */,
 				982408C524BCCBEB00F35FDA /* FavoritesViewController.m in Sources */,
@@ -717,12 +739,14 @@
 				982408AE24BCC5F500F35FDA /* User.m in Sources */,
 				9824087424BCBD6900F35FDA /* AppDelegate.m in Sources */,
 				982408D124BCCD9B00F35FDA /* ComposeViewController.m in Sources */,
+				9897D77224C892D5006C3FC5 /* Message.m in Sources */,
 				9865ADC324C10C9B0090C386 /* HyLoginButton.m in Sources */,
 				982408C824BCCD5300F35FDA /* CategoryFeedViewController.m in Sources */,
 				98C1F68324BD02D800DB3713 /* CategoryCell.m in Sources */,
 				98B96F1124C65AF4005CBEA1 /* LongitudePredictor.mlmodel in Sources */,
 				982408B524BCCBA400F35FDA /* LoginViewController.m in Sources */,
 				982408BB24BCCBBF00F35FDA /* HomeViewController.m in Sources */,
+				9897D77524C892E9006C3FC5 /* MessageCell.m in Sources */,
 				9863F18824C2591900B01B74 /* SearchViewController.m in Sources */,
 				9865ADC224C10C9B0090C386 /* HyLoglnButton.m in Sources */,
 				9824088524BCBD6B00F35FDA /* main.m in Sources */,

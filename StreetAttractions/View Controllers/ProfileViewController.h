@@ -20,6 +20,7 @@
 
 // View Controllers
 #import "DetailsViewController.h"
+#import "MessageThreadViewController.h"
 
 // Views
 #import "HomeCell.h"

@@ -248,8 +248,13 @@
 #pragma mark - Navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-  DetailsViewController *detailsViewController = [segue destinationViewController];
-  detailsViewController.post = self.post;
+  if ([segue.identifier isEqual:@"toMessages"]) {
+    MessageThreadViewController *messageThreadViewController = [segue destinationViewController];
+    messageThreadViewController.user = self.user;
+  } else {
+    DetailsViewController *detailsViewController = [segue destinationViewController];
+    detailsViewController.post = self.post;
+  }
 }
 
 #pragma mark - Machine Learning

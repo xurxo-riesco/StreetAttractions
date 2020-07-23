@@ -23,11 +23,6 @@
   [self addGestureRecognizer:postTap];
   [self setUserInteractionEnabled:YES];
 
-  // Visual Set Up
-  self.mediaView.layer.masksToBounds = YES;
-  self.mediaView.layer.cornerRadius = 16;
-  self.descriptionView.layer.masksToBounds = YES;
-  self.descriptionView.layer.cornerRadius = 16;
 }
 
 // Helper function to start retrieving user's location
@@ -55,6 +50,14 @@
 {
   self.post = post;
   self.descriptionView.alpha = 0;
+  CGRect newFrame = self.mediaView.frame;
+
+  NSLog(@" WIDTH %f", (CGRectGetWidth(self.bounds)));
+  newFrame.size.width = (CGRectGetWidth(self.bounds)) - 15;
+  newFrame.size.height = (CGRectGetHeight(self.bounds)) - 15;
+  [self.mediaView setFrame:newFrame];
+  self.mediaView.layer.masksToBounds = YES;
+  self.mediaView.layer.cornerRadius = 16;
   self.mediaView.file = post.media;
   [self.mediaView loadInBackground];
   self.distanceLabel.text = @"";
@@ -70,6 +73,14 @@
 - (void)showDescription:(Post *)post
 {
   self.descriptionView.alpha = 0.75;
+  CGRect newFrame = self.mediaView.frame;
+
+  NSLog(@" WIDTH %f", (CGRectGetWidth(self.bounds)));
+  newFrame.size.width = (CGRectGetWidth(self.bounds)) - 15;
+  newFrame.size.height = (CGRectGetHeight(self.bounds)) - 15;
+  [self.descriptionView setFrame:newFrame];
+  self.descriptionView.layer.masksToBounds = YES;
+  self.descriptionView.layer.cornerRadius = 16;
   [self.descriptionView setBackgroundColor:[post.category colorCode]];
   CLLocation *startLocation = [[CLLocation alloc] initWithLatitude:self.latitude longitude:self.longitude];
   CLLocation *endLocation = [[CLLocation alloc] initWithLatitude:post.latitude.floatValue
@@ -77,12 +88,14 @@
   CLLocationDistance distance = [startLocation distanceFromLocation:endLocation];
   self.distanceLabel.text = [NSString stringWithFormat:@"%.2f mi away", distance * 0.000621371];
   self.descriptionLabel.text = post.caption;
-  if (self.post.upcomingDate.timeIntervalSinceNow <= 0 && self.post.isUpcoming) {
-    self.dateLabel.text = post.createdAt.shortTimeAgoSinceNow;
-    self.post.isUpcoming = NO;
-    [self.post saveInBackground];
-  } else {
+  if (self.post.upcomingDate.timeIntervalSinceNow >= 0 && self.post.isUpcoming) {
     self.dateLabel.text = @"Upc";
+  } else {
+    if (self.post.upcomingDate.timeIntervalSinceNow) {
+      self.post.isUpcoming = false;
+      [self.post saveInBackground];
+    }
+    self.dateLabel.text = post.createdAt.shortTimeAgoSinceNow;
   }
 }
 

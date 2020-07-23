@@ -25,6 +25,8 @@ target 'StreetAttractions' do
    pod 'TNTutorialManager'
    pod 'UIImage+DYQRCodeEncoder'
    pod 'DYQRCodeDecoder'
+   source 'https://github.com/CocoaPods/Specs.git'
+   pod 'GreedoLayout'
 
 
   target 'StreetAttractionsTests' do

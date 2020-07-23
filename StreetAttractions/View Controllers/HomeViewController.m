@@ -9,9 +9,12 @@
 #import "HomeViewController.h"
 @interface HomeViewController ()<UICollectionViewDelegate,
                                  UICollectionViewDataSource,
+                                 GreedoCollectionViewLayoutDataSource,
+                                 UICollectionViewDelegateFlowLayout,
                                  ComposeViewControllerDelegate,
                                  HomeCellDelegate,
                                  TNTutorialManagerDelegate>
+
 @end
 
 @implementation HomeViewController
@@ -31,11 +34,25 @@
   // CollectionView Set Up
   self.collectionView.delegate = self;
   self.collectionView.dataSource = self;
-  UICollectionViewFlowLayout *layout = (UICollectionViewFlowLayout *)self.collectionView.collectionViewLayout;
-  CGFloat postersPerLine = 2;
-  CGFloat itemWidth = self.collectionView.frame.size.width / postersPerLine;
-  CGFloat itemHeight = itemWidth;
-  layout.itemSize = CGSizeMake(itemWidth, itemHeight);
+  self.collectionViewSizeCalculator.rowMaximumHeight = CGRectGetHeight(self.collectionView.bounds) / 3;
+  self.collectionViewSizeCalculator.fixedHeight = self.hasFixedHeight;
+
+  self.automaticallyAdjustsScrollViewInsets = NO;
+
+  self.collectionView.backgroundColor = [UIColor whiteColor];
+
+  // Configure spacing between cells
+  UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
+  layout.minimumInteritemSpacing = 5.0f;
+  layout.minimumLineSpacing = 5.0f;
+  layout.sectionInset = UIEdgeInsetsMake(10.0f, 5.0f, 5.0f, 5.0f);
+
+  self.collectionView.collectionViewLayout = layout;
+  //  UICollectionViewFlowLayout *layout = (UICollectionViewFlowLayout *)self.collectionView.collectionViewLayout;
+  //  CGFloat postersPerLine = 2;
+  //  CGFloat itemWidth = self.collectionView.frame.size.width / postersPerLine;
+  //  CGFloat itemHeight = itemWidth;
+  //  layout.itemSize = CGSizeMake(itemWidth, itemHeight);
 
   // Refresh Control Set Up
   UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
@@ -159,6 +176,53 @@
 - (NSInteger)collectionView:(nonnull UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
   return self.posts.count;
+}
+
+#pragma mark - <UICollectionViewDelegateFlowLayout>
+
+- (CGSize)collectionView:(UICollectionView *)collectionView
+                  layout:(UICollectionViewLayout *)collectionViewLayout
+  sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+  return [self.collectionViewSizeCalculator sizeForPhotoAtIndexPath:indexPath];
+}
+
+#pragma mark - <GreedoCollectionViewLayoutDataSource>
+
+- (CGSize)greedoCollectionViewLayout:(GreedoCollectionViewLayout *)layout
+        originalImageSizeAtIndexPath:(NSIndexPath *)indexPath
+{
+  // Return the image size to GreedoCollectionViewLayout
+  if (indexPath.item < self.posts.count) {
+    Post *post = self.posts[indexPath.item];
+      //NSLog (@"%@, %f", post.description, post.rating.floatValue);
+    if (post.rating.floatValue > 4.0) {
+        NSLog (@"YEEES, %f", post.rating.floatValue);
+      return CGSizeMake((CGFloat)([self randomValueBetween:260 and:300]),
+                        (CGFloat)([self randomValueBetween:165 and:200]));
+    } else {
+      return CGSizeMake((CGFloat)([self randomValueBetween:121 and:230]),
+                        (CGFloat)([self randomValueBetween:150 and:165]));
+    }
+  }
+
+  return CGSizeMake(0.1, 0.1);
+}
+- (NSInteger)randomValueBetween:(NSInteger)min and:(NSInteger)max
+{
+  return (NSInteger)(min + arc4random_uniform(max - min + 1));
+}
+
+#pragma mark - Lazy Loading
+
+- (GreedoCollectionViewLayout *)collectionViewSizeCalculator
+{
+  if (!_collectionViewSizeCalculator) {
+    _collectionViewSizeCalculator = [[GreedoCollectionViewLayout alloc] initWithCollectionView:self.collectionView];
+    _collectionViewSizeCalculator.dataSource = self;
+  }
+
+  return _collectionViewSizeCalculator;
 }
 
 #pragma mark - RefreshControl

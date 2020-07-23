@@ -64,6 +64,7 @@ PODS:
     - GoogleMaps/Base
   - GooglePlaces (3.9.0):
     - GoogleMaps/Base (= 3.9.0)
+  - GreedoLayout (1.2.0)
   - HCSStarRatingView (1.5)
   - JGProgressHUD (2.1)
   - MMDrawerController (0.5.7):
@@ -108,6 +109,7 @@ DEPENDENCIES:
   - FacebookCore
   - GoogleMaps
   - GooglePlaces
+  - GreedoLayout
   - HCSStarRatingView (~> 1.5)
   - JGProgressHUD
   - MMDrawerController (~> 0.5.7)
@@ -120,6 +122,8 @@ DEPENDENCIES:
   - "UIImage+DYQRCodeEncoder"
 
 SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - GreedoLayout
   trunk:
     - AFNetworking
     - Bolts
@@ -154,6 +158,7 @@ SPEC CHECKSUMS:
   FBSDKLoginKit: f1ea8026a58b52d30c9f2e6a58ca7d813619fb83
   GoogleMaps: 4b5346bddfe6911bb89155d43c903020170523ac
   GooglePlaces: 1634d019549b969d40fe0ccb0b9513055adebe01
+  GreedoLayout: b1a1adc6ed5f281353225e3eb21d18cedee8e513
   HCSStarRatingView: 1d18f79654735514cd6f00e6d90e38cb6320dc31
   JGProgressHUD: aa403e9a5b45cae98903c4600cccdd98c0c3ec90
   MMDrawerController: 7a4cf8e25596bf2434e03ce50d22a8608ddee6a1
@@ -164,6 +169,6 @@ SPEC CHECKSUMS:
   UICountingLabel: 1db4e7d023e1762171eb226d6dff47a7a84f27aa
   "UIImage+DYQRCodeEncoder": a470dca9417754eb1030a0fa8d81c5c2044efe08
 
-PODFILE CHECKSUM: ef704173be51b896357b2db06416ccaba097bbfc
+PODFILE CHECKSUM: 30904ffc238146af7f33dc6d56fef18917762e9f
 
 COCOAPODS: 1.9.3

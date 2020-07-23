@@ -6,9 +6,12 @@
 //  Copyright © 2020 Xurxo Riesco. All rights reserved.
 //
 
+@import Photos;
 #import <UIKit/UIKit.h>
+#include <stdlib.h>
 
 #import "AppDelegate.h"
+#import "GreedoCollectionViewLayout.h"
 #import "TNTutorialManager.h"
 
 // View Controllers
@@ -26,6 +29,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface HomeViewController : UIViewController
+
+@property (assign, nonatomic) BOOL hasFixedHeight;
 
 /**
     Stores all fetched posts
@@ -61,6 +66,11 @@ NS_ASSUME_NONNULL_BEGIN
     Required tutorial property to allow for visual tutorial on first app use
 */
 @property (strong, nonatomic) TNTutorialManager *tutorialManager;
+
+/**
+    Allows for dynamic collection view layout
+*/
+@property (strong, nonatomic) GreedoCollectionViewLayout *collectionViewSizeCalculator;
 
 @end
 

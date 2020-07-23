@@ -49,8 +49,7 @@
     query.limit = 20;
     [query findObjectsInBackgroundWithBlock:^(NSArray<Message *> *messages, NSError *error) {
         if (messages != nil) {
-            //NSLog(@"%@", messages);
-            self.messages = messages;
+            self.messages = [messages mutableCopy];
             [self.tableView reloadData];
         } else {
             NSLog(@"%@", error.localizedDescription);
@@ -62,6 +61,7 @@
     message.text = self.messageField.text;
     message.author = [PFUser currentUser];
     message.toUser = self.user;
+    // Saves the message to the server
     [message saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
         if(succeeded)
         {

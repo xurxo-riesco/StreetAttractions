@@ -266,7 +266,7 @@
 - (void)fetchPostsAndPredict
 {
   PFQuery *postQuery = [Post query];
-  User *user = [PFUser currentUser];
+  User *user = [User currentUser];
   [postQuery whereKey:@"author" equalTo:self.user];
   [postQuery orderByDescending:@"createdAt"];
   postQuery.limit = 20;

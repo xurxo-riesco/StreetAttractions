@@ -34,6 +34,7 @@
     self.userCategories = categoryStrings;
     // List of user's favorite user is fetched so that it can be used as a query parameter
     [User getFavoritesWithCompletion:^(NSArray<User *> *_Nonnull favorites) {
+        NSLog(@"%@", favorites);
       self.userFavorites = favorites;
       // Initial network call
       [self fetchFavCategoryPosts];
@@ -114,7 +115,15 @@
 #pragma mark - RefreshControl
 - (void)beginRefresh:(UIRefreshControl *)refreshControl
 {
-  [self fetchFavCategoryPosts];
+  [User getCategoriesWithCompletion:^(NSArray *_Nonnull categories, NSArray *_Nonnull categoryStrings) {
+    self.userCategories = categoryStrings;
+    // List of user's favorite user is fetched so that it can be used as a query parameter
+    [User getFavoritesWithCompletion:^(NSArray<User *> *_Nonnull favorites) {
+      self.userFavorites = favorites;
+      // Initial network call
+      [self fetchFavCategoryPosts];
+    }];
+  }];
   [refreshControl endRefreshing];
 }
 

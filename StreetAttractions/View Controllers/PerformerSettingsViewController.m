@@ -56,7 +56,7 @@
   lineChart.yFixedValueMax = 5;
   lineChart.showYGridLines = YES;
   PFQuery *postQuery = [Post query];
-  postQuery.limit = 10;
+  postQuery.limit = 20;
   User *user = [User currentUser];
   [postQuery orderByDescending:@"createdAt"];
   [postQuery whereKey:@"author" equalTo:user];
@@ -64,10 +64,12 @@
   [postQuery findObjectsInBackgroundWithBlock:^(NSArray<Post *> *_Nullable posts, NSError *_Nullable error) {
     if (posts) {
       for (Post *post in posts) {
-        // Includes the rating data to the array to graph
-        [self.data01Array addObject:post.rating];
-        // Adds likesCount and rating to the total values
-        self.totalRating += post.rating.floatValue;
+        if (post.rating != nil) {
+          // Includes the rating data to the array to graph
+          [self.data01Array addObject:post.rating];
+          // Adds likesCount and rating to the total values
+          self.totalRating += post.rating.floatValue;
+        }
         self.totalLikes += post.likeCount.intValue;
       }
     }

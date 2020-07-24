@@ -8,6 +8,7 @@ ${BUILT_PRODUCTS_DIR}/DYQRCodeDecoder/DYQRCodeDecoder.framework
 ${BUILT_PRODUCTS_DIR}/DateTools/DateTools.framework
 ${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework
 ${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework
+${BUILT_PRODUCTS_DIR}/FSCalendar/FSCalendar.framework
 ${BUILT_PRODUCTS_DIR}/FacebookCore/FacebookCore.framework
 ${BUILT_PRODUCTS_DIR}/GreedoLayout/GreedoLayout.framework
 ${BUILT_PRODUCTS_DIR}/HCSStarRatingView/HCSStarRatingView.framework

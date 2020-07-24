@@ -136,7 +136,7 @@
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView
                  cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath
 {
-  PFUser *user = self.finalUsers[indexPath.row];
+  User *user = self.finalUsers[indexPath.row];
   UserCell *userCell = [tableView dequeueReusableCellWithIdentifier:@"UserCell"];
   userCell.delegate = self;
   [userCell loadUser:user];

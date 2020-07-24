@@ -51,6 +51,7 @@
 		9865ADC824C1FBC20090C386 /* CommentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9865ADC724C1FBC20090C386 /* CommentsViewController.m */; };
 		9865ADCB24C1FE7C0090C386 /* CommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9865ADCA24C1FE7C0090C386 /* CommentCell.m */; };
 		9865ADCE24C200010090C386 /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = 9865ADCD24C200010090C386 /* Comment.m */; };
+		986919DF24CA38A200245BFE /* CalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 986919DE24CA38A200245BFE /* CalendarViewController.m */; };
 		9878734624C6571A00409325 /* DatePredictor.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 9878734524C6571A00409325 /* DatePredictor.mlmodel */; };
 		9897D77224C892D5006C3FC5 /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = 9897D77024C892D4006C3FC5 /* Message.m */; };
 		9897D77524C892E9006C3FC5 /* MessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9897D77324C892E9006C3FC5 /* MessageCell.m */; };
@@ -177,6 +178,8 @@
 		9865ADCA24C1FE7C0090C386 /* CommentCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CommentCell.m; sourceTree = "<group>"; };
 		9865ADCC24C200010090C386 /* Comment.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Comment.h; sourceTree = "<group>"; };
 		9865ADCD24C200010090C386 /* Comment.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Comment.m; sourceTree = "<group>"; };
+		986919DD24CA38A200245BFE /* CalendarViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CalendarViewController.h; sourceTree = "<group>"; };
+		986919DE24CA38A200245BFE /* CalendarViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CalendarViewController.m; sourceTree = "<group>"; };
 		9878734524C6571A00409325 /* DatePredictor.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = DatePredictor.mlmodel; sourceTree = "<group>"; };
 		9897D77024C892D4006C3FC5 /* Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Message.m; sourceTree = "<group>"; };
 		9897D77124C892D4006C3FC5 /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Message.h; sourceTree = "<group>"; };
@@ -363,6 +366,8 @@
 				9863F19024C5F92900B01B74 /* PerformerSettingsViewController.m */,
 				9897D77924C8A3DD006C3FC5 /* CollabViewController.h */,
 				9897D77A24C8A3DD006C3FC5 /* CollabViewController.m */,
+				986919DD24CA38A200245BFE /* CalendarViewController.h */,
+				986919DE24CA38A200245BFE /* CalendarViewController.m */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -752,6 +757,7 @@
 				9824088524BCBD6B00F35FDA /* main.m in Sources */,
 				9863F18B24C259C800B01B74 /* UserCell.m in Sources */,
 				9865ADC524C10C9B0090C386 /* HyTransitions.m in Sources */,
+				986919DF24CA38A200245BFE /* CalendarViewController.m in Sources */,
 				9805EC0824BD197D0051CF5D /* FavoriteCell.m in Sources */,
 				9863F18E24C2605500B01B74 /* NSString+ColorCode.m in Sources */,
 				9865ADC124C10C9B0090C386 /* HySpinerLayer.m in Sources */,

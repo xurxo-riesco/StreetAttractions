@@ -25,10 +25,10 @@
   [super setSelected:selected animated:animated];
 }
 
-- (void)loadUser:(PFUser *)user
+- (void)loadUser:(User *)user
 {
   self.user = user;
-  self.usernameLabel.text = user.username;
+  self.usernameLabel.text = user.screenname;
   self.profileView.file = user[@"profilePic"];
   self.profileView.layer.cornerRadius = 31;
   self.profileView.layer.masksToBounds = YES;

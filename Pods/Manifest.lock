@@ -57,6 +57,7 @@ PODS:
     - FBSDKLoginKit/Login (= 5.15.1)
   - FBSDKLoginKit/Login (5.15.1):
     - FBSDKCoreKit (~> 5.0)
+  - FSCalendar (2.8.1)
   - GoogleMaps (3.9.0):
     - GoogleMaps/Maps (= 3.9.0)
   - GoogleMaps/Base (3.9.0)
@@ -107,6 +108,7 @@ DEPENDENCIES:
   - DateTools
   - DYQRCodeDecoder
   - FacebookCore
+  - FSCalendar
   - GoogleMaps
   - GooglePlaces
   - GreedoLayout
@@ -123,6 +125,7 @@ DEPENDENCIES:
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
+    - FSCalendar
     - GreedoLayout
   trunk:
     - AFNetworking
@@ -156,6 +159,7 @@ SPEC CHECKSUMS:
   FacebookCore: ba86524b66cfa86d0f8e65d08faa8504a9f732dd
   FBSDKCoreKit: 1d5acf7c9d7a2f92bb1a242dc60cae5b7adb91df
   FBSDKLoginKit: f1ea8026a58b52d30c9f2e6a58ca7d813619fb83
+  FSCalendar: 5245140456fcbcac5824c203b98bd8068bdfee1a
   GoogleMaps: 4b5346bddfe6911bb89155d43c903020170523ac
   GooglePlaces: 1634d019549b969d40fe0ccb0b9513055adebe01
   GreedoLayout: b1a1adc6ed5f281353225e3eb21d18cedee8e513
@@ -169,6 +173,6 @@ SPEC CHECKSUMS:
   UICountingLabel: 1db4e7d023e1762171eb226d6dff47a7a84f27aa
   "UIImage+DYQRCodeEncoder": a470dca9417754eb1030a0fa8d81c5c2044efe08
 
-PODFILE CHECKSUM: 30904ffc238146af7f33dc6d56fef18917762e9f
+PODFILE CHECKSUM: 8b2f324e9d9ffc1330fedc6c599043a62bf3329d
 
 COCOAPODS: 1.9.3

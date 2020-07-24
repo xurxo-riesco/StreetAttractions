@@ -21,7 +21,7 @@
 
   // Displays the button to performer settings based on the isPerformer user's property
   if ([User currentUser].isPerfomer) {
-      NSLog(@"PERFORMER");
+    NSLog(@"PERFORMER");
     self.performerButton.alpha = 1;
     self.collabButton.alpha = 1;
   }
@@ -79,6 +79,8 @@
     PerformerSettingsViewController *perfomerSettingsViewController = [segue destinationViewController];
   } else if ([segue.identifier isEqual:@"toCollab"]) {
     CollabViewController *collabViewController = [segue destinationViewController];
+  } else if ([segue.identifier isEqual:@"toCalendar"]) {
+    CalendarViewController *calendarViewController = [segue destinationViewController];
   } else {
     SettingsViewController *settingsViewController = [segue destinationViewController];
     settingsViewController.delegate = self;

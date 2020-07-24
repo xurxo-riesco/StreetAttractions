@@ -9,6 +9,9 @@
 #import <UIKit/UIKit.h>
 @import Parse;
 
+// Models
+#import "User.h"
+
 NS_ASSUME_NONNULL_BEGIN
 /*!
    @protocol UserCellDelegate
@@ -29,7 +32,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
     Hosts the user of the current cell
 */
-@property (nonatomic, strong) PFUser *user;
+@property (nonatomic, strong) User *user;
 
 /**
     Displays the username of the user
@@ -51,7 +54,7 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 @protocol UserCellDelegate
-- (void)userCell:(UserCell *)userCell didTap:(PFUser *)user;
+- (void)userCell:(UserCell *)userCell didTap:(User *)user;
 @end
 
 NS_ASSUME_NONNULL_END

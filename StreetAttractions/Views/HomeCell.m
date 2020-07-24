@@ -91,7 +91,7 @@
   if (self.post.upcomingDate.timeIntervalSinceNow >= 0 && self.post.isUpcoming) {
     self.dateLabel.text = @"Upc";
   } else {
-    if (self.post.upcomingDate.timeIntervalSinceNow) {
+    if (self.post.upcomingDate.timeIntervalSinceNow <= 0) {
       self.post.isUpcoming = false;
       [self.post saveInBackground];
     }

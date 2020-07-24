@@ -20,7 +20,7 @@
 #import "ProfileViewController.h"
 #import "SettingsViewController.h"
 #import "CollabViewController.h"
-
+#import "CalendarViewController.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SlideOutViewController : UIViewController

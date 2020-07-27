@@ -53,6 +53,8 @@
 		9865ADCE24C200010090C386 /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = 9865ADCD24C200010090C386 /* Comment.m */; };
 		986919DF24CA38A200245BFE /* CalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 986919DE24CA38A200245BFE /* CalendarViewController.m */; };
 		9878734624C6571A00409325 /* DatePredictor.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 9878734524C6571A00409325 /* DatePredictor.mlmodel */; };
+		9890CC4624CF7E6600621EE3 /* Pods_StreetAttractions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B9E0A8D7C5374A8CAEB4695 /* Pods_StreetAttractions.framework */; };
+		9890CC4724CF7E6600621EE3 /* Pods_StreetAttractions.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4B9E0A8D7C5374A8CAEB4695 /* Pods_StreetAttractions.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9897D77224C892D5006C3FC5 /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = 9897D77024C892D4006C3FC5 /* Message.m */; };
 		9897D77524C892E9006C3FC5 /* MessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9897D77324C892E9006C3FC5 /* MessageCell.m */; };
 		9897D77824C89305006C3FC5 /* MessageThreadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9897D77724C89305006C3FC5 /* MessageThreadViewController.m */; };
@@ -65,7 +67,6 @@
 		98C57B7124BF88F300F8FD0C /* Annotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 98C57B7024BF88F300F8FD0C /* Annotation.m */; };
 		98C57B7424BF8DE800F8FD0C /* AnnotationPin.m in Sources */ = {isa = PBXBuildFile; fileRef = 98C57B7324BF8DE800F8FD0C /* AnnotationPin.m */; };
 		A3126CFCB9B67851487AAF53 /* Pods_StreetAttractions_StreetAttractionsUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29CCE5AD7581B48EA37FBABC /* Pods_StreetAttractions_StreetAttractionsUITests.framework */; };
-		A8E64502793940A4F6FFFDA0 /* Pods_StreetAttractions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B9E0A8D7C5374A8CAEB4695 /* Pods_StreetAttractions.framework */; };
 		C7AA97660AD3B75220C842F0 /* Pods_StreetAttractionsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 528DF35D0F33A6E60A67D75F /* Pods_StreetAttractionsTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -85,6 +86,20 @@
 			remoteInfo = StreetAttractions;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		9890CC4824CF7E6600621EE3 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				9890CC4724CF7E6600621EE3 /* Pods_StreetAttractions.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		07270796120B8669F32C4AE6 /* Pods-StreetAttractionsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StreetAttractionsTests.debug.xcconfig"; path = "Target Support Files/Pods-StreetAttractionsTests/Pods-StreetAttractionsTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -208,11 +223,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9890CC4624CF7E6600621EE3 /* Pods_StreetAttractions.framework in Frameworks */,
 				9863F19724C607EC00B01B74 /* CoreGraphics.framework in Frameworks */,
 				98C57B6624BF776A00F8FD0C /* CoreML.framework in Frameworks */,
 				9863F19924C607F300B01B74 /* QuartzCore.framework in Frameworks */,
 				982408E224BCE0E900F35FDA /* MapKit.framework in Frameworks */,
-				A8E64502793940A4F6FFFDA0 /* Pods_StreetAttractions.framework in Frameworks */,
 				9863F19324C607DB00B01B74 /* Foundation.framework in Frameworks */,
 				9863F19524C607E400B01B74 /* UIKit.framework in Frameworks */,
 			);
@@ -594,6 +609,7 @@
 				9824086D24BCBD6900F35FDA /* Resources */,
 				F59D1BEEA26F2C2290D876D7 /* [CP] Embed Pods Frameworks */,
 				4E483335CE6CFCFE18A86D59 /* [CP] Copy Pods Resources */,
+				9890CC4824CF7E6600621EE3 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);

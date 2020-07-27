@@ -18,6 +18,8 @@
 - (void)viewDidLoad
 {
   [super viewDidLoad];
+  self.posts = [[NSMutableArray alloc] init];
+  self.dataSkip = 0;
 
   // TableView Set Up
   self.tableView.delegate = self;
@@ -34,7 +36,7 @@
     self.userCategories = categoryStrings;
     // List of user's favorite user is fetched so that it can be used as a query parameter
     [User getFavoritesWithCompletion:^(NSArray<User *> *_Nonnull favorites) {
-        NSLog(@"%@", favorites);
+      NSLog(@"%@", favorites);
       self.userFavorites = favorites;
       // Initial network call
       [self fetchFavCategoryPosts];
@@ -62,12 +64,13 @@
         for (int i = prevNumPosts; i < self.posts.count; i++) {
           [newIndexPaths addObject:[NSIndexPath indexPathForRow:i inSection:0]];
         }
+        [self fetchFavUserPosts];
         self.dataSkip += posts.count;
       } else {
         self.posts = [posts mutableCopy];
+        [self fetchFavUserPosts];
         self.dataSkip = self.posts.count;
       }
-      [self fetchFavUserPosts];
     }
   }];
 }
@@ -90,7 +93,9 @@
           NSLog(@"Repeated");
           continue;
         } else {
-          [self.posts addObject:post];
+          if (post != nil) {
+            [self.posts addObject:post];
+          }
         }
       }
       NSMutableArray *newIndexPaths = [[NSMutableArray alloc] init];
@@ -115,10 +120,12 @@
 #pragma mark - RefreshControl
 - (void)beginRefresh:(UIRefreshControl *)refreshControl
 {
+  self.dataSkip = 0;
   [User getCategoriesWithCompletion:^(NSArray *_Nonnull categories, NSArray *_Nonnull categoryStrings) {
     self.userCategories = categoryStrings;
     // List of user's favorite user is fetched so that it can be used as a query parameter
     [User getFavoritesWithCompletion:^(NSArray<User *> *_Nonnull favorites) {
+      NSLog(@"%@", favorites);
       self.userFavorites = favorites;
       // Initial network call
       [self fetchFavCategoryPosts];

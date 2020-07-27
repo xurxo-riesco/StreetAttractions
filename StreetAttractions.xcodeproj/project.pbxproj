@@ -53,7 +53,7 @@
 		9865ADCE24C200010090C386 /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = 9865ADCD24C200010090C386 /* Comment.m */; };
 		986919DF24CA38A200245BFE /* CalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 986919DE24CA38A200245BFE /* CalendarViewController.m */; };
 		9878734624C6571A00409325 /* DatePredictor.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 9878734524C6571A00409325 /* DatePredictor.mlmodel */; };
-		9890CC4624CF7E6600621EE3 /* Pods_StreetAttractions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B9E0A8D7C5374A8CAEB4695 /* Pods_StreetAttractions.framework */; };
+		9890CC4624CF7E6600621EE3 /* Pods_StreetAttractions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B9E0A8D7C5374A8CAEB4695 /* Pods_StreetAttractions.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		9890CC4724CF7E6600621EE3 /* Pods_StreetAttractions.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4B9E0A8D7C5374A8CAEB4695 /* Pods_StreetAttractions.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9897D77224C892D5006C3FC5 /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = 9897D77024C892D4006C3FC5 /* Message.m */; };
 		9897D77524C892E9006C3FC5 /* MessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9897D77324C892E9006C3FC5 /* MessageCell.m */; };

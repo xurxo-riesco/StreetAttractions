@@ -25,16 +25,16 @@
   self.user = (User *)self.post.author;
 
   // PinchGesture Set Up
-    if (self.post.hasVideo) {
-      self.videoLabel.alpha = 0.75;
-        self.pinch = NO;
-        UIPinchGestureRecognizer *pinchGesture = [[UIPinchGestureRecognizer alloc] initWithTarget:self
-                                                                                           action:@selector(didPinchIn:)];
-        [self.view addGestureRecognizer:pinchGesture];
-        [self.view setUserInteractionEnabled:YES];
-    } else {
-      self.videoLabel.alpha = 0;
-    }
+  if (self.post.hasVideo) {
+    self.videoLabel.alpha = 0.75;
+    self.pinch = NO;
+    UIPinchGestureRecognizer *pinchGesture = [[UIPinchGestureRecognizer alloc] initWithTarget:self
+                                                                                       action:@selector(didPinchIn:)];
+    [self.view addGestureRecognizer:pinchGesture];
+    [self.view setUserInteractionEnabled:YES];
+  } else {
+    self.videoLabel.alpha = 0;
+  }
   // Liking Set Up
   [User hasLiked:self.post
   WithCompletion:^(BOOL completion) {

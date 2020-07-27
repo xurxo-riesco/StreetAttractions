@@ -96,12 +96,32 @@ NS_ASSUME_NONNULL_BEGIN
 /**
   Allows performance to pick the date of the upcoming performance
 */
-@property (strong, nonatomic)UIDatePicker *datePicker;
+@property (strong, nonatomic) UIDatePicker *datePicker;
 
 /**
   Helper field to host the Date Picker
 */
 @property (weak, nonatomic) IBOutlet UITextField *dateTextField;
+
+/**
+  Picker View to select categories
+*/
+@property (weak, nonatomic) IBOutlet UIPickerView *pickerView;
+
+/**
+  Write in the description
+*/
+@property (weak, nonatomic) IBOutlet UITextView *descriptionText;
+
+/**
+  Stores the video file of a post before sending to the server
+*/
+@property (strong, nonatomic) PFFileObject *video;
+
+/**
+  Helper to determine if a post has a video file
+*/
+@property (nonatomic) BOOL hasVideo;
 
 @end
 

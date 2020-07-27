@@ -397,8 +397,6 @@
 			children = (
 				9830BF2724CF2B8D008FB243 /* Views */,
 				9830BF2224CF2B19008FB243 /* Models */,
-				982408AF24BCC68400F35FDA /* Category.h */,
-				982408B024BCC68400F35FDA /* Category.m */,
 				9830BF1F24CF2AEB008FB243 /* View Controllers */,
 			);
 			path = Categories;
@@ -463,6 +461,8 @@
 		9830BF2224CF2B19008FB243 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				982408AF24BCC68400F35FDA /* Category.h */,
+				982408B024BCC68400F35FDA /* Category.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";

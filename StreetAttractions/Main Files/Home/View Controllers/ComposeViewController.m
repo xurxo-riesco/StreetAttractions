@@ -7,10 +7,13 @@
 //
 
 #import "ComposeViewController.h"
+#import <MobileCoreServices/MobileCoreServices.h>
 
 @interface ComposeViewController () <UIPickerViewDelegate, UIPickerViewDataSource, LocationsViewControllerDelegate, UITextViewDelegate, UIImagePickerControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIPickerView *pickerView;
 @property (weak, nonatomic) IBOutlet UITextView *descriptionText;
+@property (strong, nonatomic) PFFileObject *video;
+@property (nonatomic) BOOL hasVideo;
 
 @end
 
@@ -19,6 +22,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self fetchCategories];
+    self.hasVideo = NO;
     
     // PickerView Set Up
     self.pickerView.delegate = self;
@@ -30,6 +34,8 @@
     self.descriptionText.textColor = [UIColor lightGrayColor];
     
     // Initial UI Set Up
+    self.videoButton.layer.cornerRadius = 16;
+    self.videoButton.layer.masksToBounds = YES;
     self.mediaButton.layer.cornerRadius = 16;
     self.mediaButton.layer.masksToBounds = YES;
     self.locationButton.layer.cornerRadius = 16;
@@ -86,15 +92,36 @@
         imagePickerVC.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
     }
     [self presentViewController:imagePickerVC animated:YES completion:nil];
+
 }
+
+- (IBAction)onAddVideo:(id)sender {
+    self.hasVideo = YES;
+    UIImagePickerController *videoPicker = [[UIImagePickerController alloc] init];
+    videoPicker.delegate = self;
+    videoPicker.modalPresentationStyle = UIModalPresentationCurrentContext;
+    videoPicker.mediaTypes = [UIImagePickerController availableMediaTypesForSourceType: UIImagePickerControllerSourceTypePhotoLibrary];
+    videoPicker.mediaTypes = @[(NSString*)kUTTypeMovie, (NSString*)kUTTypeAVIMovie, (NSString*)kUTTypeVideo, (NSString*)kUTTypeMPEG4];
+    videoPicker.videoQuality = UIImagePickerControllerQualityTypeHigh;
+    [self presentViewController:videoPicker animated:YES completion:nil];
+}
+
 
 #pragma mark - ImagePicker Delegate
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
-    UIImage *originalImage = info[UIImagePickerControllerOriginalImage];
+    if(self.hasVideo){
+        NSString *videoPath = [[info objectForKey:UIImagePickerControllerMediaURL] path];
+        NSData *videoData = [NSData dataWithContentsOfFile:videoPath];
+        PFFileObject *video = [PFFileObject fileObjectWithData:videoData];
+        self.video = video;
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
+    else{
     UIImage *editedImage = info[UIImagePickerControllerEditedImage];
     UIImage *resizedImage = [self resizeImage:editedImage withSize:CGSizeMake(960, 1440)];
     self.image = resizedImage;
     [self dismissViewControllerAnimated:YES completion:nil];
+    }
 }
 
 #pragma mark - Image Manipulation
@@ -124,7 +151,7 @@
             self.upcomingDate = [NSDate date];
         }
         // Sends post to the server after it is verified as valid locally
-        [Post postUserImage:self.image withCaption:self.descriptionText.text forLatitude:self.latitude forLongitude:self.longitude toCategory:self.category isUpcoming:upcoming forDate:self.upcomingDate withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+        [Post postUserImage:self.image withCaption:self.descriptionText.text forLatitude:self.latitude forLongitude:self.longitude toCategory:self.category isUpcoming:upcoming forDate:self.upcomingDate withVideo:self.hasVideo withVideoFile:self.video withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
             if (succeeded) {
                 NSLog(@"POSTED");
                 [HUD dismiss];

@@ -42,6 +42,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) PFFileObject *media;
 
 /**
+        Video corresponding to the post
+*/
+@property (nonatomic, strong) PFFileObject *video;
+
+/**
    Amount of likes a post has received
 */
 @property (nonatomic, strong) NSNumber *likeCount;
@@ -91,6 +96,11 @@ NS_ASSUME_NONNULL_BEGIN
 */
 @property (nonatomic) BOOL isUpcoming;
 
+/**
+  Determines if event has video
+*/
+@property (nonatomic) BOOL hasVideo;
+
 /*!
    @brief Send the post to the server
    @discussion Loads an object post to the server with the following all inputs as properties
@@ -105,6 +115,8 @@ NS_ASSUME_NONNULL_BEGIN
            toCategory:(NSString *)category
            isUpcoming:(BOOL)upcoming
               forDate:(NSDate *)date
+            withVideo: (BOOL) hasVideo
+       withVideoFile : (PFFileObject *) video
        withCompletion:(PFBooleanResultBlock _Nullable)completion;
 @end
 NS_ASSUME_NONNULL_END

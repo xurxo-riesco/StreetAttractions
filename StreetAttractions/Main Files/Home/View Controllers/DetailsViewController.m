@@ -7,11 +7,13 @@
 //
 
 #import "DetailsViewController.h"
+
 // View Controllers
 #import "ProfileViewController.h"
 #import "User.h"
 
 @interface DetailsViewController ()<UIViewControllerTransitioningDelegate>
+@property (weak, nonatomic) IBOutlet UILabel *videoLabel;
 
 @end
 
@@ -20,8 +22,19 @@
 - (void)viewDidLoad
 {
   [super viewDidLoad];
-  self.user = self.post.author;
+  self.user = (User *)self.post.author;
 
+  // PinchGesture Set Up
+    if (self.post.hasVideo) {
+      self.videoLabel.alpha = 0.75;
+        self.pinch = NO;
+        UIPinchGestureRecognizer *pinchGesture = [[UIPinchGestureRecognizer alloc] initWithTarget:self
+                                                                                           action:@selector(didPinchIn:)];
+        [self.view addGestureRecognizer:pinchGesture];
+        [self.view setUserInteractionEnabled:YES];
+    } else {
+      self.videoLabel.alpha = 0;
+    }
   // Liking Set Up
   [User hasLiked:self.post
   WithCompletion:^(BOOL completion) {
@@ -70,6 +83,50 @@
   MKCoordinateSpanMake(0.1, 0.1));
   [self.mapView setRegion:postRegion animated:false];
   [self loadMap];
+}
+
+- (void)didPinchIn:(UIPinchGestureRecognizer *)sender
+{
+  if (sender.scale <= 1.0 && self.pinch == NO) {
+    NSLog(@"%d", self.pinch);
+    self.pinch = YES;
+    NSLog(@"PINCH IN");
+    PFFileObject *data = self.post.video;
+    NSLog(@"%@", data);
+    [data getDataInBackgroundWithBlock:^(NSData *_Nullable data, NSError *_Nullable error) {
+      if (data) {
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString *documentsDirectory = [paths objectAtIndex:0];
+        NSString *path = [documentsDirectory stringByAppendingPathComponent:@"myMove.mp4"];
+
+        [data writeToFile:path atomically:YES];
+        NSURL *moveUrl = [NSURL fileURLWithPath:path];
+        self.avPlayer = [AVPlayer playerWithURL:moveUrl];
+        self.avPlayer.actionAtItemEnd = AVPlayerActionAtItemEndNone;
+        self.videoLayer = [AVPlayerLayer playerLayerWithPlayer:self.avPlayer];
+        self.videoLayer.frame = self.view.bounds;
+        self.videoLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
+        [self.view.layer addSublayer:self.videoLayer];
+        [self.avPlayer play];
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(itemDidFinishPlaying:)
+                                                     name:AVPlayerItemDidPlayToEndTimeNotification
+                                                   object:[self.avPlayer currentItem]];
+
+      } else {
+        NSLog(@"Error");
+      }
+    }];
+  } else if (sender.scale > 1.0 && self.pinch == YES) {
+    [self.videoLayer removeFromSuperlayer];
+    self.pinch = NO;
+  }
+}
+
+- (void)itemDidFinishPlaying:(NSNotification *)notification
+{
+  AVPlayerItem *player = [notification object];
+  [player seekToTime:kCMTimeZero];
 }
 
 - (void)loadMap

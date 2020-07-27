@@ -901,14 +901,14 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TIC-Ch-xb5">
-                                <rect key="frame" x="133.5" y="586" width="147" height="44"/>
+                                <rect key="frame" x="40" y="587" width="147" height="44"/>
                                 <color key="backgroundColor" systemColor="systemGray6Color" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="aMk-Qa-eGR"/>
                                     <constraint firstAttribute="width" constant="147" id="jQ2-N8-ZqU"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="24"/>
-                                <state key="normal" title="Add Media">
+                                <state key="normal" title="Add Image">
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                 </state>
                                 <connections>
@@ -948,10 +948,27 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eq4-1X-G4f">
+                                <rect key="frame" x="232" y="587" width="147" height="44"/>
+                                <color key="backgroundColor" systemColor="systemGray6Color" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="8Ua-dM-76w"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="147" id="UsL-x2-O9i"/>
+                                    <constraint firstAttribute="height" constant="44" id="ofC-So-afR"/>
+                                    <constraint firstAttribute="width" constant="147" id="pDs-Hx-PbI"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="24"/>
+                                <state key="normal" title="Add Video">
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="onAddVideo:" destination="Eqb-pw-4Xp" eventType="touchUpInside" id="oh5-TU-Z97"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="TIC-Ch-xb5" firstAttribute="top" secondItem="gFW-rh-K7M" secondAttribute="bottom" constant="38" id="3Yv-yl-vQ7"/>
+                            <constraint firstItem="TIC-Ch-xb5" firstAttribute="top" secondItem="gFW-rh-K7M" secondAttribute="bottom" constant="39" id="3Yv-yl-vQ7"/>
                             <constraint firstItem="SE2-dD-aJT" firstAttribute="centerX" secondItem="jxx-HT-yRJ" secondAttribute="centerX" id="6Lo-ok-ttB"/>
                             <constraint firstItem="B2v-EK-8fv" firstAttribute="top" secondItem="9hS-5h-hCz" secondAttribute="bottom" constant="8" id="9AC-zj-s5b"/>
                             <constraint firstItem="c6E-3d-XE6" firstAttribute="trailing" secondItem="B2v-EK-8fv" secondAttribute="trailing" constant="20" id="BPE-Y1-yiy"/>
@@ -961,14 +978,16 @@
                             <constraint firstItem="c6E-3d-XE6" firstAttribute="trailing" secondItem="jxx-HT-yRJ" secondAttribute="trailing" constant="20" id="SDd-Ff-AKP"/>
                             <constraint firstItem="c6E-3d-XE6" firstAttribute="bottom" secondItem="uw6-jU-9gg" secondAttribute="bottom" constant="18" id="YCo-Xk-SrP"/>
                             <constraint firstItem="9hS-5h-hCz" firstAttribute="top" secondItem="jxx-HT-yRJ" secondAttribute="bottom" constant="8" id="YW5-tW-um8"/>
-                            <constraint firstItem="SE2-dD-aJT" firstAttribute="top" secondItem="TIC-Ch-xb5" secondAttribute="bottom" constant="53" id="baQ-tQ-Z9U"/>
+                            <constraint firstItem="SE2-dD-aJT" firstAttribute="top" secondItem="TIC-Ch-xb5" secondAttribute="bottom" constant="52" id="baQ-tQ-Z9U"/>
                             <constraint firstItem="9hS-5h-hCz" firstAttribute="trailing" secondItem="c6E-3d-XE6" secondAttribute="trailing" id="cQQ-Wf-yVS"/>
                             <constraint firstItem="uw6-jU-9gg" firstAttribute="leading" secondItem="c6E-3d-XE6" secondAttribute="leading" constant="31" id="dRd-Cr-JhL"/>
                             <constraint firstItem="gFW-rh-K7M" firstAttribute="top" secondItem="B2v-EK-8fv" secondAttribute="bottom" constant="8" id="g9P-7e-vgk"/>
                             <constraint firstItem="gFW-rh-K7M" firstAttribute="top" secondItem="B2v-EK-8fv" secondAttribute="bottom" constant="8" id="hOr-fB-J1P"/>
                             <constraint firstItem="jxx-HT-yRJ" firstAttribute="leading" secondItem="c6E-3d-XE6" secondAttribute="leading" constant="20" id="hhd-Mb-hkP"/>
                             <constraint firstItem="jxx-HT-yRJ" firstAttribute="top" secondItem="c6E-3d-XE6" secondAttribute="top" constant="25" id="l7F-yK-CCM"/>
-                            <constraint firstItem="TIC-Ch-xb5" firstAttribute="centerX" secondItem="jxx-HT-yRJ" secondAttribute="centerX" id="uQ7-ej-gIx"/>
+                            <constraint firstItem="eq4-1X-G4f" firstAttribute="leading" secondItem="TIC-Ch-xb5" secondAttribute="trailing" constant="45" id="q3s-Af-Jq0"/>
+                            <constraint firstItem="eq4-1X-G4f" firstAttribute="top" secondItem="gFW-rh-K7M" secondAttribute="bottom" constant="39" id="sEZ-OM-ZkT"/>
+                            <constraint firstItem="TIC-Ch-xb5" firstAttribute="centerX" secondItem="jxx-HT-yRJ" secondAttribute="centerX" constant="-93.5" id="uQ7-ej-gIx"/>
                             <constraint firstItem="9hS-5h-hCz" firstAttribute="leading" secondItem="c6E-3d-XE6" secondAttribute="leading" id="vOH-4s-KFV"/>
                             <constraint firstItem="B2v-EK-8fv" firstAttribute="leading" secondItem="c6E-3d-XE6" secondAttribute="leading" constant="20" id="xvs-wi-6nU"/>
                             <constraint firstItem="gFW-rh-K7M" firstAttribute="leading" secondItem="c6E-3d-XE6" secondAttribute="leading" id="zgg-Bx-oJ8"/>
@@ -991,6 +1010,7 @@
                         <outlet property="pickerView" destination="9hS-5h-hCz" id="p5E-dY-3PB"/>
                         <outlet property="upcomingLabel" destination="uw6-jU-9gg" id="jzU-L1-GAn"/>
                         <outlet property="upcomingSwitch" destination="iXz-aE-wDZ" id="ZpR-QW-E9c"/>
+                        <outlet property="videoButton" destination="eq4-1X-G4f" id="AFf-lS-xOl"/>
                         <segue destination="aFt-PK-MNw" kind="show" identifier="tagSegue" id="U9E-Tj-k7R"/>
                     </connections>
                 </viewController>
@@ -1117,7 +1137,7 @@
                                 </connections>
                             </button>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="7Gb-zI-3OX">
-                                <rect key="frame" x="0.0" y="258" width="414" height="445"/>
+                                <rect key="frame" x="0.0" y="258" width="414" height="494"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="M8g-Ip-ctj">
                                     <size key="itemSize" width="143" height="122"/>
@@ -1259,9 +1279,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="6Og-MD-fR4">
-                                <rect key="frame" x="0.0" y="108" width="414" height="282"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="302"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="282" id="cWr-td-oQu"/>
+                                    <constraint firstAttribute="height" constant="302" id="cWr-td-oQu"/>
                                     <constraint firstAttribute="width" constant="414" id="iXD-9B-Y3l"/>
                                 </constraints>
                             </mapView>
@@ -1350,6 +1370,14 @@
                                     <segue destination="1Aq-dy-BBy" kind="show" identifier="toCommentsVC" id="l33-qD-Bhb"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.75" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="This performance has a video! Pinch to view it!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h6A-Zt-dGZ">
+                                <rect key="frame" x="0.0" y="88" width="414" height="27"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -1366,7 +1394,7 @@
                             <constraint firstItem="jBp-Hu-UhK" firstAttribute="top" secondItem="Jjy-Fp-h9c" secondAttribute="bottom" constant="8" id="Fmw-6a-IHL"/>
                             <constraint firstItem="STR-lN-B1h" firstAttribute="leading" secondItem="jBp-Hu-UhK" secondAttribute="trailing" constant="8" id="G5k-fh-j9H"/>
                             <constraint firstItem="Jjy-Fp-h9c" firstAttribute="top" secondItem="6Og-MD-fR4" secondAttribute="bottom" constant="8" id="WLV-oD-hB6"/>
-                            <constraint firstItem="6Og-MD-fR4" firstAttribute="top" secondItem="5h1-US-8VA" secondAttribute="top" constant="20" id="Win-qc-6GG"/>
+                            <constraint firstItem="6Og-MD-fR4" firstAttribute="top" secondItem="5h1-US-8VA" secondAttribute="top" id="Win-qc-6GG"/>
                             <constraint firstItem="STR-lN-B1h" firstAttribute="top" secondItem="Jjy-Fp-h9c" secondAttribute="bottom" constant="8" id="bgh-V2-rVD"/>
                             <constraint firstItem="5h1-US-8VA" firstAttribute="bottom" secondItem="HKy-a1-U4q" secondAttribute="bottom" constant="8" id="d2d-kS-3AH"/>
                             <constraint firstItem="6Og-MD-fR4" firstAttribute="leading" secondItem="5h1-US-8VA" secondAttribute="leading" id="jFB-Iu-zdo"/>
@@ -1403,6 +1431,7 @@
                         <outlet property="rateButton" destination="Xz8-Tv-Li6" id="hWG-lm-ieL"/>
                         <outlet property="starView" destination="HKy-a1-U4q" id="5oe-zp-nl8"/>
                         <outlet property="userLabel" destination="STR-lN-B1h" id="yhc-Nu-ST9"/>
+                        <outlet property="videoLabel" destination="h6A-Zt-dGZ" id="I7N-ZE-4ge"/>
                         <segue destination="XsX-kG-neR" kind="show" identifier="detailsToProfile" id="Rju-t2-JMe"/>
                     </connections>
                 </viewController>
@@ -2060,7 +2089,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="70" estimatedRowHeight="70" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="CRj-4I-Te8">
-                                <rect key="frame" x="0.0" y="88" width="414" height="645"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="694"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MessageCell" rowHeight="70" id="Cpt-Wc-JBe" customClass="MessageCell">
@@ -2110,12 +2139,12 @@
                                 </prototypes>
                             </tableView>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7fM-uV-GvT">
-                                <rect key="frame" x="0.0" y="730" width="339" height="34"/>
+                                <rect key="frame" x="0.0" y="779" width="339" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7NR-BO-YzR">
-                                <rect key="frame" x="352" y="730" width="36" height="30"/>
+                                <rect key="frame" x="352" y="779" width="36" height="30"/>
                                 <state key="normal" title="Send"/>
                                 <connections>
                                     <action selector="onSend:" destination="pKo-nC-yU4" eventType="touchUpInside" id="OMk-TK-Wt7"/>
@@ -2151,7 +2180,7 @@
         <segue reference="KVq-bV-83w"/>
         <segue reference="wQc-Kv-NJ1"/>
         <segue reference="GSS-vk-T5d"/>
-        <segue reference="wcD-Dk-EPF"/>
+        <segue reference="Rju-t2-JMe"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="bubble.left" catalog="system" width="128" height="110"/>

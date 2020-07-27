@@ -49,6 +49,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIButton *locationButton;
 
 /**
+  Button to add a video
+*/
+@property (weak, nonatomic) IBOutlet UIButton *videoButton;
+
+/**
   Button to access the ImagePicker
 */
 @property (nonatomic, strong) NSArray *categories;

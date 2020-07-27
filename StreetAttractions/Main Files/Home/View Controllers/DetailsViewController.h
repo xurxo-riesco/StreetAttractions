@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
+#import <AVFoundation/AVFoundation.h>
 #import "DateTools.h"
 #import "HCSStarRatingView.h"
 //Models
@@ -78,6 +79,21 @@ NS_ASSUME_NONNULL_BEGIN
    Button to send the rating to the server
 */
 @property (weak, nonatomic) IBOutlet UIButton *rateButton;
+
+/**
+   Property for Video Player
+*/
+@property (nonatomic) AVPlayer *avPlayer;
+
+/**
+   Layer to display the Video Player in the UI
+*/
+@property (nonatomic) AVPlayerLayer *videoLayer;
+
+/**
+   Helper property to avoid double adding of layers
+*/
+@property (nonatomic) BOOL pinch;
 
 @end
 

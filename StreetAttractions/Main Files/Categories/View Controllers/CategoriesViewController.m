@@ -154,32 +154,34 @@
   [self performSegueWithIdentifier:@"searchSegue" sender:nil];
 }
 
-- (IBAction)onQR:(id)sender {
-    DYQRCodeDecoderViewController *vc = [[DYQRCodeDecoderViewController alloc] initWithCompletion:^(BOOL succeeded, NSString *result) {
-        if (succeeded) {
-            NSLog(@"%@", result);
-            PFQuery *queryUsers = [PFUser query];
-            [queryUsers whereKey:@"username" equalTo:result];
-            queryUsers.limit = 20;
-            [queryUsers findObjectsInBackgroundWithBlock:^(NSArray<PFUser *>* users, NSError * _Nullable error) {
-                self.user = (User *)users[0];
-                [self performSegueWithIdentifier:@"toProfile" sender:nil];
-            }];
-            
-        } else {
-            NSLog(@"failed");
-        }
-    }];
-    [vc setTitle:@"Scan a QR!"];
-    [vc setNeedsScanAnnimation:NO];
+- (IBAction)onQR:(id)sender
+{
+  DYQRCodeDecoderViewController *vc = [[DYQRCodeDecoderViewController alloc]
+  initWithCompletion:^(BOOL succeeded, NSString *result) {
+    if (succeeded) {
+      NSLog(@"%@", result);
+      PFQuery *queryUsers = [PFUser query];
+      [queryUsers whereKey:@"username" equalTo:result];
+      queryUsers.limit = 20;
+      [queryUsers findObjectsInBackgroundWithBlock:^(NSArray<PFUser *> *users, NSError *_Nullable error) {
+        self.user = (User *)users[0];
+        [self performSegueWithIdentifier:@"toProfile" sender:nil];
+      }];
 
-    [vc setNavigationBarTintColor:[UIColor lightGrayColor]];
+    } else {
+      NSLog(@"failed");
+    }
+  }];
+  [vc setTitle:@"Scan a QR!"];
+  [vc setNeedsScanAnnimation:NO];
 
-    //[vc setFrameImage:[UIImage imageNamed:@"your image name"]];
-    //[vc setLineImage:[UIImage imageNamed:@"your image name"]];
+  [vc setNavigationBarTintColor:[UIColor lightGrayColor]];
 
-    UINavigationController *navVC = [[UINavigationController alloc] initWithRootViewController:vc];
-    [self presentViewController:navVC animated:YES completion:NULL];
+  //[vc setFrameImage:[UIImage imageNamed:@"your image name"]];
+  //[vc setLineImage:[UIImage imageNamed:@"your image name"]];
+
+  UINavigationController *navVC = [[UINavigationController alloc] initWithRootViewController:vc];
+  [self presentViewController:navVC animated:YES completion:NULL];
 }
 
 #pragma mark - Navigation
@@ -191,12 +193,10 @@
   } else if ([segue.identifier isEqual:@"searchSegue"]) {
     SearchViewController *searchViewController = [segue destinationViewController];
     searchViewController.text = self.text;
-  } else if ([segue.identifier isEqual:@"toProfile"])
-  {
-      ProfileViewController *profileViewController = [segue destinationViewController];
-      profileViewController.user = self.user;
-  }
-  else {
+  } else if ([segue.identifier isEqual:@"toProfile"]) {
+    ProfileViewController *profileViewController = [segue destinationViewController];
+    profileViewController.user = self.user;
+  } else {
     UITableViewCell *tappedCell = sender;
     NSIndexPath *indexPath = [self.tableView indexPathForCell:tappedCell];
     Category *category = self.categories[indexPath.row];

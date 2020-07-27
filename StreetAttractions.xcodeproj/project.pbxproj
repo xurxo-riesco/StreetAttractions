@@ -276,9 +276,7 @@
 			isa = PBXGroup;
 			children = (
 				98C57B6024BF75C900F8FD0C /* Supporting Files */,
-				982408D924BCDE4C00F35FDA /* Views */,
-				982408B224BCCB8700F35FDA /* View Controllers */,
-				982408A724BCC35800F35FDA /* Models */,
+				982408B224BCCB8700F35FDA /* Main Files */,
 				9824087224BCBD6900F35FDA /* AppDelegate.h */,
 				9824087324BCBD6900F35FDA /* AppDelegate.m */,
 				9824087B24BCBD6900F35FDA /* Main.storyboard */,
@@ -308,68 +306,17 @@
 			path = StreetAttractionsUITests;
 			sourceTree = "<group>";
 		};
-		982408A724BCC35800F35FDA /* Models */ = {
+		982408B224BCCB8700F35FDA /* Main Files */ = {
 			isa = PBXGroup;
 			children = (
-				9897D77124C892D4006C3FC5 /* Message.h */,
-				9897D77024C892D4006C3FC5 /* Message.m */,
-				98C57B6F24BF88F300F8FD0C /* Annotation.h */,
-				98C57B7024BF88F300F8FD0C /* Annotation.m */,
-				982408A924BCC49700F35FDA /* Post.h */,
-				982408AA24BCC49700F35FDA /* Post.m */,
-				982408AC24BCC5F500F35FDA /* User.h */,
-				982408AD24BCC5F500F35FDA /* User.m */,
-				982408AF24BCC68400F35FDA /* Category.h */,
-				982408B024BCC68400F35FDA /* Category.m */,
-				9865ADCC24C200010090C386 /* Comment.h */,
-				9865ADCD24C200010090C386 /* Comment.m */,
+				9830BF2A24CF2C02008FB243 /* Login */,
+				9830BF1924CF2A2D008FB243 /* Home */,
+				9830BF1C24CF2A92008FB243 /* Categories */,
+				9830BF1D24CF2AC2008FB243 /* Map & Favs */,
+				9830BF1B24CF2A7B008FB243 /* Profile */,
+				9830BF1724CF29E7008FB243 /* SlideOut */,
 			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		982408B224BCCB8700F35FDA /* View Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				9897D77624C89305006C3FC5 /* MessageThreadViewController.h */,
-				9897D77724C89305006C3FC5 /* MessageThreadViewController.m */,
-				9863F18024C258D300B01B74 /* LocationsViewController.h */,
-				9863F18424C2590C00B01B74 /* LocationsViewController.m */,
-				9863F18324C258FF00B01B74 /* PhotoMapViewController.h */,
-				9863F18124C258E700B01B74 /* PhotoMapViewController.m */,
-				982408B324BCCBA400F35FDA /* LoginViewController.h */,
-				982408B424BCCBA400F35FDA /* LoginViewController.m */,
-				982408B624BCCBB500F35FDA /* SignUpViewController.h */,
-				982408B724BCCBB500F35FDA /* SignUpViewController.m */,
-				982408B924BCCBBF00F35FDA /* HomeViewController.h */,
-				982408BA24BCCBBF00F35FDA /* HomeViewController.m */,
-				982408BC24BCCBCB00F35FDA /* SlideOutViewController.h */,
-				982408BD24BCCBCB00F35FDA /* SlideOutViewController.m */,
-				9863F18724C2591900B01B74 /* SearchViewController.h */,
-				9863F18624C2591900B01B74 /* SearchViewController.m */,
-				982408BF24BCCBD700F35FDA /* CategoriesViewController.h */,
-				982408C024BCCBD700F35FDA /* CategoriesViewController.m */,
-				982408C324BCCBEB00F35FDA /* FavoritesViewController.h */,
-				982408C424BCCBEB00F35FDA /* FavoritesViewController.m */,
-				982408C624BCCD5300F35FDA /* CategoryFeedViewController.h */,
-				982408C724BCCD5300F35FDA /* CategoryFeedViewController.m */,
-				982408C924BCCD8500F35FDA /* DetailsViewController.h */,
-				982408CA24BCCD8500F35FDA /* DetailsViewController.m */,
-				982408CC24BCCD9000F35FDA /* ProfileViewController.h */,
-				982408CD24BCCD9000F35FDA /* ProfileViewController.m */,
-				982408CF24BCCD9B00F35FDA /* ComposeViewController.h */,
-				982408D024BCCD9B00F35FDA /* ComposeViewController.m */,
-				98C57B5424BE207000F8FD0C /* SettingsViewController.h */,
-				98C57B5524BE207000F8FD0C /* SettingsViewController.m */,
-				9865ADC624C1FBC20090C386 /* CommentsViewController.h */,
-				9865ADC724C1FBC20090C386 /* CommentsViewController.m */,
-				9863F18F24C5F92900B01B74 /* PerformerSettingsViewController.h */,
-				9863F19024C5F92900B01B74 /* PerformerSettingsViewController.m */,
-				9897D77924C8A3DD006C3FC5 /* CollabViewController.h */,
-				9897D77A24C8A3DD006C3FC5 /* CollabViewController.m */,
-				986919DD24CA38A200245BFE /* CalendarViewController.h */,
-				986919DE24CA38A200245BFE /* CalendarViewController.m */,
-			);
-			path = "View Controllers";
+			path = "Main Files";
 			sourceTree = "<group>";
 		};
 		982408D924BCDE4C00F35FDA /* Views */ = {
@@ -377,22 +324,211 @@
 			children = (
 				9897D77424C892E9006C3FC5 /* MessageCell.h */,
 				9897D77324C892E9006C3FC5 /* MessageCell.m */,
+				9863F18924C259C800B01B74 /* UserCell.h */,
+				9863F18A24C259C800B01B74 /* UserCell.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		9830BF1724CF29E7008FB243 /* SlideOut */ = {
+			isa = PBXGroup;
+			children = (
+				9830BF1824CF29F8008FB243 /* View Controllers */,
+			);
+			path = SlideOut;
+			sourceTree = "<group>";
+		};
+		9830BF1824CF29F8008FB243 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				986919DD24CA38A200245BFE /* CalendarViewController.h */,
+				986919DE24CA38A200245BFE /* CalendarViewController.m */,
+				982408BC24BCCBCB00F35FDA /* SlideOutViewController.h */,
+				982408BD24BCCBCB00F35FDA /* SlideOutViewController.m */,
+				9897D77924C8A3DD006C3FC5 /* CollabViewController.h */,
+				9897D77A24C8A3DD006C3FC5 /* CollabViewController.m */,
+				9863F18F24C5F92900B01B74 /* PerformerSettingsViewController.h */,
+				9863F19024C5F92900B01B74 /* PerformerSettingsViewController.m */,
+				98C57B5424BE207000F8FD0C /* SettingsViewController.h */,
+				98C57B5524BE207000F8FD0C /* SettingsViewController.m */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		9830BF1924CF2A2D008FB243 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				9830BF2824CF2B9D008FB243 /* Views */,
+				9830BF2424CF2B3F008FB243 /* Models */,
+				9830BF1A24CF2A3F008FB243 /* View Controllers */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		9830BF1A24CF2A3F008FB243 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				982408B924BCCBBF00F35FDA /* HomeViewController.h */,
+				982408BA24BCCBBF00F35FDA /* HomeViewController.m */,
+				982408C924BCCD8500F35FDA /* DetailsViewController.h */,
+				982408CA24BCCD8500F35FDA /* DetailsViewController.m */,
+				9863F18024C258D300B01B74 /* LocationsViewController.h */,
+				9863F18424C2590C00B01B74 /* LocationsViewController.m */,
+				982408CF24BCCD9B00F35FDA /* ComposeViewController.h */,
+				982408D024BCCD9B00F35FDA /* ComposeViewController.m */,
+				9865ADC624C1FBC20090C386 /* CommentsViewController.h */,
+				9865ADC724C1FBC20090C386 /* CommentsViewController.m */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		9830BF1B24CF2A7B008FB243 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				982408D924BCDE4C00F35FDA /* Views */,
+				9830BF2124CF2B0A008FB243 /* Models */,
+				9830BF2024CF2AFB008FB243 /* View Controllers */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		9830BF1C24CF2A92008FB243 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				9830BF2724CF2B8D008FB243 /* Views */,
+				9830BF2224CF2B19008FB243 /* Models */,
+				982408AF24BCC68400F35FDA /* Category.h */,
+				982408B024BCC68400F35FDA /* Category.m */,
+				9830BF1F24CF2AEB008FB243 /* View Controllers */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
+		9830BF1D24CF2AC2008FB243 /* Map & Favs */ = {
+			isa = PBXGroup;
+			children = (
+				9830BF2624CF2B7E008FB243 /* Views */,
+				9830BF2324CF2B2F008FB243 /* Models */,
+				9830BF1E24CF2ADD008FB243 /* View Controllers */,
+			);
+			path = "Map & Favs";
+			sourceTree = "<group>";
+		};
+		9830BF1E24CF2ADD008FB243 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				9863F18324C258FF00B01B74 /* PhotoMapViewController.h */,
+				9863F18124C258E700B01B74 /* PhotoMapViewController.m */,
+				982408C324BCCBEB00F35FDA /* FavoritesViewController.h */,
+				982408C424BCCBEB00F35FDA /* FavoritesViewController.m */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		9830BF1F24CF2AEB008FB243 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				982408BF24BCCBD700F35FDA /* CategoriesViewController.h */,
+				982408C024BCCBD700F35FDA /* CategoriesViewController.m */,
+				982408C624BCCD5300F35FDA /* CategoryFeedViewController.h */,
+				982408C724BCCD5300F35FDA /* CategoryFeedViewController.m */,
+				9863F18724C2591900B01B74 /* SearchViewController.h */,
+				9863F18624C2591900B01B74 /* SearchViewController.m */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		9830BF2024CF2AFB008FB243 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				982408CC24BCCD9000F35FDA /* ProfileViewController.h */,
+				982408CD24BCCD9000F35FDA /* ProfileViewController.m */,
+				9897D77624C89305006C3FC5 /* MessageThreadViewController.h */,
+				9897D77724C89305006C3FC5 /* MessageThreadViewController.m */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		9830BF2124CF2B0A008FB243 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				982408AC24BCC5F500F35FDA /* User.h */,
+				982408AD24BCC5F500F35FDA /* User.m */,
+				9897D77124C892D4006C3FC5 /* Message.h */,
+				9897D77024C892D4006C3FC5 /* Message.m */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		9830BF2224CF2B19008FB243 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		9830BF2324CF2B2F008FB243 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				98C57B6F24BF88F300F8FD0C /* Annotation.h */,
+				98C57B7024BF88F300F8FD0C /* Annotation.m */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		9830BF2424CF2B3F008FB243 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				982408A924BCC49700F35FDA /* Post.h */,
+				982408AA24BCC49700F35FDA /* Post.m */,
+				9865ADCC24C200010090C386 /* Comment.h */,
+				9865ADCD24C200010090C386 /* Comment.m */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		9830BF2624CF2B7E008FB243 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				98C57B7224BF8DE800F8FD0C /* AnnotationPin.h */,
+				98C57B7324BF8DE800F8FD0C /* AnnotationPin.m */,
+				9805EC0624BD197D0051CF5D /* FavoriteCell.h */,
+				9805EC0724BD197D0051CF5D /* FavoriteCell.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		9830BF2724CF2B8D008FB243 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				98C1F68124BD02D800DB3713 /* CategoryCell.h */,
+				98C1F68224BD02D800DB3713 /* CategoryCell.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		9830BF2824CF2B9D008FB243 /* Views */ = {
+			isa = PBXGroup;
+			children = (
 				982408D224BCD8DA00F35FDA /* HomeCell.h */,
 				982408D324BCD8DA00F35FDA /* HomeCell.m */,
 				982408DF24BCDE8E00F35FDA /* LocationCell.h */,
 				982408DE24BCDE8E00F35FDA /* LocationCell.m */,
-				98C1F68124BD02D800DB3713 /* CategoryCell.h */,
-				98C1F68224BD02D800DB3713 /* CategoryCell.m */,
-				9805EC0624BD197D0051CF5D /* FavoriteCell.h */,
-				9805EC0724BD197D0051CF5D /* FavoriteCell.m */,
-				9863F18924C259C800B01B74 /* UserCell.h */,
-				9863F18A24C259C800B01B74 /* UserCell.m */,
-				98C57B7224BF8DE800F8FD0C /* AnnotationPin.h */,
-				98C57B7324BF8DE800F8FD0C /* AnnotationPin.m */,
 				9865ADC924C1FE7B0090C386 /* CommentCell.h */,
 				9865ADCA24C1FE7C0090C386 /* CommentCell.m */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		9830BF2A24CF2C02008FB243 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				982408B324BCCBA400F35FDA /* LoginViewController.h */,
+				982408B424BCCBA400F35FDA /* LoginViewController.m */,
+				982408B624BCCBB500F35FDA /* SignUpViewController.h */,
+				982408B724BCCBB500F35FDA /* SignUpViewController.m */,
+			);
+			path = Login;
 			sourceTree = "<group>";
 		};
 		9865ADB424C10C8D0090C386 /* HyTransitions */ = {

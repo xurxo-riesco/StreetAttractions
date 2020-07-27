@@ -36,23 +36,14 @@
   self.collectionView.dataSource = self;
   self.collectionViewSizeCalculator.rowMaximumHeight = CGRectGetHeight(self.collectionView.bounds) / 3;
   self.collectionViewSizeCalculator.fixedHeight = self.hasFixedHeight;
-
   self.automaticallyAdjustsScrollViewInsets = NO;
-
   self.collectionView.backgroundColor = [UIColor whiteColor];
-
   // Configure spacing between cells
   UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
   layout.minimumInteritemSpacing = 5.0f;
   layout.minimumLineSpacing = 5.0f;
   layout.sectionInset = UIEdgeInsetsMake(10.0f, 5.0f, 5.0f, 5.0f);
-
   self.collectionView.collectionViewLayout = layout;
-  //  UICollectionViewFlowLayout *layout = (UICollectionViewFlowLayout *)self.collectionView.collectionViewLayout;
-  //  CGFloat postersPerLine = 2;
-  //  CGFloat itemWidth = self.collectionView.frame.size.width / postersPerLine;
-  //  CGFloat itemHeight = itemWidth;
-  //  layout.itemSize = CGSizeMake(itemWidth, itemHeight);
 
   // Refresh Control Set Up
   UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
@@ -195,9 +186,9 @@
   // Return the image size to GreedoCollectionViewLayout
   if (indexPath.item < self.posts.count) {
     Post *post = self.posts[indexPath.item];
-      //NSLog (@"%@, %f", post.description, post.rating.floatValue);
+    // NSLog (@"%@, %f", post.description, post.rating.floatValue);
     if (post.rating.floatValue > 4.0) {
-        NSLog (@"YEEES, %f", post.rating.floatValue);
+      NSLog(@"YEEES, %f", post.rating.floatValue);
       return CGSizeMake((CGFloat)([self randomValueBetween:260 and:300]),
                         (CGFloat)([self randomValueBetween:165 and:200]));
     } else {

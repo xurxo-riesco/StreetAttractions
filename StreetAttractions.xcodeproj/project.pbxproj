@@ -41,7 +41,6 @@
 		9863F19524C607E400B01B74 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9863F19424C607E400B01B74 /* UIKit.framework */; };
 		9863F19724C607EC00B01B74 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9863F19624C607EC00B01B74 /* CoreGraphics.framework */; };
 		9863F19924C607F300B01B74 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9863F19824C607F300B01B74 /* QuartzCore.framework */; };
-		9865ADA524C0E9F30090C386 /* ThunderTitan.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9865ADA424C0E9F30090C386 /* ThunderTitan.otf */; };
 		9865ADC824C1FBC20090C386 /* CommentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9865ADC724C1FBC20090C386 /* CommentsViewController.m */; };
 		9865ADCB24C1FE7C0090C386 /* CommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9865ADCA24C1FE7C0090C386 /* CommentCell.m */; };
 		9865ADCE24C200010090C386 /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = 9865ADCD24C200010090C386 /* Comment.m */; };
@@ -714,7 +713,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				9824088224BCBD6B00F35FDA /* LaunchScreen.storyboard in Resources */,
-				9865ADA524C0E9F30090C386 /* ThunderTitan.otf in Resources */,
 				9824087F24BCBD6B00F35FDA /* Assets.xcassets in Resources */,
 				9824087D24BCBD6900F35FDA /* Main.storyboard in Resources */,
 			);

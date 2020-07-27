@@ -34,8 +34,10 @@
 
   // NavigationBar Set Up
   UINavigationBar *navigationBar = self.navigationController.navigationBar;
-  [navigationBar setBackgroundColor:[self.category.name colorCode]];
-  self.navigationItem.title = self.category.name;
+    [UIView animateWithDuration:1 animations:^{
+        [navigationBar setBackgroundColor:[self.category.name colorCode]];
+        self.navigationItem.title = self.category.name;
+    }];
   // BarButton is set as empty in case as a placeholder until it is changed during the network request
   self.barButton.image = [UIImage systemImageNamed:@"star"];
   // Verifies if the current category is favorited in the user's backend and modifies the views accordingly

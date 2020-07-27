@@ -90,7 +90,7 @@
 /* Begin PBXCopyFilesBuildPhase section */
 		9890CC4824CF7E6600621EE3 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 12;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (

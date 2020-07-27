@@ -42,8 +42,6 @@
 		9863F19724C607EC00B01B74 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9863F19624C607EC00B01B74 /* CoreGraphics.framework */; };
 		9863F19924C607F300B01B74 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9863F19824C607F300B01B74 /* QuartzCore.framework */; };
 		9865ADA524C0E9F30090C386 /* ThunderTitan.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9865ADA424C0E9F30090C386 /* ThunderTitan.otf */; };
-		9865ADC024C10C9B0090C386 /* SpinerLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9865ADB624C10C9B0090C386 /* SpinerLayer.m */; };
-		9865ADC424C10C9B0090C386 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 9865ADBE24C10C9B0090C386 /* README.md */; };
 		9865ADC824C1FBC20090C386 /* CommentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9865ADC724C1FBC20090C386 /* CommentsViewController.m */; };
 		9865ADCB24C1FE7C0090C386 /* CommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9865ADCA24C1FE7C0090C386 /* CommentCell.m */; };
 		9865ADCE24C200010090C386 /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = 9865ADCD24C200010090C386 /* Comment.m */; };
@@ -51,15 +49,16 @@
 		9878734624C6571A00409325 /* DatePredictor.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 9878734524C6571A00409325 /* DatePredictor.mlmodel */; };
 		9890CC4624CF7E6600621EE3 /* Pods_StreetAttractions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B9E0A8D7C5374A8CAEB4695 /* Pods_StreetAttractions.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		9890CC4724CF7E6600621EE3 /* Pods_StreetAttractions.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4B9E0A8D7C5374A8CAEB4695 /* Pods_StreetAttractions.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		9890CC7824CF86EE00621EE3 /* HyLoginButton.h in Sources */ = {isa = PBXBuildFile; fileRef = 9865ADB924C10C9B0090C386 /* HyLoginButton.h */; };
-		9890CC7924CF86EE00621EE3 /* HyLoginButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 9865ADBD24C10C9B0090C386 /* HyLoginButton.m */; };
-		9890CC7A24CF86EE00621EE3 /* HyLoglnButton.h in Sources */ = {isa = PBXBuildFile; fileRef = 9865ADB824C10C9B0090C386 /* HyLoglnButton.h */; };
-		9890CC7B24CF86EE00621EE3 /* HyLoglnButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 9865ADBC24C10C9B0090C386 /* HyLoglnButton.m */; };
-		9890CC7C24CF86EE00621EE3 /* HySpinerLayer.h in Sources */ = {isa = PBXBuildFile; fileRef = 9865ADBA24C10C9B0090C386 /* HySpinerLayer.h */; };
-		9890CC7D24CF86EE00621EE3 /* HySpinerLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9865ADBB24C10C9B0090C386 /* HySpinerLayer.m */; };
-		9890CC7E24CF86EE00621EE3 /* HyTransitions.h in Sources */ = {isa = PBXBuildFile; fileRef = 9865ADB524C10C9B0090C386 /* HyTransitions.h */; };
-		9890CC7F24CF86EE00621EE3 /* HyTransitions.m in Sources */ = {isa = PBXBuildFile; fileRef = 9865ADBF24C10C9B0090C386 /* HyTransitions.m */; };
-		9890CC8024CF86EE00621EE3 /* SpinerLayer.h in Sources */ = {isa = PBXBuildFile; fileRef = 9865ADB724C10C9B0090C386 /* SpinerLayer.h */; };
+		9890CCB924CF8A1900621EE3 /* HyLoginButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 9890CCAF24CF8A1900621EE3 /* HyLoginButton.m */; };
+		9890CCBA24CF8A1900621EE3 /* HyLoglnButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 9890CCB224CF8A1900621EE3 /* HyLoglnButton.m */; };
+		9890CCBB24CF8A1900621EE3 /* SpinerLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9890CCB324CF8A1900621EE3 /* SpinerLayer.m */; };
+		9890CCBC24CF8A1900621EE3 /* HySpinerLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9890CCB424CF8A1900621EE3 /* HySpinerLayer.m */; };
+		9890CCBD24CF8A1900621EE3 /* HyTransitions.m in Sources */ = {isa = PBXBuildFile; fileRef = 9890CCB824CF8A1900621EE3 /* HyTransitions.m */; };
+		9890CCBE24CF8A4400621EE3 /* HyLoginButton.h in Sources */ = {isa = PBXBuildFile; fileRef = 9890CCB124CF8A1900621EE3 /* HyLoginButton.h */; };
+		9890CCBF24CF8A4400621EE3 /* HyLoglnButton.h in Sources */ = {isa = PBXBuildFile; fileRef = 9890CCB524CF8A1900621EE3 /* HyLoglnButton.h */; };
+		9890CCC024CF8A4400621EE3 /* HySpinerLayer.h in Sources */ = {isa = PBXBuildFile; fileRef = 9890CCB624CF8A1900621EE3 /* HySpinerLayer.h */; };
+		9890CCC124CF8A4400621EE3 /* HyTransitions.h in Sources */ = {isa = PBXBuildFile; fileRef = 9890CCB724CF8A1900621EE3 /* HyTransitions.h */; };
+		9890CCC224CF8A4400621EE3 /* SpinerLayer.h in Sources */ = {isa = PBXBuildFile; fileRef = 9890CCB024CF8A1900621EE3 /* SpinerLayer.h */; };
 		9897D77224C892D5006C3FC5 /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = 9897D77024C892D4006C3FC5 /* Message.m */; };
 		9897D77524C892E9006C3FC5 /* MessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9897D77324C892E9006C3FC5 /* MessageCell.m */; };
 		9897D77824C89305006C3FC5 /* MessageThreadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9897D77724C89305006C3FC5 /* MessageThreadViewController.m */; };
@@ -181,17 +180,6 @@
 		9863F19624C607EC00B01B74 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		9863F19824C607F300B01B74 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		9865ADA424C0E9F30090C386 /* ThunderTitan.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = ThunderTitan.otf; path = "../../../../Downloads/thunder-titan-font/ThunderTitan.otf"; sourceTree = "<group>"; };
-		9865ADB524C10C9B0090C386 /* HyTransitions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HyTransitions.h; path = "../../../../../Downloads/HySubmitTransitionObjective-C-master/HyTransitions.h"; sourceTree = "<group>"; };
-		9865ADB624C10C9B0090C386 /* SpinerLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SpinerLayer.m; path = "../../../../../Downloads/HySubmitTransitionObjective-C-master/SpinerLayer.m"; sourceTree = "<group>"; };
-		9865ADB724C10C9B0090C386 /* SpinerLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SpinerLayer.h; path = "../../../../../Downloads/HySubmitTransitionObjective-C-master/SpinerLayer.h"; sourceTree = "<group>"; };
-		9865ADB824C10C9B0090C386 /* HyLoglnButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HyLoglnButton.h; path = "../../../../../Downloads/HySubmitTransitionObjective-C-master/HyLoglnButton.h"; sourceTree = "<group>"; };
-		9865ADB924C10C9B0090C386 /* HyLoginButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HyLoginButton.h; path = "../../../../../Downloads/HySubmitTransitionObjective-C-master/HyLoginButton.h"; sourceTree = "<group>"; };
-		9865ADBA24C10C9B0090C386 /* HySpinerLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HySpinerLayer.h; path = "../../../../../Downloads/HySubmitTransitionObjective-C-master/HySpinerLayer.h"; sourceTree = "<group>"; };
-		9865ADBB24C10C9B0090C386 /* HySpinerLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HySpinerLayer.m; path = "../../../../../Downloads/HySubmitTransitionObjective-C-master/HySpinerLayer.m"; sourceTree = "<group>"; };
-		9865ADBC24C10C9B0090C386 /* HyLoglnButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HyLoglnButton.m; path = "../../../../../Downloads/HySubmitTransitionObjective-C-master/HyLoglnButton.m"; sourceTree = "<group>"; };
-		9865ADBD24C10C9B0090C386 /* HyLoginButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HyLoginButton.m; path = "../../../../../Downloads/HySubmitTransitionObjective-C-master/HyLoginButton.m"; sourceTree = "<group>"; };
-		9865ADBE24C10C9B0090C386 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = "../../../../../Downloads/HySubmitTransitionObjective-C-master/README.md"; sourceTree = "<group>"; };
-		9865ADBF24C10C9B0090C386 /* HyTransitions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HyTransitions.m; path = "../../../../../Downloads/HySubmitTransitionObjective-C-master/HyTransitions.m"; sourceTree = "<group>"; };
 		9865ADC624C1FBC20090C386 /* CommentsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommentsViewController.h; sourceTree = "<group>"; };
 		9865ADC724C1FBC20090C386 /* CommentsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CommentsViewController.m; sourceTree = "<group>"; };
 		9865ADC924C1FE7B0090C386 /* CommentCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommentCell.h; sourceTree = "<group>"; };
@@ -201,6 +189,16 @@
 		986919DD24CA38A200245BFE /* CalendarViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CalendarViewController.h; sourceTree = "<group>"; };
 		986919DE24CA38A200245BFE /* CalendarViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CalendarViewController.m; sourceTree = "<group>"; };
 		9878734524C6571A00409325 /* DatePredictor.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = DatePredictor.mlmodel; sourceTree = "<group>"; };
+		9890CCAF24CF8A1900621EE3 /* HyLoginButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HyLoginButton.m; sourceTree = "<group>"; };
+		9890CCB024CF8A1900621EE3 /* SpinerLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpinerLayer.h; sourceTree = "<group>"; };
+		9890CCB124CF8A1900621EE3 /* HyLoginButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HyLoginButton.h; sourceTree = "<group>"; };
+		9890CCB224CF8A1900621EE3 /* HyLoglnButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HyLoglnButton.m; sourceTree = "<group>"; };
+		9890CCB324CF8A1900621EE3 /* SpinerLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpinerLayer.m; sourceTree = "<group>"; };
+		9890CCB424CF8A1900621EE3 /* HySpinerLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HySpinerLayer.m; sourceTree = "<group>"; };
+		9890CCB524CF8A1900621EE3 /* HyLoglnButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HyLoglnButton.h; sourceTree = "<group>"; };
+		9890CCB624CF8A1900621EE3 /* HySpinerLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HySpinerLayer.h; sourceTree = "<group>"; };
+		9890CCB724CF8A1900621EE3 /* HyTransitions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HyTransitions.h; sourceTree = "<group>"; };
+		9890CCB824CF8A1900621EE3 /* HyTransitions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HyTransitions.m; sourceTree = "<group>"; };
 		9897D77024C892D4006C3FC5 /* Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Message.m; sourceTree = "<group>"; };
 		9897D77124C892D4006C3FC5 /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Message.h; sourceTree = "<group>"; };
 		9897D77324C892E9006C3FC5 /* MessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageCell.m; sourceTree = "<group>"; };
@@ -554,17 +552,16 @@
 		9865ADB424C10C8D0090C386 /* HyTransitions */ = {
 			isa = PBXGroup;
 			children = (
-				9865ADB924C10C9B0090C386 /* HyLoginButton.h */,
-				9865ADBD24C10C9B0090C386 /* HyLoginButton.m */,
-				9865ADB824C10C9B0090C386 /* HyLoglnButton.h */,
-				9865ADBC24C10C9B0090C386 /* HyLoglnButton.m */,
-				9865ADBA24C10C9B0090C386 /* HySpinerLayer.h */,
-				9865ADBB24C10C9B0090C386 /* HySpinerLayer.m */,
-				9865ADB524C10C9B0090C386 /* HyTransitions.h */,
-				9865ADBF24C10C9B0090C386 /* HyTransitions.m */,
-				9865ADBE24C10C9B0090C386 /* README.md */,
-				9865ADB724C10C9B0090C386 /* SpinerLayer.h */,
-				9865ADB624C10C9B0090C386 /* SpinerLayer.m */,
+				9890CCB124CF8A1900621EE3 /* HyLoginButton.h */,
+				9890CCAF24CF8A1900621EE3 /* HyLoginButton.m */,
+				9890CCB524CF8A1900621EE3 /* HyLoglnButton.h */,
+				9890CCB224CF8A1900621EE3 /* HyLoglnButton.m */,
+				9890CCB624CF8A1900621EE3 /* HySpinerLayer.h */,
+				9890CCB424CF8A1900621EE3 /* HySpinerLayer.m */,
+				9890CCB724CF8A1900621EE3 /* HyTransitions.h */,
+				9890CCB824CF8A1900621EE3 /* HyTransitions.m */,
+				9890CCB024CF8A1900621EE3 /* SpinerLayer.h */,
+				9890CCB324CF8A1900621EE3 /* SpinerLayer.m */,
 			);
 			path = HyTransitions;
 			sourceTree = "<group>";
@@ -718,7 +715,6 @@
 			files = (
 				9824088224BCBD6B00F35FDA /* LaunchScreen.storyboard in Resources */,
 				9865ADA524C0E9F30090C386 /* ThunderTitan.otf in Resources */,
-				9865ADC424C10C9B0090C386 /* README.md in Resources */,
 				9824087F24BCBD6B00F35FDA /* Assets.xcassets in Resources */,
 				9824087D24BCBD6900F35FDA /* Main.storyboard in Resources */,
 			);
@@ -882,15 +878,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9890CC7824CF86EE00621EE3 /* HyLoginButton.h in Sources */,
-				9890CC7924CF86EE00621EE3 /* HyLoginButton.m in Sources */,
-				9890CC7A24CF86EE00621EE3 /* HyLoglnButton.h in Sources */,
-				9890CC7B24CF86EE00621EE3 /* HyLoglnButton.m in Sources */,
-				9890CC7C24CF86EE00621EE3 /* HySpinerLayer.h in Sources */,
-				9890CC7D24CF86EE00621EE3 /* HySpinerLayer.m in Sources */,
-				9890CC7E24CF86EE00621EE3 /* HyTransitions.h in Sources */,
-				9890CC7F24CF86EE00621EE3 /* HyTransitions.m in Sources */,
-				9890CC8024CF86EE00621EE3 /* SpinerLayer.h in Sources */,
+				9890CCBE24CF8A4400621EE3 /* HyLoginButton.h in Sources */,
+				9890CCBF24CF8A4400621EE3 /* HyLoglnButton.h in Sources */,
+				9890CCC024CF8A4400621EE3 /* HySpinerLayer.h in Sources */,
+				9890CCC124CF8A4400621EE3 /* HyTransitions.h in Sources */,
+				9890CCC224CF8A4400621EE3 /* SpinerLayer.h in Sources */,
 				98C57B7424BF8DE800F8FD0C /* AnnotationPin.m in Sources */,
 				98C57B7124BF88F300F8FD0C /* Annotation.m in Sources */,
 				9863F19124C5F92900B01B74 /* PerformerSettingsViewController.m in Sources */,
@@ -899,11 +891,13 @@
 				982408B124BCC68400F35FDA /* Category.m in Sources */,
 				982408BE24BCCBCB00F35FDA /* SlideOutViewController.m in Sources */,
 				98B96F1224C65AF4005CBEA1 /* LatitudePredictor.mlmodel in Sources */,
+				9890CCB924CF8A1900621EE3 /* HyLoginButton.m in Sources */,
+				9890CCBD24CF8A1900621EE3 /* HyTransitions.m in Sources */,
 				9897D77B24C8A3DD006C3FC5 /* CollabViewController.m in Sources */,
 				9878734624C6571A00409325 /* DatePredictor.mlmodel in Sources */,
-				9865ADC024C10C9B0090C386 /* SpinerLayer.m in Sources */,
 				982408C524BCCBEB00F35FDA /* FavoritesViewController.m in Sources */,
 				9863F18224C258E700B01B74 /* PhotoMapViewController.m in Sources */,
+				9890CCBC24CF8A1900621EE3 /* HySpinerLayer.m in Sources */,
 				982408AB24BCC49700F35FDA /* Post.m in Sources */,
 				9863F18524C2590C00B01B74 /* LocationsViewController.m in Sources */,
 				982408CE24BCCD9000F35FDA /* ProfileViewController.m in Sources */,
@@ -913,6 +907,7 @@
 				9897D77224C892D5006C3FC5 /* Message.m in Sources */,
 				982408C824BCCD5300F35FDA /* CategoryFeedViewController.m in Sources */,
 				98C1F68324BD02D800DB3713 /* CategoryCell.m in Sources */,
+				9890CCBA24CF8A1900621EE3 /* HyLoglnButton.m in Sources */,
 				98B96F1124C65AF4005CBEA1 /* LongitudePredictor.mlmodel in Sources */,
 				982408B524BCCBA400F35FDA /* LoginViewController.m in Sources */,
 				982408BB24BCCBBF00F35FDA /* HomeViewController.m in Sources */,
@@ -922,6 +917,7 @@
 				9863F18B24C259C800B01B74 /* UserCell.m in Sources */,
 				986919DF24CA38A200245BFE /* CalendarViewController.m in Sources */,
 				9805EC0824BD197D0051CF5D /* FavoriteCell.m in Sources */,
+				9890CCBB24CF8A1900621EE3 /* SpinerLayer.m in Sources */,
 				9863F18E24C2605500B01B74 /* NSString+ColorCode.m in Sources */,
 				982408B824BCCBB500F35FDA /* SignUpViewController.m in Sources */,
 				982408D424BCD8DA00F35FDA /* HomeCell.m in Sources */,

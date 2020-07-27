@@ -43,11 +43,7 @@
 		9863F19924C607F300B01B74 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9863F19824C607F300B01B74 /* QuartzCore.framework */; };
 		9865ADA524C0E9F30090C386 /* ThunderTitan.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9865ADA424C0E9F30090C386 /* ThunderTitan.otf */; };
 		9865ADC024C10C9B0090C386 /* SpinerLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9865ADB624C10C9B0090C386 /* SpinerLayer.m */; };
-		9865ADC124C10C9B0090C386 /* HySpinerLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9865ADBB24C10C9B0090C386 /* HySpinerLayer.m */; };
-		9865ADC224C10C9B0090C386 /* HyLoglnButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 9865ADBC24C10C9B0090C386 /* HyLoglnButton.m */; };
-		9865ADC324C10C9B0090C386 /* HyLoginButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 9865ADBD24C10C9B0090C386 /* HyLoginButton.m */; };
 		9865ADC424C10C9B0090C386 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 9865ADBE24C10C9B0090C386 /* README.md */; };
-		9865ADC524C10C9B0090C386 /* HyTransitions.m in Sources */ = {isa = PBXBuildFile; fileRef = 9865ADBF24C10C9B0090C386 /* HyTransitions.m */; };
 		9865ADC824C1FBC20090C386 /* CommentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9865ADC724C1FBC20090C386 /* CommentsViewController.m */; };
 		9865ADCB24C1FE7C0090C386 /* CommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9865ADCA24C1FE7C0090C386 /* CommentCell.m */; };
 		9865ADCE24C200010090C386 /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = 9865ADCD24C200010090C386 /* Comment.m */; };
@@ -55,6 +51,15 @@
 		9878734624C6571A00409325 /* DatePredictor.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 9878734524C6571A00409325 /* DatePredictor.mlmodel */; };
 		9890CC4624CF7E6600621EE3 /* Pods_StreetAttractions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B9E0A8D7C5374A8CAEB4695 /* Pods_StreetAttractions.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		9890CC4724CF7E6600621EE3 /* Pods_StreetAttractions.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4B9E0A8D7C5374A8CAEB4695 /* Pods_StreetAttractions.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		9890CC7824CF86EE00621EE3 /* HyLoginButton.h in Sources */ = {isa = PBXBuildFile; fileRef = 9865ADB924C10C9B0090C386 /* HyLoginButton.h */; };
+		9890CC7924CF86EE00621EE3 /* HyLoginButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 9865ADBD24C10C9B0090C386 /* HyLoginButton.m */; };
+		9890CC7A24CF86EE00621EE3 /* HyLoglnButton.h in Sources */ = {isa = PBXBuildFile; fileRef = 9865ADB824C10C9B0090C386 /* HyLoglnButton.h */; };
+		9890CC7B24CF86EE00621EE3 /* HyLoglnButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 9865ADBC24C10C9B0090C386 /* HyLoglnButton.m */; };
+		9890CC7C24CF86EE00621EE3 /* HySpinerLayer.h in Sources */ = {isa = PBXBuildFile; fileRef = 9865ADBA24C10C9B0090C386 /* HySpinerLayer.h */; };
+		9890CC7D24CF86EE00621EE3 /* HySpinerLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9865ADBB24C10C9B0090C386 /* HySpinerLayer.m */; };
+		9890CC7E24CF86EE00621EE3 /* HyTransitions.h in Sources */ = {isa = PBXBuildFile; fileRef = 9865ADB524C10C9B0090C386 /* HyTransitions.h */; };
+		9890CC7F24CF86EE00621EE3 /* HyTransitions.m in Sources */ = {isa = PBXBuildFile; fileRef = 9865ADBF24C10C9B0090C386 /* HyTransitions.m */; };
+		9890CC8024CF86EE00621EE3 /* SpinerLayer.h in Sources */ = {isa = PBXBuildFile; fileRef = 9865ADB724C10C9B0090C386 /* SpinerLayer.h */; };
 		9897D77224C892D5006C3FC5 /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = 9897D77024C892D4006C3FC5 /* Message.m */; };
 		9897D77524C892E9006C3FC5 /* MessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9897D77324C892E9006C3FC5 /* MessageCell.m */; };
 		9897D77824C89305006C3FC5 /* MessageThreadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9897D77724C89305006C3FC5 /* MessageThreadViewController.m */; };
@@ -877,6 +882,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9890CC7824CF86EE00621EE3 /* HyLoginButton.h in Sources */,
+				9890CC7924CF86EE00621EE3 /* HyLoginButton.m in Sources */,
+				9890CC7A24CF86EE00621EE3 /* HyLoglnButton.h in Sources */,
+				9890CC7B24CF86EE00621EE3 /* HyLoglnButton.m in Sources */,
+				9890CC7C24CF86EE00621EE3 /* HySpinerLayer.h in Sources */,
+				9890CC7D24CF86EE00621EE3 /* HySpinerLayer.m in Sources */,
+				9890CC7E24CF86EE00621EE3 /* HyTransitions.h in Sources */,
+				9890CC7F24CF86EE00621EE3 /* HyTransitions.m in Sources */,
+				9890CC8024CF86EE00621EE3 /* SpinerLayer.h in Sources */,
 				98C57B7424BF8DE800F8FD0C /* AnnotationPin.m in Sources */,
 				98C57B7124BF88F300F8FD0C /* Annotation.m in Sources */,
 				9863F19124C5F92900B01B74 /* PerformerSettingsViewController.m in Sources */,
@@ -897,7 +911,6 @@
 				9824087424BCBD6900F35FDA /* AppDelegate.m in Sources */,
 				982408D124BCCD9B00F35FDA /* ComposeViewController.m in Sources */,
 				9897D77224C892D5006C3FC5 /* Message.m in Sources */,
-				9865ADC324C10C9B0090C386 /* HyLoginButton.m in Sources */,
 				982408C824BCCD5300F35FDA /* CategoryFeedViewController.m in Sources */,
 				98C1F68324BD02D800DB3713 /* CategoryCell.m in Sources */,
 				98B96F1124C65AF4005CBEA1 /* LongitudePredictor.mlmodel in Sources */,
@@ -905,14 +918,11 @@
 				982408BB24BCCBBF00F35FDA /* HomeViewController.m in Sources */,
 				9897D77524C892E9006C3FC5 /* MessageCell.m in Sources */,
 				9863F18824C2591900B01B74 /* SearchViewController.m in Sources */,
-				9865ADC224C10C9B0090C386 /* HyLoglnButton.m in Sources */,
 				9824088524BCBD6B00F35FDA /* main.m in Sources */,
 				9863F18B24C259C800B01B74 /* UserCell.m in Sources */,
-				9865ADC524C10C9B0090C386 /* HyTransitions.m in Sources */,
 				986919DF24CA38A200245BFE /* CalendarViewController.m in Sources */,
 				9805EC0824BD197D0051CF5D /* FavoriteCell.m in Sources */,
 				9863F18E24C2605500B01B74 /* NSString+ColorCode.m in Sources */,
-				9865ADC124C10C9B0090C386 /* HySpinerLayer.m in Sources */,
 				982408B824BCCBB500F35FDA /* SignUpViewController.m in Sources */,
 				982408D424BCD8DA00F35FDA /* HomeCell.m in Sources */,
 				98C57B5624BE207000F8FD0C /* SettingsViewController.m in Sources */,

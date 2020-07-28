@@ -219,12 +219,12 @@ calloutAccessoryControlTapped:(UIControl *)control
 #pragma mark - Share
 - (IBAction)onShare:(id)sender
 {
-  NSString *shareString = [NSString
+  NSString *shareText = [NSString
   stringWithFormat:@"Download StreetAttractions and check out this awesome street %@ in %@",
                    self.post.category,
                    self.post.city];
   UIImage *image = self.mediaView.image;
-  NSArray *sharedObjects = [NSArray arrayWithObjects:shareString, image, nil];
+  NSArray *sharedObjects = [NSArray arrayWithObjects:image, shareText, nil];
   UIActivityViewController *activityViewController = [[UIActivityViewController alloc]
   initWithActivityItems:sharedObjects
   applicationActivities:nil];

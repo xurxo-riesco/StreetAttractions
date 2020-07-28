@@ -7,7 +7,6 @@
 //
 
 #import "SlideOutViewController.h"
-#import "UIImage+DYQRCodeEncoder.h"
 
 @interface SlideOutViewController ()<SettingsViewControllerDelegate>
 
@@ -24,6 +23,7 @@
     NSLog(@"PERFORMER");
     self.performerButton.alpha = 1;
     self.collabButton.alpha = 1;
+    self.verifiedButton.alpha = 0;
   }
 
   [self loadProfile];
@@ -60,6 +60,28 @@
   // Logs the user out of the back end
   [PFUser logOutInBackgroundWithBlock:^(NSError *_Nullable error){
   }];
+}
+
+- (IBAction)onVerified:(id)sender
+{
+  if ([MFMailComposeViewController canSendMail]) {
+    MFMailComposeViewController *mailCont = [[MFMailComposeViewController alloc] init];
+    mailCont.mailComposeDelegate = self;
+
+      NSString *subject = [NSString stringWithFormat:@"[VERIFICATION] Performer's account request for : %@ in %@", [User currentUser].username, [User currentUser].location];
+      [mailCont setSubject:subject];
+    [mailCont setToRecipients:[NSArray arrayWithObject:@"getverified@streetattractions.com"]];
+    [mailCont setMessageBody:@"Write below your handle for any social media you use or attach videos or pictures of your performances so our team can revise them and grant you access to the performer's features. After revision, you will be contacted to set up in app payments for your account." isHTML:NO];
+    [self presentViewController:mailCont animated:YES completion:nil];
+  }
+}
+
+#pragma mark - MailCompose Delegate
+- (void)mailComposeController:(MFMailComposeViewController *)controller
+          didFinishWithResult:(MFMailComposeResult)result
+                        error:(NSError *)error
+{
+  [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - SettingsViewController Delegate

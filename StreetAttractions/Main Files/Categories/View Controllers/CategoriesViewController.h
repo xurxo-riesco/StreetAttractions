@@ -7,14 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+
 #import "DYQRCodeDecoderViewController.h"
 
 // View Controllers
 #import "CategoryFeedViewController.h"
 #import "DetailsViewController.h"
-#import "SearchViewController.h"
 #import "ProfileViewController.h"
-
+#import "ReelsViewController.h"
+#import "SearchViewController.h"
 
 // Views
 #import "CategoryCell.h"

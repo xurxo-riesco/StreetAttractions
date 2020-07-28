@@ -231,7 +231,7 @@
   User *user = [User currentUser];
   [postQuery includeKey:@"author"];
   [postQuery orderByDescending:@"createdAt"];
-  //[postQuery whereKey:@"city" equalTo:user.location];
+  [postQuery whereKey:@"city" equalTo:user.location];
   postQuery.limit = 20;
   [postQuery findObjectsInBackgroundWithBlock:^(NSArray<Post *> *_Nullable posts, NSError *_Nullable error) {
     if (posts) {

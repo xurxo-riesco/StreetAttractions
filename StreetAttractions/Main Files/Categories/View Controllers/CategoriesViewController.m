@@ -196,6 +196,8 @@
   } else if ([segue.identifier isEqual:@"toProfile"]) {
     ProfileViewController *profileViewController = [segue destinationViewController];
     profileViewController.user = self.user;
+  } else if ([segue.identifier isEqual:@"toReels"]) {
+    ReelsViewController *reelsViewController = [segue destinationViewController];
   } else {
     UITableViewCell *tappedCell = sender;
     NSIndexPath *indexPath = [self.tableView indexPathForCell:tappedCell];

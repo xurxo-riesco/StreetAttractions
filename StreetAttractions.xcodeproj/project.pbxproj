@@ -58,6 +58,7 @@
 		9890CCC024CF8A4400621EE3 /* HySpinerLayer.h in Sources */ = {isa = PBXBuildFile; fileRef = 9890CCB624CF8A1900621EE3 /* HySpinerLayer.h */; };
 		9890CCC124CF8A4400621EE3 /* HyTransitions.h in Sources */ = {isa = PBXBuildFile; fileRef = 9890CCB724CF8A1900621EE3 /* HyTransitions.h */; };
 		9890CCC224CF8A4400621EE3 /* SpinerLayer.h in Sources */ = {isa = PBXBuildFile; fileRef = 9890CCB024CF8A1900621EE3 /* SpinerLayer.h */; };
+		9890CCC524D08F6300621EE3 /* ReelsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9890CCC424D08F6300621EE3 /* ReelsViewController.m */; };
 		9897D77224C892D5006C3FC5 /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = 9897D77024C892D4006C3FC5 /* Message.m */; };
 		9897D77524C892E9006C3FC5 /* MessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9897D77324C892E9006C3FC5 /* MessageCell.m */; };
 		9897D77824C89305006C3FC5 /* MessageThreadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9897D77724C89305006C3FC5 /* MessageThreadViewController.m */; };
@@ -198,6 +199,8 @@
 		9890CCB624CF8A1900621EE3 /* HySpinerLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HySpinerLayer.h; sourceTree = "<group>"; };
 		9890CCB724CF8A1900621EE3 /* HyTransitions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HyTransitions.h; sourceTree = "<group>"; };
 		9890CCB824CF8A1900621EE3 /* HyTransitions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HyTransitions.m; sourceTree = "<group>"; };
+		9890CCC324D08F6300621EE3 /* ReelsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReelsViewController.h; sourceTree = "<group>"; };
+		9890CCC424D08F6300621EE3 /* ReelsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReelsViewController.m; sourceTree = "<group>"; };
 		9897D77024C892D4006C3FC5 /* Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Message.m; sourceTree = "<group>"; };
 		9897D77124C892D4006C3FC5 /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Message.h; sourceTree = "<group>"; };
 		9897D77324C892E9006C3FC5 /* MessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageCell.m; sourceTree = "<group>"; };
@@ -395,6 +398,8 @@
 				982408D024BCCD9B00F35FDA /* ComposeViewController.m */,
 				9865ADC624C1FBC20090C386 /* CommentsViewController.h */,
 				9865ADC724C1FBC20090C386 /* CommentsViewController.m */,
+				9890CCC324D08F6300621EE3 /* ReelsViewController.h */,
+				9890CCC424D08F6300621EE3 /* ReelsViewController.m */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -916,6 +921,7 @@
 				986919DF24CA38A200245BFE /* CalendarViewController.m in Sources */,
 				9805EC0824BD197D0051CF5D /* FavoriteCell.m in Sources */,
 				9890CCBB24CF8A1900621EE3 /* SpinerLayer.m in Sources */,
+				9890CCC524D08F6300621EE3 /* ReelsViewController.m in Sources */,
 				9863F18E24C2605500B01B74 /* NSString+ColorCode.m in Sources */,
 				982408B824BCCBB500F35FDA /* SignUpViewController.m in Sources */,
 				982408D424BCD8DA00F35FDA /* HomeCell.m in Sources */,

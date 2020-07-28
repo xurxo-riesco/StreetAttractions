@@ -7,23 +7,31 @@
 //
 
 @import Parse;
+#import <MessageUI/MFMailComposeViewController.h>
+#import <MessageUI/MessageUI.h>
 #import <UIKit/UIKit.h>
 
 #import "AppDelegate.h"
+#import "UIImage+DYQRCodeEncoder.h"
 
 // Models
 #import "User.h"
 
 // ViewControllers
+#import "CalendarViewController.h"
+#import "CollabViewController.h"
 #import "LoginViewController.h"
 #import "PerformerSettingsViewController.h"
 #import "ProfileViewController.h"
 #import "SettingsViewController.h"
-#import "CollabViewController.h"
-#import "CalendarViewController.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SlideOutViewController : UIViewController
+
+/**
+    Button for users to apply for a performer's account
+*/
+@property (weak, nonatomic) IBOutlet UIButton *verifiedButton;
 
 /**
     Button to access performance settings (Only displayed if the user has the isPerformer property)

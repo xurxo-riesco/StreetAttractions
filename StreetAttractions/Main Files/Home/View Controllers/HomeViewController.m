@@ -239,6 +239,9 @@
   postQuery.limit = 20;
   [postQuery findObjectsInBackgroundWithBlock:^(NSArray<Post *> *_Nullable posts, NSError *_Nullable error) {
     if (posts) {
+      if (posts.count == 0) {
+        [self alertEmpty];
+      }
       self.posts = [posts mutableCopy];
       [self.collectionView reloadData];
       self.dataSkip = posts.count;
@@ -301,6 +304,32 @@
                                                     }]];
   [self presentViewController:alertController animated:YES completion:nil];
 }
+
+- (void)alertEmpty
+{
+  UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"No post near you D:"
+                                                                           message:@"Please try changing your location"
+                                                                    preferredStyle:UIAlertControllerStyleAlert];
+  [alertController addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+    textField.placeholder = @"City";
+    textField.textColor = [UIColor blueColor];
+    textField.clearButtonMode = UITextFieldViewModeWhileEditing;
+    textField.borderStyle = UITextBorderStyleRoundedRect;
+  }];
+  [alertController addAction:[UIAlertAction actionWithTitle:@"OK"
+                                                      style:UIAlertActionStyleDefault
+                                                    handler:^(UIAlertAction *action) {
+                                                      NSArray *textfields = alertController.textFields;
+                                                      UITextField *locationField = textfields[0];
+                                                      [User currentUser].location = locationField.text;
+                                                      [[User currentUser] saveInBackgroundWithBlock:^(
+                                                                          BOOL succeeded, NSError *_Nullable error) {
+                                                        [self fetchPost];
+                                                      }];
+                                                    }]];
+  [self presentViewController:alertController animated:YES completion:nil];
+}
+
 #pragma mark - InfiniteScrolling
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {

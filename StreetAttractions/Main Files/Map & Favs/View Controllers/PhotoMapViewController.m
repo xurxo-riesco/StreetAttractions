@@ -121,7 +121,7 @@ calloutAccessoryControlTapped:(UIControl *)control
   PFQuery *postQuery = [Post query];
   postQuery.limit = 20;
   [postQuery includeKey:@"author"];
-  User *user = [PFUser currentUser];
+  User *user = [User currentUser];
   [postQuery orderByDescending:@"createdAt"];
   [postQuery whereKey:@"city" equalTo:user.location];
   [postQuery orderByDescending:@"createdAt"];

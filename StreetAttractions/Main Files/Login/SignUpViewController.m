@@ -68,6 +68,10 @@ didFinishPickingMediaWithInfo:(NSDictionary<NSString *, id> *)info
     NSData *imageData = UIImagePNGRepresentation(self.image);
     PFFileObject *profilePicture = [PFFileObject fileObjectWithName:@"image.png" data:imageData];
     newUser.profilePic = profilePicture;
+  } else {
+    NSData *imageData = UIImagePNGRepresentation([UIImage systemImageNamed:@"person.circle"]);
+    PFFileObject *profilePicture = [PFFileObject fileObjectWithName:@"image.png" data:imageData];
+    newUser.profilePic = profilePicture;
   }
   // If the user tries to register without a screen name, the unique username will also be used as the screen name
   if (self.screennameField.text != 0) {

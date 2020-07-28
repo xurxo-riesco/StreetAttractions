@@ -107,6 +107,7 @@
     }
     self.isMoreDataLoading = false;
   }];
+  [self.tableView reloadData];
 }
 
 - (void)sortPosts

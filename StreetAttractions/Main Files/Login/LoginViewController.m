@@ -8,7 +8,7 @@
 
 #import "LoginViewController.h"
 
-@interface LoginViewController ()<UIViewControllerTransitioningDelegate, FBSDKLoginButtonDelegate>
+@interface LoginViewController ()<UIViewControllerTransitioningDelegate, FBSDKLoginButtonDelegate, UITextFieldDelegate>
 @end
 
 @implementation LoginViewController
@@ -17,10 +17,14 @@
 {
   [super viewDidLoad];
   self.passwordField.secureTextEntry = true;
-    
+
+  // TextField Set Up
+  self.passwordField.delegate = self;
+  self.usernameField.delegate = self;
+
   // Loging button is added programatically to allow for complex animations
   [self createPresentControllerButton];
-    
+
   // Adding Facebook LogIn Button Programatically
   FBSDKLoginButton *loginButton = [[FBSDKLoginButton alloc] init];
   loginButton.delegate = self;
@@ -28,6 +32,12 @@
   loginButton.center = point;
   loginButton.permissions = @[@"user_location", @"email"];
   [self.view addSubview:loginButton];
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+  [textField resignFirstResponder];
+  return YES;
 }
 
 // Visual Set Up for Login Button
@@ -108,22 +118,30 @@ didCompleteWithResult:(FBSDKLoginManagerLoginResult *)result
                                      FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc]
                                      initWithGraphPath:@"/me"
                                             parameters:@{
-                                              @"fields": @"id,name,location",
+                                              @"fields": @"id,name,location,email,short_name",
                                             }
                                             HTTPMethod:@"GET"];
                                      [request startWithCompletionHandler:^(
                                               FBSDKGraphRequestConnection *connection, id result, NSError *error) {
+                                       NSLog(@"%@", result);
                                        User *newUser = (User *)user;
                                        NSArray *location = [result[@"location"][@"name"]
                                        componentsSeparatedByString:@","];
                                        newUser.location = location[0];
                                        newUser.screenname = result[@"short_name"];
-                                       newUser.username = result[@"email"];
+                                       NSString *userId = result[@"id"];
+                                       newUser.username = [NSString
+                                       stringWithFormat:@"%@%@", result[@"short_name"], [userId substringToIndex:2]];
+                                       NSData *imageData = UIImagePNGRepresentation(
+                                       [UIImage systemImageNamed:@"person.circle"]);
+                                       PFFileObject *profilePicture = [PFFileObject fileObjectWithName:@"image.png"
+                                                                                                  data:imageData];
+                                       newUser.profilePic = profilePicture;
                                        [newUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError *_Nullable error) {
                                          [self segueToApp];
                                        }];
                                      }];
-                                   } else {
+                                   } else if (user) {
                                      [self segueToApp];
                                    }
                                  }];

@@ -312,6 +312,7 @@
                                                                     preferredStyle:UIAlertControllerStyleAlert];
   [alertController addTextFieldWithConfigurationHandler:^(UITextField *textField) {
     textField.placeholder = @"City";
+    textField.text = [User currentUser].location;
     textField.textColor = [UIColor blueColor];
     textField.clearButtonMode = UITextFieldViewModeWhileEditing;
     textField.borderStyle = UITextBorderStyleRoundedRect;

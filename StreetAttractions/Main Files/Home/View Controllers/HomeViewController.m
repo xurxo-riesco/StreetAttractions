@@ -231,7 +231,11 @@
   User *user = [User currentUser];
   [postQuery includeKey:@"author"];
   [postQuery orderByDescending:@"createdAt"];
-  [postQuery whereKey:@"city" equalTo:user.location];
+  if (user.location != nil) {
+    [postQuery whereKey:@"city" equalTo:user.location];
+  } else {
+    [self alertLocation];
+  }
   postQuery.limit = 20;
   [postQuery findObjectsInBackgroundWithBlock:^(NSArray<Post *> *_Nullable posts, NSError *_Nullable error) {
     if (posts) {
@@ -249,7 +253,11 @@
   User *user = [User currentUser];
   [postQuery includeKey:@"author"];
   [postQuery orderByDescending:@"createdAt"];
-  [postQuery whereKey:@"city" equalTo:user.location];
+  if (user.location != nil) {
+    [postQuery whereKey:@"city" equalTo:user.location];
+  } else {
+    [self alertLocation];
+  }
   postQuery.limit = 20;
   [postQuery setSkip:self.dataSkip];
   [postQuery findObjectsInBackgroundWithBlock:^(NSArray<Post *> *_Nullable posts, NSError *_Nullable error) {
@@ -269,6 +277,30 @@
   }];
 }
 
+- (void)alertLocation
+{
+  UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Locaiton"
+                                                                           message:@"Please input your location"
+                                                                    preferredStyle:UIAlertControllerStyleAlert];
+  [alertController addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+    textField.placeholder = @"City";
+    textField.textColor = [UIColor blueColor];
+    textField.clearButtonMode = UITextFieldViewModeWhileEditing;
+    textField.borderStyle = UITextBorderStyleRoundedRect;
+  }];
+  [alertController addAction:[UIAlertAction actionWithTitle:@"OK"
+                                                      style:UIAlertActionStyleDefault
+                                                    handler:^(UIAlertAction *action) {
+                                                      NSArray *textfields = alertController.textFields;
+                                                      UITextField *locationField = textfields[0];
+                                                      [User currentUser].location = locationField.text;
+                                                      [[User currentUser] saveInBackgroundWithBlock:^(
+                                                                          BOOL succeeded, NSError *_Nullable error) {
+                                                        [self fetchPost];
+                                                      }];
+                                                    }]];
+  [self presentViewController:alertController animated:YES completion:nil];
+}
 #pragma mark - InfiniteScrolling
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {

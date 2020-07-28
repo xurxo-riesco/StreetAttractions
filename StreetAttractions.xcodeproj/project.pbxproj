@@ -179,7 +179,6 @@
 		9863F19424C607E400B01B74 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		9863F19624C607EC00B01B74 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		9863F19824C607F300B01B74 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		9865ADA424C0E9F30090C386 /* ThunderTitan.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = ThunderTitan.otf; path = "../../../../Downloads/thunder-titan-font/ThunderTitan.otf"; sourceTree = "<group>"; };
 		9865ADC624C1FBC20090C386 /* CommentsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommentsViewController.h; sourceTree = "<group>"; };
 		9865ADC724C1FBC20090C386 /* CommentsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CommentsViewController.m; sourceTree = "<group>"; };
 		9865ADC924C1FE7B0090C386 /* CommentCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommentCell.h; sourceTree = "<group>"; };
@@ -574,7 +573,6 @@
 			isa = PBXGroup;
 			children = (
 				9865ADB424C10C8D0090C386 /* HyTransitions */,
-				9865ADA424C0E9F30090C386 /* ThunderTitan.otf */,
 				9878734524C6571A00409325 /* DatePredictor.mlmodel */,
 				98B96F1024C65AF4005CBEA1 /* LatitudePredictor.mlmodel */,
 				98B96F0F24C65AF4005CBEA1 /* LongitudePredictor.mlmodel */,

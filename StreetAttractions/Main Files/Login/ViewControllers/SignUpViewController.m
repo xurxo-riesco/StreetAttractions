@@ -16,6 +16,7 @@
 - (void)viewDidLoad
 {
   [super viewDidLoad];
+    self.passwordField.secureTextEntry = YES;
 }
 
 // ImagePicker set up for profile pic
@@ -59,6 +60,9 @@ didFinishPickingMediaWithInfo:(NSDictionary<NSString *, id> *)info
 
 - (void)registerUser
 {
+  JGProgressHUD *HUD = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
+  HUD.textLabel.text = @"Signing up...";
+  [HUD showInView:self.view];
   User *newUser = [User user];
   newUser.username = self.usernameField.text;
   newUser.password = self.passwordField.text;
@@ -98,6 +102,7 @@ didFinishPickingMediaWithInfo:(NSDictionary<NSString *, id> *)info
                        }];
     } else {
       NSLog(@"User registered successfully");
+      [HUD dismiss];
       [self segueToApp];
     }
   }];

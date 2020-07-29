@@ -59,6 +59,7 @@
 		9890CCC124CF8A4400621EE3 /* HyTransitions.h in Sources */ = {isa = PBXBuildFile; fileRef = 9890CCB724CF8A1900621EE3 /* HyTransitions.h */; };
 		9890CCC224CF8A4400621EE3 /* SpinerLayer.h in Sources */ = {isa = PBXBuildFile; fileRef = 9890CCB024CF8A1900621EE3 /* SpinerLayer.h */; };
 		9890CCC524D08F6300621EE3 /* ReelsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9890CCC424D08F6300621EE3 /* ReelsViewController.m */; };
+		9890CCC824D203F500621EE3 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9890CCC724D203F400621EE3 /* UserNotifications.framework */; };
 		9897D77224C892D5006C3FC5 /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = 9897D77024C892D4006C3FC5 /* Message.m */; };
 		9897D77524C892E9006C3FC5 /* MessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9897D77324C892E9006C3FC5 /* MessageCell.m */; };
 		9897D77824C89305006C3FC5 /* MessageThreadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9897D77724C89305006C3FC5 /* MessageThreadViewController.m */; };
@@ -200,6 +201,7 @@
 		9890CCB824CF8A1900621EE3 /* HyTransitions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HyTransitions.m; sourceTree = "<group>"; };
 		9890CCC324D08F6300621EE3 /* ReelsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReelsViewController.h; sourceTree = "<group>"; };
 		9890CCC424D08F6300621EE3 /* ReelsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReelsViewController.m; sourceTree = "<group>"; };
+		9890CCC724D203F400621EE3 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		9897D77024C892D4006C3FC5 /* Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Message.m; sourceTree = "<group>"; };
 		9897D77124C892D4006C3FC5 /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Message.h; sourceTree = "<group>"; };
 		9897D77324C892E9006C3FC5 /* MessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageCell.m; sourceTree = "<group>"; };
@@ -227,6 +229,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9890CCC824D203F500621EE3 /* UserNotifications.framework in Frameworks */,
 				9890CC4624CF7E6600621EE3 /* Pods_StreetAttractions.framework in Frameworks */,
 				9863F19724C607EC00B01B74 /* CoreGraphics.framework in Frameworks */,
 				98C57B6624BF776A00F8FD0C /* CoreML.framework in Frameworks */,
@@ -544,10 +547,7 @@
 		9830BF2A24CF2C02008FB243 /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				982408B324BCCBA400F35FDA /* LoginViewController.h */,
-				982408B424BCCBA400F35FDA /* LoginViewController.m */,
-				982408B624BCCBB500F35FDA /* SignUpViewController.h */,
-				982408B724BCCBB500F35FDA /* SignUpViewController.m */,
+				9890CCC624D1FA9F00621EE3 /* ViewControllers */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -569,6 +569,17 @@
 			path = HyTransitions;
 			sourceTree = "<group>";
 		};
+		9890CCC624D1FA9F00621EE3 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				982408B324BCCBA400F35FDA /* LoginViewController.h */,
+				982408B424BCCBA400F35FDA /* LoginViewController.m */,
+				982408B624BCCBB500F35FDA /* SignUpViewController.h */,
+				982408B724BCCBB500F35FDA /* SignUpViewController.m */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
 		98C57B6024BF75C900F8FD0C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -585,6 +596,7 @@
 		C88B161770348EF8269234E7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9890CCC724D203F400621EE3 /* UserNotifications.framework */,
 				9863F19824C607F300B01B74 /* QuartzCore.framework */,
 				9863F19624C607EC00B01B74 /* CoreGraphics.framework */,
 				9863F19424C607E400B01B74 /* UIKit.framework */,

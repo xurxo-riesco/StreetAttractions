@@ -52,6 +52,11 @@ NS_ASSUME_NONNULL_BEGIN
 */
 @property (strong, nonatomic) User *user;
 
+/**
+   Refresh Control
+*/
+@property (strong, nonatomic) UIRefreshControl *refreshControl;
+
 @end
 
 NS_ASSUME_NONNULL_END

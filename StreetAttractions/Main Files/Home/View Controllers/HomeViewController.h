@@ -8,6 +8,7 @@
 
 @import Photos;
 #import <UIKit/UIKit.h>
+#import <UserNotifications/UserNotifications.h>
 #include <stdlib.h>
 
 #import "AppDelegate.h"
@@ -25,6 +26,7 @@
 #import "Category.h"
 #import "Post.h"
 #import "User.h"
+#import "Message.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -71,6 +73,11 @@ NS_ASSUME_NONNULL_BEGIN
     Allows for dynamic collection view layout
 */
 @property (strong, nonatomic) GreedoCollectionViewLayout *collectionViewSizeCalculator;
+
+/**
+    Refresh Control
+*/
+@property (strong, nonatomic) UIRefreshControl *refreshControl;
 
 @end
 

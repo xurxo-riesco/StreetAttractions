@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import <UserNotifications/UserNotifications.h>
 #import "Message.h"
 #import "User.h"
 @import Parse;

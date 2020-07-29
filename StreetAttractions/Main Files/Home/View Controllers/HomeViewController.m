@@ -15,8 +15,13 @@
                                  ComposeViewControllerDelegate,
                                  HomeCellDelegate,
                                  TNTutorialManagerDelegate>
-
+@property (strong, nonatomic) NSString *userMessage;
 @end
+
+bool isGrantedNotificationAccess;
+bool first;
+NSInteger messageCount;
+NSInteger prevMessageCount;
 
 @implementation HomeViewController
 
@@ -31,7 +36,14 @@
 - (void)viewDidLoad
 {
   [super viewDidLoad];
+  isGrantedNotificationAccess = false;
+  UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
+  UNAuthorizationOptions *options = UNAuthorizationOptionAlert + UNAuthorizationOptionSound;
 
+  [center requestAuthorizationWithOptions:options
+                        completionHandler:^(BOOL granted, NSError *_Nullable error) {
+                          isGrantedNotificationAccess = granted;
+                        }];
   // CollectionView Set Up
   self.collectionView.delegate = self;
   self.collectionView.dataSource = self;
@@ -47,11 +59,12 @@
   self.collectionView.collectionViewLayout = layout;
 
   // Refresh Control Set Up
-  UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
-  [refreshControl addTarget:self action:@selector(beginRefresh:) forControlEvents:UIControlEventValueChanged];
-  [self.collectionView insertSubview:refreshControl atIndex:0];
+  self.refreshControl = [[UIRefreshControl alloc] init];
+  [self.refreshControl addTarget:self action:@selector(beginRefresh:) forControlEvents:UIControlEventValueChanged];
+  [self.collectionView insertSubview:self.refreshControl atIndex:0];
 
   // Network Call
+  [self.refreshControl beginRefreshing];
   [self fetchPost];
 
   // Tutorial Set Up
@@ -60,6 +73,59 @@
   } else {
     self.tutorialManager = nil;
   }
+    
+    // Notification Set Up
+    first = true;
+    prevMessageCount = 0;
+    messageCount = prevMessageCount;
+  [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(onTimer) userInfo:nil repeats:true];
+}
+
+- (void)onTimer
+{
+    if(messageCount > prevMessageCount && !first)
+    {
+        prevMessageCount = messageCount;
+        UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
+           UNMutableNotificationContent *content = [[UNMutableNotificationContent alloc] init];
+
+           content.title = @"Street Attractions";
+           content.subtitle = @"New message!";
+        NSString *body = [NSString stringWithFormat:@"You have a new message from %@", self.userMessage];
+           content.body = body;
+           content.sound = [UNNotificationSound defaultSound];
+
+           UNTimeIntervalNotificationTrigger *trigger = [UNTimeIntervalNotificationTrigger triggerWithTimeInterval:2
+                                                                                                           repeats:NO];
+           UNNotificationRequest *request = [UNNotificationRequest requestWithIdentifier:@"UYLocalNotification"
+                                                                                 content:content
+                                                                                 trigger:trigger];
+           [center addNotificationRequest:request withCompletionHandler:nil];
+         }
+  [self fetchMessages];
+}
+
+#pragma mark - Network
+- (void)fetchMessages
+{
+  User *user = [User currentUser];
+  PFQuery *query = [Message query];
+  [query includeKey:@"author"];
+  [query whereKey:@"toUser" equalTo:user];
+  query.limit = 20;
+  [query findObjectsInBackgroundWithBlock:^(NSArray<Message *> *messages, NSError *error) {
+    if (messages != nil) {
+        messageCount = messages.count;
+        if(messageCount > prevMessageCount)
+        {
+            User *user = messages[messages.count-1].author;
+            self.userMessage = user.screenname;
+        }
+        first = false;
+    } else {
+      NSLog(@"%@", error.localizedDescription);
+    }
+  }];
 }
 
 #pragma mark - TNTutorialManagerDelegate
@@ -245,8 +311,9 @@
       }
       self.posts = [posts mutableCopy];
       [self.collectionView reloadData];
-      self.dataSkip = (int) posts.count;
+      self.dataSkip = (int)posts.count;
     }
+    [self.refreshControl endRefreshing];
   }];
 }
 
@@ -267,7 +334,7 @@
   [postQuery findObjectsInBackgroundWithBlock:^(NSArray<Post *> *_Nullable posts, NSError *_Nullable error) {
     if (posts) {
       if (posts.count > 0) {
-        int prevNumPosts = (int) self.posts.count;
+        int prevNumPosts = (int)self.posts.count;
         self.posts = (NSMutableArray *)[self.posts arrayByAddingObjectsFromArray:posts];
         NSMutableArray *newIndexPaths = [NSMutableArray array];
         for (int i = prevNumPosts; i < self.posts.count; i++) {
@@ -351,6 +418,23 @@
 // Updates the post in the feed after the user posts a new event
 - (void)didPost
 {
+  if (isGrantedNotificationAccess) {
+    UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
+    UNMutableNotificationContent *content = [[UNMutableNotificationContent alloc] init];
+
+    content.title = @"Street Attractions";
+    content.subtitle = @"New event!";
+    content.body = @"There is a new event near you! Check it out!";
+    content.sound = [UNNotificationSound defaultSound];
+
+    UNTimeIntervalNotificationTrigger *trigger = [UNTimeIntervalNotificationTrigger triggerWithTimeInterval:2
+                                                                                                    repeats:NO];
+    UNNotificationRequest *request = [UNNotificationRequest requestWithIdentifier:@"UYLocalNotification"
+                                                                          content:content
+                                                                          trigger:trigger];
+    [center addNotificationRequest:request withCompletionHandler:nil];
+  }
+
   [self fetchPost];
 }
 

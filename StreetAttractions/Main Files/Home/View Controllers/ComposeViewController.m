@@ -185,7 +185,8 @@ didFinishPickingMediaWithInfo:(NSDictionary<NSString *, id> *)info
                                                             preferredStyle:(UIAlertControllerStyleAlert)];
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Ok"
                                                            style:UIAlertActionStyleCancel
-                                                         handler:^(UIAlertAction *_Nonnull action){
+                                                         handler:^(UIAlertAction *_Nonnull action) {
+                                                           [HUD dismiss];
                                                          }];
     [alert addAction:cancelAction];
     [self presentViewController:alert

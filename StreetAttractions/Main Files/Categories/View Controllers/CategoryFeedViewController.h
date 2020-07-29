@@ -55,6 +55,16 @@ NS_ASSUME_NONNULL_BEGIN
 */
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *barButton;
 
+/**
+   Collection View of posts pertaining to a category
+*/
+@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+
+/**
+   Refresh Control
+*/
+@property (strong, nonatomic) UIRefreshControl *refreshControl;
+
 // Favorites the category in the backend
 - (void)favorite;
 

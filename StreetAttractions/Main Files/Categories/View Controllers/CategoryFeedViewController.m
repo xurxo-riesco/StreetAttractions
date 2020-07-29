@@ -8,8 +8,6 @@
 
 #import "CategoryFeedViewController.h"
 @interface CategoryFeedViewController ()<UICollectionViewDataSource, UICollectionViewDelegate, HomeCellDelegate>
-@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
-
 @end
 
 @implementation CategoryFeedViewController
@@ -28,16 +26,17 @@
   layout.itemSize = CGSizeMake(itemWidth, itemHeight);
 
   // RefreshControl Set Up
-  UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
-  [refreshControl addTarget:self action:@selector(beginRefresh:) forControlEvents:UIControlEventValueChanged];
-  [self.collectionView insertSubview:refreshControl atIndex:0];
+  self.refreshControl = [[UIRefreshControl alloc] init];
+  [self.refreshControl addTarget:self action:@selector(beginRefresh:) forControlEvents:UIControlEventValueChanged];
+  [self.collectionView insertSubview:self.refreshControl atIndex:0];
 
   // NavigationBar Set Up
   UINavigationBar *navigationBar = self.navigationController.navigationBar;
-    [UIView animateWithDuration:1 animations:^{
-        [navigationBar setBackgroundColor:[self.category.name colorCode]];
-        self.navigationItem.title = self.category.name;
-    }];
+  [UIView animateWithDuration:1
+                   animations:^{
+                     [navigationBar setBackgroundColor:[self.category.name colorCode]];
+                     self.navigationItem.title = self.category.name;
+                   }];
   // BarButton is set as empty in case as a placeholder until it is changed during the network request
   self.barButton.image = [UIImage systemImageNamed:@"star"];
   // Verifies if the current category is favorited in the user's backend and modifies the views accordingly
@@ -51,6 +50,7 @@
     }];
 
   // Network Call
+  [self.refreshControl beginRefreshing];
   [self fetchPost];
 }
 
@@ -83,8 +83,9 @@
     if (posts) {
       self.posts = [posts mutableCopy];
       [self.collectionView reloadData];
-      self.dataSkip = (int) posts.count;
+      self.dataSkip = (int)posts.count;
     }
+    [self.refreshControl endRefreshing];
   }];
 }
 

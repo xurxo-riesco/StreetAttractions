@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+#import "JGProgressHUD.h"
 #import "AppDelegate.h"
 #import "Parse/PFUser.h"
 // Models

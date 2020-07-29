@@ -26,9 +26,9 @@
   self.tableView.dataSource = self;
 
   // Refresh Controll Set Up
-  UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
-  [refreshControl addTarget:self action:@selector(beginRefresh:) forControlEvents:UIControlEventValueChanged];
-  [self.tableView insertSubview:refreshControl atIndex:0];
+  self.refreshControl = [[UIRefreshControl alloc] init];
+  [self.refreshControl addTarget:self action:@selector(beginRefresh:) forControlEvents:UIControlEventValueChanged];
+  [self.tableView insertSubview:self.refreshControl atIndex:0];
 
   // Network Set Up
   // List of user's favorite categories is fetched so that it can be used as a query parameter
@@ -39,6 +39,7 @@
       NSLog(@"%@", favorites);
       self.userFavorites = favorites;
       // Initial network call
+      [self.refreshControl beginRefreshing];
       [self fetchFavCategoryPosts];
     }];
   }];
@@ -72,6 +73,7 @@
         self.dataSkip = self.posts.count;
       }
     }
+    [self.refreshControl endRefreshing];
   }];
 }
 
@@ -87,7 +89,7 @@
   postQuery.skip = self.dataSkip;
   [postQuery findObjectsInBackgroundWithBlock:^(NSArray<Post *> *_Nullable posts, NSError *_Nullable error) {
     if (posts) {
-      int prevNumPost = (int) self.posts.count;
+      int prevNumPost = (int)self.posts.count;
       for (Post *post in posts) {
         if ([self.posts containsObject:post]) {
           NSLog(@"Repeated");
@@ -112,6 +114,9 @@
 
 - (void)sortPosts
 {
+  if (self.posts.count == 0) {
+    [self alertEmpty];
+  }
   NSSortDescriptor *sortDescriptor;
   sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"createdAt" ascending:NO];
   self.posts = [self.posts sortedArrayUsingDescriptors:@[sortDescriptor]];
@@ -170,6 +175,17 @@
   [self performSegueWithIdentifier:@"favToProfile" sender:nil];
 }
 
+- (void)alertEmpty
+{
+  UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"You have no favorites D:"
+                                                                           message:@"Go like some users or categories!"
+                                                                    preferredStyle:UIAlertControllerStyleAlert];
+  [alertController addAction:[UIAlertAction actionWithTitle:@"OK"
+                                                      style:UIAlertActionStyleDefault
+                                                    handler:^(UIAlertAction *action){
+                                                    }]];
+  [self presentViewController:alertController animated:YES completion:nil];
+}
 #pragma mark - Navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {

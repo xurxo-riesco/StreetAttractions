@@ -10,7 +10,6 @@
 #import "MessageCell.h"
 
 @interface MessageThreadViewController () <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate>
-
 @end
 
 @implementation MessageThreadViewController
@@ -35,6 +34,7 @@
 }
 
 - (void)onTimer {
+    
     [self fetchMessages];
 }
 

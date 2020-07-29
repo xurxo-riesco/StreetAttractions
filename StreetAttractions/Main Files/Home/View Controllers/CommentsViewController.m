@@ -44,10 +44,13 @@
 
 - (IBAction)onPost:(id)sender
 {
-    Comment *newComment = [Comment new];
+  Comment *newComment = [Comment new];
   newComment.author = [PFUser currentUser];
+    if ([self.commentField.text isEqual:@""]) {
+      return;
+    }
   newComment.text = self.commentField.text;
-    self.commentField.text = @"";
+  self.commentField.text = @"";
   // Saves new comment to the server
   [newComment saveInBackgroundWithBlock:^(BOOL succeeded, NSError *_Nullable error) {
     if (succeeded) {
@@ -75,6 +78,7 @@
 {
   Comment *comment = self.comments[indexPath.row];
   CommentCell *commentCell = [tableView dequeueReusableCellWithIdentifier:@"CommentCell"];
+  commentCell.delegate = self;
   [commentCell loadComment:comment];
   return commentCell;
 }

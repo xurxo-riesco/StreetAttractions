@@ -16,6 +16,11 @@ NS_ASSUME_NONNULL_BEGIN
 @interface CategoryCell : UITableViewCell
 
 /**
+    Displays background of the category
+*/
+@property (weak, nonatomic) IBOutlet UIView *backgroundView;
+
+/**
     Displays name of the category
 */
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;

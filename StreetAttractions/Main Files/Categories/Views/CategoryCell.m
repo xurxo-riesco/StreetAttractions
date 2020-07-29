@@ -22,10 +22,10 @@
   self.nameLabel.text = category.name;
   self.mediaView.file = category.media;
   [self.mediaView loadInBackground];
-  self.mediaView.layer.cornerRadius = 16;
-  self.mediaView.layer.masksToBounds = YES;
-  self.mediaView.alpha = 0.6;
-  self.mediaView.backgroundColor = [self.category.name colorCode];
+  self.backgroundView.layer.cornerRadius = 16;
+  self.backgroundView.layer.masksToBounds = YES;
+    self.backgroundView.alpha = 0.3;
+  self.backgroundView.backgroundColor = [self.category.name colorCode];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated

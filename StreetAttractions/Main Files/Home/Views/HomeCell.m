@@ -55,7 +55,7 @@
   newFrame.size.height = (CGRectGetHeight(self.bounds)) - 15;
   [self.mediaView setFrame:newFrame];
   self.mediaView.layer.masksToBounds = YES;
-  self.mediaView.layer.cornerRadius = 16;
+  self.mediaView.layer.cornerRadius = 8;
   self.mediaView.file = post.media;
   [self.mediaView loadInBackground];
   self.distanceLabel.text = @"";
@@ -78,7 +78,7 @@
   newFrame.size.height = (CGRectGetHeight(self.bounds)) - 15;
   [self.descriptionView setFrame:newFrame];
   self.descriptionView.layer.masksToBounds = YES;
-  self.descriptionView.layer.cornerRadius = 16;
+  self.descriptionView.layer.cornerRadius = 8;
   [self.descriptionView setBackgroundColor:[post.category colorCode]];
   CLLocation *startLocation = [[CLLocation alloc] initWithLatitude:self.latitude longitude:self.longitude];
   CLLocation *endLocation = [[CLLocation alloc] initWithLatitude:post.latitude.floatValue

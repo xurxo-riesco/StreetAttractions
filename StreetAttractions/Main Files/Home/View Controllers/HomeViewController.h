@@ -79,6 +79,11 @@ NS_ASSUME_NONNULL_BEGIN
 */
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
 
+/**
+    Stores user sending a message (For notification purposes)
+*/
+@property (strong, nonatomic) NSString *userMessage;
+
 @end
 
 NS_ASSUME_NONNULL_END

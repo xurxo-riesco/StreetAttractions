@@ -31,6 +31,7 @@
 		982408D424BCD8DA00F35FDA /* HomeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 982408D324BCD8DA00F35FDA /* HomeCell.m */; };
 		982408E024BCDE8E00F35FDA /* LocationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 982408DE24BCDE8E00F35FDA /* LocationCell.m */; };
 		982408E224BCE0E900F35FDA /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 982408E124BCE0E900F35FDA /* MapKit.framework */; };
+		98611E5F24D21CD80052759A /* CustomButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 98611E5E24D21CD80052759A /* CustomButton.m */; };
 		9863F18224C258E700B01B74 /* PhotoMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9863F18124C258E700B01B74 /* PhotoMapViewController.m */; };
 		9863F18524C2590C00B01B74 /* LocationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9863F18424C2590C00B01B74 /* LocationsViewController.m */; };
 		9863F18824C2591900B01B74 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9863F18624C2591900B01B74 /* SearchViewController.m */; };
@@ -162,6 +163,8 @@
 		982408DE24BCDE8E00F35FDA /* LocationCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LocationCell.m; sourceTree = "<group>"; };
 		982408DF24BCDE8E00F35FDA /* LocationCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LocationCell.h; sourceTree = "<group>"; };
 		982408E124BCE0E900F35FDA /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		98611E5D24D21CD80052759A /* CustomButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomButton.h; sourceTree = "<group>"; };
+		98611E5E24D21CD80052759A /* CustomButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomButton.m; sourceTree = "<group>"; };
 		9863F17924C2341700B01B74 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = "../../Downloads/Carthage 2/Build/iOS/FBSDKCoreKit.framework"; sourceTree = "<group>"; };
 		9863F17A24C2341700B01B74 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = "../../Downloads/Carthage 2/Build/iOS/FBSDKLoginKit.framework"; sourceTree = "<group>"; };
 		9863F18024C258D300B01B74 /* LocationsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LocationsViewController.h; sourceTree = "<group>"; };
@@ -589,6 +592,8 @@
 				98B96F0F24C65AF4005CBEA1 /* LongitudePredictor.mlmodel */,
 				9863F18C24C2605500B01B74 /* NSString+ColorCode.h */,
 				9863F18D24C2605500B01B74 /* NSString+ColorCode.m */,
+				98611E5D24D21CD80052759A /* CustomButton.h */,
+				98611E5E24D21CD80052759A /* CustomButton.m */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -921,6 +926,7 @@
 				982408C824BCCD5300F35FDA /* CategoryFeedViewController.m in Sources */,
 				98C1F68324BD02D800DB3713 /* CategoryCell.m in Sources */,
 				9890CCBA24CF8A1900621EE3 /* HyLoglnButton.m in Sources */,
+				98611E5F24D21CD80052759A /* CustomButton.m in Sources */,
 				98B96F1124C65AF4005CBEA1 /* LongitudePredictor.mlmodel in Sources */,
 				982408B524BCCBA400F35FDA /* LoginViewController.m in Sources */,
 				982408BB24BCCBBF00F35FDA /* HomeViewController.m in Sources */,

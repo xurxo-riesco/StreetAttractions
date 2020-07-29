@@ -15,11 +15,13 @@
                                  ComposeViewControllerDelegate,
                                  HomeCellDelegate,
                                  TNTutorialManagerDelegate>
-@property (strong, nonatomic) NSString *userMessage;
 @end
 
+// Notifications enabled or not
 bool isGrantedNotificationAccess;
+// Helper app to avoid notifications opening the app
 bool first;
+// Helper variables to determine when notifications should be sent
 NSInteger messageCount;
 NSInteger prevMessageCount;
 
@@ -73,35 +75,34 @@ NSInteger prevMessageCount;
   } else {
     self.tutorialManager = nil;
   }
-    
-    // Notification Set Up
-    first = true;
-    prevMessageCount = 0;
-    messageCount = prevMessageCount;
+
+  // Notification Set Up
+  first = true;
+  prevMessageCount = 0;
+  messageCount = prevMessageCount;
   [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(onTimer) userInfo:nil repeats:true];
 }
 
 - (void)onTimer
 {
-    if(messageCount > prevMessageCount && !first)
-    {
-        prevMessageCount = messageCount;
-        UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
-           UNMutableNotificationContent *content = [[UNMutableNotificationContent alloc] init];
+  if (messageCount > prevMessageCount && !first) {
+    prevMessageCount = messageCount;
+    UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
+    UNMutableNotificationContent *content = [[UNMutableNotificationContent alloc] init];
 
-           content.title = @"Street Attractions";
-           content.subtitle = @"New message!";
-        NSString *body = [NSString stringWithFormat:@"You have a new message from %@", self.userMessage];
-           content.body = body;
-           content.sound = [UNNotificationSound defaultSound];
+    content.title = @"Street Attractions";
+    content.subtitle = @"New message!";
+    NSString *body = [NSString stringWithFormat:@"You have a new message from %@", self.userMessage];
+    content.body = body;
+    content.sound = [UNNotificationSound defaultSound];
 
-           UNTimeIntervalNotificationTrigger *trigger = [UNTimeIntervalNotificationTrigger triggerWithTimeInterval:2
-                                                                                                           repeats:NO];
-           UNNotificationRequest *request = [UNNotificationRequest requestWithIdentifier:@"UYLocalNotification"
-                                                                                 content:content
-                                                                                 trigger:trigger];
-           [center addNotificationRequest:request withCompletionHandler:nil];
-         }
+    UNTimeIntervalNotificationTrigger *trigger = [UNTimeIntervalNotificationTrigger triggerWithTimeInterval:2
+                                                                                                    repeats:NO];
+    UNNotificationRequest *request = [UNNotificationRequest requestWithIdentifier:@"UYLocalNotification"
+                                                                          content:content
+                                                                          trigger:trigger];
+    [center addNotificationRequest:request withCompletionHandler:nil];
+  }
   [self fetchMessages];
 }
 
@@ -115,13 +116,15 @@ NSInteger prevMessageCount;
   query.limit = 20;
   [query findObjectsInBackgroundWithBlock:^(NSArray<Message *> *messages, NSError *error) {
     if (messages != nil) {
-        messageCount = messages.count;
-        if(messageCount > prevMessageCount)
-        {
-            User *user = messages[messages.count-1].author;
-            self.userMessage = user.screenname;
-        }
+      messageCount = messages.count;
+      if (first) {
+        prevMessageCount = messageCount;
         first = false;
+      }
+      if (messageCount > prevMessageCount) {
+        User *user = messages[messages.count - 1].author;
+        self.userMessage = user.screenname;
+      }
     } else {
       NSLog(@"%@", error.localizedDescription);
     }

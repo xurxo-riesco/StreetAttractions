@@ -7,6 +7,7 @@
 //
 
 #import "HomeViewController.h"
+
 @interface HomeViewController ()<UICollectionViewDelegate,
                                  UICollectionViewDataSource,
                                  GreedoCollectionViewLayoutDataSource,

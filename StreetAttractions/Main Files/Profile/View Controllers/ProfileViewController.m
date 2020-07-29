@@ -104,13 +104,13 @@
   [postQuery findObjectsInBackgroundWithBlock:^(NSArray<Post *> *_Nullable posts, NSError *_Nullable error) {
     if (posts) {
       if (posts.count > 0) {
-        int prevNumPosts = self.posts.count;
-        self.posts = [self.posts arrayByAddingObjectsFromArray:posts];
+        int prevNumPosts = (int) self.posts.count;
+        self.posts = (NSMutableArray *)[self.posts arrayByAddingObjectsFromArray:posts];
         NSMutableArray *newIndexPaths = [NSMutableArray array];
         for (int i = prevNumPosts; i < self.posts.count; i++) {
           [newIndexPaths addObject:[NSIndexPath indexPathForRow:i inSection:0]];
         }
-        self.dataSkip += posts.count;
+        self.dataSkip += (int) posts.count;
       }
       self.isMoreDataLoading = false;
       [self.collectionView reloadData];
@@ -266,7 +266,6 @@
 - (void)fetchPostsAndPredict
 {
   PFQuery *postQuery = [Post query];
-  User *user = [User currentUser];
   [postQuery whereKey:@"author" equalTo:self.user];
   [postQuery orderByDescending:@"createdAt"];
   postQuery.limit = 20;

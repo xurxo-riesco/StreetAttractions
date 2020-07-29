@@ -87,7 +87,7 @@
   postQuery.skip = self.dataSkip;
   [postQuery findObjectsInBackgroundWithBlock:^(NSArray<Post *> *_Nullable posts, NSError *_Nullable error) {
     if (posts) {
-      int prevNumPost = self.posts.count;
+      int prevNumPost = (int) self.posts.count;
       for (Post *post in posts) {
         if ([self.posts containsObject:post]) {
           NSLog(@"Repeated");
@@ -102,7 +102,7 @@
       for (int i = prevNumPost; i < self.posts.count; i++) {
         [newIndexPaths addObject:[NSIndexPath indexPathForRow:i inSection:0]];
       }
-      self.dataSkip += self.posts.count;
+      self.dataSkip += (int)self.posts.count;
       [self sortPosts];
     }
     self.isMoreDataLoading = false;

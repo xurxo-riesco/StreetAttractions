@@ -102,7 +102,7 @@ didFinishPickingMediaWithInfo:(NSDictionary<NSString *, id> *)info
 
 - (IBAction)onUpdate:(id)sender
 {
-  User *user = [PFUser currentUser];
+  User *user = [User currentUser];
   user.screenname = self.screenNameField.text;
   user.location = self.cityField.text;
 

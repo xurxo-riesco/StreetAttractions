@@ -118,8 +118,7 @@
 
 - (void)itemDidFinishPlaying:(NSNotification *)notification
 {
-  AVPlayerItem *player = [notification object];
-    [self.avPlayer seekToTime:kCMTimeZero];
+  [self.avPlayer seekToTime:kCMTimeZero];
 }
 
 #pragma mark - Navigation

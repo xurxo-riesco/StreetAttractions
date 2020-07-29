@@ -58,7 +58,7 @@
 #pragma mark - Network
 - (void)fetchUsers{
     PFQuery *queryUsers = [PFUser query];
-    [queryUsers whereKey:@"username" containsString:self.userString];
+    [queryUsers whereKey:@"screenname" containsString:self.userString];
     queryUsers.limit = 20;
     [queryUsers findObjectsInBackgroundWithBlock:^(NSArray<PFUser *>* users, NSError * _Nullable error) {
         self.users = users;

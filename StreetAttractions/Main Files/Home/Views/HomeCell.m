@@ -52,7 +52,6 @@
   self.descriptionView.alpha = 0;
   CGRect newFrame = self.mediaView.frame;
 
-  NSLog(@" WIDTH %f", (CGRectGetWidth(self.bounds)));
   newFrame.size.width = (CGRectGetWidth(self.bounds)) - 15;
   newFrame.size.height = (CGRectGetHeight(self.bounds)) - 15;
   [self.mediaView setFrame:newFrame];

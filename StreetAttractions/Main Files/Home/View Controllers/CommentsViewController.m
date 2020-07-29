@@ -46,9 +46,9 @@
 {
   Comment *newComment = [Comment new];
   newComment.author = [PFUser currentUser];
-    if ([self.commentField.text isEqual:@""]) {
-      return;
-    }
+  if ([self.commentField.text isEqual:@""]) {
+    return;
+  }
   newComment.text = self.commentField.text;
   self.commentField.text = @"";
   // Saves new comment to the server

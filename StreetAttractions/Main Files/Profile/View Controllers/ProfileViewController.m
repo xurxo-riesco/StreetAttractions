@@ -36,7 +36,7 @@
   self.screenameLabel.text = self.user.screenname;
   self.usernameLabel.text = [NSString stringWithFormat:@"@%@", self.user.username];
   self.cityLabel.text = self.user.location;
-  self.profilePic.layer.cornerRadius = 20;
+  self.profilePic.layer.cornerRadius = 43;
   self.profilePic.layer.masksToBounds = YES;
   self.profilePic.file = self.user.profilePic;
   [self.profilePic loadInBackground];
@@ -104,13 +104,13 @@
   [postQuery findObjectsInBackgroundWithBlock:^(NSArray<Post *> *_Nullable posts, NSError *_Nullable error) {
     if (posts) {
       if (posts.count > 0) {
-        int prevNumPosts = (int) self.posts.count;
+        int prevNumPosts = (int)self.posts.count;
         self.posts = (NSMutableArray *)[self.posts arrayByAddingObjectsFromArray:posts];
         NSMutableArray *newIndexPaths = [NSMutableArray array];
         for (int i = prevNumPosts; i < self.posts.count; i++) {
           [newIndexPaths addObject:[NSIndexPath indexPathForRow:i inSection:0]];
         }
-        self.dataSkip += (int) posts.count;
+        self.dataSkip += (int)posts.count;
       }
       self.isMoreDataLoading = false;
       [self.collectionView reloadData];

@@ -22,7 +22,6 @@
   postTap.numberOfTapsRequired = 2;
   [self addGestureRecognizer:postTap];
   [self setUserInteractionEnabled:YES];
-
 }
 
 // Helper function to start retrieving user's location
@@ -51,11 +50,9 @@
   self.post = post;
   self.descriptionView.alpha = 0;
   CGRect newFrame = self.mediaView.frame;
-  newFrame.size.width = (CGRectGetWidth(self.bounds)) - 15;
-  newFrame.size.height = (CGRectGetHeight(self.bounds)) - 15;
+  newFrame.size.width = (CGRectGetWidth(self.bounds));
+  newFrame.size.height = (CGRectGetHeight(self.bounds));
   [self.mediaView setFrame:newFrame];
-  self.mediaView.layer.masksToBounds = YES;
-  self.mediaView.layer.cornerRadius = 8;
   self.mediaView.file = post.media;
   [self.mediaView loadInBackground];
   self.distanceLabel.text = @"";
@@ -66,6 +63,9 @@
   } else {
     self.popularView.alpha = 0;
   }
+  self.categoryView.layer.masksToBounds = YES;
+  self.categoryView.layer.cornerRadius = 6;
+  self.categoryView.backgroundColor = [post.category colorCode];
 }
 
 - (void)showDescription:(Post *)post
@@ -74,12 +74,13 @@
   CGRect newFrame = self.mediaView.frame;
 
   NSLog(@" WIDTH %f", (CGRectGetWidth(self.bounds)));
-  newFrame.size.width = (CGRectGetWidth(self.bounds)) - 15;
-  newFrame.size.height = (CGRectGetHeight(self.bounds)) - 15;
+  newFrame.size.width = (CGRectGetWidth(self.bounds));
+  newFrame.size.height = (CGRectGetHeight(self.bounds));
   [self.descriptionView setFrame:newFrame];
-  self.descriptionView.layer.masksToBounds = YES;
-  self.descriptionView.layer.cornerRadius = 8;
-  [self.descriptionView setBackgroundColor:[post.category colorCode]];
+  [self.descriptionView setBackgroundColor:[UIColor colorWithRed:239.0 / 255.0
+                                                           green:235.0 / 255.0
+                                                            blue:234.0 / 255.0
+                                                           alpha:1]];
   CLLocation *startLocation = [[CLLocation alloc] initWithLatitude:self.latitude longitude:self.longitude];
   CLLocation *endLocation = [[CLLocation alloc] initWithLatitude:post.latitude.floatValue
                                                        longitude:post.longitude.floatValue];

@@ -16,7 +16,7 @@
 - (void)viewDidLoad
 {
   [super viewDidLoad];
-    self.passwordField.secureTextEntry = YES;
+  self.passwordField.secureTextEntry = YES;
 }
 
 // ImagePicker set up for profile pic

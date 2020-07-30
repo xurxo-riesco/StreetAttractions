@@ -10,21 +10,19 @@
 
 // Margins Colors
 
-
 @implementation CustomButton
 
 - (instancetype)initWithCoder:(NSCoder *)coder
 {
-    self = [super initWithCoder:coder];
-    if (self) {
-
-        [self setBackgroundColor:[UIColor colorWithRed:239.0/255.0 green:235.0/255.0 blue:234.0/255.0 alpha:1]];
-        [self setTitleColor:UIColor.blackColor forState:UIControlStateNormal];
-        self.layer.cornerRadius = 4;
-        self.layer.masksToBounds = YES;
-        self.titleLabel.font = [UIFont systemFontOfSize:17.0 weight:UIFontWeightRegular];
-    }
-    return self;
+  self = [super initWithCoder:coder];
+  if (self) {
+    [self setBackgroundColor:[UIColor colorWithRed:239.0 / 255.0 green:235.0 / 255.0 blue:234.0 / 255.0 alpha:1]];
+    [self setTitleColor:UIColor.blackColor forState:UIControlStateNormal];
+    self.layer.cornerRadius = 4;
+    self.layer.masksToBounds = YES;
+    self.titleLabel.font = [UIFont systemFontOfSize:17.0 weight:UIFontWeightRegular];
+  }
+  return self;
 }
 
 /*

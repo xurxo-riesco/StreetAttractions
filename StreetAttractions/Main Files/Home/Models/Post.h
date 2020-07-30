@@ -115,8 +115,8 @@ NS_ASSUME_NONNULL_BEGIN
            toCategory:(NSString *)category
            isUpcoming:(BOOL)upcoming
               forDate:(NSDate *)date
-            withVideo: (BOOL) hasVideo
-       withVideoFile : (PFFileObject *) video
+            withVideo:(BOOL)hasVideo
+        withVideoFile:(PFFileObject *)video
        withCompletion:(PFBooleanResultBlock _Nullable)completion;
 @end
 NS_ASSUME_NONNULL_END

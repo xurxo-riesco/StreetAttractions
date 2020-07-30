@@ -24,7 +24,7 @@
   [self.mediaView loadInBackground];
   self.backgroundView.layer.cornerRadius = 16;
   self.backgroundView.layer.masksToBounds = YES;
-    self.backgroundView.alpha = 0.3;
+  self.backgroundView.alpha = 0.3;
   self.backgroundView.backgroundColor = [self.category.name colorCode];
 }
 

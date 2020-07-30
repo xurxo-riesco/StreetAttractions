@@ -14,9 +14,9 @@
 - (UIColor *)colorCode
 {
   if ([self isEqual:@"Dancers"]) {
-      return [UIColor systemBlueColor];
+    return [UIColor systemBlueColor];
   } else if ([self isEqual:@"Singers"]) {
-      return [UIColor systemGreenColor];
+    return [UIColor systemGreenColor];
   } else if ([self isEqual:@"Magicians"]) {
     return [UIColor systemPurpleColor];
   }

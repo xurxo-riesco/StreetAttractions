@@ -10,6 +10,7 @@
 
 #import <AVFoundation/AVFoundation.h>
 #import <UIKit/UIKit.h>
+
 #import "NSString+ColorCode.h"
 
 // View Controllers
@@ -38,7 +39,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (weak, nonatomic) IBOutlet UIView *contentView;
 /**
-   Holds the array index corresponding to the post being displayed 
+   Holds the array index corresponding to the post being displayed
 */
 @property (nonatomic) NSInteger index;
 

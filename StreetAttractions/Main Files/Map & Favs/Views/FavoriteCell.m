@@ -51,13 +51,15 @@
 
 - (void)loadPost:(Post *)post
 {
+  self.contentView.backgroundColor = [UIColor colorWithRed:239.0 / 255.0
+                                                     green:235.0 / 255.0
+                                                      blue:234.0 / 255.0
+                                                     alpha:1];
   self.post = post;
-  self.mediaView.layer.cornerRadius = 16;
-  self.mediaView.layer.masksToBounds = YES;
-  self.borderView.layer.cornerRadius = 16;
-  self.borderView.layer.masksToBounds = YES;
   self.mediaView.file = post.media;
   [self.mediaView loadInBackground];
+  self.mediaView.layer.cornerRadius = 4;
+  self.mediaView.layer.masksToBounds = YES;
   self.descriptionLabel.text = post.caption;
   CLLocation *startLocation = [[CLLocation alloc] initWithLatitude:self.latitude longitude:self.longitude];
   CLLocation *endLocation = [[CLLocation alloc] initWithLatitude:post.latitude.floatValue
@@ -70,8 +72,8 @@
   User *user = (User *)post.author;
   self.profilePic.file = user.profilePic;
   [self.profilePic loadInBackground];
-  self.borderView.alpha = 0.4;
-  self.borderView.backgroundColor = [post.category colorCode];
+  self.categoryLabel.textColor = [post.category colorCode];
+  self.categoryLabel.text = [post.category substringToIndex:1];
   self.usernameLabel.text = user.screenname;
 }
 

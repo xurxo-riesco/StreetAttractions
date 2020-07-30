@@ -58,9 +58,9 @@
   // Visual Set Up
   self.commentsButton.layer.cornerRadius = 8;
   self.commentsButton.layer.masksToBounds = YES;
-  self.profilePic.layer.cornerRadius = 20;
+  self.profilePic.layer.cornerRadius = 17.5;
   self.profilePic.layer.masksToBounds = YES;
-  self.mediaView.layer.cornerRadius = 20;
+  self.mediaView.layer.cornerRadius = 10;
   self.mediaView.layer.masksToBounds = YES;
   self.mediaView.file = self.post.media;
   [self.mediaView loadInBackground];
@@ -69,6 +69,8 @@
   self.userLabel.text = self.user.screenname;
   self.dateLabel.text = self.post.createdAt.timeAgoSinceNow;
   self.descriptionLabel.text = self.post.caption;
+  self.categoryLabel.text = self.post.category;
+  self.categoryLabel.textColor = [self.post.category colorCode];
 
   // GestureRecognizer Set Up
   UITapGestureRecognizer *postTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapPost:)];
@@ -212,7 +214,10 @@ calloutAccessoryControlTapped:(UIControl *)control
   [UIView animateWithDuration:5
                    animations:^{
                      self.starView.value = self.post.rating.floatValue;
-                     self.starView.tintColor = [self.post.category colorCode];
+                     self.starView.tintColor = [UIColor colorWithRed:234.0 / 255.0
+                                                               green:230.0 / 255.0
+                                                                blue:229.0 / 255.0
+                                                               alpha:1];
                    }];
 }
 

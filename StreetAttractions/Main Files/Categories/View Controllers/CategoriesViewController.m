@@ -14,9 +14,6 @@
                                        UICollectionViewDataSource,
                                        HomeCellDelegate,
                                        UISearchBarDelegate>
-@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 
 @end
 
@@ -26,6 +23,13 @@
 {
   [super viewDidLoad];
 
+  self.collectionView.backgroundColor = [UIColor colorWithRed:239.0 / 255.0
+                                                        green:235.0 / 255.0
+                                                         blue:234.0 / 255.0
+                                                        alpha:1];
+  self.tableView.backgroundColor = [UIColor colorWithRed:239.0 / 255.0 green:235.0 / 255.0 blue:234.0 / 255.0 alpha:1];
+  self.view.backgroundColor = [UIColor colorWithRed:239.0 / 255.0 green:235.0 / 255.0 blue:234.0 / 255.0 alpha:1];
+  self.searchBar.backgroundColor = [UIColor colorWithRed:239.0 / 255.0 green:235.0 / 255.0 blue:234.0 / 255.0 alpha:1];
   // Search Bar Set Up
   self.searchBar.delegate = self;
 

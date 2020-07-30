@@ -39,8 +39,8 @@
            toCategory:(NSString *)category
            isUpcoming:(BOOL)upcoming
               forDate:(NSDate *)date
-            withVideo: (BOOL) hasVideo
-       withVideoFile : (PFFileObject *) video
+            withVideo:(BOOL)hasVideo
+        withVideoFile:(PFFileObject *)video
        withCompletion:(PFBooleanResultBlock _Nullable)completion
 {
   Post *newPost = [Post new];
@@ -53,14 +53,12 @@
   newPost.timesRated = @(0);
   newPost.latitude = latitude;
   newPost.longitude = longitude;
-    newPost.hasVideo = hasVideo;
-    if(hasVideo)
-    {
-        newPost.video = video;
-    }else
-    {
-        newPost.video = nil;
-    }
+  newPost.hasVideo = hasVideo;
+  if (hasVideo) {
+    newPost.video = video;
+  } else {
+    newPost.video = nil;
+  }
   newPost.category = category;
   if (upcoming) {
     newPost.isUpcoming = YES;

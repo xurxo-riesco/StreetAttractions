@@ -83,6 +83,11 @@ NS_ASSUME_NONNULL_BEGIN
 */
 @property (strong, nonatomic) Post *post;
 
+/**
+    Displays the color of the category
+*/
+@property (weak, nonatomic) IBOutlet UIView *categoryView;
+
 /*!
    @brief Loads all celll views
    @discussion Simply display the media corresponding to the post.

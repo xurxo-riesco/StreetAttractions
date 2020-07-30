@@ -55,6 +55,21 @@ NS_ASSUME_NONNULL_BEGIN
 */
 @property (nonatomic, strong) NSString *text;
 
+/**
+    Displays recommended posts
+*/
+@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+
+/**
+    Displays categories
+*/
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+'
+/**
+    Search Bar used to segue to search users
+*/
+@property(weak, nonatomic) IBOutlet UISearchBar *searchBar;
+
 @end
 
 NS_ASSUME_NONNULL_END

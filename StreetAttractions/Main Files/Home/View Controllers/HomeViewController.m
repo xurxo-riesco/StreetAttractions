@@ -34,34 +34,35 @@ NSInteger prevMessageCount;
     [self.tutorialManager updateTutorial];
   }
 }
-
+- (void)viewDidDisappear:(BOOL)animated
+{
+  self.timer.invalidate;
+}
 - (void)viewDidLoad
 {
   [super viewDidLoad];
-  isGrantedNotificationAccess = false;
-  UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
-  UNAuthorizationOptions *options = UNAuthorizationOptionAlert + UNAuthorizationOptionSound;
 
-  [center requestAuthorizationWithOptions:options
-                        completionHandler:^(BOOL granted, NSError *_Nullable error) {
-                          isGrantedNotificationAccess = granted;
-                        }];
   // CollectionView Set Up
+  self.collectionView.backgroundColor = [UIColor colorWithRed:239.0 / 255.0
+                                                        green:235.0 / 255.0
+                                                         blue:234.0 / 255.0
+                                                        alpha:1];
   self.collectionView.delegate = self;
   self.collectionView.dataSource = self;
-  self.collectionViewSizeCalculator.rowMaximumHeight = CGRectGetHeight(self.collectionView.bounds) / 3;
+  self.collectionViewSizeCalculator.rowMaximumHeight = CGRectGetHeight(self.collectionView.bounds) / 2.5;
   self.collectionViewSizeCalculator.fixedHeight = self.hasFixedHeight;
-  self.automaticallyAdjustsScrollViewInsets = NO;
-  self.collectionView.backgroundColor = [UIColor whiteColor];
+  self.automaticallyAdjustsScrollViewInsets = YES;
+  // self.collectionView.backgroundColor = [UIColor whiteColor];
   // Configure spacing between cells
   UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-  layout.minimumInteritemSpacing = 5.0f;
-  layout.minimumLineSpacing = 5.0f;
-  layout.sectionInset = UIEdgeInsetsMake(10.0f, 5.0f, 5.0f, 5.0f);
+  layout.minimumInteritemSpacing = 2.0f;
+  layout.minimumLineSpacing = 2.0f;
+  layout.sectionInset = UIEdgeInsetsMake(0.0f, 0.0f, 0.0f, 0.0f);
   self.collectionView.collectionViewLayout = layout;
 
   // Refresh Control Set Up
   self.refreshControl = [[UIRefreshControl alloc] init];
+  [self.refreshControl setTintColor:[UIColor blackColor]];
   [self.refreshControl addTarget:self action:@selector(beginRefresh:) forControlEvents:UIControlEventValueChanged];
   [self.collectionView insertSubview:self.refreshControl atIndex:0];
 
@@ -80,7 +81,19 @@ NSInteger prevMessageCount;
   first = true;
   prevMessageCount = 0;
   messageCount = prevMessageCount;
-  [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(onTimer) userInfo:nil repeats:true];
+  isGrantedNotificationAccess = false;
+  self.timer = [NSTimer scheduledTimerWithTimeInterval:5
+                                                target:self
+                                              selector:@selector(onTimer)
+                                              userInfo:nil
+                                               repeats:true];
+  UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
+  UNAuthorizationOptions *options = UNAuthorizationOptionAlert + UNAuthorizationOptionSound;
+
+  [center requestAuthorizationWithOptions:options
+                        completionHandler:^(BOOL granted, NSError *_Nullable error) {
+                          isGrantedNotificationAccess = granted;
+                        }];
 }
 
 - (void)onTimer
@@ -256,18 +269,22 @@ NSInteger prevMessageCount;
   // Return the image size to GreedoCollectionViewLayout
   if (indexPath.item < self.posts.count) {
     Post *post = self.posts[indexPath.item];
+    if (indexPath.item == self.posts.count - 1) {
+      return CGSizeMake((CGFloat)([self randomValueBetween:300 and:414]),
+                        (CGFloat)([self randomValueBetween:165 and:201]));
+    }
     // NSLog (@"%@, %f", post.description, post.rating.floatValue);
-    if (post.rating.floatValue > 4.0) {
+    if (post.rating.floatValue > 4.5) {
       NSLog(@"YEEES, %f", post.rating.floatValue);
-      return CGSizeMake((CGFloat)([self randomValueBetween:260 and:300]),
-                        (CGFloat)([self randomValueBetween:165 and:200]));
+      return CGSizeMake((CGFloat)([self randomValueBetween:200 and:260]),
+                        (CGFloat)([self randomValueBetween:165 and:201]));
     } else {
-      return CGSizeMake((CGFloat)([self randomValueBetween:121 and:230]),
+      return CGSizeMake((CGFloat)([self randomValueBetween:121 and:200]),
                         (CGFloat)([self randomValueBetween:150 and:165]));
     }
   }
 
-  return CGSizeMake(0.1, 0.1);
+  return CGSizeMake(20.0, 0.0);
 }
 - (NSInteger)randomValueBetween:(NSInteger)min and:(NSInteger)max
 {

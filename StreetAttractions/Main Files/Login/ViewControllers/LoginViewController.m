@@ -44,9 +44,12 @@
 - (void)createPresentControllerButton
 {
   HyLoginButton *loginButton = [[HyLoginButton alloc]
-  initWithFrame:CGRectMake(20, 450, [UIScreen mainScreen].bounds.size.width - 40, 40)];
-  [loginButton setBackgroundColor:[UIColor colorWithRed:0.f / 255.0f green:0.f / 255.0f blue:1 alpha:1]];
+  initWithFrame:CGRectMake(40, 400, [UIScreen mainScreen].bounds.size.width - 80, 40)];
+  [loginButton setBackgroundColor:[UIColor colorWithRed:239.0 / 255.0 green:235.0 / 255.0 blue:234.0 / 255.0 alpha:1]];
   [loginButton setTitle:@"Log In" forState:UIControlStateNormal];
+  [loginButton setTitleColor:UIColor.blackColor forState:UIControlStateNormal];
+  loginButton.layer.cornerRadius = 4;
+  loginButton.layer.masksToBounds = YES;
   [loginButton addTarget:self action:@selector(PresentViewController:) forControlEvents:UIControlEventTouchUpInside];
   [self.view addSubview:loginButton];
 }

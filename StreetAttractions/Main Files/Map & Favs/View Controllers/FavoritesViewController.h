@@ -25,7 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
     Array of favorite posts
 */
-@property (strong, nonatomic) NSMutableArray<Post*> *posts;
+@property (strong, nonatomic) NSMutableArray<Post *> *posts;
 
 /**
     Array of categories favorited by the user

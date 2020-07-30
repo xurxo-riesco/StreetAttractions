@@ -8,14 +8,15 @@
 
 #import <UIKit/UIKit.h>
 #import <UserNotifications/UserNotifications.h>
+
 #import "MMDrawerController.h"
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+@interface AppDelegate : UIResponder<UIApplicationDelegate>
 
 /**
   Main window property (Necessary due to Scene Delagate Removal)
 */
-@property (strong, nonatomic) UIWindow * window;
+@property (strong, nonatomic) UIWindow *window;
 
 /**
   Slide Out controller necessary property
@@ -23,4 +24,3 @@
 @property (strong, nonatomic) MMDrawerController *drawerController;
 
 @end
-

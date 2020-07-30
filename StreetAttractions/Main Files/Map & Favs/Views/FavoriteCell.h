@@ -44,9 +44,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) Post *post;
 
 /**
-    Displays a border around the post color coded based on cell's category
+    Displays a character color coded based on cell's category
 */
-@property (weak, nonatomic) IBOutlet UIImageView *borderView;
+@property (weak, nonatomic) IBOutlet UILabel *categoryLabel;
 
 /**
     Displays post's image

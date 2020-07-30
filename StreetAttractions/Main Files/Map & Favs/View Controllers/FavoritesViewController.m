@@ -24,6 +24,7 @@
   // TableView Set Up
   self.tableView.delegate = self;
   self.tableView.dataSource = self;
+  self.tableView.backgroundColor = [UIColor colorWithRed:239.0 / 255.0 green:235.0 / 255.0 blue:234.0 / 255.0 alpha:1];
 
   // Refresh Controll Set Up
   self.refreshControl = [[UIRefreshControl alloc] init];

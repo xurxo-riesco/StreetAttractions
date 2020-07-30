@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
    @discussion Compares the current category name to all category names to allow color coding
    @return UIColor corresponding to a category
 */
-- (UIColor *) colorCode;
+- (UIColor *)colorCode;
 
 @end
 

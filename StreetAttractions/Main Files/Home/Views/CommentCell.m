@@ -13,12 +13,16 @@
 - (void)awakeFromNib
 {
   [super awakeFromNib];
-    
-    // Visual Set Up
+
+  // Visual Set Up
   self.commentView.layer.cornerRadius = 16;
   self.commentView.layer.masksToBounds = YES;
-    
-    // Gesture Recognizer Set Up
+  self.commentView.backgroundColor = [UIColor colorWithRed:239.0 / 255.0
+                                                     green:235.0 / 255.0
+                                                      blue:234.0 / 255.0
+                                                     alpha:1];
+
+  // Gesture Recognizer Set Up
   UITapGestureRecognizer *userTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapUser:)];
   userTap.numberOfTapsRequired = 1;
   [self.profilePic addGestureRecognizer:userTap];

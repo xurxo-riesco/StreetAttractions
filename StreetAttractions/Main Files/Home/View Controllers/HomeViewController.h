@@ -24,9 +24,9 @@
 
 // Models
 #import "Category.h"
+#import "Message.h"
 #import "Post.h"
 #import "User.h"
-#import "Message.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -83,6 +83,11 @@ NS_ASSUME_NONNULL_BEGIN
     Stores user sending a message (For notification purposes)
 */
 @property (strong, nonatomic) NSString *userMessage;
+
+/**
+    Timer to obtain messages, used for notifications since they are local
+*/
+@property (strong, nonatomic) NSTimer *timer;
 
 @end
 

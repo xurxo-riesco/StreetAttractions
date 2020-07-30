@@ -15,8 +15,8 @@
 #import "UserCell.h"
 
 // Models
-#import "User.h"
 #import "Post.h"
+#import "User.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

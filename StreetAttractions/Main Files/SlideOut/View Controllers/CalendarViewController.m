@@ -143,9 +143,9 @@ borderRadiusForDate:(nonnull NSDate *)date
 {
   NSString *dateString = [self.dateFormatter stringFromDate:date];
   self.post = self.dates[dateString];
-    if(self.post != nil){
-        [self performSegueWithIdentifier:@"toDetails" sender:nil];
-    }
+  if (self.post != nil) {
+    [self performSegueWithIdentifier:@"toDetails" sender:nil];
+  }
 }
 
 #pragma mark - Navigation

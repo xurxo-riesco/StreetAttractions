@@ -96,6 +96,11 @@ NS_ASSUME_NONNULL_BEGIN
 */
 @property (nonatomic) BOOL pinch;
 
+/**
+   Displays the category of a performance
+*/
+@property (weak, nonatomic) IBOutlet UILabel *categoryLabel;
+
 @end
 
 NS_ASSUME_NONNULL_END

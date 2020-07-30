@@ -7,8 +7,8 @@
 //
 
 @import Parse;
-#import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
+#import <UIKit/UIKit.h>
 
 // Views
 #import "LocationCell.h"
@@ -26,7 +26,9 @@
    Used to save the latitude and longitude of a venue after being selected in the TableView
 */
 @protocol LocationsViewControllerDelegate
-- (void)locationsViewController:(LocationsViewController *)controller didPickLocationWithLatitude:(NSNumber *)latitude longitude:(NSNumber *)longitude;
+- (void)locationsViewController:(LocationsViewController *)controller
+    didPickLocationWithLatitude:(NSNumber *)latitude
+                      longitude:(NSNumber *)longitude;
 @end
 
 @interface LocationsViewController : UIViewController

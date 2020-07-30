@@ -22,6 +22,7 @@
 // Models
 #import "Post.h"
 #import "User.h"
+#import "PerformanceRequest.h"
 
 @interface PhotoMapViewController : UIViewController
 

@@ -53,13 +53,16 @@ didFinishPickingMediaWithInfo:(NSDictionary<NSString *, id> *)info
   return newImage;
 }
 
+// Calls to sign the user up in the backend after pressing the sign up button
 - (IBAction)onSignUp:(id)sender
 {
   [self registerUser];
 }
 
+// Registers a new user in the Parse server
 - (void)registerUser
 {
+  // Loading HUD is shown while users is registered
   JGProgressHUD *HUD = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
   HUD.textLabel.text = @"Signing up...";
   [HUD showInView:self.view];
@@ -68,6 +71,7 @@ didFinishPickingMediaWithInfo:(NSDictionary<NSString *, id> *)info
   newUser.password = self.passwordField.text;
   newUser.location = self.locationField.text;
 
+  // Adds a profile image as chosen by the user or the default one if no choice is made
   if (self.image != nil) {
     NSData *imageData = UIImagePNGRepresentation(self.image);
     PFFileObject *profilePicture = [PFFileObject fileObjectWithName:@"image.png" data:imageData];
@@ -77,12 +81,14 @@ didFinishPickingMediaWithInfo:(NSDictionary<NSString *, id> *)info
     PFFileObject *profilePicture = [PFFileObject fileObjectWithName:@"image.png" data:imageData];
     newUser.profilePic = profilePicture;
   }
+
   // If the user tries to register without a screen name, the unique username will also be used as the screen name
   if (self.screennameField.text != 0) {
     newUser.screenname = self.screennameField.text;
   } else {
     newUser.screenname = self.usernameField.text;
   }
+
   // Saves the new user to the server
   [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
     if (error != nil) {
@@ -99,8 +105,10 @@ didFinishPickingMediaWithInfo:(NSDictionary<NSString *, id> *)info
       [self presentViewController:alert
                          animated:YES
                        completion:^{
+                         [HUD dismiss];
                        }];
     } else {
+      // Dismisses the hud and sends the user to the Home Page
       NSLog(@"User registered successfully");
       [HUD dismiss];
       [self segueToApp];

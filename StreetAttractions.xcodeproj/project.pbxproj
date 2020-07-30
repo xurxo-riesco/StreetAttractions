@@ -67,6 +67,7 @@
 		9897D77B24C8A3DD006C3FC5 /* CollabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9897D77A24C8A3DD006C3FC5 /* CollabViewController.m */; };
 		98B96F1124C65AF4005CBEA1 /* LongitudePredictor.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 98B96F0F24C65AF4005CBEA1 /* LongitudePredictor.mlmodel */; };
 		98B96F1224C65AF4005CBEA1 /* LatitudePredictor.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 98B96F1024C65AF4005CBEA1 /* LatitudePredictor.mlmodel */; };
+		98C02F6324D385AB0045213C /* PerformanceRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 98C02F6224D385AB0045213C /* PerformanceRequest.m */; };
 		98C1F68324BD02D800DB3713 /* CategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 98C1F68224BD02D800DB3713 /* CategoryCell.m */; };
 		98C57B5624BE207000F8FD0C /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 98C57B5524BE207000F8FD0C /* SettingsViewController.m */; };
 		98C57B6624BF776A00F8FD0C /* CoreML.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98C57B6524BF776A00F8FD0C /* CoreML.framework */; };
@@ -215,6 +216,8 @@
 		9897D77A24C8A3DD006C3FC5 /* CollabViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CollabViewController.m; sourceTree = "<group>"; };
 		98B96F0F24C65AF4005CBEA1 /* LongitudePredictor.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = LongitudePredictor.mlmodel; sourceTree = "<group>"; };
 		98B96F1024C65AF4005CBEA1 /* LatitudePredictor.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = LatitudePredictor.mlmodel; sourceTree = "<group>"; };
+		98C02F6124D385AB0045213C /* PerformanceRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PerformanceRequest.h; sourceTree = "<group>"; };
+		98C02F6224D385AB0045213C /* PerformanceRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PerformanceRequest.m; sourceTree = "<group>"; };
 		98C1F68124BD02D800DB3713 /* CategoryCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CategoryCell.h; sourceTree = "<group>"; };
 		98C1F68224BD02D800DB3713 /* CategoryCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CategoryCell.m; sourceTree = "<group>"; };
 		98C57B5424BE207000F8FD0C /* SettingsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
@@ -499,6 +502,8 @@
 			children = (
 				98C57B6F24BF88F300F8FD0C /* Annotation.h */,
 				98C57B7024BF88F300F8FD0C /* Annotation.m */,
+				98C02F6124D385AB0045213C /* PerformanceRequest.h */,
+				98C02F6224D385AB0045213C /* PerformanceRequest.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -934,6 +939,7 @@
 				9863F18824C2591900B01B74 /* SearchViewController.m in Sources */,
 				9824088524BCBD6B00F35FDA /* main.m in Sources */,
 				9863F18B24C259C800B01B74 /* UserCell.m in Sources */,
+				98C02F6324D385AB0045213C /* PerformanceRequest.m in Sources */,
 				986919DF24CA38A200245BFE /* CalendarViewController.m in Sources */,
 				9805EC0824BD197D0051CF5D /* FavoriteCell.m in Sources */,
 				9890CCBB24CF8A1900621EE3 /* SpinerLayer.m in Sources */,

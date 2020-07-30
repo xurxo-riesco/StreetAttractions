@@ -34,6 +34,7 @@
   [self.view addSubview:loginButton];
 }
 
+// Hides the keyboard after pressing return
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
   [textField resignFirstResponder];
@@ -63,6 +64,7 @@
     [self loginUserWithCompletion:^(BOOL success, NSError *error) {
       if (success) {
         [button succeedAnimationWithCompletion:^{
+            // Sends the user to the home page if the log in is succesfull
           [self segueToApp];
         }];
       } else {
@@ -169,11 +171,5 @@ didCompleteWithResult:(FBSDKLoginManagerLoginResult *)result
 - (void)loginButtonDidLogOut:(nonnull FBSDKLoginButton *)loginButton
 {
 }
-
-/*
- #pragma mark - Navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- }
- */
 
 @end

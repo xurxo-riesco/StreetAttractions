@@ -18,6 +18,11 @@
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property (nonatomic, strong) UIImageView *image;
+@property (nonatomic, strong) UIDatePicker *datePicker;
+@property (nonatomic, strong) NSDate *date;
+@property (strong, nonatomic) UIAlertController *alertController;
+@property (strong, nonatomic) NSArray *categories;
+@property (strong, nonatomic) UIPickerView *pickerView;
 
 @end
 
@@ -37,6 +42,45 @@
 
   // Initial network call
   [self fetchPost];
+    [self fetchCategories];
+}
+
+- (void)fetchCategories
+{
+  PFQuery *categoriesQuery = [Category query];
+  categoriesQuery.limit = 10;
+  [categoriesQuery
+  findObjectsInBackgroundWithBlock:^(NSArray<Category *> *_Nullable categories, NSError *_Nullable error) {
+    if (categories) {
+      self.categories = categories;
+      [self.pickerView reloadAllComponents];
+    }
+  }];
+}
+
+
+- (NSInteger)numberOfComponentsInPickerView:(nonnull UIPickerView *)pickerView
+{
+  return 1;
+}
+
+- (NSInteger)pickerView:(nonnull UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+{
+  return self.categories.count;
+}
+
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+{
+  Category *category = self.categories[row];
+  return category.name;
+}
+- (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component{
+    return 30;
+}
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
+{
+  Category *category = self.categories[row];
+    self.alertController.textFields[2].text = category.name;
 }
 
 #pragma mark - CLLocationManager Delegate
@@ -103,6 +147,7 @@
   [detailButton setImage:[UIImage systemImageNamed:@"info.circle"] forState:UIControlStateNormal];
   annotationView.rightCalloutAccessoryView = detailButton;
   annotationView.pinTintColor = [post.category colorCode];
+    annotationView.draggable = annotation.draggable;
   return annotationView;
 }
 // Anotation Delegate
@@ -136,10 +181,133 @@ calloutAccessoryControlTapped:(UIControl *)control
         annotation.coordinate = coordinate;
         annotation.title = [NSString stringWithFormat:@"%@ (%@)", post.category, post.createdAt.shortTimeAgoSinceNow];
         annotation.post = post;
+          annotation.draggable = NO;
         [self.mapView addAnnotation:annotation];
       }
     }
   }];
+}
+- (IBAction)onAddRequest:(id)sender {
+    Annotation *annotation = [Annotation new];
+    CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(self.locationManager.location.coordinate.latitude, self.locationManager.location.coordinate.longitude);
+        annotation.coordinate = coordinate;
+    annotation.title = @"New Request";
+      annotation.draggable = YES;
+    [self.mapView addAnnotation:annotation];
+    
+}
+- (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view didChangeDragState:(MKAnnotationViewDragState)newState
+fromOldState:(MKAnnotationViewDragState)oldState;
+{
+    NSLog(@"pin Drag");
+
+    if (newState == MKAnnotationViewDragStateEnding)
+    {
+        CLLocationCoordinate2D droppedAt = view.annotation.coordinate;
+        NSLog(@"Pin dropped at %f,%f", droppedAt.latitude, droppedAt.longitude);
+
+        CLLocation* draglocation = [[CLLocation alloc] initWithLatitude:droppedAt.latitude longitude:droppedAt.longitude];
+        [self requestForAnnotation:view.annotation];
+        
+
+
+    }
+}
+- (void)requestForAnnotation: (Annotation *) annotation
+{
+    self.alertController = [UIAlertController alertControllerWithTitle:@"Add a Performance Request"
+                                                                           message:@""
+                                                                    preferredStyle:UIAlertControllerStyleAlert];
+    [self.alertController addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+    textField.placeholder = @"Brief description";
+    textField.textColor = [UIColor blackColor];
+    textField.clearButtonMode = UITextFieldViewModeWhileEditing;
+    textField.borderStyle = UITextBorderStyleRoundedRect;
+  }];
+    [self.alertController addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+      textField.placeholder = @"Date";
+      self.datePicker = [[UIDatePicker alloc] init];
+      self.datePicker.datePickerMode = UIDatePickerModeDate;
+      UIToolbar *toolBar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
+
+      [toolBar setTintColor:[UIColor grayColor]];
+
+      /* Here we are adding a done button so that we can close our picker after date selection */
+
+      UIBarButtonItem *doneBtn = [[UIBarButtonItem alloc] initWithTitle:@"Done"
+                                                                  style:UIBarButtonItemStylePlain
+                                                                 target:self
+                                                                 action:@selector(RequestDate) ];
+
+      UIBarButtonItem *space = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+                                                                             target:nil
+                                                                             action:nil];
+
+      [toolBar setItems:[NSArray arrayWithObjects:space, doneBtn, nil]];
+
+      [textField setInputAccessoryView:toolBar];
+      [textField setInputView:self.datePicker];
+      
+      textField.textColor = [UIColor blackColor];
+      textField.clearButtonMode = UITextFieldViewModeWhileEditing;
+      textField.borderStyle = UITextBorderStyleRoundedRect;
+    }];
+    [self.alertController addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+      textField.placeholder = @"Category";
+        self.pickerView = [[UIPickerView alloc] init];
+        self.pickerView.delegate = self;
+        self.pickerView.dataSource = self;
+      UIToolbar *toolBar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
+
+      [toolBar setTintColor:[UIColor grayColor]];
+
+      /* Here we are adding a done button so that we can close our picker after date selection */
+
+      UIBarButtonItem *doneBtn = [[UIBarButtonItem alloc] initWithTitle:@"Done"
+                                                                  style:UIBarButtonItemStylePlain
+                                                                 target:self
+                                                                 action:@selector(RequestCategory) ];
+
+      UIBarButtonItem *space = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+                                                                             target:nil
+                                                                             action:nil];
+
+      [toolBar setItems:[NSArray arrayWithObjects:space, doneBtn, nil]];
+
+      [textField setInputAccessoryView:toolBar];
+      [textField setInputView:self.pickerView];
+      
+      textField.textColor = [UIColor blackColor];
+      textField.clearButtonMode = UITextFieldViewModeWhileEditing;
+      textField.borderStyle = UITextBorderStyleRoundedRect;
+    }];
+    [self.alertController addAction:[UIAlertAction actionWithTitle:@"OK"
+                                                      style:UIAlertActionStyleDefault
+                                                    handler:^(UIAlertAction *action) {
+        PerformanceRequest *request = [PerformanceRequest new];
+        request.brief = self.alertController.textFields[0].text;
+        request.date = self.alertController.textFields[1].text;
+        request.category = self.alertController.textFields[2].text;
+        request.latitude = [NSNumber numberWithFloat:annotation.coordinate.latitude];
+        request.longitude = [NSNumber numberWithFloat:annotation.coordinate.longitude];
+        [request saveInBackground];
+        
+                                                    }]];
+    [self presentViewController:self.alertController animated:YES completion:nil];
+}
+- (void)RequestDate{
+  /* here we are adding the format which will be shown to the selected date */
+
+    self.date = self.datePicker.date;
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+
+    [formatter setDateFormat:@"dd/MMM/YYYY"];
+    self.alertController.textFields[1].text = [formatter stringFromDate:self.date];
+    [self.alertController.textFields[1] resignFirstResponder];
+}
+- (void)RequestCategory{
+
+    [self.alertController.textFields[2] resignFirstResponder];
 }
 
 #pragma mark - Navigation

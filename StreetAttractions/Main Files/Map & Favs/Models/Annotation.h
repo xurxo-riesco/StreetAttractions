@@ -34,6 +34,12 @@ NS_ASSUME_NONNULL_BEGIN
 */
 @property (nonatomic, strong) NSString *title;
 
+
+/**
+ Allows annotation to be dragged (Used for request)
+*/
+@property (nonatomic) BOOL draggable;
+
 @end
 
 NS_ASSUME_NONNULL_END

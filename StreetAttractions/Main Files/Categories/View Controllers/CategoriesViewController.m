@@ -14,9 +14,7 @@
                                        UICollectionViewDataSource,
                                        HomeCellDelegate,
                                        UISearchBarDelegate>
-
 @end
-
 @implementation CategoriesViewController
 
 - (void)viewDidLoad

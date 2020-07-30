@@ -9,6 +9,7 @@
 #import "CollabViewController.h"
 
 @interface CollabViewController ()<UITableViewDelegate, UITableViewDataSource>
+@property (strong, nonatomic) NSArray *finalArray;
 @end
 
 @implementation CollabViewController
@@ -50,18 +51,18 @@
   queryUsers.limit = 50;
   // Fetches all users in the area the performer is in
   [queryUsers findObjectsInBackgroundWithBlock:^(NSArray<PFUser *> *users, NSError *_Nullable error) {
-    NSLog(@"USERS: %@", users);
+    // NSLog(@"USERS: %@", users);
     for (User *user in users) {
       PFRelation *relation = [user relationForKey:@"FavUsers"];
       PFQuery *relationQuery = [relation query];
       // Fecthes all the users that any of the user in the same location has favorited
       [relationQuery findObjectsInBackgroundWithBlock:^(NSArray<User *> *objects, NSError *_Nullable error) {
         self.likesUser = NO;
-        NSLog(@"USER: %@, FAV USERS: %@", user, objects);
+        // NSLog(@"USER: %@, FAV USERS: %@", user, objects);
         for (User *user in objects) {
           // Checks if the user has favorited the logged in performer
           if ([user.username isEqual:[User currentUser].username]) {
-            NSLog(@"YOU ARE A FAVORITE");
+            // NSLog(@"YOU ARE A FAVORITE");
             self.likesUser = YES;
           }
         }
@@ -76,12 +77,15 @@
               // Checks if the category of the user to recommend matches the category of the logged in performer
               [postQuery
               findObjectsInBackgroundWithBlock:^(NSArray<Post *> *_Nullable objects, NSError *_Nullable error) {
-                NSLog(@"POSTS: %@", objects);
-                NSLog(@"%@ vs %@", objects[0].category, self.category);
+                // NSLog(@"POSTS: %@", objects);
+                // NSLog(@"%@ vs %@", objects[0].category, self.category);
                 if ([objects[0].category isEqual:self.category]) {
-                  NSLog(@"CATEGORY MATCHED!!");
-                  [self.users addObject:user];
-                  [self score];
+                  // NSLog(@"CATEGORY MATCHED!!");
+                  if ([self.users containsObject:user]) {
+                  } else {
+                    [self.users addObject:user];
+                    [self score];
+                  }
                 }
               }];
             }
@@ -96,8 +100,7 @@
 {
   // Dictionary holds the name of the user and the number of users that follow them as well as the logged in user
   self.scoresDict = [[NSMutableDictionary alloc] init];
-  for (int i = 0; i < self.users.count; i++) {
-    User *user = self.users[i];
+  for (User *user in self.users) {
     // Adds one to the count of each user if its repeated
     if ([self.scoresDict.allKeys containsObject:user.username]) {
       NSNumber *scoreSum = [NSNumber numberWithInt:[[self.scoresDict objectForKey:user.username] intValue] + 1];
@@ -106,6 +109,7 @@
       [self.scoresDict setObject:[NSNumber numberWithInt:1] forKey:user.username];
     }
   }
+  // NSLog(@"%@", self.scoresDict);
   NSArray *myArray;
   // Sorts the dictionary by the values and returns an array of the names of the tamplates ranked
   myArray = [self.scoresDict keysSortedByValueUsingComparator:^(id obj1, id obj2) {
@@ -118,20 +122,25 @@
 
     return (NSComparisonResult)NSOrderedSame;
   }];
-  NSLog(@"ARRAY: %@", myArray);
-  self.finalUsers = [[NSMutableArray alloc] init];
+  // NSLog(@"ARRAY: %@", myArray);
+  self.finalArray = myArray;
+  [self getUserObjects];
   // Fetches the user object from the sorted usernames
-  for (int i = myArray.count - 1; i > 0; i--) {
-    PFQuery *queryUsers = [PFUser query];
-    [queryUsers whereKey:@"username" equalTo:myArray[i]];
-    queryUsers.limit = 1;
-    [queryUsers findObjectsInBackgroundWithBlock:^(NSArray<User *> *_Nullable objects, NSError *_Nullable error) {
-      [self.finalUsers addObject:objects[0]];
-      [self.tableView reloadData];
-    }];
-  }
 }
 
+- (void)getUserObjects
+{
+  self.finalUsers = [[NSMutableArray alloc] init];
+  NSLog(@"FINAL ARRAY: %@", self.finalArray);
+  PFQuery *queryUsers = [User query];
+  [queryUsers whereKey:@"username" containedIn:self.finalArray];
+  queryUsers.limit = self.finalArray.count;
+  [queryUsers findObjectsInBackgroundWithBlock:^(NSArray<User *> *_Nullable objects, NSError *_Nullable error) {
+    self.finalUsers = [objects mutableCopy];
+    [self.tableView reloadData];
+    // NSLog(@"COUNT: %d", self.finalUsers.count);
+  }];
+}
 #pragma mark - TableView Delegate
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView
                  cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath

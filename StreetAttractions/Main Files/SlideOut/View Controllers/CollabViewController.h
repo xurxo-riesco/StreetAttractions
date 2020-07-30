@@ -60,7 +60,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Holds the object of the ranked users
 */
-@property (strong, nonatomic) NSMutableArray *finalUsers;
+@property (strong, nonatomic) NSMutableArray<User*> *finalUsers;
 
 @end
 

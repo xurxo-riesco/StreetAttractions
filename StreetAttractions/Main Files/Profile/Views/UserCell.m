@@ -33,6 +33,7 @@
   self.profileView.layer.cornerRadius = 31;
   self.profileView.layer.masksToBounds = YES;
   [self.profileView loadInBackground];
+  self.locationLabel.text = user.location;
 }
 
 #pragma mark - Delegate

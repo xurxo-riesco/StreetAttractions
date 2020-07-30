@@ -44,6 +44,11 @@ NS_ASSUME_NONNULL_BEGIN
 */
 @property (weak, nonatomic) IBOutlet PFImageView *profileView;
 
+/**
+    Displays the user's location 
+*/
+@property (weak, nonatomic) IBOutlet UILabel *locationLabel;
+
 /*!
    @brief Loads all celll views
    @discussion Simply display useraname and profile pic of a user

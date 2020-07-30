@@ -64,6 +64,7 @@ NS_ASSUME_NONNULL_BEGIN
     Displays categories
 */
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+
 /**
     Search Bar used to segue to search users
 */

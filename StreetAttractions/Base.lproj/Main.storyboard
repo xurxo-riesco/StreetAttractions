@@ -1447,12 +1447,12 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HKy-a1-U4q" customClass="HCSStarRatingView">
-                                <rect key="frame" x="20" y="738" width="289" height="62"/>
+                                <rect key="frame" x="37" y="748" width="269" height="52"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="62" id="0o6-v3-M40"/>
-                                    <constraint firstAttribute="width" constant="289" id="AvI-0x-8os"/>
+                                    <constraint firstAttribute="height" constant="52" id="0o6-v3-M40"/>
+                                    <constraint firstAttribute="width" constant="269" id="AvI-0x-8os"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="maximumValue">
@@ -1468,18 +1468,6 @@
                                     <action selector="onRate:" destination="Heh-aZ-ZVG" eventType="touchDragExit" id="Y9R-jJ-JIb"/>
                                 </connections>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xz8-Tv-Li6" customClass="CustomButton">
-                                <rect key="frame" x="327" y="756" width="71" height="36"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="71" id="8L8-Hi-AyZ"/>
-                                    <constraint firstAttribute="height" constant="36" id="hwN-2r-qH6"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <state key="normal" title="Rate"/>
-                                <connections>
-                                    <action selector="onRate:" destination="Heh-aZ-ZVG" eventType="touchUpInside" id="BfH-61-XHx"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="91x-JR-fMU" customClass="CustomButton">
                                 <rect key="frame" x="367" y="286" width="38" height="31"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1520,12 +1508,24 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xz8-Tv-Li6" customClass="CustomButton">
+                                <rect key="frame" x="323" y="756" width="71" height="36"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="71" id="8L8-Hi-AyZ"/>
+                                    <constraint firstAttribute="height" constant="36" id="hwN-2r-qH6"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Rate"/>
+                                <connections>
+                                    <action selector="onRate:" destination="Heh-aZ-ZVG" eventType="touchUpInside" id="BfH-61-XHx"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="91x-JR-fMU" firstAttribute="top" secondItem="5h1-US-8VA" secondAttribute="top" constant="286" id="0us-3G-8Ro"/>
                             <constraint firstItem="h6A-Zt-dGZ" firstAttribute="top" secondItem="6Og-MD-fR4" secondAttribute="top" id="1u3-gS-vNc"/>
-                            <constraint firstItem="HKy-a1-U4q" firstAttribute="leading" secondItem="5h1-US-8VA" secondAttribute="leading" constant="20" id="2vA-gH-cAo"/>
+                            <constraint firstItem="HKy-a1-U4q" firstAttribute="leading" secondItem="5h1-US-8VA" secondAttribute="leading" constant="37" id="2vA-gH-cAo"/>
                             <constraint firstItem="G2f-yL-oge" firstAttribute="leading" secondItem="5h1-US-8VA" secondAttribute="leading" constant="14" id="8I1-Vh-Y9e"/>
                             <constraint firstItem="G2f-yL-oge" firstAttribute="top" secondItem="5h1-US-8VA" secondAttribute="top" constant="219" id="8Il-rj-CJf"/>
                             <constraint firstItem="STR-lN-B1h" firstAttribute="leading" secondItem="jBp-Hu-UhK" secondAttribute="trailing" constant="8" id="DVR-4k-p4E"/>
@@ -1543,7 +1543,7 @@
                             <constraint firstItem="kNH-NG-gQX" firstAttribute="leading" secondItem="G2f-yL-oge" secondAttribute="trailing" constant="8" id="hDO-2K-5wa"/>
                             <constraint firstItem="6Og-MD-fR4" firstAttribute="leading" secondItem="5h1-US-8VA" secondAttribute="leading" id="jFB-Iu-zdo"/>
                             <constraint firstItem="h6A-Zt-dGZ" firstAttribute="leading" secondItem="5h1-US-8VA" secondAttribute="leading" id="kiZ-3c-XXA"/>
-                            <constraint firstItem="5h1-US-8VA" firstAttribute="trailing" secondItem="Xz8-Tv-Li6" secondAttribute="trailing" constant="16" id="rZc-93-h96"/>
+                            <constraint firstItem="5h1-US-8VA" firstAttribute="trailing" secondItem="Xz8-Tv-Li6" secondAttribute="trailing" constant="20" id="rZc-93-h96"/>
                             <constraint firstItem="Jjy-Fp-h9c" firstAttribute="leading" secondItem="5h1-US-8VA" secondAttribute="leading" constant="24" id="syK-Ea-Vqd"/>
                             <constraint firstItem="6Og-MD-fR4" firstAttribute="trailing" secondItem="5h1-US-8VA" secondAttribute="trailing" id="tNT-yN-Q2l"/>
                             <constraint firstItem="jBp-Hu-UhK" firstAttribute="leading" secondItem="G2f-yL-oge" secondAttribute="trailing" constant="8" id="ufe-D6-3p8"/>
@@ -2367,7 +2367,7 @@
         <segue reference="YCh-cw-i6r"/>
         <segue reference="wPq-ez-fVi"/>
         <segue reference="qLO-on-s6T"/>
-        <segue reference="9Sw-JJ-IRH"/>
+        <segue reference="Rju-t2-JMe"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="LogoMakr_7BPn3y" width="400" height="400"/>

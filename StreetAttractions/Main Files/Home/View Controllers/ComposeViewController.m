@@ -300,7 +300,9 @@ didFinishPickingMediaWithInfo:(NSDictionary<NSString *, id> *)info
   Category *category = self.categories[row];
   return category.name;
 }
-
+- (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component{
+    return 40;
+}
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
   Category *category = self.categories[row];

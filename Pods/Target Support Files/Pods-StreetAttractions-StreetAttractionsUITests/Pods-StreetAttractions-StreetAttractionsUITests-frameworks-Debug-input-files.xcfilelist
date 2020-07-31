@@ -14,6 +14,7 @@ ${BUILT_PRODUCTS_DIR}/GreedoLayout/GreedoLayout.framework
 ${BUILT_PRODUCTS_DIR}/HCSStarRatingView/HCSStarRatingView.framework
 ${BUILT_PRODUCTS_DIR}/JGProgressHUD/JGProgressHUD.framework
 ${BUILT_PRODUCTS_DIR}/MMDrawerController/MMDrawerController.framework
+${BUILT_PRODUCTS_DIR}/MaterialComponents/MaterialComponents.framework
 ${BUILT_PRODUCTS_DIR}/OpenWeatherMapAPI/OpenWeatherMapAPI.framework
 ${BUILT_PRODUCTS_DIR}/PNChart/PNChart.framework
 ${BUILT_PRODUCTS_DIR}/Parse/Parse.framework

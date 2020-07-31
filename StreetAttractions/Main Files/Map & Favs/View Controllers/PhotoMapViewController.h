@@ -9,9 +9,11 @@
 @import Parse;
 #import <UIKit/UIKit.h>
 
+#import "MaterialBottomSheet.h"
 #import "UIImageView+AFNetworking.h"
 
 // View Controllers
+#import "BottomSheetViewController.h"
 #import "DetailsViewController.h"
 #import "LocationsViewController.h"
 
@@ -20,9 +22,9 @@
 #import "AnnotationPin.h"
 
 // Models
+#import "PerformanceRequest.h"
 #import "Post.h"
 #import "User.h"
-#import "PerformanceRequest.h"
 
 @interface PhotoMapViewController : UIViewController
 
@@ -50,5 +52,55 @@
     Hosts the post of a selected annotation (Used for seguing purposes)
 */
 @property (nonatomic, strong) Post *post;
+
+/**
+    Used to display requests
+*/
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *leftButton;
+
+/**
+    Used to retrieve users location
+*/
+@property (strong, nonatomic) CLLocationManager *locationManager;
+
+/**
+    Map displaying pins for the performance
+*/
+@property (weak, nonatomic) IBOutlet MKMapView *mapView;
+
+/**
+    Temporarely holds post image used to set it to the annotation
+*/
+@property (nonatomic, strong) UIImageView *image;
+
+/**
+    Used to request a performance on a desired date
+*/
+@property (nonatomic, strong) UIDatePicker *datePicker;
+
+/**
+    Temporarely holds the request date before sending to server
+*/
+@property (nonatomic, strong) NSDate *date;
+
+/**
+    Alert controller used to request a performance
+*/
+@property (strong, nonatomic) UIAlertController *alertController;
+
+/**
+    Holds all available categories for display in the picker for request
+*/
+@property (strong, nonatomic) NSArray *categories;
+
+/**
+    PickerView to choose a category when requesting
+*/
+@property (strong, nonatomic) UIPickerView *pickerView;
+
+/**
+    Temporarely holds the annotation for a request, so that it can be remove when the next request is displayed
+*/
+@property (strong, nonatomic) Annotation *annotation;
 
 @end

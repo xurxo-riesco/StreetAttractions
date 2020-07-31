@@ -13,16 +13,7 @@
 #import "OWMWeatherAPI.h"
 #import "PhotoMapViewController.h"
 
-@interface PhotoMapViewController ()<UIImagePickerControllerDelegate, CLLocationManagerDelegate>
-
-@property (strong, nonatomic) CLLocationManager *locationManager;
-@property (weak, nonatomic) IBOutlet MKMapView *mapView;
-@property (nonatomic, strong) UIImageView *image;
-@property (nonatomic, strong) UIDatePicker *datePicker;
-@property (nonatomic, strong) NSDate *date;
-@property (strong, nonatomic) UIAlertController *alertController;
-@property (strong, nonatomic) NSArray *categories;
-@property (strong, nonatomic) UIPickerView *pickerView;
+@interface PhotoMapViewController ()<UIImagePickerControllerDelegate, CLLocationManagerDelegate, BottomSheetVCDelegate>
 
 @end
 
@@ -36,53 +27,23 @@
   self.weatherBorder.layer.cornerRadius = 8;
   self.weatherBorder.layer.masksToBounds = YES;
 
+  // Request List Set Up
+  if ([User currentUser].isPerfomer) {
+    self.leftButton.tintColor = [UIColor blackColor];
+    self.leftButton.enabled = YES;
+  } else {
+    self.leftButton.tintColor = [UIColor clearColor];
+    self.leftButton.enabled = NO;
+  }
+
   // Map Set Up
   [self startUserLocationSearch];
   self.mapView.delegate = self;
 
   // Initial network call
   [self fetchPost];
-    [self fetchCategories];
+  [self fetchCategories];
 }
-
-- (void)fetchCategories
-{
-  PFQuery *categoriesQuery = [Category query];
-  categoriesQuery.limit = 10;
-  [categoriesQuery
-  findObjectsInBackgroundWithBlock:^(NSArray<Category *> *_Nullable categories, NSError *_Nullable error) {
-    if (categories) {
-      self.categories = categories;
-      [self.pickerView reloadAllComponents];
-    }
-  }];
-}
-
-
-- (NSInteger)numberOfComponentsInPickerView:(nonnull UIPickerView *)pickerView
-{
-  return 1;
-}
-
-- (NSInteger)pickerView:(nonnull UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
-{
-  return self.categories.count;
-}
-
-- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
-{
-  Category *category = self.categories[row];
-  return category.name;
-}
-- (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component{
-    return 30;
-}
-- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
-{
-  Category *category = self.categories[row];
-    self.alertController.textFields[2].text = category.name;
-}
-
 #pragma mark - CLLocationManager Delegate
 // Helper function to start retrieving user's location
 - (void)startUserLocationSearch
@@ -147,9 +108,10 @@
   [detailButton setImage:[UIImage systemImageNamed:@"info.circle"] forState:UIControlStateNormal];
   annotationView.rightCalloutAccessoryView = detailButton;
   annotationView.pinTintColor = [post.category colorCode];
-    annotationView.draggable = annotation.draggable;
+  annotationView.draggable = annotation.draggable;
   return annotationView;
 }
+
 // Anotation Delegate
 - (void)mapView:(MKMapView *)mapView
                annotationView:(AnnotationPin *)view
@@ -181,133 +143,225 @@ calloutAccessoryControlTapped:(UIControl *)control
         annotation.coordinate = coordinate;
         annotation.title = [NSString stringWithFormat:@"%@ (%@)", post.category, post.createdAt.shortTimeAgoSinceNow];
         annotation.post = post;
-          annotation.draggable = NO;
+        annotation.draggable = NO;
         [self.mapView addAnnotation:annotation];
       }
     }
   }];
 }
-- (IBAction)onAddRequest:(id)sender {
-    Annotation *annotation = [Annotation new];
-    CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(self.locationManager.location.coordinate.latitude, self.locationManager.location.coordinate.longitude);
-        annotation.coordinate = coordinate;
-    annotation.title = @"New Request";
-      annotation.draggable = YES;
-    [self.mapView addAnnotation:annotation];
-    
-}
-- (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view didChangeDragState:(MKAnnotationViewDragState)newState
-fromOldState:(MKAnnotationViewDragState)oldState;
+
+// Fetches all categories to display in the picker view when user wants to add a request
+- (void)fetchCategories
 {
-    NSLog(@"pin Drag");
-
-    if (newState == MKAnnotationViewDragStateEnding)
-    {
-        CLLocationCoordinate2D droppedAt = view.annotation.coordinate;
-        NSLog(@"Pin dropped at %f,%f", droppedAt.latitude, droppedAt.longitude);
-
-        CLLocation* draglocation = [[CLLocation alloc] initWithLatitude:droppedAt.latitude longitude:droppedAt.longitude];
-        [self requestForAnnotation:view.annotation];
-        
-
-
+  PFQuery *categoriesQuery = [Category query];
+  categoriesQuery.limit = 10;
+  [categoriesQuery
+  findObjectsInBackgroundWithBlock:^(NSArray<Category *> *_Nullable categories, NSError *_Nullable error) {
+    if (categories) {
+      self.categories = categories;
+      [self.pickerView reloadAllComponents];
     }
+  }];
 }
-- (void)requestForAnnotation: (Annotation *) annotation
+
+#pragma mark - Request Flow
+
+// Adds initial pin to be dragged for request
+- (IBAction)onAddRequest:(id)sender
 {
-    self.alertController = [UIAlertController alertControllerWithTitle:@"Add a Performance Request"
-                                                                           message:@""
-                                                                    preferredStyle:UIAlertControllerStyleAlert];
-    [self.alertController addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+  Annotation *annotation = [Annotation new];
+  CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(self.locationManager.location.coordinate.latitude,
+                                                                 self.locationManager.location.coordinate.longitude);
+  annotation.coordinate = coordinate;
+  annotation.title = @"New Request";
+  annotation.draggable = YES;
+  [self.mapView addAnnotation:annotation];
+}
+
+// Displays the list of request to performers
+- (IBAction)onRequestList:(id)sender
+{
+  [self performSelector:@selector(PresentBottomSheet)];
+}
+
+- (void)PresentBottomSheet
+{
+  // View controller the bottom sheet will hold
+  UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+  NSString *identifier = @"BottomSheetVC";
+  BottomSheetViewController *viewController = [storyboard instantiateViewControllerWithIdentifier:identifier];
+
+  // Initialize the bottom sheet with the view controller just created
+  viewController.delegate = self;
+  MDCBottomSheetController *bottomSheet = [[MDCBottomSheetController alloc]
+  initWithContentViewController:viewController];
+  bottomSheet.dismissOnDraggingDownSheet = YES;
+  // Present the bottom sheet
+  [self presentViewController:bottomSheet animated:true completion:nil];
+}
+
+// Call to add request after dropping the pin in new location
+- (void)mapView:(MKMapView *)mapView
+    annotationView:(MKAnnotationView *)view
+didChangeDragState:(MKAnnotationViewDragState)newState
+      fromOldState:(MKAnnotationViewDragState)oldState;
+{
+  if (newState == MKAnnotationViewDragStateEnding) {
+    CLLocationCoordinate2D droppedAt = view.annotation.coordinate;
+    NSLog(@"Pin dropped at %f,%f", droppedAt.latitude, droppedAt.longitude);
+
+    CLLocation *draglocation = [[CLLocation alloc] initWithLatitude:droppedAt.latitude longitude:droppedAt.longitude];
+    [self requestForAnnotation:view.annotation];
+  }
+}
+
+// Present alert controller to input request information
+- (void)requestForAnnotation:(Annotation *)annotation
+{
+  self.alertController = [UIAlertController alertControllerWithTitle:@"Add a Performance Request"
+                                                             message:@""
+                                                      preferredStyle:UIAlertControllerStyleAlert];
+
+  // Text Field for Description
+  [self.alertController addTextFieldWithConfigurationHandler:^(UITextField *textField) {
     textField.placeholder = @"Brief description";
     textField.textColor = [UIColor blackColor];
     textField.clearButtonMode = UITextFieldViewModeWhileEditing;
     textField.borderStyle = UITextBorderStyleRoundedRect;
   }];
-    [self.alertController addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-      textField.placeholder = @"Date";
-      self.datePicker = [[UIDatePicker alloc] init];
-      self.datePicker.datePickerMode = UIDatePickerModeDate;
-      UIToolbar *toolBar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
 
-      [toolBar setTintColor:[UIColor grayColor]];
+  // Text Field for Date
+  [self.alertController addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+    textField.placeholder = @"Date";
+    self.datePicker = [[UIDatePicker alloc] init];
+    self.datePicker.datePickerMode = UIDatePickerModeDate;
+    UIToolbar *toolBar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
+    [toolBar setTintColor:[UIColor grayColor]];
+    // Done button after date selection
+    UIBarButtonItem *doneBtn = [[UIBarButtonItem alloc] initWithTitle:@"Done"
+                                                                style:UIBarButtonItemStylePlain
+                                                               target:self
+                                                               action:@selector(RequestDate)];
+    UIBarButtonItem *space = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+                                                                           target:nil
+                                                                           action:nil];
+    [toolBar setItems:[NSArray arrayWithObjects:space, doneBtn, nil]];
+    [textField setInputAccessoryView:toolBar];
+    [textField setInputView:self.datePicker];
+    textField.textColor = [UIColor blackColor];
+    textField.clearButtonMode = UITextFieldViewModeWhileEditing;
+    textField.borderStyle = UITextBorderStyleRoundedRect;
+  }];
 
-      /* Here we are adding a done button so that we can close our picker after date selection */
+  // Text Field for Category
+  [self.alertController addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+    textField.placeholder = @"Category";
+    self.pickerView = [[UIPickerView alloc] init];
+    self.pickerView.delegate = self;
+    self.pickerView.dataSource = self;
+    UIToolbar *toolBar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
+    [toolBar setTintColor:[UIColor grayColor]];
+    // Done button after selection
+    UIBarButtonItem *doneBtn = [[UIBarButtonItem alloc] initWithTitle:@"Done"
+                                                                style:UIBarButtonItemStylePlain
+                                                               target:self
+                                                               action:@selector(RequestCategory)];
 
-      UIBarButtonItem *doneBtn = [[UIBarButtonItem alloc] initWithTitle:@"Done"
-                                                                  style:UIBarButtonItemStylePlain
-                                                                 target:self
-                                                                 action:@selector(RequestDate) ];
+    UIBarButtonItem *space = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+                                                                           target:nil
+                                                                           action:nil];
+    [toolBar setItems:[NSArray arrayWithObjects:space, doneBtn, nil]];
+    [textField setInputAccessoryView:toolBar];
+    [textField setInputView:self.pickerView];
+    textField.textColor = [UIColor blackColor];
+    textField.clearButtonMode = UITextFieldViewModeWhileEditing;
+    textField.borderStyle = UITextBorderStyleRoundedRect;
+  }];
 
-      UIBarButtonItem *space = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
-                                                                             target:nil
-                                                                             action:nil];
-
-      [toolBar setItems:[NSArray arrayWithObjects:space, doneBtn, nil]];
-
-      [textField setInputAccessoryView:toolBar];
-      [textField setInputView:self.datePicker];
-      
-      textField.textColor = [UIColor blackColor];
-      textField.clearButtonMode = UITextFieldViewModeWhileEditing;
-      textField.borderStyle = UITextBorderStyleRoundedRect;
-    }];
-    [self.alertController addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-      textField.placeholder = @"Category";
-        self.pickerView = [[UIPickerView alloc] init];
-        self.pickerView.delegate = self;
-        self.pickerView.dataSource = self;
-      UIToolbar *toolBar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
-
-      [toolBar setTintColor:[UIColor grayColor]];
-
-      /* Here we are adding a done button so that we can close our picker after date selection */
-
-      UIBarButtonItem *doneBtn = [[UIBarButtonItem alloc] initWithTitle:@"Done"
-                                                                  style:UIBarButtonItemStylePlain
-                                                                 target:self
-                                                                 action:@selector(RequestCategory) ];
-
-      UIBarButtonItem *space = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
-                                                                             target:nil
-                                                                             action:nil];
-
-      [toolBar setItems:[NSArray arrayWithObjects:space, doneBtn, nil]];
-
-      [textField setInputAccessoryView:toolBar];
-      [textField setInputView:self.pickerView];
-      
-      textField.textColor = [UIColor blackColor];
-      textField.clearButtonMode = UITextFieldViewModeWhileEditing;
-      textField.borderStyle = UITextBorderStyleRoundedRect;
-    }];
-    [self.alertController addAction:[UIAlertAction actionWithTitle:@"OK"
-                                                      style:UIAlertActionStyleDefault
-                                                    handler:^(UIAlertAction *action) {
-        PerformanceRequest *request = [PerformanceRequest new];
-        request.brief = self.alertController.textFields[0].text;
-        request.date = self.alertController.textFields[1].text;
-        request.category = self.alertController.textFields[2].text;
-        request.latitude = [NSNumber numberWithFloat:annotation.coordinate.latitude];
-        request.longitude = [NSNumber numberWithFloat:annotation.coordinate.longitude];
-        [request saveInBackground];
-        
-                                                    }]];
-    [self presentViewController:self.alertController animated:YES completion:nil];
+  // OK Button to Submit the Request
+  [self.alertController
+  addAction:[UIAlertAction actionWithTitle:@"OK"
+                                     style:UIAlertActionStyleDefault
+                                   handler:^(UIAlertAction *action) {
+                                     PerformanceRequest *request = [PerformanceRequest new];
+                                     request.brief = self.alertController.textFields[0].text;
+                                     request.date = self.alertController.textFields[1].text;
+                                     request.category = self.alertController.textFields[2].text;
+                                     request.city = [User currentUser].location;
+                                     request.latitude = [NSNumber numberWithFloat:annotation.coordinate.latitude];
+                                     request.longitude = [NSNumber numberWithFloat:annotation.coordinate.longitude];
+                                     request.author = [User currentUser];
+                                     [request saveInBackground];
+                                   }]];
+  [self presentViewController:self.alertController animated:YES completion:nil];
 }
-- (void)RequestDate{
-  /* here we are adding the format which will be shown to the selected date */
 
-    self.date = self.datePicker.date;
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+// Creates a string from the Date Picker
+- (void)RequestDate
+{
+  self.date = self.datePicker.date;
+  NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
 
-    [formatter setDateFormat:@"dd/MMM/YYYY"];
-    self.alertController.textFields[1].text = [formatter stringFromDate:self.date];
-    [self.alertController.textFields[1] resignFirstResponder];
+  [formatter setDateFormat:@"dd/MMM/YYYY"];
+  self.alertController.textFields[1].text = [formatter stringFromDate:self.date];
+  [self.alertController.textFields[1] resignFirstResponder];
 }
-- (void)RequestCategory{
 
-    [self.alertController.textFields[2] resignFirstResponder];
+// Dismiss the Category Picker after selection
+- (void)RequestCategory
+{
+  [self.alertController.textFields[2] resignFirstResponder];
+}
+
+#pragma mark - BottomSheetVC Delegate
+// Resets the MapView Camera to show the requests lcoation
+- (void)didHighlight:(PerformanceRequest *)request
+{
+  // Removes the previous previewed annotation
+  [self.mapView removeAnnotation:self.annotation];
+
+  // Calculates the new camera position
+  MKCoordinateRegion requestRegion = MKCoordinateRegionMake(
+  CLLocationCoordinate2DMake((request.latitude.floatValue - 0.03), request.longitude.floatValue),
+  MKCoordinateSpanMake(0.1, 0.1));
+  [self.mapView setRegion:requestRegion animated:false];
+
+  // Adds annotation for that position
+  self.annotation = [Annotation new];
+  CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(request.latitude.floatValue,
+                                                                 request.longitude.floatValue);
+  self.annotation.coordinate = coordinate;
+  self.annotation.title = @"Request";
+  self.annotation.draggable = NO;
+  [self.mapView addAnnotation:self.annotation];
+}
+
+#pragma mark - PickerView Delegate
+- (NSInteger)numberOfComponentsInPickerView:(nonnull UIPickerView *)pickerView
+{
+  return 1;
+}
+
+- (NSInteger)pickerView:(nonnull UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+{
+  return self.categories.count;
+}
+
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+{
+  Category *category = self.categories[row];
+  return category.name;
+}
+
+- (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component
+{
+  return 30;
+}
+
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
+{
+  Category *category = self.categories[row];
+  self.alertController.textFields[2].text = category.name;
 }
 
 #pragma mark - Navigation

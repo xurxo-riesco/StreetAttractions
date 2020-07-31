@@ -68,6 +68,35 @@ PODS:
   - GreedoLayout (1.2.0)
   - HCSStarRatingView (1.5)
   - JGProgressHUD (2.1)
+  - MaterialComponents/Availability (111.0.0)
+  - MaterialComponents/BottomSheet (111.0.0):
+    - MaterialComponents/Elevation
+    - MaterialComponents/private/KeyboardWatcher
+    - MaterialComponents/private/Math
+    - MaterialComponents/ShadowElevations
+    - MaterialComponents/ShadowLayer
+    - MaterialComponents/ShapeLibrary
+    - MaterialComponents/Shapes
+  - MaterialComponents/Elevation (111.0.0):
+    - MaterialComponents/Availability
+    - MaterialComponents/private/Color
+    - MaterialComponents/private/Math
+  - MaterialComponents/private/Application (111.0.0)
+  - MaterialComponents/private/Color (111.0.0):
+    - MaterialComponents/Availability
+  - MaterialComponents/private/KeyboardWatcher (111.0.0):
+    - MaterialComponents/private/Application
+  - MaterialComponents/private/Math (111.0.0)
+  - MaterialComponents/ShadowElevations (111.0.0)
+  - MaterialComponents/ShadowLayer (111.0.0):
+    - MaterialComponents/ShadowElevations
+  - MaterialComponents/ShapeLibrary (111.0.0):
+    - MaterialComponents/private/Math
+    - MaterialComponents/Shapes
+  - MaterialComponents/Shapes (111.0.0):
+    - MaterialComponents/private/Color
+    - MaterialComponents/private/Math
+    - MaterialComponents/ShadowLayer
   - MMDrawerController (0.5.7):
     - MMDrawerController/Core (= 0.5.7)
     - MMDrawerController/MMDrawerBarButtonItem (= 0.5.7)
@@ -114,6 +143,7 @@ DEPENDENCIES:
   - GreedoLayout
   - HCSStarRatingView (~> 1.5)
   - JGProgressHUD
+  - MaterialComponents/BottomSheet
   - MMDrawerController (~> 0.5.7)
   - OpenWeatherMapAPI (~> 0.0.5)
   - Parse
@@ -127,6 +157,7 @@ SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - FSCalendar
     - GreedoLayout
+    - MaterialComponents
   trunk:
     - AFNetworking
     - Bolts
@@ -165,6 +196,7 @@ SPEC CHECKSUMS:
   GreedoLayout: b1a1adc6ed5f281353225e3eb21d18cedee8e513
   HCSStarRatingView: 1d18f79654735514cd6f00e6d90e38cb6320dc31
   JGProgressHUD: aa403e9a5b45cae98903c4600cccdd98c0c3ec90
+  MaterialComponents: 533042da998b97ad13a6f544268f8026e8161cc5
   MMDrawerController: 7a4cf8e25596bf2434e03ce50d22a8608ddee6a1
   OpenWeatherMapAPI: 53613bba3dffc948f852a66a25f512f7a16643e7
   Parse: 79bdda34fdb7eb2a707a43a951c8aae236cb3e34
@@ -173,6 +205,6 @@ SPEC CHECKSUMS:
   UICountingLabel: 1db4e7d023e1762171eb226d6dff47a7a84f27aa
   "UIImage+DYQRCodeEncoder": a470dca9417754eb1030a0fa8d81c5c2044efe08
 
-PODFILE CHECKSUM: 8b2f324e9d9ffc1330fedc6c599043a62bf3329d
+PODFILE CHECKSUM: ddf70eebb4d276fd4f88695a74938c9cc1e881f9
 
 COCOAPODS: 1.9.3

@@ -15,6 +15,8 @@
 @dynamic brief;
 @dynamic date;
 @dynamic category;
+@dynamic city;
+@dynamic author;
 
 + (nonnull NSString *)parseClassName
 {

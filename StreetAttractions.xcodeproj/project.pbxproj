@@ -46,7 +46,6 @@
 		9865ADCB24C1FE7C0090C386 /* CommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9865ADCA24C1FE7C0090C386 /* CommentCell.m */; };
 		9865ADCE24C200010090C386 /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = 9865ADCD24C200010090C386 /* Comment.m */; };
 		986919DF24CA38A200245BFE /* CalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 986919DE24CA38A200245BFE /* CalendarViewController.m */; };
-		9878734624C6571A00409325 /* DatePredictor.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 9878734524C6571A00409325 /* DatePredictor.mlmodel */; };
 		9890CC4624CF7E6600621EE3 /* Pods_StreetAttractions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B9E0A8D7C5374A8CAEB4695 /* Pods_StreetAttractions.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		9890CC4724CF7E6600621EE3 /* Pods_StreetAttractions.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4B9E0A8D7C5374A8CAEB4695 /* Pods_StreetAttractions.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9890CCB924CF8A1900621EE3 /* HyLoginButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 9890CCAF24CF8A1900621EE3 /* HyLoginButton.m */; };
@@ -68,6 +67,10 @@
 		98B96F1124C65AF4005CBEA1 /* LongitudePredictor.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 98B96F0F24C65AF4005CBEA1 /* LongitudePredictor.mlmodel */; };
 		98B96F1224C65AF4005CBEA1 /* LatitudePredictor.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 98B96F1024C65AF4005CBEA1 /* LatitudePredictor.mlmodel */; };
 		98C02F6324D385AB0045213C /* PerformanceRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 98C02F6224D385AB0045213C /* PerformanceRequest.m */; };
+		98C02F6624D477B90045213C /* BottomSheetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 98C02F6524D477B90045213C /* BottomSheetViewController.m */; };
+		98C02F6924D47ABB0045213C /* RequestCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 98C02F6824D47ABB0045213C /* RequestCell.m */; };
+		98C02F6D24D4AE8C0045213C /* DatePredictor.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 98C02F6C24D4AE8C0045213C /* DatePredictor.mlmodel */; };
+		98C02F6E24D4AE8C0045213C /* DatePredictor.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 98C02F6C24D4AE8C0045213C /* DatePredictor.mlmodel */; };
 		98C1F68324BD02D800DB3713 /* CategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 98C1F68224BD02D800DB3713 /* CategoryCell.m */; };
 		98C57B5624BE207000F8FD0C /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 98C57B5524BE207000F8FD0C /* SettingsViewController.m */; };
 		98C57B6624BF776A00F8FD0C /* CoreML.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98C57B6524BF776A00F8FD0C /* CoreML.framework */; };
@@ -128,7 +131,7 @@
 		9824088324BCBD6B00F35FDA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9824088424BCBD6B00F35FDA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		9824088A24BCBD6B00F35FDA /* StreetAttractionsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StreetAttractionsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		9824088E24BCBD6B00F35FDA /* StreetAttractionsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StreetAttractionsTests.m; sourceTree = "<group>"; };
+		9824088E24BCBD6B00F35FDA /* StreetAttractionsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StreetAttractionsTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.simpleColoring; };
 		9824089024BCBD6B00F35FDA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9824089524BCBD6B00F35FDA /* StreetAttractionsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StreetAttractionsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9824089924BCBD6B00F35FDA /* StreetAttractionsUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StreetAttractionsUITests.m; sourceTree = "<group>"; };
@@ -192,7 +195,6 @@
 		9865ADCD24C200010090C386 /* Comment.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Comment.m; sourceTree = "<group>"; };
 		986919DD24CA38A200245BFE /* CalendarViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CalendarViewController.h; sourceTree = "<group>"; };
 		986919DE24CA38A200245BFE /* CalendarViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CalendarViewController.m; sourceTree = "<group>"; };
-		9878734524C6571A00409325 /* DatePredictor.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = DatePredictor.mlmodel; sourceTree = "<group>"; };
 		9890CCAF24CF8A1900621EE3 /* HyLoginButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HyLoginButton.m; sourceTree = "<group>"; };
 		9890CCB024CF8A1900621EE3 /* SpinerLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpinerLayer.h; sourceTree = "<group>"; };
 		9890CCB124CF8A1900621EE3 /* HyLoginButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HyLoginButton.h; sourceTree = "<group>"; };
@@ -218,6 +220,11 @@
 		98B96F1024C65AF4005CBEA1 /* LatitudePredictor.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = LatitudePredictor.mlmodel; sourceTree = "<group>"; };
 		98C02F6124D385AB0045213C /* PerformanceRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PerformanceRequest.h; sourceTree = "<group>"; };
 		98C02F6224D385AB0045213C /* PerformanceRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PerformanceRequest.m; sourceTree = "<group>"; };
+		98C02F6424D477B90045213C /* BottomSheetViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BottomSheetViewController.h; sourceTree = "<group>"; };
+		98C02F6524D477B90045213C /* BottomSheetViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BottomSheetViewController.m; sourceTree = "<group>"; };
+		98C02F6724D47ABB0045213C /* RequestCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RequestCell.h; sourceTree = "<group>"; };
+		98C02F6824D47ABB0045213C /* RequestCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RequestCell.m; sourceTree = "<group>"; };
+		98C02F6C24D4AE8C0045213C /* DatePredictor.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = DatePredictor.mlmodel; path = "StreetAttractions/Supporting Files/DatePredictor.mlmodel"; sourceTree = SOURCE_ROOT; };
 		98C1F68124BD02D800DB3713 /* CategoryCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CategoryCell.h; sourceTree = "<group>"; };
 		98C1F68224BD02D800DB3713 /* CategoryCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CategoryCell.m; sourceTree = "<group>"; };
 		98C57B5424BE207000F8FD0C /* SettingsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
@@ -449,6 +456,8 @@
 				9863F18124C258E700B01B74 /* PhotoMapViewController.m */,
 				982408C324BCCBEB00F35FDA /* FavoritesViewController.h */,
 				982408C424BCCBEB00F35FDA /* FavoritesViewController.m */,
+				98C02F6424D477B90045213C /* BottomSheetViewController.h */,
+				98C02F6524D477B90045213C /* BottomSheetViewController.m */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -526,6 +535,8 @@
 				98C57B7324BF8DE800F8FD0C /* AnnotationPin.m */,
 				9805EC0624BD197D0051CF5D /* FavoriteCell.h */,
 				9805EC0724BD197D0051CF5D /* FavoriteCell.m */,
+				98C02F6724D47ABB0045213C /* RequestCell.h */,
+				98C02F6824D47ABB0045213C /* RequestCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -591,8 +602,8 @@
 		98C57B6024BF75C900F8FD0C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				98C02F6C24D4AE8C0045213C /* DatePredictor.mlmodel */,
 				9865ADB424C10C8D0090C386 /* HyTransitions */,
-				9878734524C6571A00409325 /* DatePredictor.mlmodel */,
 				98B96F1024C65AF4005CBEA1 /* LatitudePredictor.mlmodel */,
 				98B96F0F24C65AF4005CBEA1 /* LongitudePredictor.mlmodel */,
 				9863F18C24C2605500B01B74 /* NSString+ColorCode.h */,
@@ -917,11 +928,12 @@
 				9890CCB924CF8A1900621EE3 /* HyLoginButton.m in Sources */,
 				9890CCBD24CF8A1900621EE3 /* HyTransitions.m in Sources */,
 				9897D77B24C8A3DD006C3FC5 /* CollabViewController.m in Sources */,
-				9878734624C6571A00409325 /* DatePredictor.mlmodel in Sources */,
 				982408C524BCCBEB00F35FDA /* FavoritesViewController.m in Sources */,
 				9863F18224C258E700B01B74 /* PhotoMapViewController.m in Sources */,
 				9890CCBC24CF8A1900621EE3 /* HySpinerLayer.m in Sources */,
+				98C02F6624D477B90045213C /* BottomSheetViewController.m in Sources */,
 				982408AB24BCC49700F35FDA /* Post.m in Sources */,
+				98C02F6D24D4AE8C0045213C /* DatePredictor.mlmodel in Sources */,
 				9863F18524C2590C00B01B74 /* LocationsViewController.m in Sources */,
 				982408CE24BCCD9000F35FDA /* ProfileViewController.m in Sources */,
 				982408AE24BCC5F500F35FDA /* User.m in Sources */,
@@ -937,6 +949,7 @@
 				982408BB24BCCBBF00F35FDA /* HomeViewController.m in Sources */,
 				9897D77524C892E9006C3FC5 /* MessageCell.m in Sources */,
 				9863F18824C2591900B01B74 /* SearchViewController.m in Sources */,
+				98C02F6924D47ABB0045213C /* RequestCell.m in Sources */,
 				9824088524BCBD6B00F35FDA /* main.m in Sources */,
 				9863F18B24C259C800B01B74 /* UserCell.m in Sources */,
 				98C02F6324D385AB0045213C /* PerformanceRequest.m in Sources */,
@@ -961,6 +974,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9824088F24BCBD6B00F35FDA /* StreetAttractionsTests.m in Sources */,
+				98C02F6E24D4AE8C0045213C /* DatePredictor.mlmodel in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

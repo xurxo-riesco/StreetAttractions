@@ -8,6 +8,9 @@
 
 #import <Parse/Parse.h>
 
+// Models
+#import "User.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface PerformanceRequest : PFObject<PFSubclassing>
@@ -28,6 +31,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *brief;
 
 /**
+  City for the request
+*/
+@property (nonatomic, strong) NSString *city;
+
+/**
   Latitude of the request
 */
 @property (nonatomic, strong) NSNumber *latitude;
@@ -37,6 +45,10 @@ NS_ASSUME_NONNULL_BEGIN
 */
 @property (nonatomic, strong) NSNumber *longitude;
 
+/**
+  Pointer to the author of the request
+*/
+@property (nonatomic, strong) User *author;
 
 @end
 

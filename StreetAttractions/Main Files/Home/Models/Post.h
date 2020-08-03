@@ -87,6 +87,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSDate *createdAt;
 
 /**
+   Date of upload modifyable
+*/
+@property (nonatomic, strong) NSDate *created_At;
+
+/**
    Date of the event if its in the future
 */
 @property (strong, nonatomic) NSDate *upcomingDate;

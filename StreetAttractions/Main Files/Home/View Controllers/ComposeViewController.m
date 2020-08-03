@@ -85,16 +85,42 @@
 #pragma mark - ImagePicker Deployment
 - (IBAction)onAddMedia:(id)sender
 {
-  UIImagePickerController *imagePickerVC = [UIImagePickerController new];
-  imagePickerVC.delegate = self;
-  imagePickerVC.allowsEditing = YES;
-  if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-    imagePickerVC.sourceType = UIImagePickerControllerSourceTypeCamera;
-  } else {
-    NSLog(@"Camera 🚫 available so we will use photo library instead");
-    imagePickerVC.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-  }
-  [self presentViewController:imagePickerVC animated:YES completion:nil];
+  [self presentImagePicker];
+}
+// Allows to choose from Library or Camera via Action Sheet
+- (void)presentImagePicker
+{
+  UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:@"Options"
+                                                                       message:@"Choose Camera or Image Library"
+                                                                preferredStyle:UIAlertControllerStyleActionSheet];
+  UIAlertAction *camera = [UIAlertAction
+  actionWithTitle:@"Camera"
+            style:UIAlertActionStyleDefault
+          handler:^(UIAlertAction *_Nonnull action) {
+            UIImagePickerController *imagePickerVC = [UIImagePickerController new];
+            imagePickerVC.delegate = self;
+            imagePickerVC.allowsEditing = YES;
+            if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+              imagePickerVC.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+            } else {
+              NSLog(@"Camera 🚫 available so we will use photo library instead");
+              imagePickerVC.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+            }
+            [self presentViewController:imagePickerVC animated:YES completion:nil];
+          }];
+  UIAlertAction *library = [UIAlertAction
+  actionWithTitle:@"Library"
+            style:UIAlertActionStyleDefault
+          handler:^(UIAlertAction *_Nonnull action) {
+            UIImagePickerController *imagePickerVC = [UIImagePickerController new];
+            imagePickerVC.delegate = self;
+            imagePickerVC.allowsEditing = YES;
+            imagePickerVC.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+            [self presentViewController:imagePickerVC animated:YES completion:nil];
+          }];
+  [actionSheet addAction:camera];
+  [actionSheet addAction:library];
+  [self presentViewController:actionSheet animated:YES completion:nil];
 }
 
 - (IBAction)onAddVideo:(id)sender
@@ -300,8 +326,9 @@ didFinishPickingMediaWithInfo:(NSDictionary<NSString *, id> *)info
   Category *category = self.categories[row];
   return category.name;
 }
-- (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component{
-    return 40;
+- (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component
+{
+  return 40;
 }
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {

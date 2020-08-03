@@ -129,9 +129,8 @@ calloutAccessoryControlTapped:(UIControl *)control
   postQuery.limit = 20;
   [postQuery includeKey:@"author"];
   User *user = [User currentUser];
-  [postQuery orderByDescending:@"createdAt"];
+  [postQuery orderByDescending:@"created_At"];
   [postQuery whereKey:@"city" equalTo:user.location];
-  [postQuery orderByDescending:@"createdAt"];
   [postQuery findObjectsInBackgroundWithBlock:^(NSArray<Post *> *_Nullable posts, NSError *_Nullable error) {
     if (posts) {
       self.posts = [posts mutableCopy];
@@ -141,7 +140,7 @@ calloutAccessoryControlTapped:(UIControl *)control
         CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(latitude.floatValue, longitude.floatValue);
         Annotation *annotation = [Annotation new];
         annotation.coordinate = coordinate;
-        annotation.title = [NSString stringWithFormat:@"%@ (%@)", post.category, post.createdAt.shortTimeAgoSinceNow];
+        annotation.title = [NSString stringWithFormat:@"%@ (%@)", post.category, post.created_At.shortTimeAgoSinceNow];
         annotation.post = post;
         annotation.draggable = NO;
         [self.mapView addAnnotation:annotation];

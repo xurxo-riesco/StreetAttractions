@@ -98,8 +98,17 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
   [self.messageField resignFirstResponder];
+    [UIView animateWithDuration:0.2 animations:^{
+        self.messageField.frame = CGRectMake(self.messageField.frame.origin.x, self.messageField.frame.origin.y + 200, self.messageField.frame.size.width, self.messageField.frame.size.height);
+    }];
   return YES;
 }
+- (IBAction)onStart:(id)sender {
+    [UIView animateWithDuration:0.2 animations:^{
+        self.messageField.frame = CGRectMake(self.messageField.frame.origin.x, self.messageField.frame.origin.y - 200, self.messageField.frame.size.width, self.messageField.frame.size.height);
+    }];
+}
+
 /*
 #pragma mark - Navigation
 

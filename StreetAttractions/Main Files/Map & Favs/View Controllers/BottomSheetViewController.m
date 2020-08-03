@@ -25,7 +25,7 @@
   // Initial Network Call
   PFQuery *helperQuery = [Post query];
   helperQuery.limit = 1;
-  [helperQuery orderByDescending:@"createdAt"];
+  [helperQuery orderByDescending:@"created_At"];
   [helperQuery whereKey:@"author" equalTo:[User currentUser]];
   [helperQuery findObjectsInBackgroundWithBlock:^(NSArray<Post *> *_Nullable objects, NSError *_Nullable error) {
     NSLog(@"%@", objects[0].category);
@@ -37,7 +37,7 @@
 - (void)fetchRequestsForCategory:(NSString *)category
 {
   PFQuery *requestsQuery = [PerformanceRequest query];
-  [requestsQuery orderByDescending:@"createdAt"];
+  [requestsQuery orderByDescending:@"created_At"];
   [requestsQuery includeKey:@"author"];
   [requestsQuery whereKey:@"category" equalTo:category];
   [requestsQuery whereKey:@"city" equalTo:[User currentUser].location];

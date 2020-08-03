@@ -317,7 +317,7 @@ NSInteger prevMessageCount;
   PFQuery *postQuery = [Post query];
   User *user = [User currentUser];
   [postQuery includeKey:@"author"];
-  [postQuery orderByDescending:@"createdAt"];
+  [postQuery orderByDescending:@"created_At"];
   if (user.location != nil) {
     [postQuery whereKey:@"city" equalTo:user.location];
   } else {
@@ -343,7 +343,7 @@ NSInteger prevMessageCount;
   PFQuery *postQuery = [Post query];
   User *user = [User currentUser];
   [postQuery includeKey:@"author"];
-  [postQuery orderByDescending:@"createdAt"];
+  [postQuery orderByDescending:@"created_At"];
   if (user.location != nil) {
     [postQuery whereKey:@"city" equalTo:user.location];
   } else {
@@ -477,4 +477,5 @@ NSInteger prevMessageCount;
     composeViewController.delegate = self;
   }
 }
+
 @end

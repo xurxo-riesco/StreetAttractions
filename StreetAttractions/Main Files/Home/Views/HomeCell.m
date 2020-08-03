@@ -94,7 +94,7 @@
       self.post.isUpcoming = false;
       [self.post saveInBackground];
     }
-    self.dateLabel.text = post.createdAt.shortTimeAgoSinceNow;
+    self.dateLabel.text = post.created_At.shortTimeAgoSinceNow;
   }
 }
 

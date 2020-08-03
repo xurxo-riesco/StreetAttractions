@@ -36,7 +36,7 @@
 {
   PFQuery *postQuery = [Post query];
   [postQuery whereKey:@"author" equalTo:[User currentUser]];
-  [postQuery orderByDescending:@"createdAt"];
+  [postQuery orderByDescending:@"created_At"];
   [postQuery includeKey:@"author"];
   [postQuery findObjectsInBackgroundWithBlock:^(NSArray<Post *> *_Nullable objects, NSError *_Nullable error) {
     self.category = objects[0].category;
@@ -79,6 +79,7 @@
               findObjectsInBackgroundWithBlock:^(NSArray<Post *> *_Nullable objects, NSError *_Nullable error) {
                 // NSLog(@"POSTS: %@", objects);
                 // NSLog(@"%@ vs %@", objects[0].category, self.category);
+                  if(objects.count > 0){
                 if ([objects[0].category isEqual:self.category]) {
                   // NSLog(@"CATEGORY MATCHED!!");
                   if ([self.users containsObject:user]) {
@@ -87,6 +88,7 @@
                     [self score];
                   }
                 }
+                  }
               }];
             }
           }

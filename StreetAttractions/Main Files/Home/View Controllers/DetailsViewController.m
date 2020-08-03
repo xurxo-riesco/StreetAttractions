@@ -67,7 +67,7 @@
   self.profilePic.file = self.user.profilePic;
   [self.profilePic loadInBackground];
   self.userLabel.text = self.user.screenname;
-  self.dateLabel.text = self.post.createdAt.timeAgoSinceNow;
+  self.dateLabel.text = self.post.created_At.timeAgoSinceNow;
   self.descriptionLabel.text = self.post.caption;
   self.categoryLabel.text = self.post.category;
   self.categoryLabel.textColor = [self.post.category colorCode];

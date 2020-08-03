@@ -80,7 +80,7 @@
 {
   PFQuery *postQuery = [Post query];
   [postQuery includeKey:@"author"];
-  [postQuery orderByDescending:@"createdAt"];
+  [postQuery orderByDescending:@"created_At"];
   [postQuery whereKey:@"author" equalTo:self.user];
   postQuery.limit = 20;
   [postQuery findObjectsInBackgroundWithBlock:^(NSArray<Post *> *_Nullable posts, NSError *_Nullable error) {
@@ -97,7 +97,7 @@
   PFQuery *postQuery = [Post query];
   User *user = [User currentUser];
   [postQuery includeKey:@"author"];
-  [postQuery orderByDescending:@"createdAt"];
+  [postQuery orderByDescending:@"created_At"];
   [postQuery whereKey:@"author" equalTo:self.user];
   postQuery.limit = 20;
   [postQuery setSkip:self.dataSkip];
@@ -267,7 +267,7 @@
 {
   PFQuery *postQuery = [Post query];
   [postQuery whereKey:@"author" equalTo:self.user];
-  [postQuery orderByDescending:@"createdAt"];
+  [postQuery orderByDescending:@"created_At"];
   postQuery.limit = 5;
   [postQuery findObjectsInBackgroundWithBlock:^(NSArray<Post *> *_Nullable posts, NSError *_Nullable error) {
     if (posts) {
@@ -280,7 +280,7 @@
         [comps setMonth:12];
         [comps setYear:1899];
         NSDate *date = [[NSCalendar currentCalendar] dateFromComponents:comps];
-        NSInteger days = [date daysFrom:post.createdAt];
+        NSInteger days = [date daysFrom:post.created_At];
         [self.dates addObject:[NSNumber numberWithInt:days]];
       }
       [self predictLocation];

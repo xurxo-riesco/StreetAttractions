@@ -75,7 +75,7 @@
   PFQuery *postQuery = [Post query];
   User *user = [User currentUser];
   [postQuery includeKey:@"author"];
-  [postQuery orderByDescending:@"createdAt"];
+  [postQuery orderByDescending:@"created_At"];
   [postQuery whereKey:@"city" equalTo:user.location];
   [postQuery whereKey:@"category" equalTo:self.category.name];
   postQuery.limit = 20;
@@ -94,7 +94,7 @@
   PFQuery *postQuery = [Post query];
   User *user = [User currentUser];
   [postQuery includeKey:@"author"];
-  [postQuery orderByDescending:@"createdAt"];
+  [postQuery orderByDescending:@"created_At"];
   [postQuery whereKey:@"category" equalTo:self.category.name];
   [postQuery whereKey:@"city" equalTo:user.location];
   postQuery.limit = 20;

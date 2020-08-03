@@ -51,30 +51,32 @@
 - (void)ratingChart
 {
   PNLineChart *lineChart = [[PNLineChart alloc] initWithFrame:CGRectMake(0, 400, SCREEN_WIDTH, 200.0)];
-  [lineChart setXLabels:@[@"", @"", @"", @"", @"", @"", @"", @"", @"", @""]];
+  [lineChart setXLabels:@[@"", @"", @"", @"", @""]];
   lineChart.yLabelFormat = @"%1.1f";
   lineChart.yFixedValueMax = 5;
   lineChart.showYGridLines = YES;
   PFQuery *postQuery = [Post query];
-  postQuery.limit = 20;
+  postQuery.limit = 5;
   User *user = [User currentUser];
-  [postQuery orderByDescending:@"createdAt"];
+  [postQuery orderByDescending:@"created_At"];
   [postQuery whereKey:@"author" equalTo:user];
   // Fetches all user posts
   [postQuery findObjectsInBackgroundWithBlock:^(NSArray<Post *> *_Nullable posts, NSError *_Nullable error) {
     if (posts) {
+        NSLog(@"%@", posts);
       for (Post *post in posts) {
         if (post.rating != nil) {
           // Includes the rating data to the array to graph
           [self.data01Array addObject:post.rating];
           // Adds likesCount and rating to the total values
           self.totalRating += post.rating.floatValue;
+          self.totalLikes += post.likeCount.intValue;
         }
-        self.totalLikes += post.likeCount.intValue;
       }
     }
     // Array is reversed to preserve chronological order
     NSArray *reversedArray = [[self.data01Array reverseObjectEnumerator] allObjects];
+      NSLog(@"%@", reversedArray);
     PNLineChartData *data01 = [PNLineChartData new];
     data01.color = PNYellow;
     data01.itemCount = lineChart.xLabels.count;

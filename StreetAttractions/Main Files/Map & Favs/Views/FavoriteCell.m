@@ -65,7 +65,7 @@
   CLLocation *endLocation = [[CLLocation alloc] initWithLatitude:post.latitude.floatValue
                                                        longitude:post.longitude.floatValue];
   CLLocationDistance distance = [startLocation distanceFromLocation:endLocation];
-  self.dateLabel.text = post.createdAt.shortTimeAgoSinceNow;
+  self.dateLabel.text = post.created_At.shortTimeAgoSinceNow;
   self.distanceLabel.text = [NSString stringWithFormat:@"%.2f mi away", distance * 0.000621371];
   self.profilePic.layer.masksToBounds = YES;
   self.profilePic.layer.cornerRadius = 15;

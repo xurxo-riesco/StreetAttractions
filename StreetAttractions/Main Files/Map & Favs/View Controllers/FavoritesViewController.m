@@ -51,7 +51,7 @@
 {
   PFQuery *postQuery = [Post query];
   User *user = [User currentUser];
-  [postQuery orderByDescending:@"createdAt"];
+  [postQuery orderByDescending:@"created_At"];
   [postQuery includeKey:@"author"];
   [postQuery whereKey:@"city" equalTo:user.location];
   [postQuery whereKey:@"category" containedIn:self.userCategories];
@@ -83,7 +83,7 @@
   PFQuery *postQuery = [Post query];
   User *user = [User currentUser];
   [postQuery includeKey:@"author"];
-  [postQuery orderByDescending:@"createdAt"];
+  [postQuery orderByDescending:@"created_At"];
   [postQuery whereKey:@"city" equalTo:user.location];
   [postQuery whereKey:@"author" containedIn:self.userFavorites];
   postQuery.limit = 20;
@@ -119,7 +119,7 @@
     [self alertEmpty];
   }
   NSSortDescriptor *sortDescriptor;
-  sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"createdAt" ascending:NO];
+  sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"created_At" ascending:NO];
   self.posts = [self.posts sortedArrayUsingDescriptors:@[sortDescriptor]];
   [self.tableView reloadData];
 }

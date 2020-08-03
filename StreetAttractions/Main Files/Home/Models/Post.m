@@ -17,6 +17,7 @@
 @dynamic likeCount;
 @dynamic city;
 @dynamic createdAt;
+@dynamic created_At;
 @dynamic latitude;
 @dynamic longitude;
 @dynamic category;
@@ -54,6 +55,7 @@
   newPost.latitude = latitude;
   newPost.longitude = longitude;
   newPost.hasVideo = hasVideo;
+    newPost.created_At = [NSDate date];
   if (hasVideo) {
     newPost.video = video;
   } else {

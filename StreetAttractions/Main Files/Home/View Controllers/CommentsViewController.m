@@ -8,7 +8,7 @@
 
 #import "CommentsViewController.h"
 
-@interface CommentsViewController ()<UITableViewDelegate, UITableViewDataSource, CommentCellDelegate>
+@interface CommentsViewController ()<UITableViewDelegate, UITableViewDataSource, CommentCellDelegate, UITextFieldDelegate>
 
 @end
 
@@ -17,7 +17,8 @@
 - (void)viewDidLoad
 {
   [super viewDidLoad];
-
+  self.commentField.delegate = self;
+    
   // TableView Set Up
   self.tableView.delegate = self;
   self.tableView.dataSource = self;
@@ -87,6 +88,14 @@
 {
   return self.comments.count;
 }
+
+// Hides the keyboard after pressing return
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+  [textField resignFirstResponder];
+  return YES;
+}
+
 
 #pragma mark - Navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

@@ -61,7 +61,7 @@
       PFQuery *recommendedQ = [relation query];
       [recommendedQ includeKey:@"author"];
       [recommendedQ whereKey:@"city" equalTo:[User currentUser].location];
-      [recommendedQ orderByDescending:@"createdAt"];
+      [recommendedQ orderByDescending:@"created_At"];
       recommendedQ.limit = 10;
       // Fecthes liked post of user liked by current user
       [recommendedQ findObjectsInBackgroundWithBlock:^(NSArray<Post *> *posts, NSError *_Nullable error) {

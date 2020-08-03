@@ -664,6 +664,10 @@
                                             <rect key="frame" x="0.0" y="0.0" width="192" height="181"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
                                             <subviews>
+                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="ePf-Fy-Ufd">
+                                                    <rect key="frame" x="86" y="80" width="20" height="20"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </activityIndicatorView>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="OXH-TG-k91" customClass="PFImageView">
                                                     <rect key="frame" x="0.0" y="0.0" width="192" height="181"/>
                                                     <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -714,10 +718,6 @@
                                                         <constraint firstAttribute="height" constant="12" id="fQM-hH-Ymw"/>
                                                     </constraints>
                                                 </view>
-                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="ePf-Fy-Ufd">
-                                                    <rect key="frame" x="86" y="80" width="20" height="20"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                </activityIndicatorView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="hMa-Eu-U5Y" firstAttribute="leading" secondItem="yPX-W4-hib" secondAttribute="leading" constant="16" id="2Xa-nn-oIO"/>
@@ -1526,6 +1526,17 @@
                                     <action selector="onRate:" destination="Heh-aZ-ZVG" eventType="touchUpInside" id="BfH-61-XHx"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S9O-fW-sbf" customClass="CustomButton">
+                                <rect key="frame" x="293" y="98" width="111" height="61"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="61" id="9p8-vz-23U"/>
+                                    <constraint firstAttribute="width" constant="111" id="mwM-Li-M2R"/>
+                                </constraints>
+                                <state key="normal" title="Add to Calendar"/>
+                                <connections>
+                                    <action selector="onCalendarApp:" destination="Heh-aZ-ZVG" eventType="touchUpInside" id="fQx-Or-f5v"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -1542,6 +1553,7 @@
                             <constraint firstItem="Jjy-Fp-h9c" firstAttribute="top" secondItem="G2f-yL-oge" secondAttribute="bottom" constant="4" id="KFJ-yV-gRX"/>
                             <constraint firstItem="5h1-US-8VA" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="RQx-b6-YAy" secondAttribute="trailing" constant="16" id="Kvi-Da-nSt"/>
                             <constraint firstItem="jBp-Hu-UhK" firstAttribute="top" secondItem="kNH-NG-gQX" secondAttribute="bottom" constant="8" id="NhQ-5s-xxi"/>
+                            <constraint firstItem="5h1-US-8VA" firstAttribute="trailing" secondItem="S9O-fW-sbf" secondAttribute="trailing" constant="10" id="Whg-Ba-7Cn"/>
                             <constraint firstItem="6Og-MD-fR4" firstAttribute="top" secondItem="5h1-US-8VA" secondAttribute="top" id="Win-qc-6GG"/>
                             <constraint firstItem="RQx-b6-YAy" firstAttribute="top" secondItem="Jjy-Fp-h9c" secondAttribute="bottom" constant="8" id="aSQ-uS-Pzt"/>
                             <constraint firstItem="STR-lN-B1h" firstAttribute="centerY" secondItem="jBp-Hu-UhK" secondAttribute="centerY" id="cj1-XI-Nik"/>
@@ -1549,6 +1561,7 @@
                             <constraint firstItem="kNH-NG-gQX" firstAttribute="leading" secondItem="G2f-yL-oge" secondAttribute="trailing" constant="8" id="hDO-2K-5wa"/>
                             <constraint firstItem="6Og-MD-fR4" firstAttribute="leading" secondItem="5h1-US-8VA" secondAttribute="leading" id="jFB-Iu-zdo"/>
                             <constraint firstItem="h6A-Zt-dGZ" firstAttribute="leading" secondItem="5h1-US-8VA" secondAttribute="leading" id="kiZ-3c-XXA"/>
+                            <constraint firstItem="S9O-fW-sbf" firstAttribute="top" secondItem="5h1-US-8VA" secondAttribute="top" constant="10" id="kjC-UN-Byy"/>
                             <constraint firstItem="5h1-US-8VA" firstAttribute="trailing" secondItem="Xz8-Tv-Li6" secondAttribute="trailing" constant="20" id="rZc-93-h96"/>
                             <constraint firstItem="Jjy-Fp-h9c" firstAttribute="leading" secondItem="5h1-US-8VA" secondAttribute="leading" constant="24" id="syK-Ea-Vqd"/>
                             <constraint firstItem="6Og-MD-fR4" firstAttribute="trailing" secondItem="5h1-US-8VA" secondAttribute="trailing" id="tNT-yN-Q2l"/>
@@ -1576,6 +1589,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="barButton" destination="Z1V-ZV-QNi" id="sS8-zh-P3E"/>
+                        <outlet property="calendarButton" destination="S9O-fW-sbf" id="IRr-MY-Bxn"/>
                         <outlet property="categoryLabel" destination="kNH-NG-gQX" id="QSQ-b9-z5V"/>
                         <outlet property="commentsButton" destination="91x-JR-fMU" id="2S3-n0-OQH"/>
                         <outlet property="dateLabel" destination="Jjy-Fp-h9c" id="3lY-30-kUc"/>

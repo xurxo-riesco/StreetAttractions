@@ -70,6 +70,17 @@
   self.descriptionLabel.text = self.post.caption;
   self.categoryLabel.text = self.post.category;
   self.categoryLabel.textColor = [self.post.category colorCode];
+    
+    // CalendarEvent Set Up
+    if(self.post.isUpcoming){
+        self.calendarButton.alpha = 1;
+        self.calendarButton.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
+        self.calendarButton.titleLabel.numberOfLines = 2;
+        [self.calendarButton.titleLabel setTextAlignment:NSTextAlignmentCenter];
+    }else{
+        self.calendarButton.alpha = 0;
+        self.calendarButton.enabled = NO;
+    }
 
   // GestureRecognizer Set Up
   UITapGestureRecognizer *postTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapPost:)];
@@ -272,6 +283,24 @@ calloutAccessoryControlTapped:(UIControl *)control
 
   // Changes the liking button state to reflect the backend change
   self.barButton.image = [UIImage systemImageNamed:@"heart"];
+}
+
+#pragma mark - Calendar
+- (IBAction)onCalendarApp:(id)sender {
+    EKEventStore *store = [EKEventStore new];
+    [store requestAccessToEntityType:EKEntityTypeEvent completion:^(BOOL granted, NSError *error) {
+        if(granted){
+        EKEvent *event = [EKEvent eventWithEventStore:store];
+           event.title = self.post.category;
+           event.startDate = self.post.upcomingDate;
+        event.endDate = self.post.upcomingDate;
+           event.calendar = [store defaultCalendarForNewEvents];
+           NSError *err = nil;
+           [store saveEvent:event span:EKSpanThisEvent commit:YES error:&err];
+        }
+    }];
+   self.calendarButton.hidden = YES;
+   self.calendarButton.enabled = NO;
 }
 
 #pragma mark - Navigation

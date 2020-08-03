@@ -109,7 +109,7 @@ NSInteger prevMessageCount;
     content.body = body;
     content.sound = [UNNotificationSound defaultSound];
 
-    UNTimeIntervalNotificationTrigger *trigger = [UNTimeIntervalNotificationTrigger triggerWithTimeInterval:2
+    UNTimeIntervalNotificationTrigger *trigger = [UNTimeIntervalNotificationTrigger triggerWithTimeInterval:0.5
                                                                                                     repeats:NO];
     UNNotificationRequest *request = [UNNotificationRequest requestWithIdentifier:@"UYLocalNotification"
                                                                           content:content

@@ -9,6 +9,7 @@
 #import <AVFoundation/AVFoundation.h>
 #import <MapKit/MapKit.h>
 #import <UIKit/UIKit.h>
+#import <EventKit/EventKit.h>
 
 #import "DateTools.h"
 #import "HCSStarRatingView.h"
@@ -25,6 +26,11 @@ NS_ASSUME_NONNULL_BEGIN
    Animated view for displaying rate and rating
 */
 @property (weak, nonatomic) IBOutlet HCSStarRatingView *starView;
+
+/**
+   Allows user to add upcoming performances to their calendar app
+*/
+@property (weak, nonatomic) IBOutlet UIButton *calendarButton;
 
 /**
    Holds the post of which to display the details

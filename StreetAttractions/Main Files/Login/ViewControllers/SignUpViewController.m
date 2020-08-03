@@ -8,7 +8,7 @@
 
 #import "SignUpViewController.h"
 
-@interface SignUpViewController ()<UIImagePickerControllerDelegate>
+@interface SignUpViewController ()<UIImagePickerControllerDelegate, UITextFieldDelegate>
 @end
 
 @implementation SignUpViewController
@@ -17,6 +17,12 @@
 {
   [super viewDidLoad];
   self.passwordField.secureTextEntry = YES;
+
+  // TextField Delegate Set Up
+  self.passwordField.delegate = self;
+  self.locationField.delegate = self;
+  self.usernameField.delegate = self;
+  self.screennameField.delegate = self;
 }
 
 // ImagePicker set up for profile pic
@@ -130,6 +136,13 @@ didFinishPickingMediaWithInfo:(NSDictionary<NSString *, id> *)info
   self.drawerController.title = @"Timeline";
   appDelegate.window.rootViewController = self.drawerController;
   [appDelegate.window makeKeyAndVisible];
+}
+
+#pragma mark - UITextField Delegate
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+  [textField resignFirstResponder];
+  return YES;
 }
 
 /*

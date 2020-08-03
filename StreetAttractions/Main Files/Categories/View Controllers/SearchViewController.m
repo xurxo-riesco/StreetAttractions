@@ -9,11 +9,6 @@
 #import "SearchViewController.h"
 
 @interface SearchViewController ()<UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource>
-@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
-@property (nonatomic, strong) NSString *userString;
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (strong, nonatomic) NSArray *users;
-@property (strong, nonatomic) User *user;
 
 @end
 

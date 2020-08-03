@@ -9,7 +9,6 @@
 #import "CollabViewController.h"
 
 @interface CollabViewController ()<UITableViewDelegate, UITableViewDataSource>
-@property (strong, nonatomic) NSArray *finalArray;
 @end
 
 @implementation CollabViewController

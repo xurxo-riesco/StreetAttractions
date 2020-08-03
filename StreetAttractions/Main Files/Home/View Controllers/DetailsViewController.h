@@ -101,6 +101,11 @@ NS_ASSUME_NONNULL_BEGIN
 */
 @property (weak, nonatomic) IBOutlet UILabel *categoryLabel;
 
+/**
+   Informs the user if a post has a video attached to it
+*/
+@property (weak, nonatomic) IBOutlet UILabel *videoLabel;
+
 @end
 
 NS_ASSUME_NONNULL_END

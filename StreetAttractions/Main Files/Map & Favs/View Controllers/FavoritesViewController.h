@@ -57,6 +57,11 @@ NS_ASSUME_NONNULL_BEGIN
 */
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
 
+/**
+   TableView containing all posts under a favorited user or category
+*/
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -13,7 +13,6 @@
 #import "User.h"
 
 @interface DetailsViewController ()<UIViewControllerTransitioningDelegate>
-@property (weak, nonatomic) IBOutlet UILabel *videoLabel;
 
 @end
 

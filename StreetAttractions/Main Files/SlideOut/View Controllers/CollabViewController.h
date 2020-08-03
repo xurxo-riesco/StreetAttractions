@@ -62,6 +62,11 @@ NS_ASSUME_NONNULL_BEGIN
 */
 @property (strong, nonatomic) NSMutableArray<User*> *finalUsers;
 
+/**
+ Holds the screenname of the ranked users, used to obtain the user objects array
+*/
+@property (strong, nonatomic) NSArray *finalArray;
+
 @end
 
 NS_ASSUME_NONNULL_END

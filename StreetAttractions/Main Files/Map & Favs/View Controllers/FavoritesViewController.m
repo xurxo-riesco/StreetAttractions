@@ -9,7 +9,6 @@
 #import "FavoritesViewController.h"
 
 @interface FavoritesViewController ()<UITableViewDelegate, UITableViewDataSource, FavoriteCellDelegate>
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
 

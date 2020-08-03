@@ -47,6 +47,7 @@
 
 - (void)loadPost:(Post *)post
 {
+  [self.activityIndicator startAnimating];
   self.post = post;
   self.descriptionView.alpha = 0;
   CGRect newFrame = self.mediaView.frame;
@@ -54,7 +55,9 @@
   newFrame.size.height = (CGRectGetHeight(self.bounds));
   [self.mediaView setFrame:newFrame];
   self.mediaView.file = post.media;
-  [self.mediaView loadInBackground];
+  [self.mediaView loadInBackground:^(UIImage *_Nullable image, NSError *_Nullable error) {
+    [self.activityIndicator stopAnimating];
+  }];
   self.distanceLabel.text = @"";
   self.descriptionLabel.text = @"";
   self.dateLabel.text = @"";

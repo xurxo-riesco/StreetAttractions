@@ -88,6 +88,11 @@ NS_ASSUME_NONNULL_BEGIN
 */
 @property (weak, nonatomic) IBOutlet UIView *categoryView;
 
+/**
+    Displayed while loading post's image
+*/
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
+
 /*!
    @brief Loads all celll views
    @discussion Simply display the media corresponding to the post.

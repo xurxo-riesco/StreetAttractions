@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+#import "Connection.h"
 #import "NSString+ColorCode.h"
 
 // View Controllers

@@ -108,10 +108,8 @@
         self.messageField.frame = CGRectMake(self.messageField.frame.origin.x, self.messageField.frame.origin.y - 200, self.messageField.frame.size.width, self.messageField.frame.size.height);
     }];
 }
-
 /*
 #pragma mark - Navigation
-
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].

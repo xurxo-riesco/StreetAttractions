@@ -57,6 +57,7 @@
   self.mediaView.file = post.media;
   [self.mediaView loadInBackground:^(UIImage *_Nullable image, NSError *_Nullable error) {
     [self.activityIndicator stopAnimating];
+      self.activityIndicator.hidden = YES;
   }];
   self.distanceLabel.text = @"";
   self.descriptionLabel.text = @"";

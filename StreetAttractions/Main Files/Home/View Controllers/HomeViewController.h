@@ -14,6 +14,7 @@
 #import "AppDelegate.h"
 #import "GreedoCollectionViewLayout.h"
 #import "TNTutorialManager.h"
+#import "Connection.h"
 
 // View Controllers
 #import "ComposeViewController.h"
@@ -88,6 +89,7 @@ NS_ASSUME_NONNULL_BEGIN
     Timer to obtain messages, used for notifications since they are local
 */
 @property (strong, nonatomic) NSTimer *timer;
+
 
 @end
 

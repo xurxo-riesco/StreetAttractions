@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreData/CoreData.h>
 #import <UserNotifications/UserNotifications.h>
 
 #import "MMDrawerController.h"
@@ -23,4 +24,10 @@
 */
 @property (strong, nonatomic) MMDrawerController *drawerController;
 
+/**
+  Offline saving
+*/
+@property (readonly, strong) NSPersistentContainer *persistentContainer;
+
+- (void)saveOffline;
 @end

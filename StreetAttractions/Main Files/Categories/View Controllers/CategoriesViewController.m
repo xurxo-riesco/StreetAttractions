@@ -92,11 +92,14 @@
 - (void)fetchCategories
 {
   PFQuery *categoriesQuery = [Category query];
+  if (![Connection connectedToInternet]) {
+    [categoriesQuery fromLocalDatastore];
+  }
   categoriesQuery.limit = 10;
   [categoriesQuery
   findObjectsInBackgroundWithBlock:^(NSArray<Category *> *_Nullable categories, NSError *_Nullable error) {
     if (categories) {
-      NSLog(@"%@", categories);
+      [PFObject pinAllInBackground:categories withName:@"Category"];
       self.categories = [categories mutableCopy];
       [self.tableView reloadData];
     }

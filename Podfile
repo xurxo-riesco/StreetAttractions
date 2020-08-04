@@ -30,12 +30,6 @@ target 'StreetAttractions' do
    pod 'GreedoLayout'
    pod 'MaterialComponents/BottomSheet'
 
-37.798483,-122.419342
-37.760108,-122.416202
-
-
-
-
   target 'StreetAttractionsTests' do
     inherit! :search_paths
     # Pods for testing

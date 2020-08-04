@@ -315,6 +315,9 @@ NSInteger prevMessageCount;
 - (void)fetchPost
 {
   PFQuery *postQuery = [Post query];
+    if(![Connection connectedToInternet]){
+        [postQuery fromLocalDatastore];
+    }
   User *user = [User currentUser];
   [postQuery includeKey:@"author"];
   [postQuery orderByDescending:@"created_At"];
@@ -326,6 +329,7 @@ NSInteger prevMessageCount;
   postQuery.limit = 20;
   [postQuery findObjectsInBackgroundWithBlock:^(NSArray<Post *> *_Nullable posts, NSError *_Nullable error) {
     if (posts) {
+        [PFObject pinAllInBackground:posts withName:@"Posts"];
       if (posts.count == 0) {
         [self alertEmpty];
       }

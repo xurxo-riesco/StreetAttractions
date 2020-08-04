@@ -71,6 +71,11 @@
 		98C02F6924D47ABB0045213C /* RequestCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 98C02F6824D47ABB0045213C /* RequestCell.m */; };
 		98C02F6D24D4AE8C0045213C /* DatePredictor.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 98C02F6C24D4AE8C0045213C /* DatePredictor.mlmodel */; };
 		98C02F6E24D4AE8C0045213C /* DatePredictor.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 98C02F6C24D4AE8C0045213C /* DatePredictor.mlmodel */; };
+		98C02F7124D9BC350045213C /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 98C02F7024D9BC350045213C /* Reachability.m */; };
+		98C02F7224D9BC350045213C /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 98C02F7024D9BC350045213C /* Reachability.m */; };
+		98C02F7424D9BC5D0045213C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98C02F7324D9BC5D0045213C /* SystemConfiguration.framework */; };
+		98C02F7724D9C12A0045213C /* Connection.m in Sources */ = {isa = PBXBuildFile; fileRef = 98C02F7624D9C12A0045213C /* Connection.m */; };
+		98C02F7824D9C12A0045213C /* Connection.m in Sources */ = {isa = PBXBuildFile; fileRef = 98C02F7624D9C12A0045213C /* Connection.m */; };
 		98C1F68324BD02D800DB3713 /* CategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 98C1F68224BD02D800DB3713 /* CategoryCell.m */; };
 		98C57B5624BE207000F8FD0C /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 98C57B5524BE207000F8FD0C /* SettingsViewController.m */; };
 		98C57B6624BF776A00F8FD0C /* CoreML.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98C57B6524BF776A00F8FD0C /* CoreML.framework */; };
@@ -225,6 +230,11 @@
 		98C02F6724D47ABB0045213C /* RequestCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RequestCell.h; sourceTree = "<group>"; };
 		98C02F6824D47ABB0045213C /* RequestCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RequestCell.m; sourceTree = "<group>"; };
 		98C02F6C24D4AE8C0045213C /* DatePredictor.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = DatePredictor.mlmodel; path = "StreetAttractions/Supporting Files/DatePredictor.mlmodel"; sourceTree = SOURCE_ROOT; };
+		98C02F6F24D9BC350045213C /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		98C02F7024D9BC350045213C /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		98C02F7324D9BC5D0045213C /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		98C02F7524D9C12A0045213C /* Connection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Connection.h; sourceTree = "<group>"; };
+		98C02F7624D9C12A0045213C /* Connection.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Connection.m; sourceTree = "<group>"; };
 		98C1F68124BD02D800DB3713 /* CategoryCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CategoryCell.h; sourceTree = "<group>"; };
 		98C1F68224BD02D800DB3713 /* CategoryCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CategoryCell.m; sourceTree = "<group>"; };
 		98C57B5424BE207000F8FD0C /* SettingsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
@@ -242,6 +252,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				98C02F7424D9BC5D0045213C /* SystemConfiguration.framework in Frameworks */,
 				9890CCC824D203F500621EE3 /* UserNotifications.framework in Frameworks */,
 				9890CC4624CF7E6600621EE3 /* Pods_StreetAttractions.framework in Frameworks */,
 				9863F19724C607EC00B01B74 /* CoreGraphics.framework in Frameworks */,
@@ -319,6 +330,8 @@
 				9824088024BCBD6B00F35FDA /* LaunchScreen.storyboard */,
 				9824088324BCBD6B00F35FDA /* Info.plist */,
 				9824088424BCBD6B00F35FDA /* main.m */,
+				98C02F7524D9C12A0045213C /* Connection.h */,
+				98C02F7624D9C12A0045213C /* Connection.m */,
 			);
 			path = StreetAttractions;
 			sourceTree = "<group>";
@@ -610,6 +623,8 @@
 				9863F18D24C2605500B01B74 /* NSString+ColorCode.m */,
 				98611E5D24D21CD80052759A /* CustomButton.h */,
 				98611E5E24D21CD80052759A /* CustomButton.m */,
+				98C02F6F24D9BC350045213C /* Reachability.h */,
+				98C02F7024D9BC350045213C /* Reachability.m */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -617,6 +632,7 @@
 		C88B161770348EF8269234E7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				98C02F7324D9BC5D0045213C /* SystemConfiguration.framework */,
 				9890CCC724D203F400621EE3 /* UserNotifications.framework */,
 				9863F19824C607F300B01B74 /* QuartzCore.framework */,
 				9863F19624C607EC00B01B74 /* CoreGraphics.framework */,
@@ -926,6 +942,8 @@
 				982408BE24BCCBCB00F35FDA /* SlideOutViewController.m in Sources */,
 				98B96F1224C65AF4005CBEA1 /* LatitudePredictor.mlmodel in Sources */,
 				9890CCB924CF8A1900621EE3 /* HyLoginButton.m in Sources */,
+				98C02F7124D9BC350045213C /* Reachability.m in Sources */,
+				98C02F7724D9C12A0045213C /* Connection.m in Sources */,
 				9890CCBD24CF8A1900621EE3 /* HyTransitions.m in Sources */,
 				9897D77B24C8A3DD006C3FC5 /* CollabViewController.m in Sources */,
 				982408C524BCCBEB00F35FDA /* FavoritesViewController.m in Sources */,
@@ -974,7 +992,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				9824088F24BCBD6B00F35FDA /* StreetAttractionsTests.m in Sources */,
+				98C02F7224D9BC350045213C /* Reachability.m in Sources */,
 				98C02F6E24D4AE8C0045213C /* DatePredictor.mlmodel in Sources */,
+				98C02F7824D9C12A0045213C /* Connection.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

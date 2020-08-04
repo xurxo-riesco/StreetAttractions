@@ -13,6 +13,10 @@
 
 #import "DateTools.h"
 #import "HCSStarRatingView.h"
+
+// View Controllers
+#import "CommentsViewController.h"
+
 // Models
 #import "Post.h"
 #import "User.h"
@@ -112,6 +116,15 @@ NS_ASSUME_NONNULL_BEGIN
 */
 @property (weak, nonatomic) IBOutlet UILabel *videoLabel;
 
+/**
+   Allows user to claim a performance if it is them performing
+*/
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *claimButton;
+
+/**
+  Displays original author of a claimed post
+*/
+@property (weak, nonatomic) IBOutlet UILabel *originalAuthor;
 @end
 
 NS_ASSUME_NONNULL_END

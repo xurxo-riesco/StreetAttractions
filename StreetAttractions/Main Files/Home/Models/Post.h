@@ -10,7 +10,6 @@
 
 // Models
 #import "Category.h"
-//#import "User.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -95,6 +94,11 @@ NS_ASSUME_NONNULL_BEGIN
    Date of the event if its in the future
 */
 @property (strong, nonatomic) NSDate *upcomingDate;
+
+/**
+   If a post is claimed, the author will be displayed as the performer who claimed it, but it will stay mention the original author
+*/
+@property (strong, nonatomic) PFUser *originalAuthor;
 
 /**
   Determines if event is happening now or it will happen in the future

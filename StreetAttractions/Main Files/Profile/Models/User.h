@@ -104,6 +104,13 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)hasRated:(Post *)post WithCompletion:(void (^)(BOOL))completion;
 
 /*!
+   @brief Checks if a post has been claimed by the performer
+   @discussion Determines if the performer has claimed the input post
+   @param  post The post to check
+*/
++ (void)hasClaimed:(Post *)post WithCompletion:(void (^)(BOOL))completion;
+
+/*!
    @brief Get favorite categories
    @discussion Gets all categories the user has marked as favorite
    @note A test is written for this method

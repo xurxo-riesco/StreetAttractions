@@ -78,10 +78,13 @@
 #pragma mark - Network
 - (void)fetchPost
 {
-  PFQuery *postQuery = [Post query];
+  PFQuery *authorQuery = [Post query];
+  [authorQuery whereKey:@"author" equalTo:self.user];
+  PFQuery *originalQuery = [Post query];
+  [originalQuery whereKey:@"originalAuthor" equalTo:self.user];
+  PFQuery *postQuery = [PFQuery orQueryWithSubqueries:@[originalQuery, authorQuery]];
   [postQuery includeKey:@"author"];
   [postQuery orderByDescending:@"created_At"];
-  [postQuery whereKey:@"author" equalTo:self.user];
   postQuery.limit = 20;
   [postQuery findObjectsInBackgroundWithBlock:^(NSArray<Post *> *_Nullable posts, NSError *_Nullable error) {
     if (posts) {
@@ -208,6 +211,9 @@
   Post *post = self.posts[indexPath.item];
   homeCell.delegate = self;
   [homeCell loadPost:post];
+  if (!self.user.isPerfomer) {
+    [homeCell bookmark];
+  }
   return homeCell;
 }
 

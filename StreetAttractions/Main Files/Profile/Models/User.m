@@ -78,6 +78,20 @@
   }];
 }
 
++ (void)hasClaimed:(Post *)post WithCompletion:(void (^)(BOOL))completion
+{
+  User *currentUser = [User currentUser];
+  PFRelation *relation = [currentUser relationForKey:@"ClaimedPosts"];
+  PFQuery *query = [relation query];
+  [query findObjectsInBackgroundWithBlock:^(NSArray<Post *> *_Nullable posts, NSError *_Nullable error) {
+    for (Post *postLiked in posts) {
+      if ([[post objectId] isEqual:[postLiked objectId]]) {
+        completion(YES);
+      }
+    }
+  }];
+}
+
 + (void)getCategoriesWithCompletion:(void (^)(NSArray *categories, NSArray *categoryStrings))completion
 {
   User *user = [User currentUser];

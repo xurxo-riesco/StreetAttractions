@@ -27,6 +27,7 @@
 @dynamic upcomingDate;
 @dynamic hasVideo;
 @dynamic video;
+@dynamic originalAuthor;
 
 + (nonnull NSString *)parseClassName
 {

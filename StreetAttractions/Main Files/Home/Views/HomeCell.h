@@ -93,6 +93,11 @@ NS_ASSUME_NONNULL_BEGIN
 */
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 
+/**
+    Displays that the post has been claimed by a performer
+*/
+@property (weak, nonatomic) IBOutlet UIImageView *claimedView;
+
 /*!
    @brief Loads all celll views
    @discussion Simply display the media corresponding to the post.
@@ -111,6 +116,13 @@ NS_ASSUME_NONNULL_BEGIN
    @param  post The post for which to display the previewed detail information
 */
 - (void)showDescription:(Post *)post;
+
+/*!
+   @brief Displays a bookmark for claimed posts
+   @discussion Avalaible only on profile view, displayed if the user posted but the post was claimed
+
+*/
+- (void)bookmark;
 
 @end
 

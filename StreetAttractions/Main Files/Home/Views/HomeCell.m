@@ -57,7 +57,7 @@
   self.mediaView.file = post.media;
   [self.mediaView loadInBackground:^(UIImage *_Nullable image, NSError *_Nullable error) {
     [self.activityIndicator stopAnimating];
-      self.activityIndicator.hidden = YES;
+    self.activityIndicator.hidden = YES;
   }];
   self.distanceLabel.text = @"";
   self.descriptionLabel.text = @"";
@@ -99,6 +99,13 @@
       [self.post saveInBackground];
     }
     self.dateLabel.text = post.created_At.shortTimeAgoSinceNow;
+  }
+}
+
+- (void)bookmark
+{
+  if (self.post.originalAuthor != nil) {
+    self.claimedView.alpha = 1;
   }
 }
 

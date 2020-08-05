@@ -193,4 +193,3 @@ Screen drawings: https://drive.google.com/drive/folders/1hWSNX-2TlW5txHfIeGXf7gX
    * PNChart
    * MaterialComponents/BottomSheet
    * FSCalendar
-<img src='http://g.recordit.co/bF9nmUoyZH.gif' />

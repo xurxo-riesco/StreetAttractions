@@ -161,3 +161,47 @@ Screen drawings: https://drive.google.com/drive/folders/1hWSNX-2TlW5txHfIeGXf7gX
 #### Existing API 
    - Foursquare API (Search for locations to add performance to the map)
    - Payouts API (User can donate to performer in their profile )
+### App Expectation Checklist
+
+* Your app has multiple views
+<img src='http://g.recordit.co/EjwEEMrQJB.gif'/>
+
+* You can log in/log out of your app as a user
+<img src='http://g.recordit.co/YKxXGFoz8T.gif'/>
+
+* You can sign up with a new user profile
+<img src='http://g.recordit.co/rdhIvXOZSS.gif'/>
+
+* Somewhere in your app you can use the camera to take a picture and do something with the picture (e.g. take a photo and share it to a feed, or take a photo and set a user’s profile picture)
+<img src='http://g.recordit.co/mnjzTqiS0x.gif'/>
+
+* Your app integrates with a SDK
+
+   * Facebook SDK
+<img src='http://g.recordit.co/SAnueMdbxP.gif'/>
+
+   * Braintree SDK
+<img src='http://g.recordit.co/5ONtCxVkEr.gif'/>
+   
+* Your app uses gesture recognizers
+<img src='http://g.recordit.co/xo5WvZou0I.gif'/>
+
+* Your app use an animation
+<img src='http://g.recordit.co/UUMEqFG409.gif'/>
+
+* Your app interacts with a database
+   * Parse
+   
+* Your app incorporates an external library to add visual polish
+
+   * HyLoginButton
+   * GreedoCollectionViewLayout
+   * DateTools
+   * PNChart
+   * MaterialComponents/BottomSheet
+   * FSCalendar
+   
+* Your app contains at least one more complex algorithm
+   * Recommendations Algorithm - Recommends post based on the post that users you follow have liked
+   * ML Algorithm - CoreML model that predicts performer's next performance date and place
+   * Collab Algorithm - Recommends performers who they should collab with based on the amount of users in the same city that like both performers in the same category

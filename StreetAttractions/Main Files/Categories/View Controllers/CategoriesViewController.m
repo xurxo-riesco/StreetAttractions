@@ -173,13 +173,14 @@
       NSLog(@"Error");
     }
   }];
+    
   [vc setTitle:@"Scan a QR!"];
+  [[vc leftBarButtonItem] setTitle:@"Cancel"];
+  [[vc rightBarButtonItem] setTitle:@"Album"];
+  vc.rightBarButtonItem.tintColor = [UIColor blackColor];
+  vc.leftBarButtonItem.tintColor = [UIColor blackColor];
   [vc setNeedsScanAnnimation:NO];
-
-  [vc setNavigationBarTintColor:[UIColor lightGrayColor]];
-
-  //[vc setFrameImage:[UIImage imageNamed:@"your image name"]];
-  //[vc setLineImage:[UIImage imageNamed:@"your image name"]];
+  [vc setNavigationBarTintColor:[UIColor colorWithRed:239.0 / 255.0 green:235.0 / 255.0 blue:234.0 / 255.0 alpha:1]];
 
   UINavigationController *navVC = [[UINavigationController alloc] initWithRootViewController:vc];
   [self presentViewController:navVC animated:YES completion:NULL];

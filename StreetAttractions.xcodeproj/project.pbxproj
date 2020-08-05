@@ -76,6 +76,8 @@
 		98C02F7424D9BC5D0045213C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98C02F7324D9BC5D0045213C /* SystemConfiguration.framework */; };
 		98C02F7724D9C12A0045213C /* Connection.m in Sources */ = {isa = PBXBuildFile; fileRef = 98C02F7624D9C12A0045213C /* Connection.m */; };
 		98C02F7824D9C12A0045213C /* Connection.m in Sources */ = {isa = PBXBuildFile; fileRef = 98C02F7624D9C12A0045213C /* Connection.m */; };
+		98C02F9224DB14280045213C /* LatitudePredictor.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 98B96F1024C65AF4005CBEA1 /* LatitudePredictor.mlmodel */; };
+		98C02F9324DB142C0045213C /* LongitudePredictor.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 98B96F0F24C65AF4005CBEA1 /* LongitudePredictor.mlmodel */; };
 		98C1F68324BD02D800DB3713 /* CategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 98C1F68224BD02D800DB3713 /* CategoryCell.m */; };
 		98C57B5624BE207000F8FD0C /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 98C57B5524BE207000F8FD0C /* SettingsViewController.m */; };
 		98C57B6624BF776A00F8FD0C /* CoreML.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98C57B6524BF776A00F8FD0C /* CoreML.framework */; };
@@ -994,6 +996,8 @@
 				9824088F24BCBD6B00F35FDA /* StreetAttractionsTests.m in Sources */,
 				98C02F7224D9BC350045213C /* Reachability.m in Sources */,
 				98C02F6E24D4AE8C0045213C /* DatePredictor.mlmodel in Sources */,
+				98C02F9324DB142C0045213C /* LongitudePredictor.mlmodel in Sources */,
+				98C02F9224DB14280045213C /* LatitudePredictor.mlmodel in Sources */,
 				98C02F7824D9C12A0045213C /* Connection.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

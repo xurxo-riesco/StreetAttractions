@@ -75,6 +75,10 @@
       PFRelation *likeRelation = [user relationForKey:@"LikedPost"];
       [likeRelation addObject:self.post];
 
+      // Adds the post to the user's claimed (used in hasClaimed)
+      PFRelation *claimRelation = [user relationForKey:@"ClaimedPosts"];
+      [claimRelation addObject:self.post];
+
       // Saves to backend
       [user saveInBackgroundWithBlock:^(BOOL succeeded, NSError *_Nullable error) {
         [expectation2 fulfill];
@@ -212,6 +216,26 @@
       [expectation fulfill];
     }
   }];
+
+  // Asserts based on the completion of the network call
+  [self waitForExpectationsWithTimeout:10
+                               handler:^(NSError *_Nullable error) {
+                                 XCTAssertTrue(0 == 0);
+                               }];
+}
+- (void)testHasClaimed
+{
+  // Expectation to wait for network call
+  XCTestExpectation *expectation = [self expectationWithDescription:@"Has Claimed"];
+
+  // Checks if the user has claimed a post, since the post was claimed in the setup, completion indicates the test
+  // passed
+  [User hasClaimed:self.post
+    WithCompletion:^(BOOL completion) {
+      if (completion) {
+        [expectation fulfill];
+      }
+    }];
 
   // Asserts based on the completion of the network call
   [self waitForExpectationsWithTimeout:10

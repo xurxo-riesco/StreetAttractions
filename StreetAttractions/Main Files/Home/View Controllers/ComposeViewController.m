@@ -101,9 +101,8 @@
             imagePickerVC.delegate = self;
             imagePickerVC.allowsEditing = YES;
             if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-              imagePickerVC.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+              imagePickerVC.sourceType = UIImagePickerControllerSourceTypeCamera;
             } else {
-              NSLog(@"Camera 🚫 available so we will use photo library instead");
               imagePickerVC.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
             }
             [self presentViewController:imagePickerVC animated:YES completion:nil];

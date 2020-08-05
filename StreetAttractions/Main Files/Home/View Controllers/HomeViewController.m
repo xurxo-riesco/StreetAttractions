@@ -52,7 +52,7 @@ NSInteger prevMessageCount;
   self.collectionViewSizeCalculator.rowMaximumHeight = CGRectGetHeight(self.collectionView.bounds) / 2.5;
   self.collectionViewSizeCalculator.fixedHeight = self.hasFixedHeight;
   self.automaticallyAdjustsScrollViewInsets = YES;
-  // self.collectionView.backgroundColor = [UIColor whiteColor];
+    
   // Configure spacing between cells
   UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
   layout.minimumInteritemSpacing = 2.0f;

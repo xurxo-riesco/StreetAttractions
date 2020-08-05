@@ -170,6 +170,9 @@ didCompleteWithResult:(FBSDKLoginManagerLoginResult *)result
 
 - (void)loginButtonDidLogOut:(nonnull FBSDKLoginButton *)loginButton
 {
+    if ([FBSDKAccessToken currentAccessToken]) {
+      [FBSDKAccessToken setCurrentAccessToken:nil];
+    }
 }
 
 @end

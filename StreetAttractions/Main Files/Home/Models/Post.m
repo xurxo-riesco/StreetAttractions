@@ -8,6 +8,7 @@
 
 #import "Post.h"
 #import "User.h"
+
 @implementation Post
 @dynamic postID;
 @dynamic userID;
@@ -102,6 +103,10 @@
       [relation addObject:post];
       [category saveInBackgroundWithBlock:^(BOOL succeeded, NSError *_Nullable error) {
         if (succeeded) {
+            [post pinInBackground];
+            if(![Connection connectedToInternet]){
+                [post saveEventually];
+            }
           [post saveInBackgroundWithBlock:completion];
         }
       }];

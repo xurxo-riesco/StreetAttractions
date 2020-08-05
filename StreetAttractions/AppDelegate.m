@@ -65,7 +65,7 @@
 
   // Comment out to see tutorial on every app start, leave commented for tutorial to only be displayed on first app
   // start
-  //[[NSUserDefaults standardUserDefaults] removePersistentDomainForName:[[NSBundle mainBundle] bundleIdentifier]];
+  [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:[[NSBundle mainBundle] bundleIdentifier]];
 
   return YES;
 }

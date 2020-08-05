@@ -7,7 +7,7 @@
 //
 
 #import <Parse/Parse.h>
-
+#import "Connection.h"
 // Models
 #import "Category.h"
 

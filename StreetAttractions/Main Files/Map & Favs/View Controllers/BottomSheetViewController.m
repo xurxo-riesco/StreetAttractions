@@ -28,7 +28,6 @@
   [helperQuery orderByDescending:@"created_At"];
   [helperQuery whereKey:@"author" equalTo:[User currentUser]];
   [helperQuery findObjectsInBackgroundWithBlock:^(NSArray<Post *> *_Nullable objects, NSError *_Nullable error) {
-    NSLog(@"%@", objects[0].category);
     [self fetchRequestsForCategory:objects[0].category];
   }];
 }
@@ -46,7 +45,6 @@
   findObjectsInBackgroundWithBlock:^(NSArray<PerformanceRequest *> *_Nullable requests, NSError *_Nullable error) {
     if (requests) {
       self.requests = requests;
-      NSLog(@"%@", requests);
       [self.tableView reloadData];
     }
   }];

@@ -197,7 +197,6 @@ didFinishPickingMediaWithInfo:(NSDictionary<NSString *, id> *)info
           withVideoFile:self.video
          withCompletion:^(BOOL succeeded, NSError *_Nullable error) {
            if (succeeded) {
-             NSLog(@"POSTED");
              [HUD dismiss];
              [self.delegate didPost];
              [self.navigationController popViewControllerAnimated:YES];

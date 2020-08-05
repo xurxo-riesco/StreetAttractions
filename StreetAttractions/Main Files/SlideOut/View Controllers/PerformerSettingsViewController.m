@@ -63,7 +63,6 @@
   // Fetches all user posts
   [postQuery findObjectsInBackgroundWithBlock:^(NSArray<Post *> *_Nullable posts, NSError *_Nullable error) {
     if (posts) {
-        NSLog(@"%@", posts);
       for (Post *post in posts) {
         if (post.rating != nil) {
           // Includes the rating data to the array to graph
@@ -76,7 +75,6 @@
     }
     // Array is reversed to preserve chronological order
     NSArray *reversedArray = [[self.data01Array reverseObjectEnumerator] allObjects];
-      NSLog(@"%@", reversedArray);
     PNLineChartData *data01 = [PNLineChartData new];
     data01.color = PNYellow;
     data01.itemCount = lineChart.xLabels.count;

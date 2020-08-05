@@ -56,7 +56,6 @@
   PFQuery *query = [relation query];
   [query findObjectsInBackgroundWithBlock:^(NSArray<Post *> *_Nullable posts, NSError *_Nullable error) {
     for (Post *postLiked in posts) {
-      NSLog(@"%@, %@", postLiked, post);
       if ([[post objectId] isEqual:[postLiked objectId]]) {
         completion(YES);
       }

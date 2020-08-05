@@ -81,7 +81,6 @@
               [newIndexPaths addObject:[NSIndexPath indexPathForRow:i inSection:0]];
             }
           }
-          NSLog(@"%@", self.posts);
           [self.collectionView reloadData];
         }
       }];
@@ -148,7 +147,6 @@
 {
   if (searchText != 0) {
     self.text = searchText;
-    NSLog(@"%@", searchText);
     [self performSegueWithIdentifier:@"searchSegue" sender:nil];
   }
 }
@@ -163,7 +161,6 @@
   DYQRCodeDecoderViewController *vc = [[DYQRCodeDecoderViewController alloc]
   initWithCompletion:^(BOOL succeeded, NSString *result) {
     if (succeeded) {
-      NSLog(@"%@", result);
       PFQuery *queryUsers = [PFUser query];
       [queryUsers whereKey:@"username" equalTo:result];
       queryUsers.limit = 20;
@@ -173,7 +170,7 @@
       }];
 
     } else {
-      NSLog(@"failed");
+      NSLog(@"Error");
     }
   }];
   [vc setTitle:@"Scan a QR!"];

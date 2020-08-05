@@ -72,7 +72,6 @@
   [weatherAPI
   currentWeatherByCoordinate:coordinate
                 withCallback:^(NSError *error, NSDictionary *result) {
-                  NSLog(@"%@", result);
                   NSNumber *currentTemp = result[@"main"][@"temp"];
                   self.tempLabel.text = [NSString stringWithFormat:@"%2.0f C°", currentTemp.floatValue];
                   NSString *iconcode = result[@"weather"][0][@"icon"];
@@ -97,7 +96,6 @@
   [data getDataInBackgroundWithBlock:^(NSData *_Nullable data, NSError *_Nullable error) {
     if (error == nil) {
       UIImage *image = [UIImage imageWithData:data];
-      NSLog(@"%@", image);
       UIImageView *imageView = (UIImageView *)annotationView.leftCalloutAccessoryView;
       imageView.image = image;
     } else {
@@ -207,7 +205,6 @@ didChangeDragState:(MKAnnotationViewDragState)newState
 {
   if (newState == MKAnnotationViewDragStateEnding) {
     CLLocationCoordinate2D droppedAt = view.annotation.coordinate;
-    NSLog(@"Pin dropped at %f,%f", droppedAt.latitude, droppedAt.longitude);
 
     CLLocation *draglocation = [[CLLocation alloc] initWithLatitude:droppedAt.latitude longitude:droppedAt.longitude];
     [self requestForAnnotation:view.annotation];

@@ -98,7 +98,6 @@
   [categoryQuery findObjectsInBackgroundWithBlock:^(NSArray<Category *> *_Nullable objects, NSError *_Nullable error) {
     if (!error) {
       Category *category = objects[0];
-      NSLog(@"%@", category);
       PFRelation *relation = [category relationForKey:@"Posts"];
       [relation addObject:post];
       [category saveInBackgroundWithBlock:^(BOOL succeeded, NSError *_Nullable error) {

@@ -89,7 +89,6 @@ static NSString *const clientSecret = @"W2AOE1TYC4MHK5SZYOUGX0J3LVRALMPB4CXT3ZH2
     completionHandler:^(NSData *_Nullable data, NSURLResponse *_Nullable response, NSError *_Nullable error) {
       if (data) {
         NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-        NSLog(@"response: %@", responseDictionary);
         self.results = [responseDictionary valueForKeyPath:@"response.venues"];
         [self.tableView reloadData];
       }

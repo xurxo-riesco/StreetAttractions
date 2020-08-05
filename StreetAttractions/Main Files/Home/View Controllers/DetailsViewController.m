@@ -147,11 +147,8 @@
 - (void)didPinchIn:(UIPinchGestureRecognizer *)sender
 {
   if (sender.scale <= 1.0 && self.pinch == NO) {
-    NSLog(@"%d", self.pinch);
     self.pinch = YES;
-    NSLog(@"PINCH IN");
     PFFileObject *data = self.post.video;
-    NSLog(@"%@", data);
     [data getDataInBackgroundWithBlock:^(NSData *_Nullable data, NSError *_Nullable error) {
       if (data) {
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);

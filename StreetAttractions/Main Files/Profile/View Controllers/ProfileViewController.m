@@ -136,8 +136,6 @@
     int scrollOffsetThreshold = scrollViewContentHeight - self.collectionView.bounds.size.height;
     if (scrollView.contentOffset.y > scrollOffsetThreshold && self.collectionView.isDragging) {
       self.isMoreDataLoading = true;
-      NSLog(@"More data");
-      NSLog(@"%d", self.dataSkip);
       [self fetchMorePost];
     }
   }
@@ -246,9 +244,7 @@
 - (IBAction)openLive:(id)sender
 {
   NSURL *newRouteURL = [NSURL URLWithString:self.user.liveURL];
-  NSLog(@"%@", self.user.liveURL);
   [[UIApplication sharedApplication] openURL:newRouteURL];
-  NSLog(@"OPen live");
 }
 
 #pragma mark - Navigation
@@ -277,7 +273,6 @@
   postQuery.limit = 5;
   [postQuery findObjectsInBackgroundWithBlock:^(NSArray<Post *> *_Nullable posts, NSError *_Nullable error) {
     if (posts) {
-      NSLog(@"%@", posts);
       for (Post *post in posts) {
         [self.latitudes addObject:post.latitude];
         [self.longitudes addObject:post.longitude];
@@ -303,15 +298,10 @@
   double longitude2 = [self.longitudes[1] doubleValue];
   double longitude3 = [self.longitudes[2] doubleValue];
   double date1 = -[self.dates[0] doubleValue];
-  NSLog(@"%f", date1);
   double date2 = -[self.dates[1] doubleValue];
-  NSLog(@"%f", date2);
   double date3 = -[self.dates[2] doubleValue];
-  NSLog(@"%f", date3);
   double date4 = -[self.dates[3] doubleValue];
-  NSLog(@"%f", date4);
   double date5 = -[self.dates[4] doubleValue];
-  NSLog(@"%f", date5);
   LatitudePredictor *latitudeModel = [[LatitudePredictor alloc] init];
   LongitudePredictor *longitudeModel = [[LongitudePredictor alloc] init];
   DatePredictor *dateModel = [[DatePredictor alloc] init];
@@ -339,7 +329,6 @@
   NSDate *date = [[NSCalendar currentCalendar] dateFromComponents:comps];
   NSDateComponents *dayComponent = [[NSDateComponents alloc] init];
   dayComponent.day = resultDate.Next_Date;
-  NSLog(@"%f", resultDate.Next_Date);
   NSCalendar *theCalendar = [NSCalendar currentCalendar];
   NSDate *nextDate = [theCalendar dateByAddingComponents:dayComponent toDate:date options:0];
   NSDateFormatter *formatter = [[NSDateFormatter alloc] init];

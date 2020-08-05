@@ -273,9 +273,7 @@ NSInteger prevMessageCount;
       return CGSizeMake((CGFloat)([self randomValueBetween:300 and:414]),
                         (CGFloat)([self randomValueBetween:165 and:201]));
     }
-    // NSLog (@"%@, %f", post.description, post.rating.floatValue);
     if (post.rating.floatValue > 4.5) {
-      NSLog(@"YEEES, %f", post.rating.floatValue);
       return CGSizeMake((CGFloat)([self randomValueBetween:200 and:260]),
                         (CGFloat)([self randomValueBetween:165 and:201]));
     } else {
@@ -431,8 +429,6 @@ NSInteger prevMessageCount;
     int scrollOffsetThreshold = scrollViewContentHeight - self.collectionView.bounds.size.height;
     if (scrollView.contentOffset.y > scrollOffsetThreshold && self.collectionView.isDragging) {
       self.isMoreDataLoading = true;
-      NSLog(@"More data");
-      NSLog(@"%d", self.dataSkip);
       [self fetchMorePost];
     }
   }

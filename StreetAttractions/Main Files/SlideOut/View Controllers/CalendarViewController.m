@@ -55,7 +55,6 @@
 - (NSInteger)calendar:(FSCalendar *)calendar numberOfEventsForDate:(NSDate *)date
 {
   NSString *dateString = [self.dateFormatter stringFromDate:date];
-  NSLog(@"%@", dateString);
   if ([self.dates.allKeys containsObject:dateString]) {
     return 1;
   }
@@ -69,7 +68,6 @@
 eventDefaultColorsForDate:(NSDate *)date
 {
   NSString *dateString = [self.dateFormatter stringFromDate:date];
-  NSLog(@"%@", dateString);
   if ([self.dates.allKeys containsObject:dateString]) {
     Post *post = self.dates[dateString];
     return @[[post.category colorCode], appearance.eventDefaultColor, [UIColor blackColor]];
@@ -82,7 +80,6 @@ eventDefaultColorsForDate:(NSDate *)date
 fillSelectionColorForDate:(NSDate *)date
 {
   NSString *dateString = [self.dateFormatter stringFromDate:date];
-  NSLog(@"%@", dateString);
   if ([self.dates.allKeys containsObject:dateString]) {
     Post *post = self.dates[dateString];
     return [post.category colorCode];
@@ -95,7 +92,6 @@ fillSelectionColorForDate:(NSDate *)date
 fillDefaultColorForDate:(NSDate *)date
 {
   NSString *dateString = [self.dateFormatter stringFromDate:date];
-  NSLog(@"%@", dateString);
   if ([self.dates.allKeys containsObject:dateString]) {
     Post *post = self.dates[dateString];
     return [post.category colorCode];
@@ -108,7 +104,6 @@ fillDefaultColorForDate:(NSDate *)date
 borderDefaultColorForDate:(NSDate *)date
 {
   NSString *dateString = [self.dateFormatter stringFromDate:date];
-  NSLog(@"%@", dateString);
   if ([self.dates.allKeys containsObject:dateString]) {
     Post *post = self.dates[dateString];
     return [post.category colorCode];
@@ -121,7 +116,6 @@ borderDefaultColorForDate:(NSDate *)date
 borderSelectionColorForDate:(NSDate *)date
 {
   NSString *dateString = [self.dateFormatter stringFromDate:date];
-  NSLog(@"%@", dateString);
   if ([self.dates.allKeys containsObject:dateString]) {
     Post *post = self.dates[dateString];
     return [post.category colorCode];

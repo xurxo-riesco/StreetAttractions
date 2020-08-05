@@ -20,7 +20,6 @@
 
   // Displays the button to performer settings based on the isPerformer user's property
   if ([User currentUser].isPerfomer) {
-    NSLog(@"PERFORMER");
     self.performerButton.alpha = 1;
     self.collabButton.alpha = 1;
     self.verifiedButton.alpha = 0;

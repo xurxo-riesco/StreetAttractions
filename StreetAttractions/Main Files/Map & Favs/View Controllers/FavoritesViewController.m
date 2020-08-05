@@ -36,7 +36,6 @@
     self.userCategories = categoryStrings;
     // List of user's favorite user is fetched so that it can be used as a query parameter
     [User getFavoritesWithCompletion:^(NSArray<User *> *_Nonnull favorites) {
-      NSLog(@"%@", favorites);
       self.userFavorites = favorites;
       // Initial network call
       [self.refreshControl beginRefreshing];
@@ -92,7 +91,6 @@
       int prevNumPost = (int)self.posts.count;
       for (Post *post in posts) {
         if ([self.posts containsObject:post]) {
-          NSLog(@"Repeated");
           continue;
         } else {
           if (post != nil) {
@@ -131,7 +129,6 @@
     self.userCategories = categoryStrings;
     // List of user's favorite user is fetched so that it can be used as a query parameter
     [User getFavoritesWithCompletion:^(NSArray<User *> *_Nonnull favorites) {
-      NSLog(@"%@", favorites);
       self.userFavorites = favorites;
       // Initial network call
       [self fetchFavCategoryPosts];

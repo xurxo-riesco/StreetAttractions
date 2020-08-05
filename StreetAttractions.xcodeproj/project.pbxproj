@@ -231,7 +231,7 @@
 		98C02F6524D477B90045213C /* BottomSheetViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BottomSheetViewController.m; sourceTree = "<group>"; };
 		98C02F6724D47ABB0045213C /* RequestCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RequestCell.h; sourceTree = "<group>"; };
 		98C02F6824D47ABB0045213C /* RequestCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RequestCell.m; sourceTree = "<group>"; };
-		98C02F6C24D4AE8C0045213C /* DatePredictor.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = DatePredictor.mlmodel; path = "StreetAttractions/Supporting Files/DatePredictor.mlmodel"; sourceTree = SOURCE_ROOT; };
+		98C02F6C24D4AE8C0045213C /* DatePredictor.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = DatePredictor.mlmodel; path = "StreetAttractions/Supporting Files/ML/DatePredictor.mlmodel"; sourceTree = SOURCE_ROOT; };
 		98C02F6F24D9BC350045213C /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		98C02F7024D9BC350045213C /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		98C02F7324D9BC5D0045213C /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -323,8 +323,8 @@
 		9824087124BCBD6900F35FDA /* StreetAttractions */ = {
 			isa = PBXGroup;
 			children = (
-				98C57B6024BF75C900F8FD0C /* Supporting Files */,
 				982408B224BCCB8700F35FDA /* Main Files */,
+				98C57B6024BF75C900F8FD0C /* Supporting Files */,
 				9824087224BCBD6900F35FDA /* AppDelegate.h */,
 				9824087324BCBD6900F35FDA /* AppDelegate.m */,
 				9824087B24BCBD6900F35FDA /* Main.storyboard */,
@@ -332,8 +332,6 @@
 				9824088024BCBD6B00F35FDA /* LaunchScreen.storyboard */,
 				9824088324BCBD6B00F35FDA /* Info.plist */,
 				9824088424BCBD6B00F35FDA /* main.m */,
-				98C02F7524D9C12A0045213C /* Connection.h */,
-				98C02F7624D9C12A0045213C /* Connection.m */,
 			);
 			path = StreetAttractions;
 			sourceTree = "<group>";
@@ -614,19 +612,45 @@
 			path = ViewControllers;
 			sourceTree = "<group>";
 		};
-		98C57B6024BF75C900F8FD0C /* Supporting Files */ = {
+		98C02F9424DB180E0045213C /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				98C02F6C24D4AE8C0045213C /* DatePredictor.mlmodel */,
-				9865ADB424C10C8D0090C386 /* HyTransitions */,
-				98B96F1024C65AF4005CBEA1 /* LatitudePredictor.mlmodel */,
-				98B96F0F24C65AF4005CBEA1 /* LongitudePredictor.mlmodel */,
+				98C02F6F24D9BC350045213C /* Reachability.h */,
+				98C02F7024D9BC350045213C /* Reachability.m */,
+				98C02F7524D9C12A0045213C /* Connection.h */,
+				98C02F7624D9C12A0045213C /* Connection.m */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		98C02F9524DB181A0045213C /* UI */ = {
+			isa = PBXGroup;
+			children = (
 				9863F18C24C2605500B01B74 /* NSString+ColorCode.h */,
 				9863F18D24C2605500B01B74 /* NSString+ColorCode.m */,
 				98611E5D24D21CD80052759A /* CustomButton.h */,
 				98611E5E24D21CD80052759A /* CustomButton.m */,
-				98C02F6F24D9BC350045213C /* Reachability.h */,
-				98C02F7024D9BC350045213C /* Reachability.m */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		98C02F9624DB18420045213C /* ML */ = {
+			isa = PBXGroup;
+			children = (
+				98C02F6C24D4AE8C0045213C /* DatePredictor.mlmodel */,
+				98B96F1024C65AF4005CBEA1 /* LatitudePredictor.mlmodel */,
+				98B96F0F24C65AF4005CBEA1 /* LongitudePredictor.mlmodel */,
+			);
+			path = ML;
+			sourceTree = "<group>";
+		};
+		98C57B6024BF75C900F8FD0C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				98C02F9624DB18420045213C /* ML */,
+				98C02F9524DB181A0045213C /* UI */,
+				98C02F9424DB180E0045213C /* Network */,
+				9865ADB424C10C8D0090C386 /* HyTransitions */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";

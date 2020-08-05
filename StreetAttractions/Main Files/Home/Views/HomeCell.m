@@ -77,7 +77,6 @@
   self.descriptionView.alpha = 0.75;
   CGRect newFrame = self.mediaView.frame;
 
-  NSLog(@" WIDTH %f", (CGRectGetWidth(self.bounds)));
   newFrame.size.width = (CGRectGetWidth(self.bounds));
   newFrame.size.height = (CGRectGetHeight(self.bounds));
   [self.descriptionView setFrame:newFrame];
@@ -112,7 +111,6 @@
 #pragma mark - Delegate
 - (void)didTapPost:(UITapGestureRecognizer *)sender
 {
-  NSLog(@"Tapping");
   [self.delegate homeCell:self didTap:self.post];
 }
 

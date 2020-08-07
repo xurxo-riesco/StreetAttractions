@@ -1189,6 +1189,7 @@
 				DEVELOPMENT_TEAM = GZPQ9F2Y2V;
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = StreetAttractions/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1244,6 +1245,7 @@
 				DEVELOPMENT_TEAM = GZPQ9F2Y2V;
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = StreetAttractions/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
